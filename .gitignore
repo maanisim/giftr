@@ -8,4 +8,5 @@
 !fallback.py
 !csb_cmd/
 !crypt.py
+!www/
 token.txt
