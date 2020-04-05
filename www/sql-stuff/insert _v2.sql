@@ -1,4 +1,4 @@
-INSERT INTO gift (
+INSERT INTO products (
     name,
     photo,
     age_low,
