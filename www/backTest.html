@@ -6,6 +6,7 @@
     <title>Back End Test File</title>
 </head>
 <body>
+	<button type="submitLogout">Logout</button>
     <h1>Login: email,pass</h1>
     <form action="/api" method="post">
         <label for="uname">Email</label>
@@ -28,7 +29,6 @@
 
         <label for="uname">Email</label>
         <input type="email" placeholder="Email" name="email" required>
-    
         <button type="submit">Submit</button>
     </form>
 
@@ -45,6 +45,25 @@
     
         <label for="passw">Password</label>
         <input type="password" placeholder="Password" name="passw" required>
+        <button type="submit">Submit</button>
+    </form>
+	<h2> ------- IF LOGGED IN ------- </h2> 
+    <h1>Change User Data (profile settings)</h1>
+    <form action="/api" method="post">
+        <input type="hidden"  name="action" value="modifyUser"> 
+        <input type="hidden"  name="token" value="SomeOneTimeTokenGeneratedOnLogin"> 
+
+        <label for="name">Name</label>
+        <input type="text" placeholder="Name" name="Name" required>
+
+        <label for="uname">Email</label>
+        <input type="email" placeholder="Email" name="email" required>
+    
+        <label for="passw">Password</label>
+        <input type="password" placeholder="Password" name="passw" required>
+        <label for="confirmPassw">Confirm Password</label>
+        <input type="confirmPassw" placeholder="Password" name="confirmPassw" required>
+
         <button type="submit">Submit</button>
     </form>
 
