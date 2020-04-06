@@ -17,6 +17,7 @@ CREATE TABLE `users` (
   `user_id` INT(10) NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(40) NOT NULL,
   `password` VARCHAR(256) NOT NULL,
+  `token` VARCHAR(256) NOT NULL,
   `email` VARCHAR(256) NOT NULL,
   `name` INT(40),
   `age` INT(3),
