@@ -7,10 +7,18 @@ from urllib.parse import parse_qs
 
 
 def createAccount(name, email, password):
+    data = {
+        'name': name,
+        'email': email,
+        'password': password
+    }
     return
 
 
 def forgotPassword(email):
+    data = {
+        'email': email
+    }
     return
 
 
