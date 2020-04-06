@@ -1,53 +1,28 @@
 # Really basic program for now
 #
 #
-import requests
-import urllib.parse as urlparse
-from urllib.parse import parse_qs
+from flask import Flask, redirect, url_for, render_template, request
+app = Flask(__name__)
 
 
-def createAccount(name, email, password):
-    data = {
-        'name': name,
-        'email': email,
-        'password': password
-    }
-    return
+@app.route('/')
+def home():
+    return render_template("backTest.html")
 
 
-def forgotPassword(email):
-    data = {
-        'email': email
-    }
-    return
+@app.route('/api', methods=['POST', 'GET'])
+def login():
+    if request.method == 'POST':
+        user = request.form['email']
+        return redirect(url_for("user", usr=user))
+    else:
+        return render_template("login.html")
 
 
-def accountLogin(email, password):
-    data = {
-        'email': email,
-        'pass': password
-    }
-
-    with requests.Session() as session:
-        post = session.post('LOGIN_URL', data=data)
-        r = session.get('PAGE_URL')
-        print(r.text)
+@app.route("/<usr>")
+def user(usr):
+    return f"<h1>{usr}</h1>"
 
 
-url = 'test.com/login?username=test&password=thisispass'
-parsed = urlparse.urlparse(url)
-
-if 'login' in parsed.path:
-    email = parsed.query[0]
-    password = parsed.query[1]
-    accountLogin(email, password)
-
-elif 'register' in parsed.path:
-    name = parsed.query[0]
-    email = parsed.query[1]
-    password = parsed.query[2]
-    createAccount(name, email, password)
-
-elif 'forgot' in parsed.path:
-    email = parsed.query[0]
-    forgotPassword()
+if __name__ == '__main__':
+    app.run(debug=True)
