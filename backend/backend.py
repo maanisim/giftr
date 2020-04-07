@@ -5,10 +5,10 @@ import MySQLdb.cursors, re, hashlib
 app = Flask(__name__)
 
 # DB Connection details
-# app.config['MYSQL_HOST'] = ''
-# app.config['MYSQL_USER'] = ''
-# app.config['MYSQL_PASSWORD'] = ''
-# app.config['MYSQL_DB'] = ''
+# app.config['MYSQL_HOST'] = 'localhost'
+# app.config['MYSQL_USER'] = 'web'
+# app.config['MYSQL_PASSWORD'] = 'AN(G3hg93hgn2ffim'
+# app.config['MYSQL_DB'] = 'dummy'
 
 # Initialise DB
 mysql = MySQL(app)
