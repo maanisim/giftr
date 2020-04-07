@@ -10,4 +10,4 @@
 !crypt.py
 !www/
 token.txt
-/www/tmpAccounts.txt
+www/venv
