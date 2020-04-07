@@ -11,4 +11,4 @@
 !www/
 token.txt
 www/venv
-/backend
+!backend/
