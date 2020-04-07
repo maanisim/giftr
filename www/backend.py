@@ -1,20 +1,17 @@
 # Really basic program for now
-#
-#
 from flask import Flask, redirect, url_for, render_template, request, session
-from flask_mysqldb import MYSQL
-import MySQLdb.cursors
-import re
+from flask_mysqldb import MySQL
+import MySQLdb.cursors, re, hashlib
 app = Flask(__name__)
 
 # DB Connection details
-app.config['MYSQL_HOST'] = ''
-app.config['MYSQL_USER'] = ''
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = ''
+# app.config['MYSQL_HOST'] = ''
+# app.config['MYSQL_USER'] = ''
+# app.config['MYSQL_PASSWORD'] = ''
+# app.config['MYSQL_DB'] = ''
 
 # Initialise DB
-mysql = MYSQL(app)
+mysql = MySQL(app)
 
 @app.route('/')
 def home():
@@ -25,20 +22,21 @@ def home():
 def login():
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
         email = request.form['email']
-        password = request.form['passw']
+        password = hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
         # Check if account exists in DB
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM accounts WHERE email = %s AND password = %s',(email, password))
-        # Fetch account
-        account = cursor.fetchone()
+        # cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        # cursor.execute('SELECT * FROM accounts WHERE email = %s AND password = %s',(email, password))
+        # # Fetch account
+        # account = cursor.fetchone()
+        return redirect(url_for("user", usr=email))
 
-        if account:
-            session['loggedin'] = True
-            session['id'] = account['id']
-            session['email'] = account['email']
-            return 'Logged in'            
-    else:
-        return render_template("backTest.html")
+    #     if account:
+    #         session['loggedin'] = True
+    #         session['id'] = account['id']
+    #         session['email'] = account['email']
+    #         return 'Logged in'            
+    # else:
+    #     return render_template("backTest.html")
 
     return render_template('index.html')
 
