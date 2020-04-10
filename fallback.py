@@ -33,8 +33,6 @@ async def on_ready():
   if (safe):
     os.system("git reset --hard bak");
     message = "Canary failed. Reverting to backup"
-  else:
-    message = "Canary failed ON BACKUP! SEND ME A COMMIT!"
 
   for guild in client.guilds:
     for role in guild.roles:
