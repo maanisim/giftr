@@ -170,6 +170,8 @@ body{
     border-radius:20px;
     transition-duration:0.6s;
     transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    background: red;
   }
   
 }
@@ -208,6 +210,8 @@ body{
     border-radius:35px;
     transition-duration:0.6s;
     transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    background: #d3c018;
   }
   
 }
@@ -246,6 +250,7 @@ body{
     border-radius:50px;
     transition-duration:0.6s;
     transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    background: #4ddd14;
   }
   
 }
