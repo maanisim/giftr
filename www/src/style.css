@@ -57,11 +57,7 @@ head{
   transition-duration:0.6s;
   transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   
-  background: #519dd9;
-  background: -moz-linear-gradient(270deg, #519dd9 0%, #db0038 100%);
-  background: -webkit-linear-gradient(270deg, #519dd9 0%,#db0038 100%);
-  background: linear-gradient(270deg, #519dd9 0%,#db0038 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7c200', endColorstr='#db0038',GradientType=1 );
+ 
 }
 
 body{
