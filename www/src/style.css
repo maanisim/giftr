@@ -139,7 +139,7 @@ body{
 @media screen and (min-width: 320px) {
   .wrapper{
     text-align:center;
-    margin:35px auto;
+    margin:20px auto;
   }
   
   .tabs{
@@ -177,7 +177,7 @@ body{
 @media screen and (min-width: 768px) {
   .wrapper{
     text-align:center;
-    margin:20px auto;
+    margin:35px auto;
   }
   
   .tabs{
@@ -186,7 +186,7 @@ body{
     padding:0px;
     box-shadow:0px 7px 14px rgba(0, 0, 0, 0.226);
     display:inline-block;
-    border-radius:20px;
+    border-radius:25px;
     position:relative;
   }
   
