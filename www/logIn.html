@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Welcome | Giftr</title>
+    <link rel='icon' href='img/favicon.ico' type='image/x-icon'/ >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <div class="header">
+        <center>
+            <img src="img/logo.png" alt="Logo" width="410" height="120"> 
+            <br>
+        </center>
+    </div>
+
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'><link rel='stylesheet' href="src/logInStyle.css">
+</head>
+
+<body style="background-image: url('img/background.jpeg');">
+    <center>
+        <a href="#" class="sign"><i>Don't have an account? </i>Sign up</a>
+    </center>
+    <form action="logIn_page.php" method="post">
+        <div class="container" >
+            <center>
+            <img src="img/party-profile.png" alt="Profile" width="200" height="200">
+            </center>
+
+            <label for="email"><i class="fas fa-user"></i></label>
+            <input type="text" placeholder="Email" name="email" required>
+            <br>
+            <label for="psw"><i class="fas fa-unlock-alt"></i></label>
+            <input type="password" placeholder="Password" name="psw" required>
+            <br>
+            <label class="remember">
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+            <a href="#" class="forgot">Forgot password?</a>
+            <br>
+            <button class="button submit" type="submit">Login</button>
+        </div>  
+    </form>
+    
+</body>
+
+</html>
