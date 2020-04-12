@@ -9,30 +9,56 @@
     <div class="header">
         <center>
             <img src="img/logo.png" alt="Logo" width="410" height="120"> 
-            <br>Our motto goes here
+            <br>
         </center>
     </div>
 
-    <div class="giftbank">
-        <img src="img/gift.png" alt="Gift icon" width="30" height="30">
-        <a href="#">Gift Bank</a>
-    </div>
-
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'><link rel="stylesheet" href="src/style.css">
-    <div class="wrapper">
-        <nav class="tabs">
-            <div class="selector"></div>
-            <a href="#" class="active"><i class="fas fa-home"></i>Home</a>
-            <a href="#"><i class="fas fa-search"></i>Search for gift</a>
-            <a href="#"><i class="fas fa-gift"></i>Item suggestion</a>
-            <a href="#"><i class="fas fa-user"></i>My profile</a>
-        </nav>
-    </div>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="src/script.js"></script>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'><link rel='stylesheet' href="src/signUpStyle.css">
 </head>
 
-<body>
-    <p>HEllo</p>
+<body style="background-image: url('img/background.jpeg');">
+    <center>
+        <a href="logIn.html" id="alternative"><i>Already have an account? </i>Log in</a>
+    </center>
+    <form action="signUp_page.php" method="post">
+
+        <div class="container" >
+        
+            <label for="name" class="icons"><i class="fas fa-user"></i></label>
+            <input type="text" class="input" placeholder="Name" name="name" required>
+
+            <br>
+
+            <label for="bdaymonth" class="icons"><i class="fas fa-calendar-alt"></i></label>
+            <input type="month" class="input" name="bdaymonth" value="2020-01">
+
+            <br>
+            
+            <button class="button gender"><i class="fas fa-male"></i></button>
+            <button class="button gender"><i class="fas fa-female"></i></button>
+
+            <br>
+
+            <label for="email" class="icons"><i class="fas fa-envelope"></i></label>
+            <input type="email" class="input" placeholder="Email" name="email" required>
+            
+            <br>
+
+            <label for="pas" class="icons"><i class="fas fa-unlock-alt"></i></label>
+            <input type="password" class="input" placeholder="Password" name="pas" required>
+            
+            <br>
+            
+            <label for="repeat_pas" class="icons"><i class="fas fa-unlock-alt"></i></label>
+            <input type="password" class="input" placeholder="Confirm Password" name="repeat_pas" required>
+            
+            <br>
+            
+            <button class="button submit" type="submit">Sign up</button>
+
+        </div>  
+    </form>
+    
 </body>
 
 </html>

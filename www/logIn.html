@@ -18,26 +18,35 @@
 
 <body style="background-image: url('img/background.jpeg');">
     <center>
-        <a href="#" class="sign"><i>Don't have an account? </i>Sign up</a>
+        <a href="signUp.html" id="alternative"><i>Don't have an account? </i>Sign up</a>
     </center>
     <form action="logIn_page.php" method="post">
+
         <div class="container" >
             <center>
-            <img src="img/party-profile.png" alt="Profile" width="200" height="200">
+                <img src="img/party-profile.png" alt="Profile" width="200" height="200">
             </center>
 
-            <label for="email"><i class="fas fa-user"></i></label>
-            <input type="text" placeholder="Email" name="email" required>
+            <label for="email" class="icons"><i class="fas fa-user"></i></label>
+            <input type="text" class="input" placeholder="Email" name="email" required>
+
             <br>
-            <label for="psw"><i class="fas fa-unlock-alt"></i></label>
-            <input type="password" placeholder="Password" name="psw" required>
+
+            <label for="psw" class="icons"><i class="fas fa-unlock-alt"></i></label>
+            <input type="password" class="input" placeholder="Password" name="psw" required>
+
             <br>
-            <label class="remember">
+
+            <label id="remember">
                 <input type="checkbox" checked="checked" name="remember"> Remember me
             </label>
-            <a href="#" class="forgot">Forgot password?</a>
+
+            <a href="#" id="forgot">Forgot password?</a>
+
             <br>
+
             <button class="button submit" type="submit">Login</button>
+
         </div>  
     </form>
     
