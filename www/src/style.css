@@ -90,11 +90,12 @@ body{
 }
 
 .footer {
-  position: fixed;
+  position: absolute;
   left: 0;
-  bottom: 8pt;
+  bottom: 0;
   width: 100%;
   text-align: center;
+  height: 2rem;
 }
 
 .footer a {
@@ -105,6 +106,15 @@ body{
 
 .footer a:hover {
   color: #f7c200;
+}
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 2rem;    /* Footer height */
 }
 
 .giftbank {
