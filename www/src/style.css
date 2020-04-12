@@ -108,15 +108,6 @@ body{
   color: #f7c200;
 }
 
-#page-container {
-  position: relative;
-  min-height: 100vh;
-}
-
-#content-wrap {
-  padding-bottom: 2rem;    /* Footer height */
-}
-
 .giftbank {
   display: flex;
   position: absolute;
@@ -139,6 +130,15 @@ body{
 
 .giftbank:hover {
   background-color: #f7c200;
+}
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 2rem;    /* Footer height */
 }
 
 @media screen and (min-width: 320px) {
