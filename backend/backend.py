@@ -13,10 +13,6 @@ app.config['MYSQL_DB'] = 'dummy'
 # Initialise DB
 mysql = MySQL(app)
 
-@app.route('/back')
-def home():
-    return render_template("backTest.html")
-
 
 @app.route('/api', methods=['POST', 'GET'], host="giftr.cf:443")
 def login():
@@ -34,11 +30,12 @@ def login():
             session['loggedin'] = True
             session['id'] = account['id']
             session['email'] = account['email']
-            return 'Logged in'            
+            return redirect(url_for('home'))            
     else:
+        msg = 'Incorect login details!'
         return render_template("backTest.html")
 
-    return render_template('index.html')
+    return render_template('index.html', msg=msg)
 
 
 @app.route('/api', methods=['POST', 'GET'], host="giftr.cf:443")
@@ -47,6 +44,21 @@ def register():
         name = request.form['name']
         email = request.form['email']
         password = request.form['passw']
+
+
+@app.route('/logout')
+def logout():
+    session.pop('loggedin', None)
+    session.pop('id', None)
+    session.pop('email', None)
+
+
+@app.route('/home')
+def home():
+    if 'loggedin' in session:
+        #Logged in
+        return render_template('home.html', user=session['email'])
+    return redirect(url_for('login'))
 
 
 @app.route("/<usr>")
