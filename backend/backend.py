@@ -25,7 +25,7 @@ def login():
         password = request.form['passw'] #hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
         # Check if account exists in DB
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM accounts WHERE email = %s AND password = %s',(email, password))
+        cursor.execute('SELECT * FROM users WHERE email = %s AND password = %s',(email, password))
         # Fetch account
         account = cursor.fetchone()
         return redirect(url_for("user", usr=email))
