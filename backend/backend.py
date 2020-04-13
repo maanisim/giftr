@@ -13,8 +13,12 @@ app.config['MYSQL_DB'] = 'dummy'
 # Initialise DB
 mysql = MySQL(app)
 
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-@app.route('/api', methods=['POST', 'GET'], host="giftr.cf:443")
+
+@app.route('/api', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
         email = request.form['email']
@@ -24,8 +28,7 @@ def login():
         cursor.execute('SELECT * FROM users WHERE email = %s AND password = %s',(email, password))
         # Fetch account
         account = cursor.fetchone()
-        return redirect(url_for('user', usr=email))
-
+        
         if account:
             session['loggedin'] = True
             session['id'] = account['id']
@@ -35,10 +38,10 @@ def login():
         msg = 'Incorrect login details!'
         return render_template('backTest.html')
 
-    return render_template('index.html', msg=msg)
+    return render_template('backTest.html', msg=msg)
 
 
-@app.route('/api', methods=['POST', 'GET'], host="giftr.cf:443")
+@app.route('/api', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST' and 'name' in request.form and 'passw' in request.form and 'email' in request.form:
         name = request.form['name']
@@ -57,8 +60,8 @@ def logout():
 def home():
     if 'loggedin' in session:
         #Logged in
-        return render_template('home.html', user=session['email'])
-    return redirect(url_for('login'))
+        return render_template('home.html', email=session['email'])
+    return render_template('backTest.html')
 
 
 @app.route("/<usr>")
@@ -67,5 +70,5 @@ def user(usr):
 
 
 if __name__ == '__main__':
-    #app.run(debug=True)
-    app.run(host='giftr.cf:443')
+    app.run(debug=True)
+    # app.run()
