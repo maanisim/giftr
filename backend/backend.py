@@ -24,19 +24,19 @@ def login():
         email = request.form['email']
         password = hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
         # Check if account exists in DB
-        # cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        # cursor.execute('SELECT * FROM accounts WHERE email = %s AND password = %s',(email, password))
-        # # Fetch account
-        # account = cursor.fetchone()
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM accounts WHERE email = %s AND password = %s',(email, password))
+        # Fetch account
+        account = cursor.fetchone()
         return redirect(url_for("user", usr=email))
 
-    #     if account:
-    #         session['loggedin'] = True
-    #         session['id'] = account['id']
-    #         session['email'] = account['email']
-    #         return 'Logged in'            
-    # else:
-    #     return render_template("backTest.html")
+        if account:
+            session['loggedin'] = True
+            session['id'] = account['id']
+            session['email'] = account['email']
+            return 'Logged in'            
+    else:
+        return render_template("backTest.html")
 
     return render_template('index.html')
 
