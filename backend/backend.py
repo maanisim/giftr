@@ -13,12 +13,12 @@ app.config['MYSQL_DB'] = 'dummy'
 # Initialise DB
 mysql = MySQL(app)
 
-@app.route('/')
+@app.route('/back')
 def home():
     return render_template("backTest.html")
 
 
-@app.route('/api', methods=['POST', 'GET'])
+@app.route('/api', methods=['POST', 'GET'], host="giftr.cf:443")
 def login():
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
         email = request.form['email']
@@ -41,7 +41,7 @@ def login():
     return render_template('index.html')
 
 
-@app.route('/api', methods=['POST', 'GET'])
+@app.route('/api', methods=['POST', 'GET'], host="giftr.cf:443")
 def register():
     if request.method == 'POST' and 'name' in request.form and 'passw' in request.form and 'email' in request.form:
         name = request.form['name']
@@ -56,4 +56,4 @@ def user(usr):
 
 if __name__ == '__main__':
     #app.run(debug=True)
-    app.run(host= '178.62.88.166')
+    app.run(host= 'giftr.cf:443')
