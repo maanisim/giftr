@@ -24,7 +24,7 @@ def login():
         cursor.execute('SELECT * FROM users WHERE email = %s AND password = %s',(email, password))
         # Fetch account
         account = cursor.fetchone()
-        return redirect(url_for("user", usr=email))
+        return redirect(url_for('user', usr=email))
 
         if account:
             session['loggedin'] = True
@@ -32,8 +32,8 @@ def login():
             session['email'] = account['email']
             return redirect(url_for('home'))            
     else:
-        msg = 'Incorect login details!'
-        return render_template("backTest.html")
+        msg = 'Incorrect login details!'
+        return render_template('backTest.html')
 
     return render_template('index.html', msg=msg)
 
@@ -68,4 +68,4 @@ def user(usr):
 
 if __name__ == '__main__':
     #app.run(debug=True)
-    app.run(host= 'giftr.cf:443')
+    app.run(host='giftr.cf:443')
