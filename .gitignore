@@ -12,3 +12,4 @@
 token.txt
 www/venv
 !backend/
+backend/venv
