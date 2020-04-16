@@ -24,7 +24,9 @@ mysql = MySQL(app)
 
 @app.route('/api', methods=['POST', 'GET'])
 def api():
-    print("Data sent to API")
+    if request.method == 'POST':
+        print("Data sent to API")
+    return render_template("index.html")
 
 
 @app.route('/logIn.html', methods=['POST', 'GET'])
