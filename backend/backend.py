@@ -98,4 +98,4 @@ def user(usr):
 
 if __name__ == '__main__':
     # app.run(debug=True)
-    app.run(host='giftr.cf')
+    app.run(host='178.62.88.166:443')
