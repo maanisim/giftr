@@ -67,7 +67,6 @@ def register():
         msg = 'You have successfully registered!'
 
 
-
 @app.route('/api/logout', methods=['POST', 'GET'])
 def logout():
     session.pop('loggedin', None)
