@@ -76,14 +76,14 @@ def register():
 
 
 
-@app.route('/logout')
+@app.route('/logout', methods=['POST', 'GET'])
 def logout():
     session.pop('loggedin', None)
     session.pop('id', None)
     session.pop('email', None)
 
 
-@app.route('/home')
+@app.route('/home', methods=['POST', 'GET'])
 def home():
     if 'loggedin' in session:
         #Logged in
@@ -98,4 +98,4 @@ def user(usr):
 
 if __name__ == '__main__':
     # app.run(debug=True)
-    app.run(host='178.62.88.166')
+    app.run(ssl_context='adhoc',hostname='giftr.cf',port=5000)
