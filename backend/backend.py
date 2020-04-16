@@ -24,40 +24,34 @@ mysql = MySQL(app)
 
 @app.route('/', methods=['POST', 'GET'])
 def api():
-    if request.method == 'POST':
-        print("Data sent to API")
-    return render_template("index.html")
-
-
-@app.route('/logIn.html', methods=['POST', 'GET'])
-def login():
+    #LOGGING IN
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
+        login()
+    elif request.method == 'POST' and 'username' in request.form and 'passw' in request.form and 'email' in request.form:
+        register()
+
+    
+def login():
         email = request.form['email']
-        # hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
-        password = request.form['passw']
+        password = request.form['passw'] # hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
+
         # Check if account exists in DB
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute(
-            'SELECT * FROM users WHERE email = %s AND password = %s', (email, password))
+        cursor.execute('SELECT * FROM users WHERE email = %s AND password = %s', (email, password))
         # Fetch account
         account = cursor.fetchone()
-        print("fetching account")  # TODO: REMOVE DEBUG WHEN WORKING
         if account:
-            print("Logged in!")  # TODO: REMOVE DEBUG WHEN WORKING
             session['loggedin'] = True
             session['id'] = account['user_id']
             session['email'] = account['email']
             return redirect(url_for('welcome'))
-    else:
-        msg = 'Incorrect login details!'
-        return render_template('logIn.html')
-    return render_template('logIn.html')
+        else:
+            msg = 'Incorrect login details!'
+            return render_template('logIn.html')
+    return render_template("index.html")
 
-
-@app.route('/signUp', methods=['POST', 'GET'])
 def register():
     msg = ''
-
     # Check if "username", "password" and "email" POST requests exist
     if request.method == 'POST' and 'username' in request.form and 'passw' in request.form and 'email' in request.form:
         # Create variables for easy access
@@ -97,11 +91,8 @@ def logout():
 
 @app.route('/welcome.html', methods=['POST', 'GET'])
 def welcome():
-    print("Welcome")  # TODO: REMOVE DEBUG WHEN WORKING
     if 'loggedin' in session:
-        # Logged in
-        print("LOGGED IN WELCOME")  # TODO: REMOVE DEBUG WHEN WORKING
-        return render_template('home.html', email=session['email'])
+        return render_template('welcome.html', email=session['email'])
     return render_template('index.html')
 
 
