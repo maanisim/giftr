@@ -14,7 +14,7 @@ app.config['MYSQL_DB'] = 'dummy'
 mysql = MySQL(app)
 
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
         email = request.form['email']
