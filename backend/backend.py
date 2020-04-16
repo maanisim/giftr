@@ -39,9 +39,9 @@ def login():
             return redirect(url_for('home'))            
     else:
         msg = 'Incorrect login details!'
-        return render_template('backTest.html')
+        return render_template('index.html')
 
-    return render_template('backTest.html', msg=msg)
+    return render_template('index.html', msg=msg)
 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -98,4 +98,4 @@ def user(usr):
 
 if __name__ == '__main__':
     # app.run(debug=True)
-    app.run(host='178.62.88.166')
+    app.run(host='giftr.cf')
