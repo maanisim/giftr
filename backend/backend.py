@@ -39,9 +39,9 @@ def login():
             return redirect(url_for('home'))            
     else:
         msg = 'Incorrect login details!'
-        return render_template('index.html')
+        return render_template('login.html')
 
-    return render_template('index.html', msg=msg)
+    return render_template('login.html', msg=msg)
 
 
 @app.route('/register', methods=['POST', 'GET'])
