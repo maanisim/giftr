@@ -33,7 +33,6 @@ def login():
     else:
         msg = 'Incorrect login details!'
         return render_template('login.html')
-
     return render_template('login.html')
 
 
