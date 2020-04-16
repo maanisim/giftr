@@ -68,19 +68,19 @@ def register():
 
 
 
-@app.route('/logout', methods=['POST', 'GET'])
+@app.route('/api/logout', methods=['POST', 'GET'])
 def logout():
     session.pop('loggedin', None)
     session.pop('id', None)
     session.pop('email', None)
 
 
-@app.route('/home', methods=['POST', 'GET'])
+@app.route('/api/home', methods=['POST', 'GET'])
 def home():
     if 'loggedin' in session:
         #Logged in
         return render_template('home.html', email=session['email'])
-    return render_template('backTest.html')
+    return render_template('index.html')
 
 
 @app.route("/<usr>")
