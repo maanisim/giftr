@@ -79,7 +79,7 @@ def logout():
     session.pop('email', None)
 
 
-@app.route('../', methods=['POST', 'GET'])
+@app.route('/welcome', methods=['POST', 'GET'])
 def home():
     if 'loggedin' in session:
         #Logged in
