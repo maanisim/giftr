@@ -13,7 +13,7 @@ app.config['MYSQL_DB'] = 'dummy'
 # Initialise DB
 mysql = MySQL(app)
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def index():
     if 'loggedin' in session:
         #Already logged in
