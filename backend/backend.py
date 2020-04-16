@@ -22,7 +22,7 @@ app.config['MYSQL_DB'] = 'dummy'
 mysql = MySQL(app)
 
 
-@app.route('/api', methods=['POST', 'GET'])
+@app.route('/', methods=['POST', 'GET'])
 def api():
     if request.method == 'POST':
         print("Data sent to API")
