@@ -19,9 +19,9 @@ CREATE TABLE `users` (
   `password` VARCHAR(256) NOT NULL,
   `token` VARCHAR(256) NOT NULL,
   `email` VARCHAR(256) NOT NULL,
-  `name` INT(40),
+  `name` VARCHAR(40),
   `age` INT(3),
-  `gender` INT(6),
+  `gender` VARCHAR(6),
   `photo` VARCHAR(3000) NOT NULL,
    /* 5 friends? or full on implementation of social media friends. */
    /*
@@ -64,7 +64,7 @@ CREATE TABLE `wishlist_list` (
   `user_id_2` INT(10),   
    /* 1 = private, 0 = public */
   /*` privacy` INT NOT NULL, */
-   PRIMARY KEY (friends_id),
+   PRIMARY KEY (wishlist_list_id),
    FOREIGN KEY(user_id_1) REFERENCES users(user_id),
    FOREIGN KEY(user_id_2) REFERENCES users(user_id)
 );
