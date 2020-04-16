@@ -26,6 +26,7 @@ def login():
         account = cursor.fetchone()
         
         if account:
+            print("logged in")
             session['loggedin'] = True
             session['id'] = account['user_id']
             session['email'] = account['email']
