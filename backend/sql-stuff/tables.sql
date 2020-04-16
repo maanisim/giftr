@@ -34,12 +34,12 @@ CREATE TABLE `users` (
   PRIMARY KEY (`user_id`)
 );
 
-CREATE TABLE `friends` (
+CREATE TABLE `friends_list` (
   `friends_id` INT(10) NOT NULL AUTO_INCREMENT,
   `user_id_1` INT(10),   
   `user_id_2` INT(10),   
    /* 1 = private, 0 = public */
-  `privacy` INT NOT NULL,
+  /*` privacy` INT NOT NULL, */
    PRIMARY KEY (friends_id),
    FOREIGN KEY(user_id_1) REFERENCES users(user_id),
    FOREIGN KEY(user_id_2) REFERENCES users(user_id)
@@ -58,8 +58,19 @@ CREATE TABLE `wishlist` (
    FOREIGN KEY(product_id) REFERENCES products(product_id)
 );
 
+CREATE TABLE `wishlist_list` (
+  `wishlist_list_id` INT(10) NOT NULL AUTO_INCREMENT,
+  `user_id_1` INT(10),   
+  `user_id_2` INT(10),   
+   /* 1 = private, 0 = public */
+  /*` privacy` INT NOT NULL, */
+   PRIMARY KEY (friends_id),
+   FOREIGN KEY(user_id_1) REFERENCES users(user_id),
+   FOREIGN KEY(user_id_2) REFERENCES users(user_id)
+);
 
 
+/* I am not yet sure how to implement this */
 CREATE TABLE `gift_profiles` (
   `id` INT(100) AUTO_INCREMENT NOT NULL,
   `name` VARCHAR(40),
