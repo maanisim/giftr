@@ -1,8 +1,10 @@
 # Really basic program for now
 from flask import Flask, redirect, url_for, render_template, request, session
 from flask_mysqldb import MySQL
-import MySQLdb.cursors, re, hashlib
+import MySQLdb.cursors, re, hashlib, os
 app = Flask(__name__)
+
+app.secret_key = os.urandom(24)
 
 #DB Connection details
 app.config['MYSQL_HOST'] = 'localhost'
@@ -26,7 +28,6 @@ def login():
         account = cursor.fetchone()
         
         if account:
-            print("logged in")
             session['loggedin'] = True
             session['id'] = account['user_id']
             session['email'] = account['email']
