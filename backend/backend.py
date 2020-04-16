@@ -13,12 +13,8 @@ app.config['MYSQL_DB'] = 'dummy'
 # Initialise DB
 mysql = MySQL(app)
 
-@app.route('/', methods=['POST', 'GET'])
-def index():
-    return f"<h1><h/>"
 
-
-@app.route('/api')
+@app.route('/')
 def login():
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
         email = request.form['email']
