@@ -8,8 +8,6 @@ import os
 
 template_dir = os.path.abspath('../www')  # for debugging
 app = Flask(__name__, template_folder=template_dir)
-
-
 app.secret_key = os.urandom(24)
 
 # DB Connection details
@@ -85,10 +83,10 @@ def logout():
     session.pop('email', None)
 
 
-@app.route('/welcome.html', methods=['POST', 'GET'])
+@app.route('/welcome', methods=['POST', 'GET'])
 def welcome():
+    print("welcome")
     if 'loggedin' in session:
-        print("logged in")
         return render_template('welcome.html', email=session['email'])
     return render_template('index.html')
 
