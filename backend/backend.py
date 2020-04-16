@@ -88,6 +88,7 @@ def logout():
 @app.route('/welcome.html', methods=['POST', 'GET'])
 def welcome():
     if 'loggedin' in session:
+        print("logged in")
         return render_template('welcome.html', email=session['email'])
     return render_template('index.html')
 
