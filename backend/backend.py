@@ -17,7 +17,7 @@ app.config['MYSQL_DB'] = 'dummy'
 mysql = MySQL(app)
 
 
-@app.route('/api/login', methods=['POST', 'GET'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
         email = request.form['email']
@@ -70,7 +70,7 @@ def register():
         msg = 'You have successfully registered!'
 
 
-@app.route('/api/logout', methods=['POST', 'GET'])
+@app.route('/logout', methods=['POST', 'GET'])
 def logout():
     session.pop('loggedin', None)
     session.pop('id', None)
@@ -83,11 +83,6 @@ def home():
         #Logged in
         return render_template('home.html', email=session['email'])
     return render_template('index.html')
-
-
-@app.route("/<usr>")
-def user(usr):
-    return f"<h1>{usr}</h1>"
 
 
 if __name__ == '__main__':
