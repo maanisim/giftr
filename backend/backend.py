@@ -21,7 +21,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/login', methods=['POST', 'GET'])
+@app.route('/login')
 def login():
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
         email = request.form['email']
@@ -98,4 +98,4 @@ def user(usr):
 
 if __name__ == '__main__':
     # app.run(debug=True)
-    app.run(host='178.62.88.166',port=5000)
+    app.run()
