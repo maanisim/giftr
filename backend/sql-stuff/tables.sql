@@ -48,25 +48,21 @@ CREATE TABLE `friends_list` (
 CREATE TABLE `wishlist` (
   `wishlist_id` INT(10) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(40) NOT NULL,
-  `product_id` INT(10),
-  `user_id` INT(10),   
+  `user_id` INT(10),
+  `for_friend_id` INT(10),  
    /*`suggestion_tags` INT(10) NOT NULL,*/
    /* 1 = private, 0 = public */
   `privacy` INT NOT NULL,
    PRIMARY KEY (wishlist_id),
-   FOREIGN KEY(user_id) REFERENCES users(user_id),
-   FOREIGN KEY(product_id) REFERENCES products(product_id)
+   FOREIGN KEY(user_id) REFERENCES users(user_id)
 );
 
 CREATE TABLE `wishlist_list` (
-  `wishlist_list_id` INT(10) NOT NULL AUTO_INCREMENT,
-  `user_id_1` INT(10),   
-  `user_id_2` INT(10),   
-   /* 1 = private, 0 = public */
-  /*` privacy` INT NOT NULL, */
-   PRIMARY KEY (wishlist_list_id),
-   FOREIGN KEY(user_id_1) REFERENCES users(user_id),
-   FOREIGN KEY(user_id_2) REFERENCES users(user_id)
+  `user_id` INT(10),   
+  `product_id` INT(10),   
+   PRIMARY KEY (user_id),
+   FOREIGN KEY(user_id) REFERENCES users(user_id),
+   FOREIGN KEY(product_id) REFERENCES products(product_id)
 );
 
 
