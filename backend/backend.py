@@ -15,7 +15,7 @@ mysql = MySQL(app)
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-    return
+    return f"<h1><h/>"
 
 
 @app.route('/api')
