@@ -34,7 +34,7 @@ def login():
         
         if account:
             session['loggedin'] = True
-            session['id'] = account['id']
+            session['id'] = account['user_id']
             session['email'] = account['email']
             return redirect(url_for('home'))            
     else:
@@ -97,5 +97,5 @@ def user(usr):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='giftr.cf:443')
     # app.run()
