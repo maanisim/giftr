@@ -34,7 +34,7 @@ def login():
             session['loggedin'] = True
             session['id'] = account['user_id']
             session['email'] = account['email']
-            return redirect(url_for('home'))            
+            return redirect(url_for('welcome'))            
     else:
         msg = 'Incorrect login details!'
         return render_template('login.html')
@@ -80,7 +80,7 @@ def logout():
 
 
 @app.route('/welcome', methods=['POST', 'GET'])
-def home():
+def welcome():
     if 'loggedin' in session:
         #Logged in
         return render_template('home.html', email=session['email'])
