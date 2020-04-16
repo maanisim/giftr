@@ -15,6 +15,9 @@ mysql = MySQL(app)
 
 @app.route('/')
 def index():
+    if 'loggedin' in session:
+        #Already logged in
+        return render_template('home.html', email=session['email'])
     return render_template('index.html')
 
 
