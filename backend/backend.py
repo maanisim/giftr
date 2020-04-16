@@ -2,7 +2,9 @@
 from flask import Flask, redirect, url_for, render_template, request, session
 from flask_mysqldb import MySQL
 import MySQLdb.cursors, re, hashlib, os
-app = Flask(__name__)
+
+template_dir = os.path.abspath('../www')
+app = Flask(__name__, template_folder=template_dir)
 
 
 app.secret_key = os.urandom(24)
