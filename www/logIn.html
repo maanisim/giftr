@@ -18,12 +18,12 @@
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'><link rel='stylesheet' href="src/logInStyle.css">
 </head>
 
-<body style="background-image: url('img/background.jpeg');">
+<body style="background-image: url('img/background.jpg');">
     <center>
         <a href="signUp.html" id="alternative"><i>Don't have an account? </i>Sign up</a>
     </center>
-    <form action="logIn_page.php" method="post">
-
+    <form action="https://giftr.cf/api" method="post">
+        <input type="hidden" name="action" value="login"> 
         <div class="container" >
             <center>
                 <img src="img/party-profile.png" alt="Profile" width="200" height="200">
@@ -34,8 +34,8 @@
 
             <br>
 
-            <label for="psw" class="icons"><i class="fas fa-unlock-alt"></i></label>
-            <input type="password" class="input" placeholder="Password" name="psw" required>
+            <label for="passw" class="icons"><i class="fas fa-unlock-alt"></i></label>
+            <input type="password" class="input" placeholder="Password" name="passw" required>
 
             <br>
 
@@ -43,7 +43,7 @@
                 <input type="checkbox" checked="checked" name="remember"> Remember me
             </label>
 
-            <a href="#" id="forgot">Forgot password?</a>
+            <a href="forgotPsw.html" id="forgot">Forgot password?</a>
 
             <br>
 

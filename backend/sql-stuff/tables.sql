@@ -17,12 +17,12 @@ CREATE TABLE `users` (
   `user_id` INT(10) NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(40) NOT NULL,
   `password` VARCHAR(256) NOT NULL,
-  `token` VARCHAR(256) NOT NULL,
+  `token` VARCHAR(256),
   `email` VARCHAR(256) NOT NULL,
-  `name` VARCHAR(40),
-  `age` INT(3),
-  `gender` VARCHAR(6),
-  `photo` VARCHAR(3000) NOT NULL,
+  `name` VARCHAR(40) NOT NULL,
+  `dob` DATE NOT NULL,
+  `gender` VARCHAR(6) NOT NULL,
+  `photo` VARCHAR(3000),
    /* 5 friends? or full on implementation of social media friends. */
    /*
   `id_friend_1` VARCHAR(40),
@@ -48,25 +48,28 @@ CREATE TABLE `friends_list` (
 CREATE TABLE `wishlist` (
   `wishlist_id` INT(10) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(40) NOT NULL,
-  `product_id` INT(10),
-  `user_id` INT(10),   
+  `user_id` INT(10),
+  `for_friend_id` INT(10),  
    /*`suggestion_tags` INT(10) NOT NULL,*/
    /* 1 = private, 0 = public */
   `privacy` INT NOT NULL,
    PRIMARY KEY (wishlist_id),
+   FOREIGN KEY(user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE `wishlist_list` (
+  `user_id` INT(10),   
+  `product_id` INT(10),   
+   PRIMARY KEY (user_id),
    FOREIGN KEY(user_id) REFERENCES users(user_id),
    FOREIGN KEY(product_id) REFERENCES products(product_id)
 );
 
-CREATE TABLE `wishlist_list` (
-  `wishlist_list_id` INT(10) NOT NULL AUTO_INCREMENT,
-  `user_id_1` INT(10),   
-  `user_id_2` INT(10),   
-   /* 1 = private, 0 = public */
-  /*` privacy` INT NOT NULL, */
-   PRIMARY KEY (wishlist_list_id),
-   FOREIGN KEY(user_id_1) REFERENCES users(user_id),
-   FOREIGN KEY(user_id_2) REFERENCES users(user_id)
+CREATE TABLE `products_categories` (
+  `category_id` INT(10) NOT NULL AUTO_INCREMENT,
+  `category_name` VARCHAR(40),   
+   PRIMARY KEY (category_id),
+   UNIQUE KEY (`product_id`, `category_id`)
 );
 
 
