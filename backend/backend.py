@@ -37,11 +37,11 @@ def login():
             return redirect(url_for('welcome'))            
     else:
         msg = 'Incorrect login details!'
-        return render_template('login.html')
-    return render_template('login.html')
+        return render_template('logIn.html')
+    return render_template('logIn.html')
 
 
-@app.route('/register', methods=['POST', 'GET'])
+@app.route('/signUp', methods=['POST', 'GET'])
 def register():
     msg = ''
 
