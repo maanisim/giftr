@@ -81,6 +81,7 @@ def logout():
     session.pop('loggedin', None)
     session.pop('id', None)
     session.pop('email', None)
+    return render_template('index.html')
 
 
 @app.route('/welcome', methods=['POST', 'GET'])
