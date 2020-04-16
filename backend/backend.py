@@ -88,7 +88,8 @@ def welcome():
     print("welcome")
     if 'loggedin' in session:
         return render_template('welcome.html', email=session['email'])
-    return render_template('index.html')
+    else:
+        return render_template('index.html')
 
 
 if __name__ == '__main__':
