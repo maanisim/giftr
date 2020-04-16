@@ -22,7 +22,7 @@ app.config['MYSQL_DB'] = 'dummy'
 mysql = MySQL(app)
 
 
-@app.route('/login', methods=['POST', 'GET'])
+@app.route('/login.html', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
         email = request.form['email']
@@ -88,7 +88,7 @@ def logout():
     session.pop('email', None)
 
 
-@app.route('/welcome', methods=['POST', 'GET'])
+@app.route('/welcome.html', methods=['POST', 'GET'])
 def welcome():
     print("Welcome")  # TODO: REMOVE DEBUG WHEN WORKING
     if 'loggedin' in session:
