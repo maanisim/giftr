@@ -4,6 +4,7 @@ from flask_mysqldb import MySQL
 import MySQLdb.cursors, re, hashlib, os
 app = Flask(__name__)
 
+
 app.secret_key = os.urandom(24)
 
 #DB Connection details
@@ -16,7 +17,7 @@ app.config['MYSQL_DB'] = 'dummy'
 mysql = MySQL(app)
 
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/api/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
         email = request.form['email']
@@ -76,7 +77,7 @@ def logout():
     session.pop('email', None)
 
 
-@app.route('/api/home', methods=['POST', 'GET'])
+@app.route('/home', methods=['POST', 'GET'])
 def home():
     if 'loggedin' in session:
         #Logged in
