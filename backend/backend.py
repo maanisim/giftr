@@ -19,7 +19,7 @@ app.config['MYSQL_DB'] = 'dummy'
 mysql = MySQL(app)
 
 
-@app.route('/login', methods=['POST', 'GET'])
+@app.route('/logIn', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
         email = request.form['email']
@@ -31,6 +31,7 @@ def login():
         account = cursor.fetchone()
         
         if account:
+            print("Logged in!") #TODO: REMOVE DEBUG WHEN WORKING
             session['loggedin'] = True
             session['id'] = account['user_id']
             session['email'] = account['email']
@@ -81,8 +82,10 @@ def logout():
 
 @app.route('/welcome', methods=['POST', 'GET'])
 def welcome():
+    print("Welcome") #TODO: REMOVE DEBUG WHEN WORKING
     if 'loggedin' in session:
         #Logged in
+        print("LOGGED IN WELCOME") #TODO: REMOVE DEBUG WHEN WORKING
         return render_template('home.html', email=session['email'])
     return render_template('index.html')
 
