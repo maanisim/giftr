@@ -15,13 +15,10 @@ mysql = MySQL(app)
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-    if 'loggedin' in session:
-        #Already logged in
-        return render_template('home.html', email=session['email'])
-    return render_template('index.html')
+    return
 
 
-@app.route('/login')
+@app.route('/api')
 def login():
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
         email = request.form['email']
