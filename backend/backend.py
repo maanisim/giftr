@@ -19,7 +19,7 @@ app.config['MYSQL_DB'] = 'dummy'
 mysql = MySQL(app)
 
 
-@app.route('/logIn', methods=['POST', 'GET'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
         email = request.form['email']
@@ -29,7 +29,7 @@ def login():
         cursor.execute('SELECT * FROM users WHERE email = %s AND password = %s',(email, password))
         # Fetch account
         account = cursor.fetchone()
-        
+        print("fetching account") #TODO: REMOVE DEBUG WHEN WORKING
         if account:
             print("Logged in!") #TODO: REMOVE DEBUG WHEN WORKING
             session['loggedin'] = True
