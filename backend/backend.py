@@ -34,7 +34,7 @@ def login():
         msg = 'Incorrect login details!'
         return render_template('login.html')
 
-    return render_template('login.html', msg=msg)
+    return render_template('login.html')
 
 
 @app.route('/register', methods=['POST', 'GET'])
