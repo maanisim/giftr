@@ -26,28 +26,25 @@ mysql = MySQL(app)
 def api():
     #LOGGING IN
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
-        login()
+        email = request.form['email']
+        password = request.form['passw'] # hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
+
+        # Check if account exists in DB
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM users WHERE email = %s AND password = %s', (email, password))
+        # Fetch account
+        account = cursor.fetchone()
+        if account:
+            session['loggedin'] = True
+            session['id'] = account['user_id']
+            session['email'] = account['email']
+            return redirect(url_for('welcome'))
+        else:
+            msg = 'Incorrect login details!'
+            return render_template('logIn.html')
+
     elif request.method == 'POST' and 'username' in request.form and 'passw' in request.form and 'email' in request.form:
         register()
-
-    
-def login():
-    email = request.form['email']
-    password = request.form['passw'] # hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
-
-    # Check if account exists in DB
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute('SELECT * FROM users WHERE email = %s AND password = %s', (email, password))
-    # Fetch account
-    account = cursor.fetchone()
-    if account:
-        session['loggedin'] = True
-        session['id'] = account['user_id']
-        session['email'] = account['email']
-        return redirect(url_for('welcome'))
-    else:
-        msg = 'Incorrect login details!'
-        return render_template('logIn.html')
 
 def register():
     msg = ''
