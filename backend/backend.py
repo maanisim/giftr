@@ -98,4 +98,4 @@ def user(usr):
 
 if __name__ == '__main__':
     # app.run(debug=True)
-    app.run(ssl_context='adhoc',hostname='giftr.cf',port=5000)
+    app.run(ssl_context='adhoc',hostname='0.0.0.0',port=443)
