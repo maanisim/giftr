@@ -49,6 +49,7 @@ def api():
     elif request.method == 'POST' and 'username' in request.form and 'passw' in request.form and 'email' in request.form:
         register()
 
+@app.route('/register')
 def register():
     msg = ''
     # Check if "username", "password" and "email" POST requests exist
