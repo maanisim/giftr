@@ -4,14 +4,10 @@ from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re, hashlib, os
 
-<<<<<<< HEAD
-template_dir = os.path.abspath('../www/templates')
+template_dir = os.path.abspath('/templates')
 app = Flask(__name__, template_folder=template_dir)
-app._static_folder = os.path.abspath('../www/static')
+app._static_folder = os.path.abspath('/static')
 app.secret_key = os.urandom(24)
-=======
-app = Flask(__name__, )
->>>>>>> e0157bfab80b184f8e4f5fbaefb62ec47d2c147e
 
 # DB Connection details
 app.config['MYSQL_HOST'] = 'localhost'
