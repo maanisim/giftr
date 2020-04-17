@@ -1,3 +1,12 @@
+<?php
+	if ($_POST["message"]){
+		$subject = "Contact from:";
+		$name = $_POST["name"];
+		$subject = $subject.$name;
+		$message = $_POST["message"];
+		$email = $_POST["email"];
+		mail("group16uol@gmail.com", $subject, $message, $email);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +53,7 @@
              </div>
              <div class="container">
             <div class="form">
-                <form action="group16uol@gmail.com" method="post" enctype="text/plain">
+                <form action="contact.php" method="post" enctype="text/plain">
                     <p class="name">
                         <input name="name" type="text" class="feedback-input" required placeholder="Name" id="name" />
                     </p>
