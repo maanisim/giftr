@@ -60,7 +60,7 @@ CREATE TABLE `wishlist_list` (
   `wishlist_list_id` INT(10) NOT NULL AUTO_INCREMENT,
   `user_id` INT(10),   
   `product_id` INT(10),   
-   PRIMARY KEY (user_id),
+   PRIMARY KEY (wishlist_list_id),
    FOREIGN KEY(user_id) REFERENCES users(user_id),
    FOREIGN KEY(product_id) REFERENCES products(product_id)
 );

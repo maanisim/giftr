@@ -4,9 +4,9 @@ from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re, hashlib, os
 
-template_dir = os.path.abspath('../www/templates')
+template_dir = os.path.abspath('/templates')
 app = Flask(__name__, template_folder=template_dir)
-app._static_folder = os.path.abspath('../www/static')
+app._static_folder = os.path.abspath('/static')
 
 # DB Connection details
 app.config['MYSQL_HOST'] = 'localhost'
