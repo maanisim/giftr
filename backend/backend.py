@@ -63,7 +63,7 @@ def registerapi():
         # Check if "username", "password" and "email" POST requests exist
         if request.method == 'POST' and 'username' in request.form and 'passw' in request.form and 'email' in request.form:
             # Create variables for easy access
-            username = request.form['username']
+            username = request.form['name']
             password = hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
             email = request.form['email']
 
