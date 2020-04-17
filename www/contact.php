@@ -1,14 +1,12 @@
 <?php
 	$success = false;
-	echo $_POST["name"];
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		$subject = "Contact from:";
-		$name = $_POST["name"];
+		$name = test_input($_POST["name"]);
 		$subject = $subject.$name;
-		$message = $_POST["message"];
-		$email = $_POST["email"];
+		$message = test_input($_POST["message"]);
+		$email = test_input($_POST["email"]);
 		mail("walkr121@gmail.com", $subject, $message, $email);
-		echo "aAA";
 		$success = true;
 	}
 ?>
