@@ -1,15 +1,3 @@
-<?php
-	$success = false
-	if ($_POST["message"]){
-		$subject = "Contact from:";
-		$name = $_POST["name"];
-		$subject = $subject.$name;
-		$message = $_POST["message"];
-		$email = $_POST["email"];
-		mail("group16uol@gmail.com", $subject, $message, $email);
-		$success = true
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +9,19 @@
     <link rel="stylesheet" href="src/contact.css">
 
 </head>
+	
+<?php
+	$success = false
+	if ($_POST["message"]){
+		$subject = "Contact from:";
+		$name = $_POST["name"];
+		$subject = $subject.$name;
+		$message = $_POST["message"];
+		$email = $_POST["email"];
+		mail("group16uol@gmail.com", $subject, $message, $email);
+		$success = true
+?>
+	
 <body>
      <div id="page-container">
          <div id="content-wrap">
