@@ -1,0 +1,261 @@
+head{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  font-family: 'Arial', sans-serif;
+}
+
+.header {
+  color: black;
+}
+
+.wrapper{
+  text-align:center;
+  margin:15pt auto;
+}
+
+.tabs{
+  margin-top:0;
+  font-size:13pt;
+  padding:0;
+  list-style:none;
+  background:#f5f3f3;
+  box-shadow:0 5pt 20pt rgba(0, 0, 0, 0.226);
+  display:inline-block;
+  border-radius:50pt;
+  position:relative;
+}
+
+.tabs a{
+  text-decoration:none;
+  color: #777;
+  text-transform:uppercase;
+  padding:7pt 12pt;
+  display:inline-block;
+  position:relative;
+  z-index:1;
+  transition-duration:0.6s;
+}
+
+.tabs a.active{
+  color:#ededed;
+}
+
+.tabs a i{
+  margin-right:5pt;
+}
+
+.tabs .selector{
+  height:100%;
+  display:inline-block;
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:1;
+  border-radius:50pt;
+  transition-duration:0.6s;
+  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  background: black; 
+}
+
+body{
+  background-color: #ededed;
+  color:#519dd9;
+  font-family: 'Arial', sans-serif;
+  
+}
+
+.button {
+  background-color: #519dd9;
+  float: center;
+  color: white;
+  padding: 15pt 30pt;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18pt;
+  font-family: arial;
+  cursor: pointer;
+  width: 15%;
+  display: block;
+}
+
+.button1 {
+  background-color: #53bac1;
+} 
+
+.button:hover{
+  background-color: #f7c200;
+  color: black;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  height: 2rem;
+}
+
+.footer a {
+  text-decoration: none;
+  padding: 10pt;
+  color: black;
+}
+
+.footer a:hover {
+  color: #f7c200;
+}
+
+.giftbank {
+  display: flex;
+  position: absolute;
+  top: 10pt;
+  right: 10pt;
+  align-items:center;
+  background-color: #db0038;
+  padding: 5pt;
+  border-radius: 10pt;
+  z-index: 9999;
+}
+
+.giftbank a{
+  text-decoration: none;
+  text-align:center;
+  font-family: arial;
+  color: white;
+  margin: 5pt;
+}
+
+.giftbank:hover {
+  background-color: #f7c200;
+}
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 2rem;    /* Footer height */
+}
+
+@media screen and (min-width: 320px) {
+  .wrapper{
+    text-align:center;
+    margin:20px auto;
+  }
+  
+  .tabs{
+    margin-top:15px;
+    font-size:7px;
+    padding:0px;
+    box-shadow:0px 3px 10px rgba(0, 0, 0, 0.226);
+    display:inline-block;
+    border-radius:20px;
+    position:relative;
+  }
+  
+  .tabs a{
+    padding:5px 10px;
+    display:inline-block;
+    position:relative;
+    z-index:1;
+    transition-duration:0.6s;
+  }
+
+  .tabs .selector{
+    height:100%;
+    display:inline-block;
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index:1;
+    border-radius:20px;
+    transition-duration:0.6s;
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    background: red;
+  }
+  
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper{
+    text-align:center;
+    margin:35px auto;
+  }
+  
+  .tabs{
+    margin-top:24px;
+    font-size:10px;
+    padding:0px;
+    box-shadow:0px 7px 14px rgba(0, 0, 0, 0.226);
+    display:inline-block;
+    border-radius:25px;
+    position:relative;
+  }
+  
+  .tabs a{
+    padding:7px 14px;
+    display:inline-block;
+    position:relative;
+    z-index:1;
+    transition-duration:0.6s;
+  }
+
+  .tabs .selector{
+    height:100%;
+    display:inline-block;
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index:1;
+    border-radius:35px;
+    transition-duration:0.6s;
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    background: #d3c018;
+  }
+  
+}
+
+@media screen and (min-width: 1200px) {
+  .wrapper{
+    text-align:center;
+    margin:50px auto;
+  }
+  
+  .tabs{
+    margin-top:30px;
+    font-size:15px;
+    padding:0px;
+    box-shadow:0px 5px 20px rgba(0, 0, 0, 0.226);
+    display:inline-block;
+    border-radius:20px;
+    position:relative;
+  }
+  
+  .tabs a{
+    padding:10px 20px;
+    display:inline-block;
+    position:relative;
+    z-index:1;
+    transition-duration:0.6s;
+  }
+
+  .tabs .selector{
+    height:100%;
+    display:inline-block;
+    position:absolute;
+    left:0px;
+    top:0px;
+    z-index:1;
+    border-radius:50px;
+    transition-duration:0.6s;
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    background: #4ddd14;
+  }
+  
+}
