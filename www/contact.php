@@ -1,4 +1,5 @@
 <?php
+	$success = false
 	if ($_POST["message"]){
 		$subject = "Contact from:";
 		$name = $_POST["name"];
@@ -6,6 +7,7 @@
 		$message = $_POST["message"];
 		$email = $_POST["email"];
 		mail("group16uol@gmail.com", $subject, $message, $email);
+		$success = true
 ?>
 
 <!DOCTYPE html>
@@ -66,6 +68,15 @@
                     <div class="submit">
                         <button type="submit" class="button-blue">Submit</button>
                     </div>
+					<?php
+						if($success == true){
+					?>
+							Email Sent!
+					
+					<?php
+						}
+					?>
+					
                     </form>
              </div>
              </div>
