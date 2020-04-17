@@ -13,6 +13,15 @@ CREATE TABLE `products` (
 	PRIMARY KEY (`product_id`)
 ) DEFAULT CHARSET=latin1;
 
+CREATE TABLE `product_liked` (
+  `product_liked_id` INT(10) NOT NULL AUTO_INCREMENT,
+  `product_id` INT(10),   
+  `user_id` INT(10),   
+	 PRIMARY KEY (`product_liked_id`)
+   FOREIGN KEY(product_id) REFERENCES products(product_id),
+   FOREIGN KEY(user_id) REFERENCES users(user_id)
+) DEFAULT CHARSET=latin1;
+
 CREATE TABLE `users` (
   `user_id` INT(10) NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(40) NOT NULL,
@@ -23,14 +32,6 @@ CREATE TABLE `users` (
   `dob` DATE NOT NULL,
   `gender` VARCHAR(6) NOT NULL,
   `photo` VARCHAR(3000),
-   /* 5 friends? or full on implementation of social media friends. */
-   /*
-  `id_friend_1` VARCHAR(40),
-  `id_friend_2` VARCHAR(40),
-  `id_friend_3` VARCHAR(40),
-  `id_friend_4` VARCHAR(40),
-  `id_friend_5` VARCHAR(40),
-  */
   PRIMARY KEY (`user_id`)
 );
 
@@ -38,8 +39,6 @@ CREATE TABLE `friends_list` (
   `friends_id` INT(10) NOT NULL AUTO_INCREMENT,
   `user_id_1` INT(10),   
   `user_id_2` INT(10),   
-   /* 1 = private, 0 = public */
-  /*` privacy` INT NOT NULL, */
    PRIMARY KEY (friends_id),
    FOREIGN KEY(user_id_1) REFERENCES users(user_id),
    FOREIGN KEY(user_id_2) REFERENCES users(user_id)
@@ -58,6 +57,7 @@ CREATE TABLE `wishlist` (
 );
 
 CREATE TABLE `wishlist_list` (
+  `wishlist_list_id` INT(10) NOT NULL AUTO_INCREMENT,
   `user_id` INT(10),   
   `product_id` INT(10),   
    PRIMARY KEY (user_id),
@@ -66,14 +66,15 @@ CREATE TABLE `wishlist_list` (
 );
 
 CREATE TABLE `products_categories` (
-  `category_id` INT(10) NOT NULL AUTO_INCREMENT,
-  `category_name` VARCHAR(40),   
-   PRIMARY KEY (category_id),
-   UNIQUE KEY (`product_id`, `category_id`)
+  `category_name` VARCHAR(40),
+  `product_id` INT(10),
+   PRIMARY KEY (category_name),
+   UNIQUE KEY (`product_id`, `category_id`),
+   FOREIGN KEY(product_id) REFERENCES products(product_id)
 );
 
 
-/* I am not yet sure how to implement this */
+/* #ask rufus for how he wants it structured */
 CREATE TABLE `gift_profiles` (
   `id` INT(100) AUTO_INCREMENT NOT NULL,
   `name` VARCHAR(40),
