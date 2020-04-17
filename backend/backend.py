@@ -4,10 +4,14 @@ from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re, hashlib, os
 
+<<<<<<< HEAD
 template_dir = os.path.abspath('../www/templates')
 app = Flask(__name__, template_folder=template_dir)
 app._static_folder = os.path.abspath('../www/static')
 app.secret_key = os.urandom(24)
+=======
+app = Flask(__name__, )
+>>>>>>> e0157bfab80b184f8e4f5fbaefb62ec47d2c147e
 
 # DB Connection details
 app.config['MYSQL_HOST'] = 'localhost'
@@ -25,6 +29,10 @@ def index():
         # Already logged in
         return render_template('home.html', email=session['email'])
     return render_template('index.html')
+
+@app.route('/hi')
+def main():
+    return 'Hello, world!'
 
 @app.route('/login')
 def login():
