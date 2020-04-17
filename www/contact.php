@@ -69,7 +69,7 @@
                         <textarea name="message" class="feedback-input" id="comment" placeholder="Message"></textarea>
                     </p>
                     <div class="submit">
-                        <button type="submit" class="button-blue">Submit</button>
+                        <button type="submit" class="button-blue" name="submit">Submit</button>
                     </div>
 		<?php
 			if($success == true){
