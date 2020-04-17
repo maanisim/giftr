@@ -2,11 +2,17 @@
 <html lang="en">
 
 <head>
-    <title>Welcome | Giftr</title>
-    <link rel='icon' href="{{ url_for('static', filename='img/favicon.ico') }}" type='image/x-icon'/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <div class="header">
+    
+    <title>Welcome | Giftr</title>
+    
+    <link rel='icon' href="{{ url_for('static', filename='img/favicon.ico') }}" type='image/x-icon'/>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'><link rel='stylesheet' href="{{ url_for('static', filename='src/style.css') }}">
+</head>
+
+<body style="background-image: url('img/background.jpg');">
+     <div class="header">
         <center>
             <a href= "{{ url_for('index') }}">
             <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" width="410" height="120"> 
@@ -14,11 +20,6 @@
             <br>
         </center>
     </div>
-
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'><link rel='stylesheet' href="{{ url_for('static', filename='src/logInStyle.css') }}">
-</head>
-
-<body style="background-image: url('static/img/background.jpeg');">
     <center>
         <a href="{{ url_for('register') }}" id="alternative"><i>Don't have an account? </i>Sign up</a>
     </center>
