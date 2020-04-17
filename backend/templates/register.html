@@ -7,25 +7,25 @@
     
     <title>Welcome | Giftr</title>
     
-    <link rel='icon' href='img/favicon.ico' type='image/x-icon'/ >
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'><link rel='stylesheet' href="src/signUpStyle.css">
+    <link rel='icon' href="{{ url_for('static', filename='img/favicon.ico') }}" type='image/x-icon'/ >
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'><link rel='stylesheet' href="{{ url_for('static', filename='src/signUpStyle.css') }}">
 </head>
 
 <body style="background-image: url('img/background.jpg');">
     
     <div class="header">
         <center>
-            <a href= "index.html">
-            <img src="img/logo.png" alt="Logo" width="410" height="120"> 
+            <a href= "{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" width="410" height="120"> 
             </a>
             <br>
         </center>
     </div>
 
     <center>
-        <a href="logIn.html" id="alternative"><i>Already have an account? </i>Log in</a>
+        <a href="{{ url_for('login') }}" id="alternative"><i>Already have an account? </i>Log in</a>
     </center>
-    <form action="https://giftr.cf/api" method="post">
+    <form action="{{ url_for('registerapi') }}" method="post">
             <input type="hidden" name="action" value="register"> 
         <div class="container" >
             
