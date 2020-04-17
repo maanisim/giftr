@@ -18,7 +18,7 @@
 		$subject = $subject.$name;
 		$message = $_POST["message"];
 		$email = $_POST["email"];
-		mail("group16uol@gmail.com", $subject, $message, $email);
+		mail("walkr121@gmail.com", $subject, $message, $email);
 		$success = true;
 	}
 ?>
