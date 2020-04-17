@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome | Giftr</title>
-    <link rel='icon' href='img/favicon.ico' type='image/x-icon'>
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'><link rel="stylesheet" href="src/style.css">
+    <link rel='icon' href='{{ url_for('static', filename='img/favicon.ico') }}' type='image/x-icon'>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'><link rel="stylesheet" href="{{ url_for('static', filename='src/style.css') }}">
 
 
 </head>
@@ -14,14 +14,14 @@
          <div id="content-wrap">
              <div class="header">
                  <center>
-                      <a href= "index.html">
-                        <img src="img/logo.png" alt="Logo" width="410" height="120"> 
+                      <a href= "{{ url_for('index'') }}">
+                        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" width="410" height="120"> 
                       </a>
                      <br>Our motto goes here
                  </center>
              </div>
              <div class="giftbank">
-                 <img src="img/gift.png" alt="Gift icon" width="30" height="30">
+                 <img src="{{ url_for('static', filename='img/gift.png') }}" alt="Gift icon" width="30" height="30">
                  <a href="#">Gift Bank</a>
              </div>
              <div class="wrapper">
@@ -34,13 +34,13 @@
                  </nav>
              </div>
              <center>
-                 <img src="img/party-profile.png" alt="Profile" width="200" height="200"> 
+                 <img src="{{ url_for('static', filename='img/party-profile.png') }}" alt="Profile" width="200" height="200"> 
                  <p></p>
-                 <a href="logIn.html" class="button">Log In</a>
+                 <a href="{{ url_for('login'') }}" class="button">Log In</a>
                  <br>
-                 <a href="signUp.html" class="button button1">Sign up</a>
+                 <a href="{{ url_for('register) }}" class="button button1">Sign up</a>
              </center>
-             <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="src/script.js"></script>  
+             <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="{{ url_for('static', filename='src/script.js') }}"></script>  
          </div>
          <div class="footer">
              <a href="about.html">About Us</a>

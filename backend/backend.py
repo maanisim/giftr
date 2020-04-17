@@ -2,13 +2,11 @@
 from flask import Flask, redirect, url_for, render_template, request, session
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
-import re
-import hashlib
-import os
+import re, hashlib, os
 
-template_dir = os.path.abspath('../www')  # for debugging
+template_dir = os.path.abspath('../www/templates')
 app = Flask(__name__, template_folder=template_dir)
-app.secret_key = os.urandom(24)
+app._static_folder = os.path.abspath('../www/static')
 
 # DB Connection details
 app.config['MYSQL_HOST'] = 'localhost'
@@ -20,7 +18,14 @@ app.config['MYSQL_DB'] = 'dummy'
 mysql = MySQL(app)
 
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/')
+def index():
+    if 'loggedin' in session:
+        # Already logged in
+        return render_template('home.html', email=session['email'])
+    return render_template('index.html')
+
+@app.route('/api')
 def api():
     #LOGGING IN
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
