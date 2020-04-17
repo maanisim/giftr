@@ -7,6 +7,7 @@ import re, hashlib, os
 template_dir = os.path.abspath('../www/templates')
 app = Flask(__name__, template_folder=template_dir)
 app._static_folder = os.path.abspath('../www/static')
+app.secret_key = os.urandom(24)
 
 # DB Connection details
 app.config['MYSQL_HOST'] = 'localhost'
