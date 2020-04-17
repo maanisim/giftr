@@ -36,17 +36,10 @@ class GitCommands(commands.Cog, name="Git commands"):
 
   @commands.command(help="start backend")
   async def start(self, ctx):
-    if (os.system("python3 /home/web/giftr/backend/backend.py") != 0):
-      await ctx.send("Fail")
-    else:
-      await ctx.send("backend.py started")
-
+    await ctx.send("python3 /home/web/giftr/backend/backend.py")
   @commands.command(help="kill backend")
   async def kill(self, ctx):
-    if (os.system("kill $(ps aux | grep 'backend.py' | awk '{print $2}')") != 0):
-      await ctx.send("Fail")
-    else:
-      await ctx.send("backend.py killed")
+    await ctx.send("kill $(ps aux | grep 'backend.py' | awk '{print $2}')")
 
   @commands.command(help="Updates bot to the current git version")
   async def checkout(self, ctx, branch):
