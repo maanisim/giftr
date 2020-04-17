@@ -2,10 +2,11 @@
 	$success = false;
 	$name = $message = $email = "";
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
-		$subject = "Contact from:";
-		$name = test_input($_POST["name"]);
-		$message = test_input($_POST["message"]);
-		$email = test_input($_POST["email"]);		
+		$subject = "Contact from: ";
+		$name = $_POST["name"];
+		$subject = $subject.$name; 
+		$message = $_POST["message"];
+		$email = $_POST["email"];		
 		mail("walkr121@gmail.com", $subject, $message, $email);
 		$success = true;
 	}
@@ -59,13 +60,13 @@
             <div class="form">
                 <form action="contact.php" method="post" enctype="text/plain">
                     <p class="name">
-                        <input name="name" type="text" class="feedback-input" required placeholder="Name" id="name" />
+                        <input name="name" type="text" class="feedback-input" required placeholder="Name" id="name" value="" />
                     </p>
                     <p class="email">
-                        <input name="email" type="email" required class="feedback-input" id="email" placeholder="Email" />
+                        <input name="email" type="email" required class="feedback-input" id="email" placeholder="Email" value = ""/>
                     </p>
                     <p class="text">
-                        <textarea name="message" class="feedback-input" id="comment" placeholder="Message"></textarea>
+                        <textarea name="message" class="feedback-input" id="comment" placeholder="Message" value = ""></textarea>
                     </p>
                     <div class="submit">
                         <button type="submit" class="button-blue" name="submit">Submit</button>
