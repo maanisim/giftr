@@ -3,13 +3,13 @@
 
 <head>
     <title>Welcome | Giftr</title>
-    <link rel='icon' href="{{ url_for('static', filename='img/favicon.ico') }}" type='image/x-icon'/ >
+    <link rel='icon' href="{{ url_for('static', filename='img/favicon.ico') }}" type='image/x-icon'/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <div class="header">
         <center>
             <a href= "{{ url_for('index'') }}">
-            <img src="img/logo.png" alt="Logo" width="410" height="120"> 
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" width="410" height="120"> 
             </a>
             <br>
         </center>
