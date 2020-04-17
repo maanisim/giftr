@@ -1,6 +1,5 @@
 <?php
 	$success = false;
-	echo "AAA";
 	if ($_POST["submit"]){
 		$subject = "Contact from:";
 		$name = $_POST["name"];
@@ -8,6 +7,7 @@
 		$message = $_POST["message"];
 		$email = $_POST["email"];
 		mail("walkr121@gmail.com", $subject, $message, $email);
+		echo "aAA";
 		$success = true;
 	}
 ?>
