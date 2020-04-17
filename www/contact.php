@@ -10,6 +10,9 @@
 		if ($a == true){
 			echo "a";
 		}
+		if($a == false){
+			echo "b";
+		}
 		$success = true;
 	}
 ?>
