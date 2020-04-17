@@ -11,7 +11,7 @@
 </head>
 	
 <?php
-	$success = false
+	$success = false;
 	if ($_POST["message"]){
 		$subject = "Contact from:";
 		$name = $_POST["name"];
@@ -19,7 +19,7 @@
 		$message = $_POST["message"];
 		$email = $_POST["email"];
 		mail("group16uol@gmail.com", $subject, $message, $email);
-		$success = true
+		$success = true;
 	}
 ?>
 	
