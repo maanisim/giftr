@@ -58,7 +58,7 @@
              </div>
              <div class="container">
             <div class="form">
-                <form action="contact.php" method="post" enctype="text/plain">
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="text/plain">
                     <p class="name">
                         <input name="name" type="text" class="feedback-input" required placeholder="Name" id="name" />
                     </p>
