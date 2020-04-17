@@ -6,13 +6,7 @@
 		$subject = $subject.$name; 
 		$message = $_POST["message"];
 		$email = $_POST["email"];
-		$a = mail("walkr121@gmail.com", $subject, $message, $email);
-		if ($a == true){
-			echo "a";
-		}
-		if($a == false){
-			echo "b";
-		}
+		mail("walkr121@gmail.com", $subject, $message, "a");
 		$success = true;
 	}
 ?>
