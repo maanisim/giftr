@@ -25,8 +25,12 @@ def index():
         return render_template('home.html', email=session['email'])
     return render_template('index.html')
 
-@app.route('/api')
-def api():
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/loginapi')
+def loginapi():
     #LOGGING IN
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
         email = request.form['email']
@@ -44,42 +48,42 @@ def api():
             return redirect(url_for('welcome'))
         else:
             msg = 'Incorrect login details!'
-            return render_template('logIn.html')
+            return render_template('login.html')
 
-    elif request.method == 'POST' and 'username' in request.form and 'passw' in request.form and 'email' in request.form:
-        register()
 
 @app.route('/register')
 def register():
-    msg = ''
-    # Check if "username", "password" and "email" POST requests exist
+    
     if request.method == 'POST' and 'username' in request.form and 'passw' in request.form and 'email' in request.form:
-        # Create variables for easy access
-        username = request.form['username']
-        password = hashlib.sha256(
+        msg = ''
+        # Check if "username", "password" and "email" POST requests exist
+        if request.method == 'POST' and 'username' in request.form and 'passw' in request.form and 'email' in request.form:
+            # Create variables for easy access
+            username = request.form['username']
+            password = hashlib.sha256(
             request.form['passw'].encode('utf-8')).hexdigest()
-        email = request.form['email']
+            email = request.form['email']
 
-    # Check if account exists
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute(
-        'SELECT * FROM users WHERE email = %s AND password = %s', (email, password))
-    # Fetch account
-    account = cursor.fetchone()
+        # Check if account exists
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute(
+            'SELECT * FROM users WHERE email = %s AND password = %s', (email, password))
+        # Fetch account
+        account = cursor.fetchone()
 
-    if account:
-        msg = 'Account already exists!'
-    elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
-        msg = 'Invalid email address!'
-    elif not re.match(r'[A-Za-z0-9]+', username):
-        msg = 'Username must contain only characters and numbers!'
-    elif not username or not password or not email:
-        msg = 'Please fill out the form!'
-    else:
-        cursor.execute('INSERT INTO users VALUES (NULL, %s, %s, %s)',
-                       (username, password, email,))
-        mysql.connection.commit()
-        msg = 'You have successfully registered!'
+        if account:
+            msg = 'Account already exists!'
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            msg = 'Invalid email address!'
+        elif not re.match(r'[A-Za-z0-9]+', username):
+            msg = 'Username must contain only characters and numbers!'
+        elif not username or not password or not email:
+            msg = 'Please fill out the form!'
+        else:
+            cursor.execute('INSERT INTO users VALUES (NULL, %s, %s, %s)',
+                        (username, password, email,))
+            mysql.connection.commit()
+            msg = 'You have successfully registered!'
 
 
 @app.route('/logout', methods=['POST', 'GET'])
