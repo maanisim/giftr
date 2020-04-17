@@ -1,6 +1,6 @@
 <?php
 	$success = false;
-	$name = $message = $email = ""
+	$name = $message = $email = "";
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		$subject = "Contact from:";
 		$name = test_input($_POST["name"]);
