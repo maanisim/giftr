@@ -20,6 +20,7 @@
 		$email = $_POST["email"];
 		mail("group16uol@gmail.com", $subject, $message, $email);
 		$success = true
+	}
 ?>
 	
 <body>
@@ -69,7 +70,14 @@
                     <div class="submit">
                         <button type="submit" class="button-blue">Submit</button>
                     </div>
+		<?php
+			if($success == true){
+		?>
+				<p> Email Sent! </p>
 					
+		<?php
+			}
+		?>		
                     </form>
              </div>
              </div>
