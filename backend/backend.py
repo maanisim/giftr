@@ -29,7 +29,7 @@ def index():
 def login():
     return render_template('login.html')
 
-@app.route('/loginapi')
+@app.route('/loginapi', methods=['POST', 'GET'])
 def loginapi():
     #LOGGING IN
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
@@ -51,7 +51,7 @@ def loginapi():
             return render_template('login.html')
 
 
-@app.route('/register')
+@app.route('/register', methods=['POST', 'GET'])
 def register():
     
     if request.method == 'POST' and 'username' in request.form and 'passw' in request.form and 'email' in request.form:

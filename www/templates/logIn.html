@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <div class="header">
         <center>
-            <a href= "{{ url_for('index'') }}">
+            <a href= "{{ url_for('index') }}">
             <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" width="410" height="120"> 
             </a>
             <br>
@@ -22,7 +22,7 @@
     <center>
         <a href="{{ url_for('register') }}" id="alternative"><i>Don't have an account? </i>Sign up</a>
     </center>
-    <form action="{{ url_for('loginapi) }}" method="post">
+    <form action="{{ url_for('loginapi') }}" method="post">
         <input type="hidden" name="action" value="login"> 
         <div class="container" >
             <center>
