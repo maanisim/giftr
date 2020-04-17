@@ -71,7 +71,7 @@
 					<?php
 						if($success == true){
 					?>
-							Email Sent!
+							<p>Email Sent!</p>
 					
 					<?php
 						}
