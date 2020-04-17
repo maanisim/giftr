@@ -1,16 +1,3 @@
-<?php
-	$success = false;
-	if ($_POST["message"]){
-		$subject = "Contact from:";
-		$name = $_POST["name"];
-		$subject = $subject.$name;
-		$message = $_POST["message"];
-		$email = $_POST["email"];
-		mail("walkr121@gmail.com", $subject, $message, $email);
-		$success = true;
-	}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
