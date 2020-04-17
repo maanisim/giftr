@@ -12,7 +12,7 @@
 	
 <?php
 	$success = false;
-	if ($_POST["message"]){
+	if ($_POST["submit"]){
 		$subject = "Contact from:";
 		$name = $_POST["name"];
 		$subject = $subject.$name;
