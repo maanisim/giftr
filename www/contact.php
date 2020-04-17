@@ -69,14 +69,6 @@
                     <div class="submit">
                         <button type="submit" class="button-blue">Submit</button>
                     </div>
-					<?php
-						if($success == true){
-					?>
-							<p>Email Sent!</p>
-					
-					<?php
-						}
-					?>
 					
                     </form>
              </div>
