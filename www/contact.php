@@ -1,5 +1,6 @@
 <?php
 	$success = false;
+	echo $_POST["name"];
 	if (isset($_POST["submit"])){
 		$subject = "Contact from:";
 		$name = $_POST["name"];
