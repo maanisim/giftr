@@ -6,7 +6,6 @@
 		$subject = $subject.$name;
 		$message = test_input($_POST["message"]);
 		$email = test_input($_POST["email"]);
-		mail("walkr121@gmail.com", $subject, $message, $email);
 		$success = true;
 	}
 ?>
