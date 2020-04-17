@@ -4,7 +4,6 @@
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		$subject = "Contact from:";
 		$name = test_input($_POST["name"]);
-		$subject = $subject.$name;
 		$message = test_input($_POST["message"]);
 		$email = test_input($_POST["email"]);		
 		mail("walkr121@gmail.com", $subject, $message, $email);
