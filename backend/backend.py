@@ -23,10 +23,6 @@ def index():
         return render_template('home.html', email=session['email'])
     return render_template('index.html')
 
-@app.route('/hi')
-def main():
-    return 'Hello, world!'
-
 @app.route('/login')
 def login():
     return render_template('login.html')
