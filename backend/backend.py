@@ -82,11 +82,11 @@ def registerapi():
         elif not username or not password or not email:
             msg = 'Please fill out the form!'
         else:
-            cursor.execute('INSERT INTO users VALUES (NULL, %s, %s, %s)',
-                        (username, password, email,))
+            cursor.execute('INSERT INTO users VALUES (NULL, %s, %s, %s)', (username, password, email,))
             mysql.connection.commit()
             msg = 'You have successfully registered!'
-
+            return redirect(url_for('welcome'))        
+    return render_template('register.html')
 
 @app.route('/logout', methods=['POST', 'GET'])
 def logout():
