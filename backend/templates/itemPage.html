@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{tmp_product_name} | Giftr</title>
+    <link rel='icon' href='img/favicon.ico' type='image/x-icon'>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'>
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="src/itemPage.css">
+
+
+</head>
+<body>
+     <div id="page-container">
+         <div id="content-wrap">
+             <div class="header">
+                 <center>
+                      <a href= "index.html">
+                        <img src="img/logo.png" alt="Logo" width="410" height="120"> 
+                      </a>
+                     <br>Our motto goes here
+                 </center>
+             </div>
+             <div class="giftbank">
+                 <img src="img/gift.png" alt="Gift icon" width="30" height="30">
+                 <a href="#">Gift Bank</a>
+             </div>
+             <div class="wrapper">
+                 <nav class="tabs">
+                     <div class="selector"></div>
+                     <a href="#" class="active"><i class="fas fa-home"></i>Home</a>
+                     <a href="#"><i class="fas fa-search"></i>Search for gift</a>
+                     <a href="#"><i class="fas fa-gift"></i>Item suggestion</a>
+                     <a href="#"><i class="fas fa-user"></i>My profile</a>
+                 </nav>
+             </div>
+
+             <div class="item">
+                <div class="leftColumn">
+                    <h1>{Item name}</h1>
+                    <img src="static/img/1407.jpg" alt="Item" width="300" height="300" border= "3" class="image">
+                    
+                </div>
+
+                <div class="links">
+                    <a href="#">Link 1</a>
+                    <br>
+                    <a href="#">Link 2rjfsjhfjfjhhfdshsrejhkfjkhjhefjherhrehrejhhjrjhrjhrhjrshjthjfjhfhjhjfhdjhjdfhjfdjdhjfdshjfdhjfdhjfdhjjhfdhjfdkfjkhjhefjherhrehrejhhjrjhrjhrhjrshjthjfjhfhjdhjfdshjfdhjfdhjfdhjjhfdhjfd</a>
+                    <br>
+                    <a href="#">Link 3</a>
+                    <br>
+                    <a href="#">Link 4</a>
+                </div>
+                
+                <div class="rightColumn">
+                    <div class="description">
+                        {This is a long-ish 'Item description'. There may be longer ones than this but I just need to test it with this size for now.}
+                    </div>
+                    <br>
+                    <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
+                    <script>
+                    function myFunction(x) {
+                        x.classList.toggle("fa-thumbs-down");
+                    }
+                    </script>
+                    <button class="button">Add to Gift Bank</button>
+                </div>
+             </div>
+            
+             <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="src/script.js"></script>  
+         </div>
+         <div class="footer">
+             <a href="about.html">About Us</a>
+             |
+             <a href="contact.html">Contact Us</a>
+             |
+             <a href="#">Privacy Policy</a>
+         </div>
+    </div>
+    
+</body>
+</html>
