@@ -1,6 +1,6 @@
 <?php
 	$success = false;
-	echo $_POST["name"];
+	echo $_POST['name'];
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		$subject = "Contact from: ";
 		$name = $_POST["name"];
@@ -60,13 +60,13 @@
             <div class="form">
                 <form action="contact.php" method="post" enctype="text/plain">
                     <p class="name">
-                        <input name="name" type="text" class="feedback-input" required placeholder="Name" id="name" value="" />
+                        <input name="name" type="text" class="feedback-input" required placeholder="Name" id="name" />
                     </p>
                     <p class="email">
-                        <input name="email" type="email" required class="feedback-input" id="email" placeholder="Email" value = ""/>
+                        <input name="email" type="email" required class="feedback-input" id="email" placeholder="Email"/>
                     </p>
                     <p class="text">
-                        <textarea name="message" class="feedback-input" id="comment" placeholder="Message" value = ""></textarea>
+                        <textarea name="message" class="feedback-input" id="comment" placeholder="Message"></textarea>
                     </p>
                     <div class="submit">
                         <button type="submit" class="button-blue" name="submit">Submit</button>
