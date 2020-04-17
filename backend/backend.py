@@ -5,6 +5,7 @@ import MySQLdb.cursors
 import re, hashlib, os
 
 app = Flask(__name__, )
+app.secret_key = os.urandom(24)
 
 # DB Connection details
 app.config['MYSQL_HOST'] = 'localhost'
