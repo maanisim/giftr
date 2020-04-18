@@ -65,17 +65,55 @@
          </div>
  
     </div>-->
-    <header class="masthead d-flex">
-        <div class="container text-center my-auto">
-          <h1 class="mb-1">Stylish Portfolio</h1>
-          <h3 class="mb-5">
-            <em>asdhuasofhafuoahfuoahuo</em>
-          </h3>
-          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
-        </div>
-        <div class="overlay"></div>
-      </header>
+    <div id="app"></div>
+    <script>
+    const Banner = () => {
+    let squares = [];
 
+    for (let i = 0; i < 20; i++) {
+        squares.push(i);
+    }
+    
+    const generateRandomNum = ({ min, max }) => Math.floor(Math.random() * (max - min + 1) + min);
+
+    return (
+        <div className="intro">
+        <div className="quote">
+            <h1>Title!</h1>
+            <p>Description</p>
+        </div>
+        <div className="squares-wrapper">
+            <ul className="squares">
+            {squares.map((el, i) => {
+                const randomDimensions = Math.floor(
+                Math.random() * (150 - 15 + 1) + 15
+                );
+
+                return ( 
+                <li
+                    key={i}
+                    style={{
+                                        left: `${generateRandomNum({ min: 0, max: 90 })}%`,
+                                        width: randomDimensions,
+                                        height: randomDimensions,
+                                        animationDelay: `${i % 2 ? generateRandomNum({ min: 0, max: 20 }) : 0}s`,
+                                        animationDuration: `${generateRandomNum({ min: 10, max: 50 })}s`,
+                                    }}
+                />
+                );
+            })}
+            </ul>
+        </div>
+        <div className="image-overlay" />
+        </div>
+    );
+    };
+
+    const app = <Banner />;
+
+    ReactDOM.render(app, document.querySelector('#app'));
+
+    </script>
       <div class="footer">
         <a href="{{ url_for('about') }}">About Us</a>
         |
