@@ -15,7 +15,7 @@
          <div id="content-wrap">
              <div class="header">
                  <center>
-                      <a href= "index.html">
+                      <a href= "{{ url_for('index') }}">
                         <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" width="410" height="120" draggable="false"> 
                       </a>
                      <br>Our motto goes here
@@ -23,15 +23,19 @@
              </div>
              <div class="giftbank">
                  <img src="{{ url_for('static', filename='img/gift.png') }}" alt="Gift icon" width="30" height="30" draggable="false">
-                 <a href="#">Gift Bank</a>
+                 <a href="{{ url_for('wishlist') }}">Gift Bank</a>
              </div>
              <div class="wrapper">
                  <nav class="tabs">
                      <div class="selector"></div>
-                     <a href="#" class="active"><i class="fas fa-home"></i>Home</a>
-                     <a href="#"><i class="fas fa-search"></i>Search for gift</a>
-                     <a href="#"><i class="fas fa-gift"></i>Item suggestion</a>
-                     <a href="#"><i class="fas fa-user"></i>My profile</a>
+                     <a href="{{ url_for('index') }}" class="active"><i class="fas fa-home"></i>Home</a>
+                     <a href="{{ url_for('search') }}"><i class="fas fa-search"></i>Search for gift</a>
+                     <a href="{{ url_for('suggestion') }}"><i class="fas fa-gift"></i>Item suggestion</a>
+                     {% if 'loggedin' in session %}
+                     <a href="{{ url_for('home') }}"><i class="fas fa-user"></i>My profile</a>
+                     {% else %}
+                     <a href="{{ url_for('register') }}"><i class="fas fa-user"></i>Register</a>
+                     {% endif %}
                  </nav>
              </div>
              <center>
@@ -41,14 +45,15 @@
                  <br>
                  <a href="{{ url_for('register') }}" class="button button1">Sign up</a>
              </center>
-             <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="{{ url_for('static', filename='src/script.js') }}"></script>  
+             <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+             <script  src="{{ url_for('static', filename='src/script.js') }}"></script>  
          </div>
          <div class="footer">
-             <a href="about.html">About Us</a>
+             <a href="{{ url_for('about') }}">About Us</a>
              |
              <a href="{{ url_for('contact') }}">Contact Us</a>
              |
-             <a href="#">Privacy Policy</a>
+             <a href="{{ url_for('privacy') }}">Privacy Policy</a>
          </div>
     </div>
     

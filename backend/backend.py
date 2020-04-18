@@ -22,9 +22,11 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 #my_profile.html
-@app.route('/profile')
+@app.route('/home')
 def profile():
-    return render_template('my_profile.html')
+    if 'loggedin' in session:
+        return render_template('my_profile.html')
+    return render_template('index.html')
 
 @app.route('/')
 def index():
