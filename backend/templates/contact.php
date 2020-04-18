@@ -6,7 +6,7 @@
 		$subject = $subject.$name; 
 		$message = $_POST["message"];
 		$email = $_POST["email"];
-		mail("walkr121@gmail.com", $subject, $message, "a");
+		mail("walkr121@gmail.com", $subject, $message, "From: walkr121@gmail.com");
 		$success = true;
 	}
 ?>
