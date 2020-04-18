@@ -17,9 +17,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us | Giftr</title>
-    <link rel='icon' href='img/favicon.ico' type='image/x-icon'>
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'><link rel="stylesheet" href="src/style.css">
-    <link rel="stylesheet" href="src/contact.css">
+    <link rel='icon' href='{{ url_for('static', filename='img/favicon.ico') }}' type='image/x-icon'>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/contact.css') }}">
 
 </head>	
 		
@@ -28,20 +29,20 @@
          <div id="content-wrap">
              <div class="header">
                  <center>
-                    <a href= "index.html">
-                         <img src="img/logo.png" alt="Logo" width="410" height="120"> 
+                    <a href= "{{ url_for('index') }}">
+                         <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" width="410" height="120"> 
                     </a>
                     <br>Our motto goes here
                  </center>
              </div>
              <div class="giftbank">
-                 <img src="img/gift.png" alt="Gift icon" width="30" height="30">
+                 <img src="{{ url_for('static', filename='img/gift.png') }}" alt="Gift icon" width="30" height="30">
                  <a href="#">Gift Bank</a>
              </div>
              <div class="wrapper">
                  <nav class="tabs">
                      <div class="selector"></div>
-                     <a href="#" class="active"><i class="fas fa-home"></i>Home</a>
+                     <a href="{{ url_for('index') }}" class="active"><i class="fas fa-home"></i>Home</a>
                      <a href="#"><i class="fas fa-search"></i>Search for gift</a>
                      <a href="#"><i class="fas fa-gift"></i>Item suggestion</a>
                      <a href="#"><i class="fas fa-user"></i>My profile</a>
@@ -57,7 +58,7 @@
              </div>
              <div class="container">
             <div class="form">
-                <form action="contact.php" method="post">
+                <form action="{{ url_for('contact') }}" method="post">
                     <p class="name">
                         <input name="name" type="text" class="feedback-input" required placeholder="Name" id="name" />
                     </p>
@@ -82,7 +83,7 @@
              </div>
              </div>
             
-             <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="src/script.js"></script>  
+             <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="{{ url_for('static', filename='src/script.js') }}"></script>  
          </div>
          <div class="footer">
              <a href="about.html">About Us</a>
