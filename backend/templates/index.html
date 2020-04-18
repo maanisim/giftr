@@ -65,55 +65,14 @@
          </div>
  
     </div>-->
-    <div id="app"></div>
-    <script>
-    const Banner = () => {
-    let squares = [];
-
-    for (let i = 0; i < 20; i++) {
-        squares.push(i);
-    }
-    
-    const generateRandomNum = ({ min, max }) => Math.floor(Math.random() * (max - min + 1) + min);
-
-    return (
-        <div className="intro">
-        <div className="quote">
-            <h1>Title!</h1>
-            <p>Description</p>
-        </div>
-        <div className="squares-wrapper">
-            <ul className="squares">
-            {squares.map((el, i) => {
-                const randomDimensions = Math.floor(
-                Math.random() * (150 - 15 + 1) + 15
-                );
-
-                return ( 
-                <li
-                    key={i}
-                    style={{
-                                        left: `${generateRandomNum({ min: 0, max: 90 })}%`,
-                                        width: randomDimensions,
-                                        height: randomDimensions,
-                                        animationDelay: `${i % 2 ? generateRandomNum({ min: 0, max: 20 }) : 0}s`,
-                                        animationDuration: `${generateRandomNum({ min: 10, max: 50 })}s`,
-                                    }}
-                />
-                );
-            })}
-            </ul>
-        </div>
-        <div className="image-overlay" />
-        </div>
-    );
-    };
-
-    const app = <Banner />;
-
-    ReactDOM.render(app, document.querySelector('#app'));
-
-    </script>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <base href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/">
+    <header>
+        <h1>Gifting<span>solutions</span></h1>
+        <img src="{{ url_for('static', filename='img/giftrr.png') }}">
+    </header>
+    <main>
+    </main>
       <div class="footer">
         <a href="{{ url_for('about') }}">About Us</a>
         |
