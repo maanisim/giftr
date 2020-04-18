@@ -28,6 +28,10 @@ def index():
 def item():
     return render_template('itemPage.html')
 
+@app.route('/contact')
+def contact():
+    return render_template('contact.php')
+
 @app.route('/login')
 def login():
     return render_template('login.html')
