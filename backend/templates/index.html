@@ -25,12 +25,6 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
             <li><a href="{{ url_for('suggestion') }}">Item suggestion</a></li>
-            {% if 'loggedin' in session %}
-            <li><a href="{{ url_for('home') }}">My profile</a></li>
-            {% else %}
-            <li><a href="{{ url_for('register') }}">Register</a></li>
-            {% endif %}
-
           </ul>
           <form class="navbar-form navbar-left" action="/action_page.php">
             <div class="input-group">
@@ -43,6 +37,12 @@
             </div>
           </form>
               <ul class="nav navbar-nav navbar-right">
+                {% if 'loggedin' in session %}
+                <li><a href="{{ url_for('home') }}"><span class="glyphicon glyphicon-user"></span>My profile</a></li>
+                {% else %}
+                <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="{{ url_for('register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                {% endif %}
             <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
             <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           </ul>
