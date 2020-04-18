@@ -23,7 +23,7 @@ def page_not_found(e):
 
 #my_profile.html
 @app.route('/profile')
-def index():
+def profile():
     return render_template('my_profile.html')
 
 @app.route('/')
