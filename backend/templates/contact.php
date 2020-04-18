@@ -1,12 +1,12 @@
 <?php
 	$success = false;
-	if ($_POST["message"]){
-		$subject = "Contact from:";
+	if ($_SERVER["REQUEST_METHOD"] == "POST"){
+		$subject = "Contact from: ";
 		$name = $_POST["name"];
-		$subject = $subject.$name;
+		$subject = $subject.$name; 
 		$message = $_POST["message"];
 		$email = $_POST["email"];
-		mail("group16uol@gmail.com", $subject, $message, $email);
+		mail("walkr121@gmail.com", $subject, $message, "a");
 		$success = true;
 	}
 ?>
@@ -21,7 +21,8 @@
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'><link rel="stylesheet" href="src/style.css">
     <link rel="stylesheet" href="src/contact.css">
 
-</head>
+</head>	
+		
 <body>
      <div id="page-container">
          <div id="content-wrap">
@@ -61,23 +62,22 @@
                         <input name="name" type="text" class="feedback-input" required placeholder="Name" id="name" />
                     </p>
                     <p class="email">
-                        <input name="email" type="email" required class="feedback-input" id="email" placeholder="Email" />
+                        <input name="email" type="email" required class="feedback-input" id="email" placeholder="Email"/>
                     </p>
                     <p class="text">
                         <textarea name="message" class="feedback-input" id="comment" placeholder="Message"></textarea>
                     </p>
                     <div class="submit">
-                        <button type="submit" class="button-blue">Submit</button>
+                        <button type="submit" class="button-blue" name="submit">Submit</button>
                     </div>
-					<?php
-						if($success == true){
-					?>
-							<p> Email Sent! </p>
+		<?php
+			if($success == true){
+		?>
+				<p> Email Sent! </p>
 					
-					<?php
-						}
-					?>
-					
+		<?php
+			}
+		?>		
                     </form>
              </div>
              </div>
