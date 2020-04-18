@@ -44,11 +44,11 @@ def wishlist():
     return render_template('index.html')
 
 @app.route('/about')
-def wishlist():
+def about():
     return render_template('about.html')
 
 @app.route('/privacy')
-def wishlist():
+def privacy():
     return render_template('privacy.html')
 
 @app.route('/contact')
