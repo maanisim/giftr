@@ -35,14 +35,14 @@ def index():
         return render_template('welcome.html', email=session['email'])
     return render_template('index.html')
 
-
+# mostly static pages
 @app.route('/item')
 def item():
     return render_template('itemPage.html')
 
 @app.route('/wishlist')
 def wishlist():
-    return render_template('index.html')
+    return render_template('wishlist.html')
 
 @app.route('/about')
 def about():
@@ -66,11 +66,11 @@ def register():
 
 @app.route('/suggestion')
 def suggestion():
-    return render_template('index.html')
+    return render_template('suggestion.html')
 
 @app.route('/search')
 def search():
-    return render_template('index.html')
+    return render_template('search.html')
 
 @app.route('/loginapi', methods=['POST', 'GET'])
 def loginapi():

@@ -25,19 +25,16 @@
                  <img src="{{ url_for('static', filename='img/gift.png') }}" alt="Gift icon" width="30" height="30" draggable="false">
                  <a href="{{ url_for('wishlist') }}">Gift Bank</a>
              </div>
-             <div class="wrapper">
-                 <nav class="tabs">
-                     <div class="selector"></div>
-                     <a href="{{ url_for('index') }}" class="active"><i class="fas fa-home"></i>Home</a>
-                     <a href="{{ url_for('search') }}"><i class="fas fa-search"></i>Search for gift</a>
-                     <a href="{{ url_for('suggestion') }}"><i class="fas fa-gift"></i>Item suggestion</a>
-                     {% if 'loggedin' in session %}
-                     <a href="{{ url_for('home') }}"><i class="fas fa-user"></i>My profile</a>
-                     {% else %}
-                     <a href="{{ url_for('register') }}"><i class="fas fa-user"></i>Register</a>
-                     {% endif %}
-                 </nav>
-             </div>
+                <ul>
+                    <li><a class="active" href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('search') }}">Search for gift</a></li>
+                    <li><a href="{{ url_for('suggestion') }}">Item suggestion</a></li>
+                    {% if 'loggedin' in session %}
+                    <li><a href="{{ url_for('home') }}">My profile</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                    {% endif %}
+                  </ul>
              <center>
                  <img src="{{ url_for('static', filename='img/party-profile.png') }}" alt="Profile" width="200" height="200" draggable="false"> 
                  <p></p>
