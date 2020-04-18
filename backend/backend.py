@@ -67,6 +67,10 @@ def login():
 def register():
     return render_template('register.html')
 
+@app.route('/suggestion')
+def suggestion():
+    return render_template('index.html')
+
 @app.route('/loginapi', methods=['POST', 'GET'])
 def loginapi():
     #LOGGING IN
