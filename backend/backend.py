@@ -32,7 +32,9 @@ def profile():
 def index():
     if 'loggedin' in session:
         # Already logged in
-        return render_template('welcome.html', email=session['email'])
+        #return render_template('welcome.html', email=session['email'])
+        #You can tell you are logged in by register/login disappering on the right and being replaced with "my profile"
+        return render_template('index.html') 
     return render_template('index.html')
 
 # mostly static pages
