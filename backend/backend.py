@@ -21,7 +21,7 @@ def page_not_found(e):
     # note that we set the 404 status explicitly
     return render_template('404.html'), 404
 
-#my_profile.html
+
 @app.route('/home')
 def profile():
     if 'loggedin' in session:
@@ -38,6 +38,18 @@ def index():
 @app.route('/item')
 def item():
     return render_template('itemPage.html')
+
+@app.route('/wishlist')
+def wishlist():
+    return render_template('index.html')
+
+@app.route('/about')
+def wishlist():
+    return render_template('about.html')
+
+@app.route('/privacy')
+def wishlist():
+    return render_template('privacy.html')
 
 @app.route('/contact')
 def contact():
