@@ -29,7 +29,7 @@
                  <nav class="tabs">
                      <div class="selector"></div>
                      <a href="{{ url_for('index') }}" class="active"><i class="fas fa-home"></i>Home</a>
-                     <a href="{{ url_for('search') }}"><i class="fas fa-search"></i>Search for gift</a>
+                     <!--<a href="{{ url_for('search') }}"><i class="fas fa-search"></i>Search for gift</a>-->
                      <a href="{{ url_for('suggestion') }}"><i class="fas fa-gift"></i>Item suggestion</a>
                      {% if 'loggedin' in session %}
                      <a href="{{ url_for('home') }}"><i class="fas fa-user"></i>My profile</a>

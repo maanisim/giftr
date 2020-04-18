@@ -35,6 +35,10 @@ def index():
         return render_template('welcome.html', email=session['email'])
     return render_template('index.html')
 
+@app.route('/search')
+def search():
+    return render_template('index.html')
+
 @app.route('/item')
 def item():
     return render_template('itemPage.html')
