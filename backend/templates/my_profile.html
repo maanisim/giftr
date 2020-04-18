@@ -31,7 +31,11 @@
             <a href="#"><i class="fas fa-user"></i>My profile</a>
         </nav>
     </div>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script><script  src="src/script.js"></script>
+    <img src="{{ url_for('static', filename='src/script.js') }}" alt="Gift icon" width="30" height="30" draggable="false">
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <script src="{{ url_for('static', filename='src/script.js') }}"></script>
+
 
 </head>
 
