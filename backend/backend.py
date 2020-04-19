@@ -1,11 +1,13 @@
 # Really basic program for now
-from flask import Flask, redirect, url_for, render_template, request, session
+from flask import Flask, redirect, url_for, render_template, request, session, make_response
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re, hashlib, os
+from _datetime import timedelta
 
 app = Flask(__name__, )
 app.secret_key = os.urandom(24)
+# app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(minutes=5)
 
 # DB Connection details
 app.config['MYSQL_HOST'] = 'localhost'
@@ -15,6 +17,9 @@ app.config['MYSQL_DB'] = 'dummy'
 
 # Initialise DB
 mysql = MySQL(app)
+
+global COOKIE_TIME_OUT
+COOKIE_TIME_OUT = 60*60*24*7 # 7 days
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -27,7 +32,7 @@ def profile():
     if 'loggedin' in session:
         return render_template('my_profile.html',
         username=session['username'])
-    return render_template('index.html')
+    return redirect('/')
 
 @app.route('/')
 def index():
@@ -35,7 +40,7 @@ def index():
         # Already logged in
         #You can tell you are logged in by register/login disappering on the right and being replaced with "my profile"
         return render_template('index.html', username=session['username']) 
-    return render_template('index.html')
+    return redirect('/')
 
 # mostly static pages
 @app.route('/item')
@@ -95,7 +100,15 @@ def loginapi():
             session['id'] = account['user_id']
             session['email'] = account['email']
             session['username'] = account['username']
-            return redirect(url_for('index', username = session['username']))
+            remember = request.form.getlist('remember')
+
+            if remember:
+                resp = make_response(redirect('/'))
+                resp.set_cookie('email', email, max_age=COOKIE_TIME_OUT)
+                resp.set_cookie('password', password, max_age=COOKIE_TIME_OUT)
+                resp.set_cookie('rem', 'checked', max_age=COOKIE_TIME_OUT)
+                return resp
+            return redirect('/')
         else:
             msg = 'Incorrect login details!'
             return render_template('login.html')
@@ -136,10 +149,12 @@ def registerapi():
 
 @app.route('/logout', methods=['POST', 'GET'])
 def logout():
-    session.pop('loggedin', None)
-    session.pop('id', None)
-    session.pop('email', None)
-    return render_template('index.html')
+    if 'loggedin' in session:
+        session.pop('loggedin', None)
+        session.pop('id', None)
+        session.pop('email', None)
+        return redirect('/')
+    return redirect('/')
 
 
 @app.route('/welcome', methods=['POST', 'GET'])
