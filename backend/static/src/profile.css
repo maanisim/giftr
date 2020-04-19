@@ -32,36 +32,8 @@ a.link {
   font-size: 18pt;
   font-family: arial;
   cursor: pointer;
-  width: 15%;
+  width: fit-content;
   display: block;
-}
-
-.button1 {
-  background-color: #519dd9;
-  float: center;
-  color: white;
-  padding: 15pt 30pt;
-  text-align: center;
-  text-decoration: none;
-  font-size: 18pt;
-  font-family: arial;
-  cursor: pointer;
-  width: 15%;
-  display: block;
-} 
-
-.button2 {
-  background-color: #519dd9;
-  float: center;
-  color: white;
-  padding: 15pt 30pt;
-  text-align: center;
-  text-decoration: none;
-  font-size: 18pt;
-  font-family: arial;
-  cursor: pointer;
-  display: block;
-  width: 50%; 
 }
 
 .button:hover{
@@ -154,7 +126,7 @@ a.link {
 
 .grid-container {
 	display: grid;
-	grid-template-columns: auto auto auto auto 250pt;
+	grid-template-columns: auto auto auto auto auto;
 	grid-gap: 10pt 25pt;
 	align-items: center;
 	justify-content: center;
