@@ -28,6 +28,40 @@
 </head>	
 		
 <body>
+	    <!-- nav bar-->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" width="120" draggable="false" style="margin-top: 8px; margin-right: 10px;"> 
+            </a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('suggestion') }}">Item suggestion</a></li>
+          </ul>
+          <form class="navbar-form navbar-left" action="/action_page.php">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for gift" name="search">
+              <div class="input-group-btn">
+                <button class="btn btn-default" type="submit">
+                  <i class="glyphicon glyphicon-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+              <ul class="nav navbar-nav navbar-right">
+                {% if 'loggedin' in session %}
+                <li><a href="{{ url_for('home') }}"><span class="glyphicon glyphicon-user"></span>My profile</a></li>
+                {% else %}
+                <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="{{ url_for('register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                {% endif %}
+          </ul>
+        </div>
+      </nav>
+	
+	
      <div id="page-container">
          <div id="content-wrap">
              <div class="header">
@@ -35,22 +69,23 @@
                     <a href= "{{ url_for('index') }}">
                          <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" width="410" height="120"> 
                     </a>
-                    <br>Our motto goes here
+                    <br>Gifts that never disappoint
                  </center>
              </div>
-             <div class="giftbank">
-                 <img src="{{ url_for('static', filename='img/gift.png') }}" alt="Gift icon" width="30" height="30">
-                 <a href="#">Gift Bank</a>
-             </div>
-             <div class="wrapper">
-                 <nav class="tabs">
-                     <div class="selector"></div>
-                     <a href="{{ url_for('index') }}" class="active"><i class="fas fa-home"></i>Home</a>
-                     <a href="#"><i class="fas fa-search"></i>Search for gift</a>
-                     <a href="#"><i class="fas fa-gift"></i>Item suggestion</a>
-                     <a href="#"><i class="fas fa-user"></i>My profile</a>
-                 </nav>
-             </div>
+              <div class="giftbank" onmouseover="onH(this)" onmouseout="onE(this)">
+                <img src="{{ url_for('static', filename='img/gift.png') }}" alt="Gift icon" width="30" height="30" draggable="false">
+                <a href="{{ url_for('wishlist') }}">Gift Bank</a>
+            </div>
+            <script type="text/javascript">
+                function onH(x){
+                    x.getElementsByTagName('img')[0].src = "{{ url_for('static', filename='img/gift-black.png') }}";
+                    x.getElementsByTagName('a')[0].style.color = "black";
+                }
+                function onE(x){
+                    x.getElementsByTagName('img')[0].src = "{{ url_for('static', filename='img/gift.png') }}";
+                    x.getElementsByTagName('a')[0].style.color = "white";
+                }
+            </script>
 
              <div class= "writing">
                 <h1>Contact Us</h1>
@@ -89,11 +124,11 @@
              <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
          </div>
          <div class="footer">
-             <a href="about.html">About Us</a>
+             <a href="{{ url_for('about') }}">About Us</a>
              |
-             <a href="contact.html">Contact Us</a>
+             <a href="{{ url_for('contact') }}">Contact Us</a>
              |
-             <a href="#">Privacy Policy</a>
+             <a href="{{ url_for('privacy') }}">Privacy Policy</a>
          </div>
     </div>
     
