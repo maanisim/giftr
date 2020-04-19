@@ -59,7 +59,7 @@
              </div>
              <div class="container">
             <div class="form">
-                <form action=contact.php method="post">
+                <form action="{{ url_for('contact') }}" method="post">
                     <p class="name">
                         <input name="name" type="text" class="feedback-input" required placeholder="Name" id="name" />
                     </p>
