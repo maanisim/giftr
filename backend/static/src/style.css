@@ -112,6 +112,7 @@ h3{
   margin-top: 10px;
   margin-left: 60px;
   margin-right: 30px;
+  margin-bottom: 50px;
   grid-template-columns: repeat(6, 10%);
   column-gap: 20px;
   row-gap: 40px;
