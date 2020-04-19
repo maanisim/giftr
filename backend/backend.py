@@ -22,10 +22,11 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 
-@app.route('/home')
+@app.route('/profile')
 def home():
     if 'loggedin' in session:
-        return render_template('my_profile.html')
+        return render_template('my_profile.html',
+        username=session['username'])
     return render_template('index.html')
 
 @app.route('/')
@@ -41,7 +42,7 @@ def index():
 def item():
     return render_template('itemPage.html')
 
-@app.route('/profile')
+@app.route('/anotherProfile')
 def profile():
     return render_template('anotherProfile.html')
 
