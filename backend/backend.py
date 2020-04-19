@@ -83,6 +83,7 @@ def suggestion():
 def search():
     return render_template('search.html')
 
+
 @app.route('/loginapi', methods=['POST', 'GET'])
 def loginapi():
     #LOGGING IN
@@ -105,7 +106,7 @@ def loginapi():
             if remember:
                 resp = make_response(redirect('/'))
                 resp.set_cookie('email', email, max_age=COOKIE_TIME_OUT)
-                resp.set_cookie('password', password, max_age=COOKIE_TIME_OUT)
+                #resp.set_cookie('password', password, max_age=COOKIE_TIME_OUT)
                 resp.set_cookie('rem', 'checked', max_age=COOKIE_TIME_OUT)
                 return resp
             return redirect('/')
@@ -113,7 +114,13 @@ def loginapi():
             msg = 'Incorrect login details!'
             return render_template('login.html')
 
-
+#check if user length min 8
+#check if password length min 8
+#check if user = a-zA-Z0-9
+#check if password = a-zA-Z0-9
+#check if username used in db else error
+#check if email used in db else error
+#add to database
 @app.route('/registerapi', methods=['POST', 'GET'])
 def registerapi():
     #CREATING ACCOUNT
