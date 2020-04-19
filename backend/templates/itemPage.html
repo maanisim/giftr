@@ -23,19 +23,11 @@
                      <br>Our motto goes here
                  </center>
              </div>
-             <div class="giftbank">
-                 <img src="{{ url_for('static', filename='img/gift.png') }}" alt="Gift icon" width="30" height="30">
-                 <a href="#">Gift Bank</a>
-             </div>
-             <div class="wrapper">
-                 <nav class="tabs">
-                     <div class="selector"></div>
-                     <a href="{{ url_for('index') }}" class="active"><i class="fas fa-home"></i>Home</a>
-                     <a href="#"><i class="fas fa-search"></i>Search for gift</a>
-                     <a href="#"><i class="fas fa-gift"></i>Item suggestion</a>
-                     <a href="#"><i class="fas fa-user"></i>My profile</a>
-                 </nav>
-             </div>
+             <script src= "{{ url_for('static', filename='src/giftbank.js') }}"></script>
+             <div class="giftbank" onmouseover="onH(this)" onmouseout="onE(this)">
+                <img src="{{ url_for('static', filename='img/gift.png') }}" alt="Gift icon" width="30" height="30" draggable="false">
+                <a href="{{ url_for('wishlist') }}">Gift Bank</a>
+            </div>
 
              <div class="item">
                 <div class="leftColumn">
@@ -65,18 +57,18 @@
                         x.classList.toggle("fa-thumbs-down");
                     }
                     </script>
-                    <button class="button">Add to Gift Bank</button>
+                    <button class="button1">Add to Gift Bank</button>
                 </div>
              </div>
             
              <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
          </div>
          <div class="footer">
-             <a href="about.html">About Us</a>
+             <a href="{{ url_for('about') }}">About Us</a>
              |
              <a href="{{ url_for('contact') }}">Contact Us</a>
              |
-             <a href="#">Privacy Policy</a>
+             <a href="{{ url_for('privacy') }}">Privacy Policy</a>
          </div>
     </div>
     
