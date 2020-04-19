@@ -74,7 +74,6 @@ body{
 .button:hover{
   background-color: #f7c200;
   color: black;
-  text-decoration: none;
 }
 
 .footer {
@@ -118,6 +117,7 @@ body{
 
 .giftbank:hover {
   background-color: #f7c200;
+  text-decoration: none;
 }
 
 #page-container {
