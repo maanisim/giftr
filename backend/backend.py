@@ -22,19 +22,19 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 
-@app.route('/home')
+@app.route('/profile')
 def home():
     if 'loggedin' in session:
-        return render_template('my_profile.html')
+        return render_template('my_profile.html',
+        username=session['username'])
     return render_template('index.html')
 
 @app.route('/')
 def index():
     if 'loggedin' in session:
         # Already logged in
-        #return render_template('welcome.html', email=session['email'])
         #You can tell you are logged in by register/login disappering on the right and being replaced with "my profile"
-        return render_template('index.html') 
+        return render_template('index.html', username=session['username']) 
     return render_template('index.html')
 
 # mostly static pages
@@ -42,7 +42,7 @@ def index():
 def item():
     return render_template('itemPage.html')
 
-@app.route('/profile')
+@app.route('/anotherProfile')
 def profile():
     return render_template('anotherProfile.html')
 
@@ -95,7 +95,7 @@ def loginapi():
             session['id'] = account['user_id']
             session['email'] = account['email']
             session['username'] = account['username']
-            return redirect(url_for('welcome'))
+            return render_template('index.html', username = session['username'])
         else:
             msg = 'Incorrect login details!'
             return render_template('login.html')
