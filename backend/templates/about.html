@@ -39,15 +39,6 @@
                 }
             </script>
             
-            <div class="wrapper">
-                <nav class="tabs">
-                    <div class="selector"></div>
-                    <a href="{{ url_for('index') }}" class="active"><i class="fas fa-home"></i>Home</a>
-                    <a href="#"><i class="fas fa-search"></i>Search for gift</a>
-                    <a href="#"><i class="fas fa-gift"></i>Item suggestion</a>
-                    <a href="#"><i class="fas fa-user"></i>My profile</a>
-                </nav>
-            </div>
             <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
             
             <div class="titles" data-aos="zoom-in">About Us</div>
@@ -61,11 +52,11 @@
             <div class="text5" data-aos="fade-right">Use the provided filters to ease your search, be it fitting into a budget or knowing what category you want to find the gift in</div>
         </div>
         <div class="footer">
-            <a href="about.html">About Us</a>
+            <a href="{{ url_for('about') }}">About Us</a>
             |
-            <a href="{{ url_for('register') }}">Contact Us</a>
+            <a href="{{ url_for('contact') }}">Contact Us</a>
             |   
-            <a href="#">Privacy Policy</a>
+            <a href="{{ url_for('privacy') }}">Privacy Policy</a>
         </div>
     </div>
     <script  src="https://unpkg.com/aos@next/dist/aos.js"></script>
