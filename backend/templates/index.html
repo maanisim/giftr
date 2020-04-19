@@ -77,7 +77,8 @@
  
     <br>
         <center>
-            <h1>Welcome, {{ username }}!</h1>
+            {% if 'loggedin' in session %}
+            <h1>Welcome, {{ session['username'] }}!</h1>
         </center>
         
         <h2>Now popular:</h2>
