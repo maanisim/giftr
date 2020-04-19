@@ -38,7 +38,7 @@
           </form>
               <ul class="nav navbar-nav navbar-right">
                 {% if 'loggedin' in session %}                
-                <li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <li><a href="{{ url_for('logout') }}" style="color: red;"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                 <li><a href="{{ url_for('profile') }}"><span class="glyphicon glyphicon-user"></span> My profile</a></li>
                 {% else %}
                 <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
