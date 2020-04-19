@@ -16,55 +16,6 @@ head{
   margin:15pt auto;
 }
 
-.tabs{
-  margin-top:0;
-  font-size:13pt;
-  padding:0;
-  list-style:none;
-  background:#f5f3f3;
-  box-shadow:0 5pt 20pt rgba(0, 0, 0, 0.226);
-  display:inline-block;
-  border-radius:50pt;
-  position:relative;
-}
-
-.tabs a{
-  text-decoration:none;
-  color: #777;
-  text-transform:uppercase;
-  padding:7pt 12pt;
-  display:inline-block;
-  position:relative;
-  z-index:1;
-  transition-duration:0.6s;
-}
-
-.tabs a.active{
-  color:#ededed;
-}
-
-.tabs a i{
-  margin-right:5pt;
-}
-
-.tabs .selector{
-  height:100%;
-  display:inline-block;
-  position:absolute;
-  left:0;
-  top:0;
-  z-index:1;
-  border-radius:50pt;
-  transition-duration:0.6s;
-  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  
-  background: #519dd9;
-  background: -moz-linear-gradient(270deg, #519dd9 0%, #db0038 100%);
-  background: -webkit-linear-gradient(270deg, #519dd9 0%,#db0038 100%);
-  background: linear-gradient(270deg, #519dd9 0%,#db0038 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f7c200', endColorstr='#db0038',GradientType=1 );
-}
-
 body{
   background-color: #ededed;
   color:#519dd9;
@@ -226,46 +177,4 @@ a.link {
 
 .grid-container > div {
 	padding: 0 0;
-}
-
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 8pt;
-  width: 100%;
-  text-align: center;
-}
-
-.footer a {
-  text-decoration: none;
-  padding: 10pt;
-  color: black;
-}
-
-.footer a:hover {
-  color: #f7c200;
-}
-
-.giftbank {
-  display: flex;
-  position: absolute;
-  top: 10pt;
-  right: 10pt;
-  align-items:center;
-  background-color: #db0038;
-  padding: 5pt;
-  border-radius: 10pt;
-  z-index: 9999;
-}
-
-.giftbank a{
-  text-decoration: none;
-  text-align:center;
-  font-family: arial;
-  color: white;
-  margin: 5pt;
-}
-
-.giftbank:hover {
-  background-color: #f7c200;
 }
