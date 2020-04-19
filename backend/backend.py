@@ -58,7 +58,7 @@ def about():
 def privacy():
     return render_template('privacy.html')
 
-@app.route('/contact', methods =['POST'])
+@app.route('/contact')
 def contact():
     return render_template('contact.php')
 
