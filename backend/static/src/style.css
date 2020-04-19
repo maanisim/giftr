@@ -25,6 +25,7 @@ body{
 
 .footer a:hover {
   color: #f7c200;
+  text-decoration:none;
 }
 
 .giftbank {
