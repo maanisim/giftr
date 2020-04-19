@@ -32,7 +32,7 @@ def profile():
     if 'loggedin' in session:
         return render_template('my_profile.html',
         username=session['username'])
-    return render_template('index.html')
+    return render_template('/')
 
 @app.route('/')
 def index():
@@ -40,7 +40,7 @@ def index():
         # Already logged in
         #You can tell you are logged in by register/login disappering on the right and being replaced with "my profile"
         return render_template('index.html', username=session['username']) 
-    return render_template('index.html')
+    return render_template('/')
 
 # mostly static pages
 @app.route('/item')
@@ -149,10 +149,12 @@ def registerapi():
 
 @app.route('/logout', methods=['POST', 'GET'])
 def logout():
-    session.pop('loggedin', None)
-    session.pop('id', None)
-    session.pop('email', None)
-    return render_template('index.html')
+    if 'loggedin' in session:
+        session.pop('loggedin', None)
+        session.pop('id', None)
+        session.pop('email', None)
+        return render_template('/')
+    return render_template('/')
 
 
 @app.route('/welcome', methods=['POST', 'GET'])
