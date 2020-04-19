@@ -24,10 +24,20 @@
                 </center>
             </div>
             
-            <div class="giftbank">
-                <img src="{{ url_for('static', filename='img/gift.png') }}" alt="Gift icon" width="30" height="30">
-                <a href="#">Gift Bank</a>
+            <div class="giftbank" onmouseover="onH(this)" onmouseout="onE(this)">
+                <img src="{{ url_for('static', filename='img/gift.png') }}" alt="Gift icon" width="30" height="30" draggable="false">
+                <a href="{{ url_for('wishlist') }}">Gift Bank</a>
             </div>
+            <script type="text/javascript">
+                function onH(x){
+                    x.getElementsByTagName('img')[0].src = "{{ url_for('static', filename='img/gift-black.png') }}";
+                    x.getElementsByTagName('a')[0].style.color = "black";
+                }
+                function onE(x){
+                    x.getElementsByTagName('img')[0].src = "{{ url_for('static', filename='img/gift.png') }}";
+                    x.getElementsByTagName('a')[0].style.color = "white";
+                }
+            </script>
             
             <div class="wrapper">
                 <nav class="tabs">
