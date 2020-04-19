@@ -2,7 +2,7 @@
 /**
 	$success = false;
 	echo "a";
-	if ($_SERVER["REQUEST_METHOD"] == "POST"){
+	if ($_POST["submit"]){
 		$subject = "Contact from: ";
 		$name = $_POST["name"];
 		$subject = $subject.$name; 
