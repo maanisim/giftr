@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{tmp_product_name} | Giftr</title>
     <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"/>
@@ -113,67 +113,44 @@
             />
           </div>
 
+          <div class="links">
+            <a href="#">Link 1</a>
+            <br />
+            <a href="#"
+              >Link
+              2rjfsjhfjfjhhfdshsrejhkfjkhjhefjherhrehrejhhjrjhrjhrhjrshjthjfjhfhjhjfhdjhjdfhjfdjdhjfdshjfdhjfdhjfdhjjhfdhjfdkfjkhjhefjherhrehrejhhjrjhrjhrhjrshjthjfjhfhjdhjfdshjfdhjfdhjfdhjjhfdhjfd</a
+            >
+            <br />
+            <a href="#">Link 3</a>
+            <br />
+            <a href="#">Link 4</a>
+          </div>
 
-</head>
-<body>
-     <div id="page-container">
-         <div id="content-wrap">
-             <div class="header">
-                 <center>
-                      <a href= "{{ url_for('index') }}">
-                        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" width="410" height="120"> 
-                      </a>
-                     <br>Gifts that never disappoint
-                 </center>
-             </div>
-             <script src= "{{ url_for('static', filename='src/giftbank.js') }}"></script>
-             <div class="giftbank" onmouseover="onH(this)" onmouseout="onE(this)">
-                <img src="{{ url_for('static', filename='img/gift.png') }}" alt="Gift icon" width="30" height="30" draggable="false">
-                <a href="{{ url_for('wishlist') }}">Gift Bank</a>
+          <div class="rightColumn">
+            <div class="description">
+              {This is a long-ish 'Item description'. There may be longer ones
+              than this but I just need to test it with this size for now.}
             </div>
+            <br />
+            <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
+            <script>
+              function myFunction(x) {
+                x.classList.toggle("fa-thumbs-down");
+              }
+            </script>
+            <button class="button">Add to Gift Bank</button>
+          </div>
+        </div>
 
-             <div class="item">
-                <div class="leftColumn">
-                    <h1>{Item name}</h1>
-                    <img src="{{ url_for('static', filename='img/1407.jpg') }}" alt="Item" width="300" height="300" border= "3" class="image">
-                    
-                </div>
-
-                <div class="links">
-                    <a href="#">Link 1</a>
-                    <br>
-                    <a href="#">Link 2rjfsjhfjfjhhfdshsrejhkfjkhjhefjherhrehrejhhjrjhrjhrhjrshjthjfjhfhjhjfhdjhjdfhjfdjdhjfdshjfdhjfdhjfdhjjhfdhjfdkfjkhjhefjherhrehrejhhjrjhrjhrhjrshjthjfjhfhjdhjfdshjfdhjfdhjfdhjjhfdhjfd</a>
-                    <br>
-                    <a href="#">Link 3</a>
-                    <br>
-                    <a href="#">Link 4</a>
-                </div>
-                
-                <div class="rightColumn">
-                    <div class="description">
-                        {This is a long-ish 'Item description'. There may be longer ones than this but I just need to test it with this size for now.}
-                    </div>
-                    <br>
-                    <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
-                    <script>
-                    function myFunction(x) {
-                        x.classList.toggle("fa-thumbs-down");
-                    }
-                    </script>
-                    <button class="button1">Add to Gift Bank</button>
-                </div>
-             </div>
-            
-             <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-         </div>
-         <div class="footer">
-             <a href="{{ url_for('about') }}">About Us</a>
-             |
-             <a href="{{ url_for('contact') }}">Contact Us</a>
-             |
-             <a href="{{ url_for('privacy') }}">Privacy Policy</a>
-         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      </div>
+      <div class="footer">
+        <a href="about.html">About Us</a>
+        |
+        <a href="{{ url_for('contact') }}">Contact Us</a>
+        |
+        <a href="#">Privacy Policy</a>
+      </div>
     </div>
-    
-</body>
+  </body>
 </html>
