@@ -1,88 +1,48 @@
-from flask import Flask, redirect, url_for, render_template, request, session, Blueprint
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import login_required, current_user, login_user, UserMixin, LoginManager
-from werkzeug.security import generate_password_hash, check_password_hash
+# Really basic program for now
+from flask import Flask, redirect, url_for, render_template, request, session, make_response
+from flask_mysqldb import MySQL
+import MySQLdb.cursors
 import re, hashlib, os
+from _datetime import timedelta
 
-# INIT
-app = Flask(__name__)
+app = Flask(__name__, )
 app.secret_key = os.urandom(24)
-login_manager = LoginManager()
-login_manager.init_app(app)
+# app.config['PERMANENT_SESSION_LIFETIME'] =  timedelta(minutes=5)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://web:AN(G3hg93hgn2ffim@localhost/dummy'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+# DB Connection details
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'web'
+app.config['MYSQL_PASSWORD'] = 'AN(G3hg93hgn2ffim'
+app.config['MYSQL_DB'] = 'dummy'
 
-class User(UserMixin, db.Model):
-    __tablename__ = 'users'
+# Initialise DB
+mysql = MySQL(app)
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False, unique=False)
-    email = db.Column(db.String(256), unique=True, nullable=False)
-    password = db.Column(db.String(256), primary_key=False, unique=False, nullable=False)
-
-    def set_password(self, password):
-        self.password = generate_password_hash(password, method='sha256')
-
-    def check_password(self, password):
-        return check_password_hash(self.password, password)
-
-@login_manager.user_loader
-def user_loader(user_id):
-    return User.query.get(user_id)
+global COOKIE_TIME_OUT
+COOKIE_TIME_OUT = 60*60*24*7 # 7 days
 
 @app.errorhandler(404)
 def page_not_found(e):
     # note that we set the 404 status explicitly
     return render_template('404.html'), 404
 
-# ----------------- ROUTES -----------------
-@app.route('/login-post', methods=['POST'])
-def login_post():
-    email = request.form('email')
-    password = request.form('passw')
-    remember = True if request.form.get('remember') else False
-
-    user = User.query.filter_by(email=email).first()
-
-    # check if user exists
-    # check if credentials is wrong
-    if not user or not check_password_hash(user.password, password):
-        return render_template(url_for('login'))
-
-    # if credentials are right    
-    login_user(user, remember=remember)
-    return redirect(url_for('index'))
-
-@app.route('/register-post', methods=['POST'])
-def register_post():
-    return redirect(url_for('login'))
-
-@app.route('/logout')
-def logout():
-    return render_template('logout.html')
 
 @app.route('/profile')
 def profile():
     if 'loggedin' in session:
         return render_template('my_profile.html',
         username=session['username'])
-    return redirect(url_for('index'))
-
-@app.route('/welcome', methods=['POST', 'GET'])
-def welcome():
-    print("welcome")
-    if 'loggedin' in session:
-        return render_template('welcome.html', username=session['username'])
-    else:
-        return render_template('index.html')
+    return redirect('/')
 
 @app.route('/')
 def index():
+    if 'loggedin' in session:
+        # Already logged in
+        #You can tell you are logged in by register/login disappering on the right and being replaced with "my profile"
+        return render_template('index.html', username=session['username']) 
     return render_template('index.html')
 
-# ----------------- STATIC ROUTES -----------------
+# mostly static pages
 @app.route('/item')
 def item():
     return render_template('itemPage.html')
@@ -122,6 +82,96 @@ def suggestion():
 @app.route('/search')
 def search():
     return render_template('search.html')
+
+
+@app.route('/loginapi', methods=['POST', 'GET'])
+def loginapi():
+    #LOGGING IN
+    if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
+        email = request.form['email']
+        password = request.form['passw'] # hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
+
+        # Check if account exists in DB
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM users WHERE email = %s AND password = %s', (email, password))
+        # Fetch account
+        account = cursor.fetchone()
+        if account:
+            session['loggedin'] = True
+            session['id'] = account['user_id']
+            session['email'] = account['email']
+            session['username'] = account['username']
+            remember = request.form.getlist('remember')
+
+            if remember:
+                resp = make_response(redirect('/'))
+                resp.set_cookie('email', email, max_age=COOKIE_TIME_OUT)
+                #resp.set_cookie('password', password, max_age=COOKIE_TIME_OUT)
+                resp.set_cookie('rem', 'checked', max_age=COOKIE_TIME_OUT)
+                return resp
+            return redirect('/')
+        else:
+            msg = 'Incorrect login details!'
+            return render_template('login.html')
+
+#check if user length min 8
+#check if password length min 8
+#check if user = a-zA-Z0-9
+#check if password = a-zA-Z0-9
+#check if username used in db else error
+#check if email used in db else error
+#add to database
+@app.route('/registerapi', methods=['POST', 'GET'])
+def registerapi():
+    #CREATING ACCOUNT
+    if request.method == 'POST' and 'username' in request.form and 'passw' in request.form and 'email' in request.form:
+        msg = ''
+        # Check if "username", "password" and "email" POST requests exist
+        if request.method == 'POST' and 'username' in request.form and 'passw' in request.form and 'email' in request.form:
+            # Create variables for easy access
+            username = request.form['name']
+            password = hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
+            email = request.form['email']
+
+        # Check if account exists
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM users WHERE email = %s AND password = %s', (email, password))
+        # Fetch account
+        account = cursor.fetchone()
+
+        if account:
+            msg = 'Account already exists!'
+        elif not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+            msg = 'Invalid email address!'
+        elif not re.match(r'[A-Za-z0-9]+', username):
+            msg = 'Username must contain only characters and numbers!'
+        elif not username or not password or not email:
+            msg = 'Please fill out the form!'
+        else:
+            cursor.execute('INSERT INTO users VALUES (NULL, %s, %s, %s)', (username, password, email,))
+            mysql.connection.commit()
+            msg = 'You have successfully registered!'
+            return redirect(url_for('welcome'))        
+    return render_template('register.html')
+
+@app.route('/logout', methods=['POST', 'GET'])
+def logout():
+    if 'loggedin' in session:
+        session.pop('loggedin', None)
+        session.pop('id', None)
+        session.pop('email', None)
+        return redirect('/')
+    return redirect('/')
+
+
+@app.route('/welcome', methods=['POST', 'GET'])
+def welcome():
+    print("welcome")
+    if 'loggedin' in session:
+        return render_template('welcome.html', username=session['username'])
+    else:
+        return render_template('index.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
