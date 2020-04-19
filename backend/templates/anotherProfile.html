@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="./anotherProfile.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/anotherProfile') }}">
   
 
 </head>
@@ -65,11 +65,11 @@
             </div>
             <script type="text/javascript">
                 function onH(x){
-                    x.getElementsByTagName('img')[0].src = "img/gift-black.png";
+                    x.getElementsByTagName('img')[0].src = "{{ url_for('static', filename='img/gift-black.png') }}";
                     x.getElementsByTagName('a')[0].style.color = "black";
                 }
                 function onE(x){
-                    x.getElementsByTagName('img')[0].src = "img/gift.png";
+                    x.getElementsByTagName('img')[0].src = "{{ url_for('static', filename='img/gift.png') }}";
                     x.getElementsByTagName('a')[0].style.color = "white";
                 }
             </script>
@@ -86,7 +86,7 @@
                   <p class="userDescription"> This is a short description of the user.</p>
                 </div>
  
-                <div class="item-3" onmouseover="onHover(this, &quot;./add_friend_bl.png&quot;)" onmouseout="onExit(this, &quot;./add_friend.png&quot;)">
+                <div class="item-3" onmouseover="onHover(this, &quot;{{ url_for('static', filename='img/add_friend_bl.png') }}&quot;)" onmouseout="onExit(this, &quot;{{ url_for('static', filename='img/add_friend.png') }}&quot;)">
                     <img src= "./add_friend.png" alt="add friend" hspace="10" width="40" height="30" draggable="false">
                     <a href="#" class="button">Add as Friend</a>
                 </div>
@@ -106,17 +106,17 @@
                   <p class="sectionTitle">{username}'s Wish List</p>
                 </div>
                 <div class="item-7">
-                  <p class="itemName"><a class="link" href="#"><img src="{{ url_for('static', filename='img/gift.png') }}" alt="Profile" width="150" height="150" draggable="false"><br> Gift 1 </a></p>
+                  <p class="itemName"><a class="link" href="#"><img src="{{ url_for('static', filename='img/default-gift.png') }}" alt="Profile" width="150" height="150" draggable="false"><br> Gift 1 </a></p>
              
                 </div>
                 <div class="item-8">
-                  <p class="itemName"><a class="link" href="#"><img src="{{ url_for('static', filename='img/gift.png') }}" alt="Profile" width="150" height="150" draggable="false"><br> Gift 2 </a></p>
+                  <p class="itemName"><a class="link" href="#"><img src="{{ url_for('static', filename='img/default-gift.png') }}" alt="Profile" width="150" height="150" draggable="false"><br> Gift 2 </a></p>
                 </div>
                 <div class="item-9">
-                  <p class="itemName"><a class="link" href="#"><img src="{{ url_for('static', filename='img/gift.png') }}" alt="Profile" width="150" height="150" draggable="false"><br> Gift 3 </a></p>
+                  <p class="itemName"><a class="link" href="#"><img src="{{ url_for('static', filename='img/default-gift.png') }}" alt="Profile" width="150" height="150" draggable="false"><br> Gift 3 </a></p>
                 </div>
                 <div class="item-10">
-                  <p class="itemName"><a class="link" href="#"><img src="{{ url_for('static', filename='img/gift.png') }}" alt="Profile" width="150" height="150" draggable="false"><br> Gift 4 </a></p>
+                  <p class="itemName"><a class="link" href="#"><img src="{{ url_for('static', filename='img/default-gift.png') }}" alt="Profile" width="150" height="150" draggable="false"><br> Gift 4 </a></p>
                 </div>
                 <div class="item-11">
                   <a href="#" class="button button1">View Full Wish List</a>
@@ -142,7 +142,6 @@
               </div>
 
              <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-             <script  src="{{ url_for('static', filename='src/script.js') }}"></script>  
          </div>
          <div class="footer">
              <a href="{{ url_for('about') }}">About Us</a>
