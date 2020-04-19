@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giftr</title>
+    <link rel='icon' href="{{ url_for('static', filename='img/favicon.ico') }}" type='image/x-icon'>
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/anotherProfile') }}">
+  
+
+</head>
+<body>
+    <!-- nav bar-->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <!-- <a class="navbar-brand" href="{{ url_for('index') }}"> -->
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" width="120" draggable="false" style="margin-top: 8px; margin-right: 10px;"> 
+        </a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('suggestion') }}">Item suggestion</a></li>
+          </ul>
+          <form class="navbar-form navbar-left" action="/action_page.php">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for gift" name="search">
+              <div class="input-group-btn">
+                <button class="btn btn-default" type="submit">
+                  <i class="glyphicon glyphicon-search"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+              <ul class="nav navbar-nav navbar-right">
+                {% if 'loggedin' in session %}
+                <li><a href="{{ url_for('home') }}"><span class="glyphicon glyphicon-user"></span>My profile</a></li>
+                {% else %}
+                <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="{{ url_for('register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                {% endif %}
+          </ul>
+        </div>
+      </nav>
+      <!-- rest -->
+     <div id="page-container">
+         <div id="content-wrap">
+             <div class="header">
+                 <center>
+                      <a href= "{{ url_for('index') }}">
+                        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" width="410" height="120" draggable="false"> 
+                      </a>
+                     <br>
+                 </center>
+             </div>
+
+             <div class="giftbank" onmouseover="onH(this)" onmouseout="onE(this)">
+                <img src="{{ url_for('static', filename='img/gift.png') }}" alt="Gift icon" width="30" height="30" draggable="false">
+                <a href="{{ url_for('wishlist') }}">Gift Bank</a>
+            </div>
+            <script type="text/javascript">
+                function onH(x){
+                    x.getElementsByTagName('img')[0].src = "{{ url_for('static', filename='img/gift-black.png') }}";
+                    x.getElementsByTagName('a')[0].style.color = "black";
+                }
+                function onE(x){
+                    x.getElementsByTagName('img')[0].src = "{{ url_for('static', filename='img/gift.png') }}";
+                    x.getElementsByTagName('a')[0].style.color = "white";
+                }
+            </script>
+
+            <!-- another profile code -->
+            
+            <div class="grid-container">
+                
+                <div class="item-2">
+                 <img src="{{ url_for('static', filename='img/party-profile.png') }}" alt="Profile" width="200" height="200" draggable="false"> 
+                </div>
+                <div class="item-4">
+                  <p class="sectionTitle"> (Username) </p> 
+                  <p class="userDescription"> This is a short description of the user.</p>
+                </div>
+ 
+                <div class="item-3" onmouseover="onHover(this, &quot;{{ url_for('static', filename='img/add_friend_bl.png') }}&quot;)" onmouseout="onExit(this, &quot;{{ url_for('static', filename='img/add_friend.png') }}&quot;)">
+                    <img src= "./add_friend.png" alt="add friend" hspace="10" width="40" height="30" draggable="false">
+                    <a href="#" class="button">Add as Friend</a>
+                </div>
+                
+                <script type="text/javascript">
+                    function onHover(x, imgLink){
+                        x.getElementsByTagName('img')[0].src = imgLink;
+                        x.getElementsByTagName('a')[0].style.color = "black";
+                    }
+                    function onExit(x, imgLink){
+                        x.getElementsByTagName('img')[0].src = imgLink;
+                        x.getElementsByTagName('a')[0].style.color = "white";
+                    }
+                </script>
+
+                <div class="item-6">
+                  <p class="sectionTitle">{username}'s Wish List</p>
+                </div>
+                <div class="item-7">
+                  <p class="itemName"><a class="link" href="#"><img src="{{ url_for('static', filename='img/default-gift.png') }}" alt="Profile" width="150" height="150" draggable="false"><br> Gift 1 </a></p>
+             
+                </div>
+                <div class="item-8">
+                  <p class="itemName"><a class="link" href="#"><img src="{{ url_for('static', filename='img/default-gift.png') }}" alt="Profile" width="150" height="150" draggable="false"><br> Gift 2 </a></p>
+                </div>
+                <div class="item-9">
+                  <p class="itemName"><a class="link" href="#"><img src="{{ url_for('static', filename='img/default-gift.png') }}" alt="Profile" width="150" height="150" draggable="false"><br> Gift 3 </a></p>
+                </div>
+                <div class="item-10">
+                  <p class="itemName"><a class="link" href="#"><img src="{{ url_for('static', filename='img/default-gift.png') }}" alt="Profile" width="150" height="150" draggable="false"><br> Gift 4 </a></p>
+                </div>
+                <div class="item-11">
+                  <a href="#" class="button button1">View Full Wish List</a>
+                </div>
+                <div class="item-12">
+                  <p class="sectionTitle">{username}'s Friend List</p>
+                </div>
+                <div class="item-13">
+                  <p class="itemName"><a class="link" href="#"><img src="{{ url_for('static', filename='img/party-profile.png') }}" alt="Gift 1" width="150" height="150" draggable="false"><br> Friend 1 </a></p>
+                </div>
+                <div class="item-14">
+                  <p class="itemName"><a class="link" href="#"><img src="{{ url_for('static', filename='img/party-profile.png') }}" alt="Gift 1" width="150" height="150" draggable="false"><br> Friend 2 </a></p>
+                </div>
+                <div class="item-15">
+                  <p class="itemName"><a class="link" href="#"><img src="{{ url_for('static', filename='img/party-profile.png') }}" alt="Gift 1" width="150" height="150" draggable="false"><br> Friend 3 </a></p>
+                </div>
+                <div class="item-16">
+                  <p class="itemName"><a class="link" href="#"><img src="{{ url_for('static', filename='img/party-profile.png') }}" alt="Gift 1" width="150" height="150" draggable="false"><br> Friend 4 </a></p>
+                </div>
+                <div class="item-17">
+                  <a href="#" class="button button1">View Full Friend List</a>
+                </div>
+              </div>
+
+             <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+         </div>
+         <div class="footer">
+             <a href="{{ url_for('about') }}">About Us</a>
+             |
+             <a href="{{ url_for('contact') }}">Contact Us</a>
+             |
+             <a href="{{ url_for('privacy') }}">Privacy Policy</a>
+         </div>
+    </div>
+    
+</body>
+</html>

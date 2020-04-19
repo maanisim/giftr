@@ -1,0 +1,206 @@
+.header {
+    color: black;
+}
+  
+.tabs{
+    margin-top:0;
+    font-size:13pt;
+    padding:0;
+    list-style:none;
+    background:#f5f3f3;
+    box-shadow:0 5pt 20pt rgba(0, 0, 0, 0.226);
+    display:inline-block;
+    border-radius:50pt;
+    position:relative;
+}
+  
+.tabs a{
+    text-decoration:none;
+    color: #777;
+    text-transform:uppercase;
+    padding:7pt 12pt;
+    display:inline-block;
+    position:relative;
+    z-index:1;
+    transition-duration:0.6s;
+}
+  
+.tabs a.active{
+    color:#ededed;
+}
+  
+.tabs a i{
+    margin-right:5pt;
+}
+  
+.tabs .selector{
+    height:100%;
+    display:inline-block;
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:1;
+    border-radius:50pt;
+    transition-duration:0.6s;
+    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    background: black; 
+}
+
+body{
+    background-color: #ededed;
+    color:#519dd9;
+    font-family: 'Arial', sans-serif;
+  
+}
+
+p.sectionTitle {
+	font: bold 20pt Arial, sans-serif;
+	color: #db0038;
+}
+
+p.userDescription {
+	font: italic 15pt Arial, sans-serif;
+	color: #525457;
+}
+
+p.itemName {
+	font : 15pt Arial, sans-serif;
+	color: #525457;
+}
+
+a.link {
+	text-decoration: none;
+}
+
+.button {
+    float: center;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15pt;
+    font-family: arial;
+    cursor: pointer;
+    padding: 15px 20px;
+    width: auto;
+    display: block;
+}
+
+.button:hover{
+    text-decoration: none;
+}
+
+.button1:hover{
+    background-color: #f7c200;
+    color: black;
+    text-decoration: none;
+}
+
+.button1{
+    background-color: #519dd9;
+}
+
+.item-2 {
+	grid-area: image;
+}
+
+.item-3 {
+    grid-area: addFriend;
+    display: flex;
+    align-items:center;
+    background-color: #519dd9;
+    width: max-content;
+    
+}
+
+.item-3:hover {
+    background-color: #f7c200;
+}
+
+.item-4 {
+	grid-area: description;
+	align-self: start;
+}
+
+.item-6 {
+	grid-area: wLText;
+}
+
+.item-7 {
+	grid-area: gift1;
+	text-align: center;
+	justify-self: end;
+}
+
+.item-8 {
+	grid-area: gift2;
+	text-align: center;
+}
+
+.item-9 {
+	grid-area: gift3;
+	text-align: center;
+}
+
+.item-10 {
+	grid-area: gift4;
+	text-align: center;
+}
+
+.item-11 {
+	grid-area: fullWList;
+	justify-self: center;
+}
+
+.item-12 {
+	grid-area: fLText;
+}
+
+.item-13 {
+	grid-area: friend1;
+	text-align: center;
+	justify-self: end;
+}
+
+.item-14 {
+	grid-area: friend2;
+	text-align: center;
+}
+
+.item-15 {
+	grid-area: friend3;
+	text-align: center;
+}
+
+.item-16 {
+	grid-area: friend4;
+	text-align: center;
+}
+
+.item-17 {
+	grid-area: fullFList;
+	justify-self: center;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: auto auto auto auto 250pt;
+	grid-gap: 10pt 25pt;
+	align-items: center;
+	justify-content: center;
+	grid-template-areas: 
+	 "pageTitle . . . ."
+	 "image description description description addFriend"
+	 ". . . . ."
+	 "wLText . . . ."
+	 "gift1 gift2 gift3 gift4 fullWList" 
+	 ". . . . ."
+	 "fLText . . . ."
+	 "friend1 friend2 friend3 friend4 fullFList";
+}
+
+.grid-container > div {
+	padding: 0 0;
+}
+
+
+
