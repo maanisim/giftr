@@ -117,6 +117,9 @@ body{
 
 .giftbank:hover {
   background-color: #f7c200;
+}
+
+.giftbank .a:hover {
   text-decoration: none;
 }
 
