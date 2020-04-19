@@ -95,7 +95,7 @@ def loginapi():
             session['id'] = account['user_id']
             session['email'] = account['email']
             session['username'] = account['username']
-            return render_template('index.html', username = session['username'])
+            return redirect(url_for('index.html', username = session['username']))
         else:
             msg = 'Incorrect login details!'
             return render_template('login.html')
