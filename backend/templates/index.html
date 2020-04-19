@@ -65,15 +65,83 @@
              <script  src="{{ url_for('static', filename='src/script.js') }}"></script>
          </div>
  
-    </div>
+    <br>
+        <center>
+            <h1>Welcome, user!</h1>
+        </center>
+        
+        <h2>Now popular:</h2>
 
+        <div class="nowPopular">
+            <a href="#" class="images">
+                <img src="{{ url_for('static', filename='img/1.jpg') }}" alt="gift" width="100%" height="100%" draggable="false">
+                <p class="giftName">Gift name is the number one </p>
+            </a>
+            <a href="#" class="images">
+                <img src="{{ url_for('static', filename='img/2.jpg') }}" alt="gift" width="100%" height="100%" draggable="false">
+                <p class="giftName">Gift name is the number one </p>
+            </a>
+            <a href="#" class="images">
+                <img src="{{ url_for('static', filename='img/3.jpg') }}" alt="gift" width="100%" height="100%" draggable="false">
+                <p class="giftName">Gift name is the number one </p>
+            </a>
+            <a href="#" class="images">
+                <img src="{{ url_for('static', filename='img/4.jpg') }}" alt="gift" width="100%" height="100%" draggable="false">
+                <p class="giftName">Gift name is the number one </p>
+            </a>
+            <a href="#" class="images">
+                <img src="{{ url_for('static', filename='img/5.jpg') }}" alt="gift" width="100%" height="100%" draggable="false">
+                <p class="giftName">Gift name is the number one </p>
+            </a>
+            <a href="#" class="images">
+                <img src="{{ url_for('static', filename='img/6.jpg') }}" alt="gift" width="100%" height="100%" draggable="false">
+                <p class="giftName">Gift name is the number one </p>
+            </a>
+            <a href="#" class="images">
+                <img src="{{ url_for('static', filename='img/7.jpg') }}" alt="gift" width="100%" height="100%" draggable="false">
+                <p class="giftName">Gift name is the number one </p>
+            </a>
+            <a href="#" class="images">
+                <img src="{{ url_for('static', filename='img/8.jpg') }}" alt="gift" width="100%" height="100%" draggable="false">
+                <p class="giftName">Gift name is the number one </p>
+            </a>
+            <a href="#" class="images">
+                <img src="{{ url_for('static', filename='img/9.jpg') }}" alt="gift" width="100%" height="100%" draggable="false">
+                <p class="giftName">Gift name is the number one </p>
+            </a>
+            <a href="#" class="images">
+                <img src="{{ url_for('static', filename='img/10.jpg') }}" alt="gift" width="100%" height="100%" draggable="false">
+                <p class="giftName">Gift name is the number one </p>
+            </a>
+            <a href="#" class="images">
+                <img src="{{ url_for('static', filename='img/11.jpg') }}" alt="gift" width="100%" height="100%" draggable="false">
+                <p class="giftName">Gift name is the number one </p>
+            </a>
+            <a href="#" class="images">
+                <img src="{{ url_for('static', filename='img/12.jpg') }}" alt="gift" width="100%" height="100%" draggable="false">
+                <p class="giftName">Gift name is the number one </p>
+            </a>
+        </div>
+
+        <h3>Find gift for:</h3>
+        <div class="quickButtons">
+            <button class="button type1" type="submit">Children 0-2</button>
+            <button class="button type2" type="submit">Children 3-12</button>
+            <button class="button type3" type="submit">Teenage boys</button>
+            <button class="button type4" type="submit">Teenage girls</button>
+            <button class="button type5" type="submit">Him</button>
+            <button class="button type6" type="submit">Her</button>
+        </div>
+        
+        
         <!-- footer -->
-      <div class="footer">
+        <div class="footer">
         <a href="{{ url_for('about') }}">About Us</a>
         |
         <a href="{{ url_for('contact') }}">Contact Us</a>
         |
         <a href="{{ url_for('privacy') }}">Privacy Policy</a>
-    </div> 
+        </div>
+    </div>
 </body>
 </html>
