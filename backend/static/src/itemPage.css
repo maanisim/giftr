@@ -59,7 +59,7 @@
     color: #53bac1;
 }
 
-.button {
+.button1 {
     font-family: 'Arial', sans-serif;
     width: 190px;
     border-radius: 5px;
@@ -74,7 +74,7 @@
     margin-right: 30%;
 }
 
-.button:hover{
+.button1:hover{
     background-color: #f7c200;
     color: black;
 }
