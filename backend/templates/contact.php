@@ -1,5 +1,6 @@
 <?php
 	$success = false;
+	echo "a";
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
 		$subject = "Contact from: ";
 		$name = $_POST["name"];
@@ -58,7 +59,7 @@
              </div>
              <div class="container">
             <div class="form">
-                <form action="{{ url_for('contact') }}" method="post">
+                <form action=contact.php method="post">
                     <p class="name">
                         <input name="name" type="text" class="feedback-input" required placeholder="Name" id="name" />
                     </p>
