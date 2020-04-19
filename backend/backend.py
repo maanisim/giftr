@@ -40,7 +40,7 @@ def index():
         # Already logged in
         #You can tell you are logged in by register/login disappering on the right and being replaced with "my profile"
         return render_template('index.html', username=session['username']) 
-    return redirect('index.html')
+    return render_template('index.html')
 
 # mostly static pages
 @app.route('/item')
