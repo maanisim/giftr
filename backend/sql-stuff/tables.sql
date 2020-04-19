@@ -69,7 +69,6 @@ CREATE TABLE `products_categories` (
   `category_name` VARCHAR(40),
   `product_id` INT(10),
    PRIMARY KEY (category_name),
-   UNIQUE KEY (`product_id`, `category_id`),
    FOREIGN KEY(product_id) REFERENCES products(product_id)
 );
 
