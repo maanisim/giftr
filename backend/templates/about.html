@@ -1,67 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>About Us | Giftr</title>
-    <link rel='icon' href='{{ url_for('static', filename='img/favicon.ico') }}' type='image/x-icon' >
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'>
-    <link rel="stylesheet" href="{{ url_for('static', filename='src/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='src/about.css') }}">
-    <link rel='stylesheet' href="https://unpkg.com/aos@next/dist/aos.css">
-</head>  
-    
-<body>
+    <link rel='icon' href='{{ url_for('static', filename='img/favicon.ico') }}'
+    type='image/x-icon' >
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='src/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='src/about.css') }}"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  </head>
+
+  <body>
+    <!-- nav bar-->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="{{ url_for('index') }}">
+            <img
+              src="{{ url_for('static', filename='img/logo.png') }}"
+              alt="Logo"
+              width="120"
+              draggable="false"
+              style="margin-top: 8px; margin-right: 10px;"
+            />
+          </a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
+          <li><a href="{{ url_for('suggestion') }}">Item suggestion</a></li>
+        </ul>
+        <form class="navbar-form navbar-left" action="/search" method="POST">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search for gift"
+              name="search"
+            />
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit">
+                <i class="glyphicon glyphicon-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          {% if 'loggedin' in session %}
+          <li>
+            <a href="{{ url_for('logout') }}" style="color: red;"
+              ><span class="glyphicon glyphicon-log-out"></span> Logout</a
+            >
+          </li>
+          <li>
+            <a href="{{ url_for('profile') }}"
+              ><span class="glyphicon glyphicon-user"></span> My profile</a
+            >
+          </li>
+          {% else %}
+          <li>
+            <a href="{{ url_for('login') }}"
+              ><span class="glyphicon glyphicon-log-in"></span> Login</a
+            >
+          </li>
+          <li>
+            <a href="{{ url_for('register') }}"
+              ><span class="glyphicon glyphicon-user"></span> Sign Up</a
+            >
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
     <div id="page-container">
-        <div id="content-wrap">
-            <div class="header">
-                <center>
-                    <a href= "{{ url_for('index') }}">
-                        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" width="410" height="120"> 
-                    </a>
-                    <br>Gifts that never disappoint
-                </center>
-            </div>
-            
-            <div class="giftbank" onmouseover="onH(this)" onmouseout="onE(this)">
-                <img src="{{ url_for('static', filename='img/gift.png') }}" alt="Gift icon" width="30" height="30" draggable="false">
-                <a href="{{ url_for('wishlist') }}">Gift Bank</a>
-            </div>
-            <script type="text/javascript">
-                function onH(x){
-                    x.getElementsByTagName('img')[0].src = "{{ url_for('static', filename='img/gift-black.png') }}";
-                    x.getElementsByTagName('a')[0].style.color = "black";
-                }
-                function onE(x){
-                    x.getElementsByTagName('img')[0].src = "{{ url_for('static', filename='img/gift.png') }}";
-                    x.getElementsByTagName('a')[0].style.color = "white";
-                }
-            </script>
-            
-            <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-            
-            <div class="titles" data-aos="zoom-in">About Us</div>
-            <div class="text1" data-aos="fade-down">Tired of receiving the same old gift sets every Birthday? Well look no further...</div>
-            <div class="text2" data-aos="fade-right"> We are university students who have gifted you with your very own gift-finder to help you find the perfect gift for both your loved ones and yourself!</div>
-            <div class="text3" data-aos="zoom-out">We know just how hard it is to find the perfect, unique gift and noticed there was a lack of help out there. </div>
-            <div class="text4" data-aos="flip-up">And thus, Giftr was born.</div>
-            <div class="text1" data-aos="fade-up">We help you find the best gifts by creating wishlists and use artificial intelligence, be it for your mum or your better half.</div>
-            <div class="text2" data-aos="flip-right">We are certain these gifts will bring them joy as our very smart AI helps to keep it a surprise.</div>
-            <div class="text3" data-aos="fade-down">It will also make it easier for your loved ones to see what to get you so we can avoid the dreaded lynx sets or boring chocolate boxes.</div>
-            <div class="text5" data-aos="fade-right">Use the provided filters to ease your search, be it fitting into a budget or knowing what category you want to find the gift in</div>
+      <div id="content-wrap">
+        <div class="header">
+          <center>
+            <a href="{{ url_for('index') }}">
+              <img
+                src="{{ url_for('static', filename='img/logo.png') }}"
+                alt="Logo"
+                width="410"
+                height="120"
+              />
+            </a>
+            <br />Gifts that never disappoint
+          </center>
         </div>
-        <div class="footer">
-            <a href="{{ url_for('about') }}">About Us</a>
-            |
-            <a href="{{ url_for('contact') }}">Contact Us</a>
-            |   
-            <a href="{{ url_for('privacy') }}">Privacy Policy</a>
+
+        <div class="giftbank" onmouseover="onH(this)" onmouseout="onE(this)">
+          <img
+            src="{{ url_for('static', filename='img/gift.png') }}"
+            alt="Gift icon"
+            width="30"
+            height="30"
+            draggable="false"
+          />
+          <a href="{{ url_for('wishlist') }}">Gift Bank</a>
         </div>
+        <script type="text/javascript">
+          function onH(x) {
+            x.getElementsByTagName("img")[0].src =
+              "{{ url_for('static', filename='img/gift-black.png') }}";
+            x.getElementsByTagName("a")[0].style.color = "black";
+          }
+          function onE(x) {
+            x.getElementsByTagName("img")[0].src =
+              "{{ url_for('static', filename='img/gift.png') }}";
+            x.getElementsByTagName("a")[0].style.color = "white";
+          }
+        </script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <div class="titles" data-aos="zoom-in">About Us</div>
+        <div class="text1" data-aos="fade-down">
+          Tired of receiving the same old gift sets every Birthday? Well look no
+          further...
+        </div>
+        <div class="text2" data-aos="fade-right">
+          We are university students who have gifted you with your very own
+          gift-finder to help you find the perfect gift for both your loved ones
+          and yourself!
+        </div>
+        <div class="text3" data-aos="zoom-out">
+          We know just how hard it is to find the perfect, unique gift and
+          noticed there was a lack of help out there.
+        </div>
+        <div class="text4" data-aos="flip-up">And thus, Giftr was born.</div>
+        <div class="text1" data-aos="fade-up">
+          We help you find the best gifts by creating wishlists and use
+          artificial intelligence, be it for your mum or your better half.
+        </div>
+        <div class="text2" data-aos="flip-right">
+          We are certain these gifts will bring them joy as our very smart AI
+          helps to keep it a surprise.
+        </div>
+        <div class="text3" data-aos="fade-down">
+          It will also make it easier for your loved ones to see what to get you
+          so we can avoid the dreaded lynx sets or boring chocolate boxes.
+        </div>
+        <div class="text5" data-aos="fade-right">
+          Use the provided filters to ease your search, be it fitting into a
+          budget or knowing what category you want to find the gift in
+        </div>
+      </div>
+      <div class="footer">
+        <a href="{{ url_for('about') }}">About Us</a>
+        |
+        <a href="{{ url_for('contact') }}">Contact Us</a>
+        |
+        <a href="{{ url_for('privacy') }}">Privacy Policy</a>
+      </div>
     </div>
-    <script  src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        AOS.init();
+      AOS.init();
     </script>
-</body>
+  </body>
 </html>
