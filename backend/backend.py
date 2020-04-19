@@ -23,7 +23,7 @@ def page_not_found(e):
 
 
 @app.route('/profile')
-def home():
+def profile():
     if 'loggedin' in session:
         return render_template('my_profile.html',
         username=session['username'])
@@ -43,7 +43,7 @@ def item():
     return render_template('itemPage.html')
 
 @app.route('/anotherProfile')
-def profile():
+def anotherProfile():
     return render_template('anotherProfile.html')
 
 @app.route('/wishlist')
@@ -95,7 +95,7 @@ def loginapi():
             session['id'] = account['user_id']
             session['email'] = account['email']
             session['username'] = account['username']
-            return render_template('index.html', username = session['username'])
+            return redirect(url_for('index', username = session['username']))
         else:
             msg = 'Incorrect login details!'
             return render_template('login.html')
