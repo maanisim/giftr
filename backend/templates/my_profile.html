@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <title>My Profile | Giftr</title>
     <link rel="icon"
@@ -19,6 +20,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+    
 <body>
     <!-- nav bar-->
     <nav class="navbar navbar-inverse">
@@ -29,7 +31,8 @@
                          alt="Logo"
                          width="120"
                          draggable="false"
-                         style="margin-top: 8px; margin-right: 10px;" />
+                         style="margin-top: 8px; 
+                         margin-right: 10px;" />
                 </a>
             </div>
             <ul class="nav navbar-nav">
@@ -213,15 +216,16 @@
                     <a href="#" class="button button2">View Full Friend List</a>
                 </div>
             </div>
-            <div class="footer">
-                <a href="{{ url_for('about') }}">About Us</a>
-                |
-                <a href="{{ url_for('contact') }}">Contact Us</a>
-                |
-                <a href="{{ url_for('privacy') }}">Privacy Policy</a>
-            </div>
+        </div>
+        <div class="footer">
+            <a href="{{ url_for('about') }}">About Us</a>
+            |
+            <a href="{{ url_for('contact') }}">Contact Us</a>
+            |
+            <a href="{{ url_for('privacy') }}">Privacy Policy</a>
         </div>
     </div>
 
 </body>
+    
 </html>
