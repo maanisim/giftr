@@ -23,7 +23,7 @@ def page_not_found(e):
 
 
 @app.route('/home')
-def profile():
+def home():
     if 'loggedin' in session:
         return render_template('my_profile.html')
     return render_template('index.html')
@@ -41,6 +41,10 @@ def index():
 @app.route('/item')
 def item():
     return render_template('itemPage.html')
+
+@app.route('/profile')
+def profile():
+    return render_template('anotherProfile.html')
 
 @app.route('/wishlist')
 def wishlist():
