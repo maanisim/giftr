@@ -32,9 +32,8 @@ def home():
 def index():
     if 'loggedin' in session:
         # Already logged in
-        #return render_template('welcome.html', email=session['email'])
         #You can tell you are logged in by register/login disappering on the right and being replaced with "my profile"
-        return render_template('index.html') 
+        return render_template('index.html', username=session['username']) 
     return render_template('index.html')
 
 # mostly static pages
@@ -95,7 +94,7 @@ def loginapi():
             session['id'] = account['user_id']
             session['email'] = account['email']
             session['username'] = account['username']
-            return redirect(url_for('welcome'))
+            return render_template('index.html', username = session['username'])
         else:
             msg = 'Incorrect login details!'
             return render_template('login.html')
