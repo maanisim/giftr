@@ -1,4 +1,5 @@
 <?php
+/**
 	$success = false;
 	echo "a";
 	if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -10,6 +11,7 @@
 		mail("walkr121@gmail.com", $subject, $message, "From: walkr121@gmail.com");
 		$success = true;
 	}
+	*/
 ?>
 
 <!DOCTYPE html>
