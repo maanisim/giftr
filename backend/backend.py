@@ -86,15 +86,8 @@ def search():
         if request.method == 'POST' and 'search' in request.form:
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
             cursor.execute('select products.name from products WHERE products.name LIKE "%\%s%" LIMIT 5;', (request.form['search'])
-            records = cursor.fetchall()
-            for row in records:
-                print("p1: ", row[0])
-                print("p2: ", row[1])
-                print("p3: ", row[2])
-                print("p4: ", row[3])
-                print("p5: ", row[4])
-                print("\n")
-                cursor.close()
+            for row in cursor:
+                print(row)
             # Fetch account
             return render_template('search.html')
         #return render_template('search.html')
