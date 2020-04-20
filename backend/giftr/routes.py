@@ -116,8 +116,7 @@ def logout():
 @app.route('/profile')
 def profile():
     if 'loggedin' in session:
-        return render_template('my_profile.html',
-        username=session['username'])
+        return render_template('my_profile.html', username=session['username'])
     return redirect('/')
 
 #test
@@ -169,6 +168,17 @@ def welcome():
 
 
 # -------------------------------------------------- STATIC ROUTES --------------------------------------------------
+@app.route('/settings')
+def item():
+    return render_template('settings.html')
+
+@app.route('/questionnaire')
+def item():
+    return render_template('index.html')
+    
+@app.route('/friend')
+def item():
+    return render_template('index.html')
 
 @app.route('/item')
 def item():
