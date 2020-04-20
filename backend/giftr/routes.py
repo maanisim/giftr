@@ -2,9 +2,7 @@ from giftr import app, mysql
 from flask import Flask, redirect, url_for, render_template, request, session, make_response
 import smtplib
 from flask_mysqldb import MySQLdb
-import ssl
-import hashlib
-import re
+import ssl, hashlib, re, datetime
 
 global COOKIE_TIME_OUT
 COOKIE_TIME_OUT = 60*60*24*7 # 7 days
@@ -77,7 +75,7 @@ def register():
         email = request.form['email']
         bdaymonth = request.form['bdaymonth']
         bdaymonth = bdaymonth.split('-')
-        age = int(12 * (((2020 - int(bdaymonth[0])) * 12) + int(bdaymonth[1])))
+        age = (((datetime.datetime.now().year - int(bdaymonth[0])) * 12) + int(bdaymonth[1]))/12
         gender = "Male"
         token = "TEST"
         photo = "blank.jpg"
