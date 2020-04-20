@@ -24,7 +24,7 @@ def index():
 
 # -------------------------------------------------- AUTH ROUTES --------------------------------------------------
 
-@app.route('/loginapi', methods=['POST', 'GET'])
+@app.route('/login', methods=['POST', 'GET'])
 def loginapi():
     #LOGGING IN
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
@@ -53,6 +53,8 @@ def loginapi():
         else:
             msg = 'Incorrect login details!'
             return render_template('login.html')
+    else:
+        return render_template('login.html')
 
 #check if user length min 8
 #check if password length min 8
@@ -177,10 +179,6 @@ def privacy():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
-
-@app.route('/login')
-def login():
-    return render_template('login.html')
 
 @app.route('/register')
 def register():
