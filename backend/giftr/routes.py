@@ -134,6 +134,8 @@ def search():
     return render_template('search.html')
 
 
+
+
 @app.route('/emailSent', methods=['POST', 'GET'])
 def emailsent():
     if request.method == 'POST':
