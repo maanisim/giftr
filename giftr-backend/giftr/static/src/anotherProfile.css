@@ -1,0 +1,148 @@
+p.sectionTitle {
+	font: bold 20pt Arial, sans-serif;
+	color: #db0038;
+}
+
+p.userDescription {
+	font: italic 15pt Arial, sans-serif;
+	color: #525457;
+}
+
+p.itemName {
+	font : 15pt Arial, sans-serif;
+	color: #525457;
+}
+
+a.link {
+	text-decoration: none;
+}
+
+.button {
+    float: center;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15pt;
+    font-family: arial;
+    cursor: pointer;
+    padding: 15px 20px;
+    width: auto;
+    display: block;
+}
+
+.button:hover{
+    text-decoration: none;
+}
+
+.button1:hover{
+    background-color: #f7c200;
+    color: black;
+    text-decoration: none;
+}
+
+.button1{
+    background-color: #519dd9;
+}
+
+.item-2 {
+    grid-area: image;
+}
+
+.item-3 {
+    grid-area: addFriend;
+    display: flex;
+    align-items:center;
+    background-color: #519dd9;
+    width: max-content;
+    
+}
+
+.item-3:hover {
+    background-color: #f7c200;
+}
+
+.item-4 {
+	grid-area: description;
+	align-self: start;
+}
+
+.item-6 {
+	grid-area: wLText;
+}
+
+.item-7 {
+	grid-area: gift1;
+	text-align: center;
+	justify-self: end;
+}
+
+.item-8 {
+	grid-area: gift2;
+	text-align: center;
+}
+
+.item-9 {
+	grid-area: gift3;
+	text-align: center;
+}
+
+.item-10 {
+	grid-area: gift4;
+	text-align: center;
+}
+
+.item-11 {
+	grid-area: fullWList;
+	justify-self: center;
+}
+
+.item-12 {
+	grid-area: fLText;
+}
+
+.item-13 {
+	grid-area: friend1;
+	text-align: center;
+	justify-self: end;
+}
+
+.item-14 {
+	grid-area: friend2;
+	text-align: center;
+}
+
+.item-15 {
+	grid-area: friend3;
+	text-align: center;
+}
+
+.item-16 {
+	grid-area: friend4;
+	text-align: center;
+}
+
+.item-17 {
+	grid-area: fullFList;
+	justify-self: center;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: auto auto auto auto 250pt;
+	grid-gap: 10pt 25pt;
+	align-items: center;
+	justify-content: center;
+	grid-template-areas: 
+	 "pageTitle . . . ."
+	 "image description description description addFriend"
+	 ". . . . ."
+	 "wLText . . . ."
+	 "gift1 gift2 gift3 gift4 fullWList" 
+	 ". . . . ."
+	 "fLText . . . ."
+	 "friend1 friend2 friend3 friend4 fullFList";
+}
+
+.grid-container > div {
+	padding: 0 0;
+}
