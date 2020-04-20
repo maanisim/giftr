@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <title>Welcome | Giftr</title>
-    
-    <link rel='icon' href='img/favicon.ico' type='image/x-icon'/ >
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'><link rel='stylesheet' href="src/forgotPsw.css">
+    <link rel='icon' href="{{ url_for('static', filename='img/favicon.ico') }}" type='image/x-icon'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/settings.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/style.css') }}">
+    <link rel='stylesheet' href="{{ url_for('static', filename='src/fontAwesome_v5.0.13_all.css') }}">
+    <link rel='stylesheet' href="{{ url_for('static', filename='src/bootstrap_v3.4.1_min_.css') }}">    
+    <script src="{{ url_for('static', filename='src/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='src/bootstrap3_4_1.min.js') }}"></script>
 </head>
 
 <body style="background-image: url('img/background.jpg');">
