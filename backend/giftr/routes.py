@@ -182,6 +182,12 @@ def questionnaire():
         return render_template('index.html')
     return render_template('404.html')
     
+@app.route('/forgot')
+def forgot():
+    if 'loggedin' in session:
+        return render_template('forgotPsw.html')
+    return render_template('404.html')
+
 @app.route('/friend')
 def friend():
     if 'loggedin' in session:
