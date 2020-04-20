@@ -80,18 +80,15 @@ def register():
 def suggestion():
     return render_template('suggestion.html')
 
-@app.route('/search')
+@app.route('/search', methods=['POST', 'GET'])
 def search():
-    if 'loggedin' in session:
-        if request.method == 'POST' and 'search' in request.form:
-            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute('select products.name from products WHERE products.name LIKE "%\%s%" LIMIT 5;', (request.form['search'])
-            rows = cursor.fetchall()
-            for row in rows:
-                print(row)
-            # Fetch account
-            return render_template('search.html')
-        #return render_template('search.html')
+    #LOGGING IN
+    if request.method == 'POST' and 'search' in request.form :
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT products.name FROM products WHERE products.name LIKE "%\%s%" LIMIT 5', (request.form['search']))
+        product = cursor.fetchall()
+        for p in product:
+            print(p)
     return render_template('search.html')
 
 @app.route('/emailSent', methods=['POST', 'GET'])
