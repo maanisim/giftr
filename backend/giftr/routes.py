@@ -115,15 +115,21 @@ def profile():
         username=session['username'])
     return redirect('/')
 
-@app.route('/search', methods=['POST', 'GET'])
+#test
+@app.route('/search')
 def search():
-    #LOGGING IN
-    if request.method == 'POST' and 'search' in request.form:
-        #print(request.form['search'])
-        searchItem = request.form['search']
-        if()
-        if()
+    if('loggedin' in session):
+        if(request.method == 'POST' and 'search' in request.form):
+            search = request.form['search']
+            if(re.match("^[A-Za-z0-9_-]*$", search)):
+                cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+                cursor.execute('SELECT name FROM products WHERE name LIKE \'%%%s%%\' LIMIT 5', ([search]))
+                data = cursor.fetchall()
+                print(data)
+            # Fetch account
+        #return render_template('search.html')
     return render_template('search.html')
+
 
 @app.route('/emailSent', methods=['POST', 'GET'])
 def emailsent():
