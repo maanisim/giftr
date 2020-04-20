@@ -103,7 +103,7 @@
         ><i>Don't have an account? </i>Sign up</a
       >
     </center>
-    <form action="{{ url_for('loginapi') }}" method="post">
+    <form action="{{ url_for('auth.login') }}" method="post">
       <input type="hidden" name="action" value="login" />
       <div class="container">
         <center>
