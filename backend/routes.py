@@ -16,10 +16,6 @@ def profile():
 def login():
     return render_template('login.html')
 
-@auth.route('/signup')
-def signup():
-    return render_template('register.html')
-
 @app.route('/login', methods=['POST'])
 def login_post():
     if current_user.is_authenticated:
@@ -39,19 +35,22 @@ def login_post():
     # if credentials are right    
     return redirect(url_for('main.profile'))
 
-@app.route('/registerapi', methods=['POST'])
-def registerapi():
-    email = request.form.get('email')
-    password = request.form.get('passw')
-    username = request.form.get('name')
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('passw')
+        username = request.form.get('name')
 
-    user = User.query.filter_by(email=email).first()
-    if user: # if a user is found with the email used
-        return redirect(url_for('auth.signup'))
+        user = User.query.filter_by(email=email).first()
+        if user: # if a user is found with the email used
+            return redirect(url_for('auth.signup'))
 
-    new_user = User(username=username, email=email, password=generate_password_hash(password, method='sha256'))
+        new_user = User(username=username, email=email, password=generate_password_hash(password, method='sha256'))
 
-    db.session.add(new_user)
-    db.session.commit()
+        db.session.add(new_user)
+        db.session.commit()
 
-    return redirect(url_for('login'))
+        return redirect(url_for('login'))
+    else:
+        return render_template('register.html')
