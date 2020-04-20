@@ -83,6 +83,28 @@ def suggestion():
 def search():
     return render_template('search.html')
 
+@app.route('/emailSent', methods=['POST, 'GET'])
+def emailsent():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        message = request.form['message']
+        message = """\
+            {}
+        Subject: From {}
+        {}""".format(email, name, message)
+
+        port = 465  # For SSL
+        smtp_server = "smtp.gmail.com"
+        sender_email = "group16uol@gmail.com"  # Enter your address
+        receiver_email = "group16uol@gmail.com"  # Enter receiver address
+        password = "Tataract52"
+
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
+            server.login(sender_email, password)
+            server.sendmail(sender_email, receiver_email, message)
+     return render_template(emailSent.html)
 
 @app.route('/loginapi', methods=['POST', 'GET'])
 def loginapi():
