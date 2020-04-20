@@ -102,10 +102,10 @@
                     <p class="userDescription">This is the user's description.</p>
                 </div>
                 <div class="item-3">
-                    <a href="#" class="button">Settings</a>
+                    <a href="{{ url_for('settings') }}" class="button">Settings</a>
                 </div>
                 <div class="item-5">
-                    <a href="#" class="button">Recommendation Questionnaire</a>
+                    <a href="{{ url_for('questionnaire') }}" class="button">Recommendation Questionnaire</a>
                 </div>
                 <div class="item-6">
                     <p class="sectionTitle">My Wish List</p>
@@ -213,7 +213,7 @@
                     </p>
                 </div>
                 <div class="item-17">
-                    <a href="#" class="button">View Full Friend List</a>
+                    <a href="{{ url_for('friends') }}" class="button">View Full Friend List</a>
                 </div>
             </div>
         </div>
