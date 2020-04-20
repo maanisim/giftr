@@ -169,15 +169,15 @@ def welcome():
 
 # -------------------------------------------------- STATIC ROUTES --------------------------------------------------
 @app.route('/settings')
-def item():
+def settings():
     return render_template('settings.html')
 
 @app.route('/questionnaire')
-def item():
+def questionnaire():
     return render_template('index.html')
     
 @app.route('/friend')
-def item():
+def friend():
     return render_template('index.html')
 
 @app.route('/item')
