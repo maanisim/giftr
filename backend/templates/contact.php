@@ -1,19 +1,3 @@
-<?php
-/**
-	$success = false;
-	echo "a";
-	if ($_POST["submit"]){
-		$subject = "Contact from: ";
-		$name = $_POST["name"];
-		$subject = $subject.$name; 
-		$message = $_POST["message"];
-		$email = $_POST["email"];
-		mail("walkr121@gmail.com", $subject, $message, "From: walkr121@gmail.com");
-		$success = true;
-	}
-	*/
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -108,15 +92,7 @@
                     </p>
                     <div class="submit">
                         <button type="submit" class="button-blue" name="submit">Submit</button>
-                    </div>
-		<?php
-			if($success == true){
-		?>
-				<p> Email Sent! </p>
-					
-		<?php
-			}
-		?>		
+                    </div>	
                     </form>
              </div>
              </div>
