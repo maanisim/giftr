@@ -12,13 +12,13 @@ def index():
 def profile():
     return render_template('profile.html')
 
-@app.route('/loginapi', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
         
-    email = request.form('email')
-    password = request.form('passw')
+    email = request.form.get('email')
+    password = request.form.get('passw')
     remember = True if request.form.get('remember') else False
 
     user = User.query.filter_by(email=email).first()
@@ -30,3 +30,20 @@ def login():
 
     # if credentials are right    
     return redirect(url_for('main.profile'))
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    email = request.form.get('email')
+    password = request.form.get('passw')
+    username = request.form.get('name')
+
+    user = User.query.filter_by(email=email).first()
+    if user: # if a user is found with the email used
+        return redirect(url_for('auth.signup'))
+        
+    new_user = User(username=username, email=email, password=generate_password_hash(password, method='sha256'))
+
+    db.session.add(new_user)
+    db.session.commit()
+
+    return redirect(url_for('auth.login'))
