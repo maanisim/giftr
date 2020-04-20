@@ -87,7 +87,7 @@ def search():
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
             cursor.execute('SELECT products.name FROM products WHERE products.name LIKE %\%s% ', (request.form['search'])
             # Fetch account
-            return html(cursor.fetchone())
+            return render_template(cursor.fetchone())
         #return render_template('search.html')
     return render_template('search.html')
 
