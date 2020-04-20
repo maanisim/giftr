@@ -124,8 +124,8 @@ def profile():
 @app.route('/search',methods=['POST', 'GET'])
 def search():
     if(request.method == 'POST' and 'search' in request.form):
+        search = request.form['search']
         if(re.match("^[A-Za-z0-9_-]*$", search) is not None):
-            search = request.form['search']
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
             cursor.execute('SELECT products.name FROM products WHERE products.name LIKE \'%'+search+'%\' LIMIT 5')
             row = cursor.fetchone()
