@@ -1,0 +1,99 @@
+.header{
+    margin-bottom: 1%;
+}
+  
+body {
+    background-color: #ededed;
+    font-family: Arial, sans-serif;
+    background-size: cover;
+}
+  
+  
+form {
+    border: 4px solid #ededed;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top:2%;
+}
+
+.container {
+    padding:10px;
+    text-align: center;
+}
+
+#alternative{
+    color: #53bac1;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+#alternative:hover{
+    color: #db0038;
+}
+
+#alternative i{
+    color: black;
+    font-style: normal;
+}
+
+.icons{
+    color:#53bac1;
+}
+
+.input{
+    width: 30%;
+    padding: 12px 10px;
+    outline:none;
+    border: none;
+    border-bottom: 2px solid #f7c200;
+    background: transparent;
+    margin: 10px;
+    color:black;
+}
+
+.input:focus{
+    border:none;
+    border-bottom: 2px solid #db0038;
+}
+
+::placeholder {
+    color: black;
+    text-transform: uppercase;
+}
+  
+.gender{
+    border: none;
+    background-color: transparent;
+    color: #519dd9;
+    margin-right: 40px;
+    margin-left: 40px;
+    font-size: 40px;
+}
+
+.gender:hover{
+    background-color: transparent;
+    color: #db0038;
+}
+
+.submit{
+    background-color: #519dd9;
+    color: #ededed;
+    padding: 14px 20px;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    border-radius: 8px;
+    margin: 1%;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.submit:hover {
+    background-color: #db0038;
+}
+  
+
+  /* Change styles for span and cancel button on extra small screens */
+  @media screen and (max-width: 300px) {
+    
+  }
