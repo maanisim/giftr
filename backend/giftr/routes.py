@@ -68,7 +68,9 @@ def login():
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     #CREATING ACCOUNT
+    print("Before request")
     if request.method == 'POST' and 'username' in request.form and 'passw' in request.form and 'email' in request.form:
+        print("Passed")
         msg = ''
         # Check if "username", "password" and "email" POST requests exist
         # Create variables for easy access
