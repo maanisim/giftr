@@ -105,7 +105,7 @@ def emailsent():
         #with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
             #server.login(sender_email, password)
             #server.sendmail(sender_email, receiver_email, message)
-    return render_template(emailSent.html)
+    return render_template('emailSent.html')
 
 @app.route('/loginapi', methods=['POST', 'GET'])
 def loginapi():
