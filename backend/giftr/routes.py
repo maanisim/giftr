@@ -178,15 +178,11 @@ def questionnaire():
     
 @app.route('/friend')
 def friend():
-    return render_template('index.html')
+    return render_template('anotherProfile.html')
 
 @app.route('/item')
 def item():
     return render_template('itemPage.html')
-
-@app.route('/anotherProfile')
-def anotherProfile():
-    return render_template('anotherProfile.html')
 
 @app.route('/wishlist')
 def wishlist():
