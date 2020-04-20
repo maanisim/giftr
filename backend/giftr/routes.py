@@ -122,9 +122,10 @@ def profile():
 @app.route('/search',methods=['POST', 'GET'])
 def search():
     if(request.method == 'POST' and 'search' in request.form):
+        searchItem = request.form[search]
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        search = request.form[search]
-        cursor.execute('SELECT name FROM products WHERE name LIKE \'%%%s%%\' LIMIT 5', [search])
+        
+        cursor.execute('SELECT name FROM products WHERE name LIKE \'%%%s%%\' LIMIT 5', [searchItem])
         row = cursor.fetchone()
         while row is not None:
             print(row)
