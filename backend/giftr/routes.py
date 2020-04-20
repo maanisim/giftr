@@ -112,13 +112,11 @@ def profile():
         username=session['username'])
     return redirect('/')
 
-@app.route('/search')
+@app.route('/search', methods=['POST', 'GET'])
 def search():
-    if 'loggedin' in session:
-        if request.method == 'POST' and 'search' in request.form:
-            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            # Fetch account
-        #return render_template('search.html')
+    #LOGGING IN
+    if request.method == 'POST' and 'search' in request.form:
+        print(request.form['search'])
     return render_template('search.html')
 
 @app.route('/emailSent', methods=['POST', 'GET'])
