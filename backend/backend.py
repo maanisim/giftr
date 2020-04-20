@@ -4,6 +4,7 @@ from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re, hashlib, os
 from _datetime import timedelta
+import smtplib, ssl
 
 app = Flask(__name__, )
 app.secret_key = os.urandom(24)
