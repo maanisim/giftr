@@ -71,11 +71,14 @@ def register():
     if request.method == 'POST' and 'username' in request.form and 'passw' in request.form and 'email' in request.form:
         msg = ''
         # Check if "username", "password" and "email" POST requests exist
-            # Create variables for easy access
-        print("passed!")
+        # Create variables for easy access
         username = request.form['name']
         password = hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
         email = request.form['email']
+        age = 20
+        gender = "Male"
+        token = "TEST"
+        photo = "blank.jpg"
 
         # Check if account exists
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -92,7 +95,7 @@ def register():
         elif not username or not password or not email:
             msg = 'Please fill out the form!'
         else:
-            cursor.execute('INSERT INTO users VALUES (NULL, %s, %s, %s)', (username, password, email,))
+            cursor.execute('INSERT INTO users VALUES (NULL, %s, %s, %s)', (username, password, token, email, username, age, gender, photo))
             mysql.connection.commit()
             msg = 'You have successfully registered!'
             return redirect(url_for('welcome')) 
