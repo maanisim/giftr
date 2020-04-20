@@ -1,0 +1,28 @@
+p.pageTitle {
+	font: bold 25pt Arial, sans-serif;
+	color: #db0038;
+}
+
+p.sectionTitle {
+	font: bold 20pt Arial, sans-serif;
+	color: #cc0034;
+}
+
+p.subsectionTitle {
+	font: bold 15pt Arial, sans-serif;
+	color: #c20031;
+}
+
+a.link {
+	text-decoration: none;
+}
+
+strong {
+	color: #990027;
+}
+
+div.privacyContent {
+	padding-left: 100px;
+	padding-right: 100px;
+	text-align: justify;
+}

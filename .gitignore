@@ -12,5 +12,5 @@
 token.txt
 www/venv
 !backend/
-!giftr-backend/
+!old-backend/
 backend/venv
