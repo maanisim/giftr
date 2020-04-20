@@ -63,13 +63,13 @@ def login():
 #check if username used in db else error
 #check if email used in db else error
 #add to database
-@app.route('/registerapi', methods=['POST', 'GET'])
-def registerapi():
+@app.route('/register', methods=['POST', 'GET'])
+def register():
     #CREATING ACCOUNT
     if request.method == 'POST' and 'username' in request.form and 'passw' in request.form and 'email' in request.form:
         msg = ''
         # Check if "username", "password" and "email" POST requests exist
-        if request.method == 'POST' and 'username' in request.form and 'passw' in request.form and 'email' in request.form:
+        if request.method == 'POST' and 'name' in request.form and 'passw' in request.form and 'email' in request.form:
             # Create variables for easy access
             username = request.form['name']
             password = hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
@@ -93,8 +93,9 @@ def registerapi():
             cursor.execute('INSERT INTO users VALUES (NULL, %s, %s, %s)', (username, password, email,))
             mysql.connection.commit()
             msg = 'You have successfully registered!'
-            return redirect(url_for('welcome'))        
-    return render_template('register.html')
+            return redirect(url_for('welcome')) 
+    else:      
+        return render_template('register.html')
 
 @app.route('/logout', methods=['POST', 'GET'])
 def logout():
@@ -177,10 +178,6 @@ def privacy():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
-
-@app.route('/register')
-def register():
-    return render_template('register.html')
 
 @app.route('/suggestion')
 def suggestion():
