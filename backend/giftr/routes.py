@@ -122,7 +122,10 @@ def profile():
 def search():
     #LOGGING IN
     if request.method == 'POST' and 'search' in request.form:
-        print(request.form['search'])
+        #print(request.form['search'])
+        searchItem = request.form['search']
+        if()
+        if()
     return render_template('search.html')
 
 @app.route('/emailSent', methods=['POST', 'GET'])
