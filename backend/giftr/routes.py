@@ -119,7 +119,7 @@ def profile():
     return redirect('/')
 
 #test
-@app.route('/search')
+@app.route('/search',methods=['POST', 'GET'])
 def search():
     if('loggedin' in session):
         if(request.method == 'POST' and 'search' in request.form):
@@ -132,8 +132,6 @@ def search():
             # Fetch account
         #return render_template('search.html')
     return render_template('search.html')
-
-
 
 
 @app.route('/emailSent', methods=['POST', 'GET'])
