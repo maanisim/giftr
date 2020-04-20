@@ -25,7 +25,7 @@ def index():
 # -------------------------------------------------- AUTH ROUTES --------------------------------------------------
 
 @app.route('/login', methods=['POST', 'GET'])
-def loginapi():
+def login():
     #LOGGING IN
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
         email = request.form['email']
