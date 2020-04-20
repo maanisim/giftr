@@ -124,7 +124,7 @@ def search():
     if(request.method == 'POST' and 'search' in request.form):
         search = request.form['search']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT name FROM products WHERE name LIKE \'%%s%\' LIMIT 5', (search))
+        cursor.execute('SELECT name FROM products WHERE name LIKE '+search+' LIMIT 5')
         row = cursor.fetchone()
         while row is not None:
             print(str(row))
