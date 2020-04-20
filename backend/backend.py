@@ -82,6 +82,13 @@ def suggestion():
 
 @app.route('/search')
 def search():
+    if 'loggedin' in session:
+        if request.method == 'POST' and 'search' in request.form:
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute('SELECT products.name FROM products WHERE products.name LIKE %\%s% ', (request.form['search'])
+            # Fetch account
+            return html(cursor.fetchone())
+        #return render_template('search.html')
     return render_template('search.html')
 
 @app.route('/emailSent', methods=['POST', 'GET'])
