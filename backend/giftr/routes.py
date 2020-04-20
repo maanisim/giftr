@@ -121,14 +121,13 @@ def profile():
 #test
 @app.route('/search',methods=['POST', 'GET'])
 def search():
-    if('loggedin' in session):
-        if(request.method == 'POST' and 'search' in request.form):
-            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute('SELECT name FROM products WHERE name LIKE \'%%%s%%\' LIMIT 5', request.form[search])
+    if(request.method == 'POST' and 'search' in request.form):
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT name FROM products WHERE name LIKE \'%%%s%%\' LIMIT 5', (request.form[search]))
+        row = cursor.fetchone()
+        while row is not None:
+            print(row)
             row = cursor.fetchone()
-            while row is not None:
-                print(row)
-                row = cursor.fetchone()
             #search = request.form['search']
             #if(re.match("^[A-Za-z0-9_-]*$", search) is not None):
     return render_template('search.html')
