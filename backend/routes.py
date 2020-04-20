@@ -4,9 +4,15 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User
 from . import db
 
-auth = Blueprint('auth', __name__)
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-@auth.route('/loginapi', methods=['GET', 'POST'])
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
+
+@app.route('/loginapi', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
