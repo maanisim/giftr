@@ -39,8 +39,8 @@ def login_post():
     # if credentials are right    
     return redirect(url_for('main.profile'))
 
-@app.route('/register', methods=['POST'])
-def register_post():
+@app.route('/registerapi', methods=['POST'])
+def registerapi():
     email = request.form.get('email')
     password = request.form.get('passw')
     username = request.form.get('name')
@@ -54,4 +54,4 @@ def register_post():
     db.session.add(new_user)
     db.session.commit()
 
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('login'))
