@@ -170,15 +170,21 @@ def welcome():
 # -------------------------------------------------- STATIC ROUTES --------------------------------------------------
 @app.route('/settings')
 def settings():
-    return render_template('settings.html')
+    if 'loggedin' in session:
+        return render_template('settings.html')
+    return render_template('404.html')
 
 @app.route('/questionnaire')
 def questionnaire():
-    return render_template('index.html')
+    if 'loggedin' in session:
+        return render_template('index.html')
+    return render_template('404.html')
     
 @app.route('/friend')
 def friend():
-    return render_template('anotherProfile.html')
+    if 'loggedin' in session:
+        return render_template('anotherProfile.html')
+    return render_template('404.html')
 
 @app.route('/item')
 def item():
@@ -186,7 +192,9 @@ def item():
 
 @app.route('/wishlist')
 def wishlist():
-    return render_template('wishlist.html')
+    if 'loggedin' in session:
+        return render_template('wishlist.html')
+    return render_template('404.html')
 
 @app.route('/about')
 def about():
