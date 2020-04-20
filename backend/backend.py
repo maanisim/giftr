@@ -84,9 +84,10 @@ def suggestion():
 def search():
     #LOGGING IN
     if request.method == 'POST' and 'search' in request.form:
-        #print('SELECT name FROM products WHERE name LIKE "%%s%" LIMIT 5', (request.form['search']))
+        search = request.form['search']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT name FROM products WHERE name LIKE \'%%%s%%\' LIMIT 5', (request.form['search']))
+        #cursor.execute('SELECT name FROM products WHERE name LIKE \'%%%s%%\' LIMIT 5', ([search]))
+        self.cursor.execute("SELECT name from products WHERE Name = %s LIMIT 5", (search))
         product = cursor.fetchall()
         for p in product:
             print(p)
