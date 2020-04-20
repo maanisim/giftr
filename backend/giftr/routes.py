@@ -41,6 +41,8 @@ def login():
             session['id'] = account['user_id']
             session['email'] = account['email']
             session['username'] = account['username']
+            session['gender'] = account['gender']
+            session['age'] = account['age']
             remember = request.form.getlist('remember')
 
             if remember:
@@ -69,11 +71,11 @@ def register():
     if request.method == 'POST' and 'username' in request.form and 'passw' in request.form and 'email' in request.form:
         msg = ''
         # Check if "username", "password" and "email" POST requests exist
-        if request.method == 'POST' and 'name' in request.form and 'passw' in request.form and 'email' in request.form:
             # Create variables for easy access
-            username = request.form['name']
-            password = hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
-            email = request.form['email']
+        print("passed!")
+        username = request.form['name']
+        password = hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
+        email = request.form['email']
 
         # Check if account exists
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
