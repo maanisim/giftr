@@ -166,6 +166,17 @@ def welcome():
         return render_template('index.html')
 
 
+@app.route('/new_settings')
+def settings():
+    if 'loggedin' in session:
+        if(request.method[email] == request.method[confirmEmail] and request.method[pas] == request.method[cofirmPas]):
+            email = request.method[email]
+            pas = request.method[pas]
+            if not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email):
+                if not re.match(r"(^[a-zA-Z0-9_.+-]^$)", pas):
+                    print(email)
+                    print(pas)
+    return render_template('404.html')
 # -------------------------------------------------- STATIC ROUTES --------------------------------------------------
 @app.route('/settings')
 def settings():
@@ -182,8 +193,8 @@ def questionnaire():
 @app.route('/forgot')
 def forgot():
     if 'loggedin' in session:
-        return render_template('forgotPsw.html')
-    return render_template('404.html')
+        return render_template('index.html')
+    return render_template('forgotPsw.html')
 
 @app.route('/friend')
 def friend():
