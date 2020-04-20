@@ -127,7 +127,7 @@ def search():
         cursor.execute('SELECT name FROM products WHERE name LIKE \'%%%s%%\' LIMIT 5', (search))
         row = cursor.fetchone()
         while row is not None:
-            print(row)
+            print(str(row))
             row = cursor.fetchone()
             #search = request.form['search']
             #if(re.match("^[A-Za-z0-9_-]*$", search) is not None):
