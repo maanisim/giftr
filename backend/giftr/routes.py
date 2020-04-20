@@ -167,7 +167,7 @@ def welcome():
 
 
 @app.route('/new_settings')
-def settings():
+def new_settings():
     if 'loggedin' in session:
         if(request.method[email] == request.method[confirmEmail] and request.method[pas] == request.method[cofirmPas]):
             email = request.method[email]
