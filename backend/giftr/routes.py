@@ -41,6 +41,8 @@ def login():
             session['id'] = account['user_id']
             session['email'] = account['email']
             session['username'] = account['username']
+            session['gender'] = account['gender']
+            session['age'] = account['age']
             remember = request.form.getlist('remember')
 
             if remember:
