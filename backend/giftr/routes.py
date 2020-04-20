@@ -69,6 +69,7 @@ def login():
 def register():
     #CREATING ACCOUNT
     print("Before request")
+    print(request.form)
     if request.method == 'POST' and 'name' in request.form and 'passw' in request.form and 'email' in request.form:
         print("Passed")
         msg = ''
