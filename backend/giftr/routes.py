@@ -124,9 +124,9 @@ def search():
     if('loggedin' in session):
         if(request.method == 'POST' and 'search' in request.form):
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute('SELECT name FROM products WHERE name LIKE \'%%%s%%\' LIMIT 5', ([request.form[search]]))
+            cursor.execute('SELECT name FROM products WHERE name LIKE \'%%%s%%\' LIMIT 5', (request.form[search]))
             data = cursor.fetchall()
-            print(data)
+            print("*"+data)
             #search = request.form['search']
             #if(re.match("^[A-Za-z0-9_-]*$", search) is not None):
     return render_template('search.html')
