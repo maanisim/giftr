@@ -1,16 +1,22 @@
 from flask import Blueprint, render_template, redirect, url_for, request
+from flask_login import current_user, login_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User
 from . import db
 
-auth = Blueprint('auth', __name__)
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-@auth.route('login')
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
+
+@app.route('/loginapi', methods=['GET', 'POST'])
 def login():
-    return render_template('login.html')
-
-@auth.route('/login', methods=['POST'])
-def login_post():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.index'))
+        
     email = request.form('email')
     password = request.form('passw')
     remember = True if request.form.get('remember') else False
