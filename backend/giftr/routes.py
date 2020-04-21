@@ -189,7 +189,7 @@ def new_settings():
                 #cursor.execute('SELECT name FROM products WHERE name LIKE \'%%%s%%\' LIMIT 5', ([search]))
                 #data = cursor.fetchall()
                # print(data)
-    return render_template('404.html')
+    return render_template('settings.html')
 
 # -------------------------------------------------- STATIC ROUTES --------------------------------------------------
 
