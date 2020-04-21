@@ -1,0 +1,163 @@
+.header {
+    color: black;
+}
+
+body {
+    background-color: #ededed;
+    color: #519dd9;
+    font-family: 'Arial', sans-serif;
+}
+
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    height: 2rem;
+}
+
+.footer a {
+    text-decoration: none;
+    padding-left: 10pt;
+    padding-right: 10pt;
+    color: black;
+}
+
+.footer a:hover {
+    color: #f7c200;
+}
+
+.giftbank {
+    display: flex;
+    position: absolute;
+    top: 10pt;
+    right: 10pt;
+    align-items: center;
+    background-color: #db0038;
+    padding: 5pt;
+    border-radius: 10pt;
+    z-index: 9999;
+}
+
+.giftbank a {
+    text-decoration: none;
+    text-align: center;
+    font-family: arial;
+    color: white;
+    margin: 5pt;
+}
+
+.giftbank:hover {
+    background-color: #f7c200;
+}
+
+.giftbank .a:hover {
+    text-decoration: none;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 2rem;  /* Footer height */
+}
+
+.itemSuggestion {
+    display: grid;
+    margin-top: 30px;
+    grid-template-columns: 13% 15% 35% 15% 20%;
+    grid-template-rows: 150px 80px 150px 70px 30px;
+    column-gap: 30px;
+    row-gap: 50px;
+    font-size: 12pt;
+}
+
+#giftImage {
+    background-color: #ededed;
+    object-fit: cover;
+    box-sizing: content-box;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    grid-column-start: 3;
+    grid-column-end: 3;
+}
+
+.button{
+    border: none;
+    background-color: transparent;
+    border-radius: 10px;
+    height: 35px;
+}
+
+.dislike{
+    float: right;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 2;
+    grid-column-end: 2;
+}
+
+.dislike:hover{
+    animation: shake 0.5s;
+    animation-iteration-count: 1;
+}
+
+.like{
+    color: #db0038;
+    font-size: 60px;
+    float: left;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 4;
+    grid-column-end: 4;
+}
+
+.like:hover{
+    animation: shake 0.5s;
+    animation-iteration-count: 1;
+}
+
+.giftInfo{
+    width: 50%;
+    background-color: #f7c200;
+    color: black;
+    font-size: 20px;
+    margin-left: 25%;
+    border-radius: 8px;
+    grid-row-start: 4;
+    grid-row-end: 4;
+    grid-column-start: 3;
+    grid-column-end: 3;
+}
+.giftInfo:hover{
+    background-color: #db0038;
+    color: #ededed;
+}
+
+h1 {
+    font-size: 25px;
+    margin-top: 10px;
+    margin-left: 20%;
+    margin-right: 20%;
+    color: #53bac1;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
