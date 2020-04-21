@@ -104,10 +104,12 @@ def register():
             mysql.connection.commit()
             msg = 'You have successfully registered!'
             return redirect(url_for('welcome'))
+        return render_template('register.html')
     elif not 'loggedin' in session:
         return render_template('register.html')
     elif 'loggedin' in session:
         return render_template('index.html')
+        
 
 
 @app.route('/logout', methods=['POST', 'GET'])
