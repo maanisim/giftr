@@ -83,14 +83,26 @@ def register():
         photo = "default.png"
 
         count = 0
-        if not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email):
-            msg = 'Invalid email address!'
-            count += 1
         if not re.match(r'[A-Za-z]+', name):
             msg = 'Name must contain only characters!'
             count += 1
         if not re.match(r'[A-Za-z0-9]+', username):
             msg = 'Username must contain only characters and numbers!'
+            count += 1
+        if not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email):
+            msg = 'Invalid email address!'
+            count += 1
+        if password != confirmPassword:
+            msg = 'Passwords do not match.'
+            count += 1
+        if len(request.form['passw']) < 7:
+            msg = 'Password must be at least 7 characters long.'
+            count += 1
+        if len(email) < 5:
+            msg = 'Email must be at least 5 characters long.'
+            count+=1
+        if not username or not password or not confirmPassword or not email or not bdaymonth or not gender:
+            msg = 'Please fill out the form!'
             count += 1
 
         account = False
@@ -104,13 +116,8 @@ def register():
         if account:
             msg = 'Email already exists!'
             count += 1
-        if password != confirmPassword:
-            msg = 'Passwords do not match.'
-            count += 1
-        if not username or not password or not confirmPassword or not email or not bdaymonth or not gender:
-            msg = 'Please fill out the form!'
-            count += 1
-            
+
+        # All checks passed - insert to database
         if count == 0:
             cursor.execute('INSERT INTO users (username, password, token, email, name, age, gender, photo)'
                            'VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (username, password, token, email, name, age, gender, photo))
