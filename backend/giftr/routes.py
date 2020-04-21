@@ -235,7 +235,7 @@ def item():
 @app.route('/wishlist')
 def wishlist():
     if 'loggedin' in session:
-        return render_template('wishlist.html')
+        return render_template('index.html')
     return render_template('404.html')
 
 
