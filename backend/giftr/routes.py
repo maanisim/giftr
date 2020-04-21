@@ -73,11 +73,12 @@ def register():
         username = request.form['username']
         name = request.form['name']
         password = hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
+        confirmPassword = hashlib.sha256(request.form['repeat_passw'].encode('utf-8')).hexdigest()
         email = request.form['email']
         bdaymonth = request.form['bdaymonth']
         bdaymonth = bdaymonth.split('-')
         age = floor(int((((datetime.datetime.now().year - int(bdaymonth[0])) * 12) + int(bdaymonth[1]))/12))
-        gender = str(request.get('gender'))
+        gender = str(request.form.get('gender'))
         token = "TEST"
         photo = "default.jpg"
 
@@ -93,7 +94,9 @@ def register():
             msg = 'Invalid email address!'
         elif not re.match(r'[A-Za-z0-9]+', username):
             msg = 'Username must contain only characters and numbers!'
-        elif not username or not password or not email:
+        elif not password == confirmPassword:
+            msg = 'Passwords do not match.'
+        elif not username or not password or not confirmPassword or not email or not bdaymonth or not gender:
             msg = 'Please fill out the form!'
         else:
             cursor.execute('INSERT INTO users (username, password, token, email, name, age, gender, photo)'
