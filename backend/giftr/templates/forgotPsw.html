@@ -4,31 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <title>Welcome | Giftr</title>
-    
-    <link rel='icon' href='img/favicon.ico' type='image/x-icon'/ >
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'><link rel='stylesheet' href="src/forgotPsw.css"></head>
+    <title>Forgot password | Giftr</title>
+    <link rel='icon' href="{{ url_for('static', filename='img/favicon.ico') }}" type='image/x-icon'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/forgotPsw.css') }}">
+    <link rel='stylesheet' href="{{ url_for('static', filename='src/fontAwesome_v5.0.13_all.css') }}">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'>
+</head>
 
-<body style="background-image: url('img/background.jpg');">
-    
+<body >
     <div class="header">
         <center>
-            <img src="img/logo.png" alt="Logo" width="410" height="120"> 
-            <br>
+            <a href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" width="410" height="120" />
+            </a>
+            <br />
         </center>
     </div>
     
     <form action="https://giftr.cf/api" method="post">
         <input type="hidden"  name="action" value="forgot"> 
         <div class="container" >
-            
-
-            <label for="email" class="icons"><i class="fas fa-user"></i></label>
+            <label for="email" class="icons"><i class="fas fa-at"></i></label>
             <input type="text" class="input" placeholder="Email" name="email" required>
-
+            <br />
             <button class="button submit" type="submit">Submit</button>
-
         </div>  
     </form>
     
