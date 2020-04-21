@@ -103,8 +103,7 @@
                         <label for="email">Change email address:</label>
                     </div>
                     <div class="item-7">
-                        //if not 'loggedin' in session
-                        <p>Current email address: {% print(session['email']) %}</p>
+                        <p>Current email: {% print(session['email']) %}</p>
                         <input type="email" class="input" placeholder="New email" name="email">
                         <br>
                         <input type="email" class="input" placeholder="Confirm email" name="confirmEmail">
