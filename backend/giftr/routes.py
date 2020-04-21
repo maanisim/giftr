@@ -58,7 +58,7 @@ def login():
         else:
             msg = 'Incorrect login details!'
             return render_template('login.html')
-    else if not 'loggedin' in session:
+    elif not 'loggedin' in session:
         return render_template('login.html')
     else if 'loggedin' in session:
         return render_template('index.html')
