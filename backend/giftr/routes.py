@@ -82,21 +82,26 @@ def register():
         token = "TEST"
         photo = "default.jpg"
 
-        # Check if account exists
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM users WHERE email = %s AND password = %s', (email, password))
-        # Fetch account
-        account = cursor.fetchone()
-
         count = 0
-        if account:
-            msg = 'Account already exists!'
-            count += 1
         if not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email):
             msg = 'Invalid email address!'
             count += 1
+        if not re.match(r'[A-Za-z]+', name):
+            msg = 'Name must contain only characters!'
+            count += 1
         if not re.match(r'[A-Za-z0-9]+', username):
             msg = 'Username must contain only characters and numbers!'
+            count += 1
+
+        if count == 0:
+            # Check if account exists
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute('SELECT * FROM users WHERE email = %s AND password = %s', (email, password))
+            # Fetch account
+            account = cursor.fetchone()
+
+        if account:
+            msg = 'Account already exists!'
             count += 1
         if password != confirmPassword:
             msg = 'Passwords do not match.'
