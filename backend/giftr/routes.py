@@ -61,13 +61,7 @@ def login():
     else:
         return render_template('login.html')
 
-# check if user length min 8
-# check if password length min 8
-# check if user = a-zA-Z0-9
-# check if password = a-zA-Z0-9
-# check if username used in db else error
-# check if email used in db else error
-# add to database
+
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     # CREATING ACCOUNT
@@ -177,13 +171,13 @@ def welcome():
 @app.route('/new_settings')
 def new_settings():
     if 'loggedin' in session:
-        if(request.method[email] == request.method[confirmEmail] and request.method[pas] == request.method[cofirmPas]):
-            email = request.method[email]
-            pas = request.method[pas]
+        if(request.method['email'] == request.method['confirmEmail'] and request.method['passw'] == request.method['cofirmPassw']):
+            email = request.method['email']
+            password = request.method['passw']
             if not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email):
-                if not re.match(r"(^[a-zA-Z0-9_.+-]^$)", pas):
+                if not re.match(r"(^[a-zA-Z0-9_.+-]^$)", password):
                     print(email)
-                    print(pas)
+                    print(password)
     return render_template('404.html')
 
 # -------------------------------------------------- STATIC ROUTES --------------------------------------------------
