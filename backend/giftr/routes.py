@@ -93,6 +93,7 @@ def register():
             msg = 'Username must contain only characters and numbers!'
             count += 1
 
+        account = False
         if count == 0:
             # Check if account exists
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
