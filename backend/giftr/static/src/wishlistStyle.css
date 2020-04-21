@@ -1,0 +1,35 @@
+.wishlist {
+    display: grid;
+    margin-top: 30px;
+    margin-left: 13%;
+    margin-right: 10%;
+    margin-bottom: 40px;
+    grid-template-columns: repeat(5, 200px);
+    grid-template-rows: repeat(6, 150px);
+    column-gap: 30px;
+    row-gap: 50px;
+    font-size: 12pt;
+}
+
+.giftName {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 95%;
+}
+
+.images {
+    object-fit: cover;
+    box-sizing: content-box;
+}
+
+.images:hover {
+    opacity: 0.4;
+}
+
+
+h2 {
+    margin-top: 10px;
+    margin-left: 60px;
+    color: #53bac1;
+}
