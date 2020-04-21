@@ -222,7 +222,7 @@ def friend():
     return render_template('404.html')
 
 @app.route('/friends')
-def friend():
+def friends():
     if 'loggedin' in session:
         return render_template('index.html')
     return render_template('404.html')
