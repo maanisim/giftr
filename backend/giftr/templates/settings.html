@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings | Giftr</title>
+<<<<<<< HEAD
+    <link rel='icon' href="/static/img/favicon.ico" type='image/x-icon'>
+    <link rel="stylesheet" href="/static/src/settings.css">
+    <link rel="stylesheet" href="/static/src/style.css">
+=======
     <link rel='icon' href="{{ url_for('static', filename='img/favicon.ico') }}" type='image/x-icon'>
     <link rel="stylesheet" href="{{ url_for('static', filename='src/settings.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='src/style.css') }}">
+    <link rel='stylesheet' href="{{ url_for('static', filename='src/fontAwesome_v5.0.13_all.css') }}">
+>>>>>>> cd15ec75eac9bdc2181aa18ef43f643dfd7841e8
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-
 </head>
 <body>
     <!-- nav bar-->
@@ -92,7 +98,7 @@
                 }
             </script>
 
-            <form action="action.php" method="post">
+            <form action="{{ url_for('new_settings') }}" method="post">
                 <div class="grid-container1">
 
                     <div class="item-1">
@@ -125,13 +131,6 @@
                         <label class="uploadButton">
                             <input type="file" name="profilePicture" style="display: none"> Upload file
                         </label>
-                    </div>
-
-                    <div class="item-5">
-                        <label for="description">Change description:<br> (maximum 200 characters)</label>
-                    </div>
-                    <div class="item-10">
-                        <textarea type="description" class="textarea" name="description" maxlength="200"></textarea>
                     </div>
 
                     <div class="item-6">
