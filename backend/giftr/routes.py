@@ -70,9 +70,9 @@ def register():
         msg = ''
         # Check if "username", "password" and "email" POST requests exist
         # Create variables for easy access
-        username = request.form['name']
-        password = hashlib.sha256(
-        request.form['passw'].encode('utf-8')).hexdigest()
+        username = request.form['username']
+        name = request.form['name']
+        password = hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
         email = request.form['email']
         bdaymonth = request.form['bdaymonth']
         bdaymonth = bdaymonth.split('-')
@@ -97,7 +97,7 @@ def register():
             msg = 'Please fill out the form!'
         else:
             cursor.execute('INSERT INTO users (username, password, token, email, name, age, gender, photo)'
-                           'VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (username, password, token, email, username, age, gender, photo))
+                           'VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (username, password, token, email, name, age, gender, photo))
             mysql.connection.commit()
             msg = 'You have successfully registered!'
             return redirect(url_for('welcome'))
