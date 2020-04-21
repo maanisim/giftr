@@ -88,22 +88,31 @@ def register():
         # Fetch account
         account = cursor.fetchone()
 
+        count = 0
         if account:
             msg = 'Account already exists!'
+            count += 1
         elif not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email):
             msg = 'Invalid email address!'
+            count += 1
         elif not re.match(r'[A-Za-z0-9]+', username):
             msg = 'Username must contain only characters and numbers!'
+            count += 1
         elif password != confirmPassword:
             msg = 'Passwords do not match.'
+            count += 1
         elif not username or not password or not confirmPassword or not email or not bdaymonth or not gender:
             msg = 'Please fill out the form!'
+            count += 1
         else:
             cursor.execute('INSERT INTO users (username, password, token, email, name, age, gender, photo)'
                            'VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (username, password, token, email, name, age, gender, photo))
             mysql.connection.commit()
             msg = 'You have successfully registered!'
             return redirect(url_for('welcome'))
+
+        if count > 1:
+            msg='Please correctly fill out the form'
         return render_template('register.html', msg=msg)
     elif not 'loggedin' in session:
         return render_template('register.html')
