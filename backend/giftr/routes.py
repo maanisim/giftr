@@ -2,32 +2,41 @@ from giftr import app, mysql
 from flask import Flask, redirect, url_for, render_template, request, session, make_response
 import smtplib
 from flask_mysqldb import MySQLdb
-import ssl, hashlib, re, datetime
+import ssl
+import hashlib
+import re
+import datetime
+import math
 
 global COOKIE_TIME_OUT
-COOKIE_TIME_OUT = 60*60*24*7 # 7 days
+COOKIE_TIME_OUT = 60*60*24*7  # 7 days
 
 app.errorhandler(404)
+
+
 def page_not_found(e):
     # note that we set the 404 status explicitly
     return render_template('404.html'), 404
+
 
 @app.route('/')
 def index():
     if 'loggedin' in session:
         # Already logged in
-        #You can tell you are logged in by register/login disappering on the right and being replaced with "my profile"
-        return render_template('index.html', username=session['username']) 
+        # You can tell you are logged in by register/login disappering on the right and being replaced with "my profile"
+        return render_template('index.html', username=session['username'])
     return render_template('index.html')
 
 # -------------------------------------------------- AUTH ROUTES --------------------------------------------------
 
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    #LOGGING IN
+    # LOGGING IN
     if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
         email = request.form['email']
-        password = request.form['passw'] # hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
+        # hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
+        password = request.form['passw']
 
         # Check if account exists in DB
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -56,33 +65,36 @@ def login():
     else:
         return render_template('login.html')
 
-#check if user length min 8
-#check if password length min 8
-#check if user = a-zA-Z0-9
-#check if password = a-zA-Z0-9
-#check if username used in db else error
-#check if email used in db else error
-#add to database
+# check if user length min 8
+# check if password length min 8
+# check if user = a-zA-Z0-9
+# check if password = a-zA-Z0-9
+# check if username used in db else error
+# check if email used in db else error
+# add to database
 @app.route('/register', methods=['POST', 'GET'])
 def register():
-    #CREATING ACCOUNT
+    # CREATING ACCOUNT
     if request.method == 'POST' and 'name' in request.form and 'passw' in request.form and 'email' in request.form:
         msg = ''
         # Check if "username", "password" and "email" POST requests exist
         # Create variables for easy access
         username = request.form['name']
-        password = hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
+        password = hashlib.sha256(
+            request.form['passw'].encode('utf-8')).hexdigest()
         email = request.form['email']
         bdaymonth = request.form['bdaymonth']
         bdaymonth = bdaymonth.split('-')
-        age = (((datetime.datetime.now().year - int(bdaymonth[0])) * 12) + int(bdaymonth[1]))/12
+        age = math.floor(int(
+            (((datetime.datetime.now().year - int(bdaymonth[0])) * 12) + int(bdaymonth[1]))/12))
         gender = "Male"
         token = "TEST"
         photo = "blank.jpg"
 
         # Check if account exists
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM users WHERE email = %s AND password = %s', (email, password))
+        cursor.execute(
+            'SELECT * FROM users WHERE email = %s AND password = %s', (email, password))
         # Fetch account
         account = cursor.fetchone()
 
@@ -95,13 +107,14 @@ def register():
         elif not username or not password or not email:
             msg = 'Please fill out the form!'
         else:
-            cursor.execute( 'INSERT INTO users (username, password, token, email, name, age, gender, photo)'
-                            'VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (username, password, token, email, username, age, gender, photo))
+            cursor.execute('INSERT INTO users (username, password, token, email, name, age, gender, photo)'
+                           'VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (username, password, token, email, username, age, gender, photo))
             mysql.connection.commit()
             msg = 'You have successfully registered!'
-            return redirect(url_for('welcome')) 
-    else:      
+            return redirect(url_for('welcome'))
+    else:
         return render_template('register.html')
+
 
 @app.route('/logout', methods=['POST', 'GET'])
 def logout():
@@ -112,14 +125,15 @@ def logout():
         return redirect('/')
     return redirect('/')
 
+
 @app.route('/profile')
 def profile():
     if 'loggedin' in session:
         return render_template('my_profile.html', username=session['username'])
     return redirect('/')
 
-#test
-@app.route('/search',methods=['POST', 'GET'])
+# test
+@app.route('/search', methods=['POST', 'GET'])
 def search():
     if(request.method == 'POST' and 'search' in request.form):
         search = request.form['search']
@@ -177,24 +191,30 @@ def new_settings():
                     print(email)
                     print(pas)
     return render_template('404.html')
+
 # -------------------------------------------------- STATIC ROUTES --------------------------------------------------
+
+
 @app.route('/settings')
 def settings():
     if 'loggedin' in session:
         return render_template('settings.html')
     return render_template('404.html')
 
+
 @app.route('/questionnaire')
 def questionnaire():
     if 'loggedin' in session:
         return render_template('index.html')
     return render_template('404.html')
-    
+
+
 @app.route('/forgot')
 def forgot():
     if 'loggedin' in session:
         return render_template('index.html')
     return render_template('forgotPsw.html')
+
 
 @app.route('/friend')
 def friend():
@@ -202,9 +222,11 @@ def friend():
         return render_template('anotherProfile.html')
     return render_template('404.html')
 
+
 @app.route('/item')
 def item():
     return render_template('itemPage.html')
+
 
 @app.route('/wishlist')
 def wishlist():
@@ -212,17 +234,21 @@ def wishlist():
         return render_template('wishlist.html')
     return render_template('404.html')
 
+
 @app.route('/about')
 def about():
     return render_template('about.html')
+
 
 @app.route('/privacy')
 def privacy():
     return render_template('privacy.html')
 
+
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+
 
 @app.route('/suggestion')
 def suggestion():
