@@ -58,9 +58,10 @@ def login():
         else:
             msg = 'Incorrect login details!'
             return render_template('login.html')
-    else:
+    else if not 'loggedin' in session:
         return render_template('login.html')
-
+    else if 'loggedin' in session:
+        return render_template('index.html')
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
