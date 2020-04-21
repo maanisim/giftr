@@ -94,7 +94,7 @@ def register():
             msg = 'Invalid email address!'
         elif not re.match(r'[A-Za-z0-9]+', username):
             msg = 'Username must contain only characters and numbers!'
-        elif not password == confirmPassword:
+        elif password != confirmPassword:
             msg = 'Passwords do not match.'
         elif not username or not password or not confirmPassword or not email or not bdaymonth or not gender:
             msg = 'Please fill out the form!'
