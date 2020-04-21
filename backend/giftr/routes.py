@@ -97,12 +97,12 @@ def register():
         if count == 0:
             # Check if account exists
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute('SELECT * FROM users WHERE email = %s AND password = %s', (email, password))
+            cursor.execute('SELECT * FROM users WHERE email = %s', (email))
             # Fetch account
             account = cursor.fetchone()
 
         if account:
-            msg = 'Account already exists!'
+            msg = 'Email already exists!'
             count += 1
         if password != confirmPassword:
             msg = 'Passwords do not match.'
@@ -120,6 +120,7 @@ def register():
 
         if count > 1:
             msg='Please correctly fill out the form'
+            
         return render_template('register.html', msg=msg)
     elif not 'loggedin' in session:
         return render_template('register.html')
