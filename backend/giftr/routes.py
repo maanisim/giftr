@@ -256,4 +256,6 @@ def contact():
 
 @app.route('/suggestion')
 def suggestion():
-    return render_template('suggestion.html')
+    if 'loggedin' in session:
+        return render_template('index.html')
+    return render_template('404.html')
