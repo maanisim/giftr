@@ -88,8 +88,7 @@ def register():
 
         # Check if account exists
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute(
-            'SELECT * FROM users WHERE email = %s AND password = %s', (email, password))
+        cursor.execute('SELECT * FROM users WHERE email = %s AND password = %s', (email, password))
         # Fetch account
         account = cursor.fetchone()
 
