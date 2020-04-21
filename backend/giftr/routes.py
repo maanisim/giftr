@@ -29,7 +29,7 @@ def index():
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     # LOGGING IN
-    if request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
+    if not 'loggedin' in session and request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
         email = request.form['email']
         # hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
         password = request.form['passw']
@@ -59,13 +59,13 @@ def login():
             msg = 'Incorrect login details!'
             return render_template('login.html')
     else:
-        return render_template('login.html')
+        return render_template('/')
 
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     # CREATING ACCOUNT
-    if request.method == 'POST' and 'name' in request.form and 'passw' in request.form and 'email' in request.form:
+    if not 'loggedin' in session and request.method == 'POST' and 'name' in request.form and 'passw' in request.form and 'email' in request.form:
         msg = ''
         # Check if "username", "password" and "email" POST requests exist
         # Create variables for easy access
@@ -101,7 +101,7 @@ def register():
             msg = 'You have successfully registered!'
             return redirect(url_for('welcome'))
     else:
-        return render_template('register.html')
+        return render_template('/')
 
 
 @app.route('/logout', methods=['POST', 'GET'])
@@ -165,7 +165,7 @@ def welcome():
     if 'loggedin' in session:
         return render_template('welcome.html', username=session['username'])
     else:
-        return render_template('index.html')
+        return render_template('/')
 
 
 @app.route('/new_settings')
