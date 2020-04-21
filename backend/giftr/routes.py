@@ -102,7 +102,7 @@ def register():
             msg = 'You have successfully registered!'
             return redirect(url_for('welcome'))
     elif not 'loggedin' in session:
-        return render_template('login.html')
+        return render_template('register.html')
     elif 'loggedin' in session:
         return render_template('index.html')
 
