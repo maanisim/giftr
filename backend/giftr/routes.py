@@ -60,7 +60,7 @@ def login():
             return render_template('login.html')
     elif not 'loggedin' in session:
         return render_template('login.html')
-    else if 'loggedin' in session:
+    elif 'loggedin' in session:
         return render_template('index.html')
 
 @app.route('/register', methods=['POST', 'GET'])
