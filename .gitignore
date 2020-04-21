@@ -14,3 +14,4 @@ www/venv
 !backend/
 !old-backend/
 backend/venv
+!delete/

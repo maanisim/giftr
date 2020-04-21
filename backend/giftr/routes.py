@@ -171,16 +171,24 @@ def welcome():
         return render_template('index.html')
 
 
-@app.route('/new_settings')
+@app.route('/new_settings',methods=['POST'])
 def new_settings():
-    if 'loggedin' in session:
-        if(request.method['email'] == request.method['confirmEmail'] and request.method['passw'] == request.method['cofirmPassw']):
-            email = request.method['email']
-            password = request.method['passw']
-            if not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email):
-                if not re.match(r"(^[a-zA-Z0-9_.+-]^$)", password):
-                    print(email)
-                    print(password)
+    if('loggedin' in session and request.method == 'POST'):
+        if(request.form['email'] == request.form['confirmEmail']):
+            email = request.form['email']
+            if(len(email) > 4):
+                if(re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email)):
+                    print("email changed! to"+email)
+
+        if(request.form['passw'] == request.form['cofirmPassw']):
+            passw = request.form['passw']
+            if(len(passw) > 7):
+                if(re.match("^[A-Za-z0-9_-]*$", passw)):
+                    print("pass changed! to"+passw)
+                #cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+                #cursor.execute('SELECT name FROM products WHERE name LIKE \'%%%s%%\' LIMIT 5', ([search]))
+                #data = cursor.fetchall()
+               # print(data)
     return render_template('404.html')
 
 # -------------------------------------------------- STATIC ROUTES --------------------------------------------------
