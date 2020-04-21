@@ -59,7 +59,7 @@ def login():
             msg = 'Incorrect login details!'
             return render_template('login.html')
     else:
-        return render_template('/')
+        return render_template('login.html')
 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -101,7 +101,7 @@ def register():
             msg = 'You have successfully registered!'
             return redirect(url_for('welcome'))
     else:
-        return render_template('/')
+        return render_template('index.html')
 
 
 @app.route('/logout', methods=['POST', 'GET'])
@@ -165,7 +165,7 @@ def welcome():
     if 'loggedin' in session:
         return render_template('welcome.html', username=session['username'])
     else:
-        return render_template('/')
+        return render_template('index.html')
 
 
 @app.route('/new_settings')
