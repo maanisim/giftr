@@ -91,5 +91,11 @@ form {
 .submit:hover {
     background-color: #db0038;
 }
-  
+ 
+#formstatus{
+    border: none;
+    outline: none;
+    margin: 15px;
+    color: black;
+}
   
