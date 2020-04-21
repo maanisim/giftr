@@ -80,7 +80,7 @@ def register():
         age = floor(int((((datetime.datetime.now().year - int(bdaymonth[0])) * 12) + int(bdaymonth[1]))/12))
         gender = str(request.form.get('gender'))
         token = "TEST"
-        photo = "default.jpg"
+        photo = "default.png"
 
         count = 0
         if not re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email):
