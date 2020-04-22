@@ -451,7 +451,7 @@ def update():
             else:
                 gender1 = 250
                 gender2 = 250
-            crsr.execute("""INSERT INTO profileRecValues VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+            crsr.execute("""INSERT INTO profileRecValues VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
                          (userID, age, age, 200, gender1, gender2, 250, 250, 250, 250, 250, 250, 250))
     mysql.connection.commit()
     mysql.connection.close()
