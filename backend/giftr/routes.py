@@ -458,7 +458,7 @@ def update():
     
 def initialise():
     crsr = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    createValues = """CREATE TABLE productRecValues (
+    createValues = """CREATE TABLE 'productRecValues' (
                 'product_id' INT(10) NOT NULL,
                 'age_low' INT(3) NOT NULL,
                 'age_high' INT(3) NOT NULL, 
@@ -476,7 +476,7 @@ def initialise():
                 FOREIGN KEY(product_id) REFERENCES products(product_id)
                 )"""
 
-    createProfiles = """CREATE TABLE profileRecValues (
+    createProfiles = """CREATE TABLE 'profileRecValues' (
                 'user_id' INT(10) NOT NULL,
                 'age_low' INT(3) NOT NULL,
                 'age_high' INT(3) NOT NULL,
