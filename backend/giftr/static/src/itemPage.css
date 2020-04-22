@@ -38,11 +38,6 @@
     padding-bottom: 20px;
 }
 
-.links a{ 
-    text-decoration: none;
-    color: #519dd9;
-}
-
 .fa{
     cursor: pointer;
     user-select: none;
@@ -59,7 +54,7 @@
     color: #53bac1;
 }
 
-.button1 {
+.button {
     font-family: 'Arial', sans-serif;
     width: 190px;
     border-radius: 5px;
@@ -74,7 +69,7 @@
     margin-right: 30%;
 }
 
-.button1:hover{
+.button:hover{
     background-color: #f7c200;
     color: black;
 }
