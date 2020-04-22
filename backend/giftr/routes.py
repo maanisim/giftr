@@ -255,10 +255,10 @@ def product(pid):
             uid = session['id']
             if request.form['like']:
                 print(str(uid)+":u LIKE - p:"+str(pid), file=sys.stderr)
-                cursor.execute('INSERT INTO product_liked (product_id, user_id) VALUES (%s, %s)', (uid, pid))
+                cursor.execute('INSERT INTO product_liked (product_id, user_id) VALUES (%s, %s)', (pid, uid))
             elif request.form['wish']:
                 print(str(uid)+":u WISH - p:"+str(pid), file=sys.stderr)
-                cursor.execute('INSERT INTO wishlist_list (product_id, user_id) VALUES (%s, %s)', (uid, pid))
+                cursor.execute('INSERT INTO wishlist_list (product_id, user_id) VALUES (%s, %s)', (pid, uid))
         else:
             msg="Please log in before adding to a wishlist!"
         mysql.connection.commit()
@@ -338,6 +338,7 @@ def contact():
 @app.route('/suggestion')
 def suggestion():
     if 'loggedin' in session:
+        initialise()
         update()
         return render_template('itemSuggestion.html')
     return render_template('404.html')
@@ -456,4 +457,29 @@ def update():
             crsr.execute("""INSERT INTO profileRecValues VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)""",
                          (userID, age, age, 200, gender1, gender2, 250, 250, 250, 250, 250, 250, 250))
     mysql.connection.commit()
-   
+    
+def initialise():
+    crsr = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    createValues = """CREATE TABLE 'productRecValues' ('product_id' INT(10) NOT NULL, 'age_low' INT(3) NOT NULL,'age_high' INT(3) NOT NULL,  'price' INT(3) NOT NULL, 'gender1' INT(3) NOT NULL,'gender2' INT(3) NOT NULL,'toiletries' INT(3) NOT NULL,'clothes' INT(3) NOT NULL,'homeware' INT(3) NOT NULL,'entertainment' INT(3) NOT NULL,'consumable' INT(3) NOT NULL,'sport' INT(3) NOT NULL, 'other' INT(3) NOT NULL,PRIMARY KEY(product_id),FOREIGN KEY(product_id) REFERENCES products(product_id))"""
+
+    createProfiles = """CREATE TABLE 'profileRecValues' (
+                'user_id' INT(10) NOT NULL,
+                'age_low' INT(3) NOT NULL,
+                'age_high' INT(3) NOT NULL,
+                'price' INT(3) NOT NULL,
+                'gender1' INT(3) NOT NULL,
+                'gender2' INT(3) NOT NULL,
+                'toiletries' INT(3) NOT NULL,
+                'clothes' INT(3) NOT NULL,
+                'homeware' INT(3) NOT NULL,
+                'entertainment' INT(3) NOT NULL,
+                'consumable' INT(3) NOT NULL,
+                'sport' INT(3) NOT NULL,
+                'other' INT(3) NOT NULL,
+                PRIMARY KEY(user_id),
+                FOREIGN KEY(user_id) REFERENCES users(user_id)
+                )"""
+
+    crsr.execute(createValues)
+    crsr.execute(createProfiles)
+    connection.commit()
