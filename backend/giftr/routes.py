@@ -30,8 +30,8 @@ def login():
     # LOGGING IN
     if not 'loggedin' in session and request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
         email = request.form['email']
-        hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
-        password = request.form['passw']
+        password = hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
+        #password = request.form['passw']
 
         # Check if account exists in DB
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
