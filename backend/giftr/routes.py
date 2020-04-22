@@ -356,21 +356,21 @@ def update():
     presentIDs = crsr.fetchall()
     for counter in existingProducts:
         if ((counter["product_id"],) not in presentIDs):
-            productID = counter[0]
-            age_low = round(counter[3]*1.5)
-            age_high = round(counter[4]*1.5)
-            if (counter[5] == "$"):
+            productID = counter["product_id"]
+            age_low = round(counter["age_low"]*1.5)
+            age_high = round(counter["age_high"]*1.5)
+            if (counter["price"] == "$"):
                 price = 100
-            elif (counter[5] == "$$"):
+            elif (counter["price"] == "$$"):
                 price = 300
-            elif (counter[5] == "$$$"):
+            elif (counter["price"] == "$$$"):
                 price = 500
             else:
                 price = 0
-            if (counter[7] == "male"):
+            if (counter["gender"] == "male"):
                 gender1 = 500
                 gender2 = 0
-            elif (counter[7] == "female"):
+            elif (counter["gender"] == "female"):
                 gender1 = 0
                 gender2 = 500
             else:
@@ -383,51 +383,51 @@ def update():
             consumable = 0
             sport = 0
             other = 0
-            if ((counter[8] == "Bath Bombs") or
-                (counter[8] == "Perfumes") or
-                (counter[8] == "Skincare")):
+            if ((counter["category"] == "Bath Bombs") or
+                (counter["category"] == "Perfumes") or
+                (counter["category"] == "Skincare")):
                 toiletries = 500
 
-            elif((counter[8] == "Belts") or
-                 (counter[8] == "Cufflinks") or
-                 (counter[8] == "Hats") or
-                 (counter[8] == "Jewllery") or
-                 (counter[8] == "Keyrings") or
-                 (counter[8] == "Scarfs") or
-                 (counter[8] == "Shoes") or
-                 (counter[8] == "Socks") or
-                 (counter[8] == "T-Shirts") or
-                 (counter[8] == "Wallets") or
-                 (counter[8] == "Watches")):
+            elif((counter["category"] == "Belts") or
+                 (counter["category"] == "Cufflinks") or
+                 (counter["category"] == "Hats") or
+                 (counter["category"] == "Jewllery") or
+                 (counter["category"] == "Keyrings") or
+                 (counter["category"] == "Scarfs") or
+                 (counter["category"] == "Shoes") or
+                 (counter["category"] == "Socks") or
+                 (counter["category"] == "T-Shirts") or
+                 (counter["category"] == "Wallets") or
+                 (counter["category"] == "Watches")):
                 clothes = 500
                 
-            elif((counter[8] == "Alarm Clocks") or
-                 (counter[8] == "Blankets") or
-                 (counter[8] == "Chairs") or
-                 (counter[8] == "Cushionss") or
-                 (counter[8] == "Flowers") or
-                 (counter[8] == "Magnets") or
-                 (counter[8] == "Mugs") or
-                 (counter[8] == "Paintings") or
-                 (counter[8] == "Photo Frames") or
-                 (counter[8] == "World Maps")):
+            elif((counter["category"] == "Alarm Clocks") or
+                 (counter["category"] == "Blankets") or
+                 (counter["category"] == "Chairs") or
+                 (counter["category"] == "Cushionss") or
+                 (counter["category"] == "Flowers") or
+                 (counter["category"] == "Magnets") or
+                 (counter["category"] == "Mugs") or
+                 (counter["category"] == "Paintings") or
+                 (counter["category"] == "Photo Frames") or
+                 (counter["category"] == "World Maps")):
                 homeware = 500
                 
-            elif((counter[8] == "Board Games") or
-                 (counter[8] == "Cards") or
-                 (counter[8] == "Disney") or
-                 (counter[8] == "Headphones") or
-                 (counter[8] == "Teddy Bears") or
-                 (counter[8] == "Video Games") or
-                 (counter[8] == "Vinyl")):
+            elif((counter["category"] == "Board Games") or
+                 (counter["category"] == "Cards") or
+                 (counter["category"] == "Disney") or
+                 (counter["category"] == "Headphones") or
+                 (counter["category"] == "Teddy Bears") or
+                 (counter["category"] == "Video Games") or
+                 (counter["category"] == "Vinyl")):
                 entertainment = 500
 
-            elif((counter[8] == "Biscuits") or
-                 (counter[8] == "Wine")):
+            elif((counter["category"] == "Biscuits") or
+                 (counter["category"] == "Wine")):
                 consumable = 500
 
-            elif((counter[8] == "Liverpool") or
-                 (counter[8] == "Manchester United")):
+            elif((counter["category"] == "Liverpool") or
+                 (counter["category"] == "Manchester United")):
                 sport = 500
                 
             else:
@@ -442,13 +442,13 @@ def update():
     crsr.execute("SELECT user_id FROM profileRecValues")
     presentIDs = crsr.fetchall()
     for counter in existingUsers:
-        if ((counter[0],) not in presentIDs):
-            userID = counter[0]
-            age = round(counter[6]*1.5)
-            if (counter[7] == "male"):
+        if ((counter["user_id"],) not in presentIDs):
+            userID = counter["user_id"]
+            age = round(counter["age"]*1.5)
+            if (counter["gender"] == "male"):
                 gender1 = 500
                 gender2 = 100
-            elif (counter[7] == "female"):
+            elif (counter["gender"] == "female"):
                 gender1 = 100
                 gender2 = 500
             else:
