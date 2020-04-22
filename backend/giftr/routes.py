@@ -480,6 +480,6 @@ def initialise():
                 FOREIGN KEY(user_id) REFERENCES users(user_id)
                 )"""
 
-    crsr.execute(createValues)
+    #crsr.execute(createValues)
     crsr.execute(createProfiles)
     connection.commit()
