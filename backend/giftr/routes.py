@@ -346,7 +346,7 @@ def suggestion():
 ###################################################################
 def update():
 
-    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    crsr = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     crsr.execute("SELECT * FROM products")
     existingProducts = crsr.fetchall()
     crsr.execute("SELECT product_id FROM productRecValues")
