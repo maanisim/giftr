@@ -13,27 +13,27 @@ CREATE TABLE `products` (
 	PRIMARY KEY (`product_id`)
 ) DEFAULT CHARSET=latin1;
 
-CREATE TABLE `product_liked` (
-  `product_liked_id` INT(10) NOT NULL AUTO_INCREMENT,
-  `product_id` INT(10),   
-  `user_id` INT(10),   
-	 PRIMARY KEY (`product_liked_id`)
-   FOREIGN KEY(product_id) REFERENCES products(product_id),
-   FOREIGN KEY(user_id) REFERENCES users(user_id)
-) DEFAULT CHARSET=latin1;
-
 CREATE TABLE `users` (
   `user_id` INT(10) NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(40) NOT NULL,
   `password` VARCHAR(256) NOT NULL,
-  `token` VARCHAR(256),
   `email` VARCHAR(256) NOT NULL,
   `name` VARCHAR(40) NOT NULL,
   `dob` DATE NOT NULL,
   `gender` VARCHAR(6) NOT NULL,
-  `photo` VARCHAR(3000),
   PRIMARY KEY (`user_id`)
 );
+
+CREATE TABLE `product_liked` (
+  `product_liked_id` INT(10) NOT NULL AUTO_INCREMENT,
+  `product_id` INT(10),   
+  `user_id` INT(10),   
+	 PRIMARY KEY (`product_liked_id`),
+   FOREIGN KEY(product_id) REFERENCES products(product_id),
+   FOREIGN KEY(user_id) REFERENCES users(user_id)
+) DEFAULT CHARSET=latin1;
+
+
 
 CREATE TABLE `friends_list` (
   `friends_id` INT(10) NOT NULL AUTO_INCREMENT,

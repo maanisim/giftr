@@ -223,7 +223,9 @@ def new_settings():
 
     return render_template('settings.html')
 
-
+@app.route('/p/<int:pid>')
+def product(pid):
+    return "The uid is {}".format(pid)
 # -------------------------------------------------- STATIC ROUTES --------------------------------------------------
 
 
