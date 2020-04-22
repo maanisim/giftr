@@ -338,7 +338,6 @@ def contact():
 @app.route('/suggestion')
 def suggestion():
     if 'loggedin' in session:
-        initialise()
         update()
         return render_template('itemSuggestion.html')
     return render_template('404.html')
@@ -457,44 +456,4 @@ def update():
             crsr.execute("""INSERT INTO profileRecValues VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)""",
                          (userID, age, age, 200, gender1, gender2, 250, 250, 250, 250, 250, 250, 250))
     mysql.connection.commit()
-    
-def initialise():
-    crsr = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    createValues = """CREATE TABLE productRecValues (
-                'pro_id' int(10),
-                'age_low' int(3),
-                'age_high' int(3), 
-                'price' int(3),
-                'gender1' int(3),
-                'gender2' int(3),
-                'toiletries' int(3),
-                'clothes' int(3),
-                'homeware' int(3),
-                'entertainment' int(3),
-                'consumable' int(3),
-                'sport' int(3),
-                'other' int(3),
-                PRIMARY KEY(pro_id)
-                )"""
-    
-    createProfiles = """CREATE TABLE 'profileRecValues' (
-                'user_id' INT(10) NOT NULL,
-                'age_low' INT(3) NOT NULL,
-                'age_high' INT(3) NOT NULL,
-                'price' INT(3) NOT NULL,
-                'gender1' INT(3) NOT NULL,
-                'gender2' INT(3) NOT NULL,
-                'toiletries' INT(3) NOT NULL,
-                'clothes' INT(3) NOT NULL,
-                'homeware' INT(3) NOT NULL,
-                'entertainment' INT(3) NOT NULL,
-                'consumable' INT(3) NOT NULL,
-                'sport' INT(3) NOT NULL,
-                'other' INT(3) NOT NULL,
-                PRIMARY KEY(user_id),
-                FOREIGN KEY(user_id) REFERENCES users(user_id)
-                )"""
-
-    crsr.execute(createValues)
-    crsr.execute(createProfiles)
-    connection.commit()
+   
