@@ -1,0 +1,32 @@
+.recommendationQ{
+    font-family: 'Arial', sans-serif;
+    margin-left: 15%;
+    color: #db0038;
+}
+
+.quiz{
+    font-size: 20px;
+    color: black;
+}
+
+.submit{
+    background-color: #db0038;
+    width: 100px;
+    height: 40px;
+    font-family: 'Arial', sans-serif;
+    font-size: 20px;
+    color: white;
+    float: right;
+    margin-right: 300px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.submit:hover{
+    background-color: #f7c200;
+    color: black;
+}
+
+#question{
+    color: #519dd9;
+}
