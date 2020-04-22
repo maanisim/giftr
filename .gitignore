@@ -15,3 +15,4 @@ www/venv
 !old-backend/
 backend/venv
 !delete/
+!backend/giftr/templates
