@@ -252,9 +252,9 @@ def product(pid):
     if request.method == 'POST':
         if 'loggedin' in session:
             uid = session['id']
-            if request.form['like'] == 1:
+            if request.form['name'] == 'like':
                 cursor.execute('INSERT INTO product_liked (product_id, user_id) VALUES (%s, %s)', (uid, pid))
-            elif request.form['wish'] == 1:
+            elif request.form['name'] == 'wish':
                 cursor.execute('INSERT INTO wishlist_list (product_id, user_id) VALUES (%s, %s)', (uid, pid))
         else:
             return render_template(url_for(pid), msg="Please log in before adding to a wishlist!")
@@ -264,7 +264,7 @@ def product(pid):
     item_name=item_name,
     photo_name=photo_name,
     item_link=item_link )
-    
+
     # --------------------------- STATIC ROUTES --------------------------------------------------
 
 @app.route('/settings')
