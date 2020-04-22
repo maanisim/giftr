@@ -1,7 +1,7 @@
 from giftr import app, mysql
 from flask import Flask, redirect, url_for, render_template, request, session, make_response
 from flask_mysqldb import MySQLdb
-import ssl, hashlib, re, datetime, smtplib
+import ssl, hashlib, re, datetime, smtplib, sys
 from math import floor as floor
 
 global COOKIE_TIME_OUT
@@ -254,10 +254,10 @@ def product(pid):
         if 'loggedin' in session:
             uid = session['id']
             if request.form['like']:
-                print(str(uid)+":u LIKE - p:"+str(pid))
+                print(str(uid)+":u LIKE - p:"+str(pid), file=sys.stderr)
                 cursor.execute('INSERT INTO product_liked (product_id, user_id) VALUES (%s, %s)', (uid, pid))
             elif request.form['wish']:
-                print(str(uid)+":u WISH - p:"+str(pid))
+                print(str(uid)+":u WISH - p:"+str(pid), file=sys.stderr)
                 cursor.execute('INSERT INTO wishlist_list (product_id, user_id) VALUES (%s, %s)', (uid, pid))
         else:
             msg="Please log in before adding to a wishlist!"
