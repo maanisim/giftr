@@ -474,8 +474,8 @@ def initialise():
                 'consumable' int(3),
                 'sport' int(3),
                 'other' int(3),
-                PRIMARY KEY(product_id),
-                );"""
+                PRIMARY KEY(product_id)
+                )"""
     
     createProfiles = """CREATE TABLE 'profileRecValues' (
                 'user_id' INT(10) NOT NULL,
