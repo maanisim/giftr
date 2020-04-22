@@ -6,12 +6,9 @@
     font-size: 12pt;
 }
 
-* {
-    box-sizing: content-box;
-}
-
 .image {
     object-fit: cover;
+    box-sizing: content-box;
 }
 
 .image:hover {
