@@ -30,7 +30,7 @@ def login():
     # LOGGING IN
     if not 'loggedin' in session and request.method == 'POST' and 'email' in request.form and 'passw' in request.form:
         email = request.form['email']
-        # hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
+        hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
         password = request.form['passw']
 
         # Check if account exists in DB
@@ -43,7 +43,8 @@ def login():
             session['id'] = account['user_id']
             session['email'] = account['email']
             session['username'] = account['username']
-            session['gender'] = account['gender']
+            if(session['gender'] == "male" or session['gender'] == "female" or session['gender'] == "unisex"):
+                session['gender'] = account['gender']
             session['age'] = account['age']
             remember = request.form.getlist('remember')
 
