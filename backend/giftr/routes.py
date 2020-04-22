@@ -238,8 +238,8 @@ def new_settings():
 #|          1 | FITFORT Alarm Clock Wake Up | 1.jpg |      20 |       99 | $     | https://www.amazon.co.uk/FITFORT-Alarm-Clock-Wake-Light-Sunrise/dp/B07CQVM7WY/ref=sr_1_6 | unisex | Alarm Clocks |
 #+------------+-----------------------------+-------+---------+----------+-------+------------------------------------------------------------------------------------------+--------+--------------+
 
-@app.route('/p/<int:pid>')
-def product(pid, methods=['POST', 'GET']):
+@app.route('/p/<int:pid>', methods=['POST', 'GET'])
+def product(pid):
     if request.method == 'POST':
         print('posted from pid: %s', pid)
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
