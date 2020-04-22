@@ -1,0 +1,110 @@
+div.pageContent {
+	padding-left: 100px;
+	padding-right: 100px;
+}
+
+p.sectionTitle {
+	font: bold 20pt Arial, sans-serif;
+	color: #db0038;
+}
+
+p.pageTitle {
+	font: bold 25pt Arial, sans-serif;
+	color: #db0038;
+}
+
+p.text {
+	font: 12pt Arial, sans-serif;
+	color: #525457;
+}
+
+p.itemName {
+	font : 15pt Arial, sans-serif;
+	color: #525457;
+}
+
+a.link {
+	text-decoration: none;
+}
+
+.column {
+	float: left;
+	width: 20%;
+	padding: 10px 10px;
+	text-align: center;
+}
+
+.row::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+.button {
+	background-color: #519dd9;
+	float: center;
+	color: white;
+	padding: 10pt 10pt;
+	text-align: center;
+	text-decoration: none;
+	font-size: 14pt;
+	font-family: arial;
+	cursor: pointer;
+	width: fit-content;
+	border-style: none;
+}
+
+.button1 {
+	background-color: #519dd9;
+	float: center;
+	color: white;
+	padding: 5pt 5pt;
+	text-align: center;
+	text-decoration: none;
+	font-size: 10pt;
+	font-family: arial;
+	cursor: pointer;
+	width: fit-content;
+	border-style: none;
+	margin: 3px;
+} 
+
+.button:hover{
+	background-color: #f7c200;
+	color: black;
+}
+
+.priceRange {
+	width: 50px;
+	padding-left: 3px;
+	outline: none;
+	border: none;
+	border-bottom: solid #519dd9;
+}
+
+.item-1 {
+	grid-area: pageTitle;
+}
+
+.item-2 {
+	grid-area: sidebar;
+}
+
+.item-3 {
+	grid-area: results;
+}
+
+.grid-container {
+	display: grid;
+	grid-template-columns: 30% 70%;
+	padding: 0 100pt;
+	grid-gap: 10pt 25pt;
+	text-align: bottom;
+	grid-template-areas: 
+	 "pageTitle ."
+	 "sidebar results";
+}
+
+.grid-container > div {
+	padding: 0 0;
+}
