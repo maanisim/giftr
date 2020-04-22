@@ -245,7 +245,7 @@ def product(pid):
     return cursor.fetchone()
 
 @app.route('/z/<int:pid>')
-def product(pid):
+def z(pid):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute('SELECT * FROM products WHERE product_id = %s', [pid])
     return cursor.fetchone()
