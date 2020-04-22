@@ -355,7 +355,7 @@ def update():
     crsr.execute("SELECT product_id FROM productRecValues")
     presentIDs = crsr.fetchall()
     for counter in existingProducts:
-        if (counter not in presentIDs):
+        if ((counter["product_id"],) not in presentIDs):
             productID = counter[0]
             age_low = round(counter[3]*1.5)
             age_high = round(counter[4]*1.5)
