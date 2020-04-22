@@ -304,7 +304,7 @@ def friends():
     return render_template('404.html')
 
 @app.route('/questionaire')
-def friends():
+def questionaire():
     if 'loggedin' in session:
         return render_template('rQuestionnaire.html')
     return render_template('404.html')
