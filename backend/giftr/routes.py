@@ -268,6 +268,12 @@ def item():
 @app.route('/wishlist')
 def wishlist():
     if 'loggedin' in session:
+        user_id = session['id']
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM wishlist WHERE user_id = %s', [user_id])
+        # Fetch wishlist
+        wishlist_data = cursor.fetchone()
+
         return render_template('wishlist.html')
     return render_template('404.html')
 
