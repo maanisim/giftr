@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>product| Giftr</title>
+    <title>{tmp_product_name} | Giftr</title>
     <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"/>
     <link rel="stylesheet"href="{{ url_for('static', filename='src/style.css') }}"/>
@@ -100,9 +100,9 @@
 
         <div class="item">
           <div class="leftColumn">
-            <h1>{{ product_name }}</h1>
+            <h1>{{ product['name'] }}</h1>
             <img
-              src="/static/img/p/"
+              src="/static/img/p/{{ product['photo'] }}"
               alt="Item"
               width="300"
               height="300"
