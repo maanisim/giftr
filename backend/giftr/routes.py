@@ -244,7 +244,7 @@ def product(pid):
     cursor.execute('SELECT * FROM products WHERE product_id = %s', [pid])
     item = cursor.fetchone()
     item_name = item['name']
-    return render_template('itemPage.html', item_name=item_name)
+    return render_template('item_backend.html', item_name=item_name)
 
 @app.route('/z/<int:pid>')
 def z(pid):
