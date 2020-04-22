@@ -197,7 +197,7 @@ def welcome():
     if 'loggedin' in session:
         return render_template('welcome.html', username=session['username'])
     else:
-        return render_template('index.html')
+        return "<h1>test</h1>"
 
 
 @app.route('/new_settings',methods=['POST'])
