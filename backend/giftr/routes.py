@@ -303,6 +303,12 @@ def friends():
         return render_template('my_friends.html')
     return render_template('404.html')
 
+@app.route('/questionaire')
+def friends():
+    if 'loggedin' in session:
+        return render_template('rQuestionnaire.html')
+    return render_template('404.html')
+
 @app.route('/item')
 def item():
     return render_template('itemPage.html')
