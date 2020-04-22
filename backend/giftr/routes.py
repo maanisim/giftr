@@ -242,7 +242,9 @@ def new_settings():
 def product(pid):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute('SELECT * FROM products WHERE product_id = %s', [pid])
-    return cursor.fetchone()
+    item = cursor.fetchone()
+    item_name = item['name']
+    return render_template(url_for('item'), item_name= item_name)
 
 @app.route('/z/<int:pid>')
 def z(pid):
