@@ -27,6 +27,14 @@
     opacity: 0.4;
 }
 
+.images1 {
+    object-fit: cover;
+    box-sizing: content-box;
+}
+
+.images1:hover {
+    opacity: 0.4;
+}
 
 h2 {
     margin-top: 10px;
