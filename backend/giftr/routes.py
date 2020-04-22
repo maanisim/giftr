@@ -461,19 +461,19 @@ def update():
 def initialise():
     crsr = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     createValues = """CREATE TABLE productRecValues (
-                'product_id' int(10) NOT NULL,
-                'age_low' int(3) NOT NULL,
-                'age_high' int(3) NOT NULL, 
-                'price' int(3) NOT NULL,
-                'gender1' int(3) NOT NULL,
-                'gender2' int(3) NOT NULL,
-                'toiletries' int(3) NOT NULL,
-                'clothes' int(3) NOT NULL,
-                'homeware' int(3) NOT NULL,
-                'entertainment' int(3) NOT NULL,
-                'consumable' int(3) NOT NULL,
-                'sport' int(3) NOT NULL,
-                'other' int(3) NOT NULL,
+                'product_id' int(10),
+                'age_low' int(3),
+                'age_high' int(3), 
+                'price' int(3),
+                'gender1' int(3),
+                'gender2' int(3),
+                'toiletries' int(3),
+                'clothes' int(3),
+                'homeware' int(3),
+                'entertainment' int(3),
+                'consumable' int(3),
+                'sport' int(3),
+                'other' int(3),
                 PRIMARY KEY(product_id),
                 FOREIGN KEY(product_id) REFERENCES products(product_id)
                 );"""
