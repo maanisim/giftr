@@ -89,3 +89,41 @@ CREATE TABLE `gift_profiles` (
   FOREIGN KEY(`username`)REFERENCES`users`(username)
   */
 );
+
+CREATE TABLE productRecValues (
+	'product_id' INT(10) NOT NULL,
+         'age_low' INT(3) NOT NULL,
+         'age_high' INT(3) NOT NULL, 
+         'price' INT(3) NOT NULL,
+         'gender1' INT(3) NOT NULL,
+         'gender2' INT(3) NOT NULL,
+         'toiletries' INT(3) NOT NULL,
+         'clothes' INT(3) NOT NULL,
+         'homeware' INT(3) NOT NULL,
+         'entertainment' INT(3) NOT NULL,
+         'consumable' INT(3) NOT NULL,
+         'sport' INT(3) NOT NULL,
+         'other' INT(3) NOT NULL,
+         PRIMARY KEY(product_id),
+         FOREIGN KEY(product_id) REFERENCES products(product_id)
+ );
+ 
+ CREATE TABLE profileRecValues (
+ 	'user_id' INT(10) NOT NULL,
+	'age_low' INT(3) NOT NULL,
+        'age_high' INT(3) NOT NULL,
+        'price' INT(3) NOT NULL,
+        'gender1' INT(3) NOT NULL,
+        'gender2' INT(3) NOT NULL,
+        'toiletries' INT(3) NOT NULL,
+        'clothes' INT(3) NOT NULL,
+        'homeware' INT(3) NOT NULL,
+        'entertainment' INT(3) NOT NULL,
+        'consumable' INT(3) NOT NULL,
+        'sport' INT(3) NOT NULL,
+        'other' INT(3) NOT NULL,
+        PRIMARY KEY(user_id),
+        FOREIGN KEY(user_id) REFERENCES users(user_id)
+);
+ 
+ 
