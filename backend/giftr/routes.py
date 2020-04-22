@@ -242,8 +242,6 @@ def new_settings():
 
 @app.route('/p/<int:pid>', methods=['POST', 'GET'])
 def product(pid):
-    if request.method == 'POST':
-        print('posted from pid: %s', [pid])
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute('SELECT * FROM products WHERE product_id = %s', [pid])
     item = cursor.fetchone()
@@ -251,14 +249,23 @@ def product(pid):
     photo_name = item['photo']
     item_link = item['link']
 
+    if request.method == 'POST':
+        if 'loggedin' in session:
+            uid = session['id']
+            if request.form['like'] == 1:
+                cursor.execute('INSERT INTO product_liked (product_id, user_id) VALUES (%s, %s)', (uid, pid))
+            elif request.form['wish'] == 1:
+                cursor.execute('INSERT INTO wishlist_list (product_id, user_id) VALUES (%s, %s)', (uid, pid))
+        else:
+            return render_template(url_for(pid), msg="Please log in before adding to a wishlist!")
+        mysql.connection.commit()
+
     return render_template('item_backend.html',
     item_name=item_name,
     photo_name=photo_name,
-    item_link=item_link
-    )
-
-    # -------------------------------------------------- STATIC ROUTES --------------------------------------------------
-
+    item_link=item_link )
+    
+    # --------------------------- STATIC ROUTES --------------------------------------------------
 
 @app.route('/settings')
 def settings():
