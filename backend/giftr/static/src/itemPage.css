@@ -21,8 +21,7 @@
     grid-row-end: 6;
     grid-column-start: 1;
     grid-column-end: 6;  
-    word-break: break-all;
-    padding-top: 10px;
+    padding-top: 20px;
     padding-left: 100px;
     padding-right: 50px;
 }
@@ -58,9 +57,9 @@
     font-family: 'Arial', sans-serif;
     width: 190px;
     border-radius: 5px;
-	cursor:pointer;
-	background-color: #db0038;
-	color:white;
+    cursor:pointer;
+    background-color: #db0038;
+    color:white;
     font-size:20px;
     text-align: center;
     padding: 10px;
