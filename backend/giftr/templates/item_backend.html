@@ -118,7 +118,7 @@
             </div>
             <br />
             <form method="post">
-              <input type="hidden" name="like" value="1" />
+              <input type="hidden" name="like" value="{{ pid }}" />
               <button onclick="myFunction(this)"  class="fa fa-thumbs-up" style="padding: 0; border: none; background: none;">
             </form> 
             <script>
@@ -127,7 +127,7 @@
               }
             </script>
              <form method="post">
-              <input type="hidden" name="wish" value="1" />
+              <input type="hidden" name="wish" value="{{ pid }}" />
               <button class="button" type="submit" formmethod="post">Add to Gift Bank</button>
             </form> 
             <button onclick="window.location.href = '{{ item_link }}';">Buy</button>
