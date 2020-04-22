@@ -8,10 +8,10 @@ import ssl, hashlib, re, datetime, smtplib
 
 def update():
     connection = mysql.connector.connect(
-          host="localhost",
-          user="web",
-          passwd="AN(G3hg93hgn2ffim"
-          database = "dummy"
+        MYSQL_HOST='localhost'
+        MYSQL_USER='web'
+        MYSQL_PASSWORD='AN(G3hg93hgn2ffim'
+        MYSQL_DB='dummy'
     )
     crsr = connection.cursor()
     crsr.execute("SELECT * FROM products")
