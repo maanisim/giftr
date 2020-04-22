@@ -304,7 +304,7 @@ def wishlist():
         wishlist_data = cursor.fetchone()
 
         return render_template('wishlist.html')
-    return render_template('404.html')
+    return render_template('index.html')
 
 
 @app.route('/about')
