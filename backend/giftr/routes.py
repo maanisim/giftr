@@ -280,7 +280,7 @@ def settings():
 @app.route('/questionnaire')
 def questionnaire():
     if 'loggedin' in session:
-        return render_template('index.html')
+        return render_template('rQuestionnaire.html')
     return render_template('404.html')
 
 
