@@ -253,9 +253,9 @@ def product(pid):
         msg = ""
         if 'loggedin' in session:
             uid = session['id']
-            if request.form['like'] is not None:
+            if request.form.get('name') == 'like':
                 cursor.execute('INSERT INTO product_liked (product_id, user_id) VALUES (%s, %s)', (uid, pid))
-            elif request.form['wish'] is not None:
+            elif request.form.get('name') == 'wish':
                 cursor.execute('INSERT INTO wishlist_list (product_id, user_id) VALUES (%s, %s)', (uid, pid))
         else:
             msg="Please log in before adding to a wishlist!"
