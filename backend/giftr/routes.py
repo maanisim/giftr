@@ -223,9 +223,17 @@ def new_settings():
 
     return render_template('settings.html')
 
+#+------------+-----------------------------+-------+---------+----------+-------+------------------------------------------------------------------------------------------+--------+--------------+
+#| product_id | name                        | photo | age_low | age_high | price | link                                                                                     | gender | category     |
+#+------------+-----------------------------+-------+---------+----------+-------+------------------------------------------------------------------------------------------+--------+--------------+
+#|          1 | FITFORT Alarm Clock Wake Up | 1.jpg |      20 |       99 | $     | https://www.amazon.co.uk/FITFORT-Alarm-Clock-Wake-Light-Sunrise/dp/B07CQVM7WY/ref=sr_1_6 | unisex | Alarm Clocks |
+#+------------+-----------------------------+-------+---------+----------+-------+------------------------------------------------------------------------------------------+--------+--------------+
+
 @app.route('/p/<int:pid>')
 def product(pid):
-    return "The uid is {}".format(pid)
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute('SELECT * FROM products WHERE product_id = %s', [pid])
+    return cursor.fetchone()
 # -------------------------------------------------- STATIC ROUTES --------------------------------------------------
 
 
