@@ -118,6 +118,7 @@
             </div>
             <br />
             <form method="post">
+              <input type="hidden" name="like" value="1" />
               <button onclick="myFunction(this)"  class="fa fa-thumbs-up" style="padding: 0; border: none; background: none;">
             </form> 
             <script>
@@ -126,6 +127,7 @@
               }
             </script>
              <form action="/wishlist_add" method="post">
+              <input type="hidden" name="wish" value="1" />
               <button class="button" type="submit" formmethod="post">Add to Gift Bank</button>
             </form> 
             <button onclick="window.location.href = '{{ item_link }}';">Buy</button>
