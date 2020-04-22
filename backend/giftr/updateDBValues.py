@@ -5,15 +5,9 @@ from giftr import app, mysql
 from flask import Flask, redirect, url_for, render_template, request, session, make_response
 from flask_mysqldb import MySQLdb
 import ssl, hashlib, re, datetime, smtplib
-import mysql.connector
 
 def update():
-    connection = mysql.connector.connect(
-          host="localhost",
-          user="myusername",
-          passwd="mypassword"
-          #database = "database"
-    )
+
     crsr = connection.cursor()
     crsr.execute("SELECT * FROM products")
     existingProducts = crsr.fetchall()
