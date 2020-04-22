@@ -4,22 +4,22 @@ p.pageTitle {
 }
 
 .uploadButton {
-  background-color: #519dd9;
-  float: center;
-  color: white;
-  padding: 15pt 30pt;
-  text-align: center;
-  text-decoration: none;
-  font-size: 15px;
-  font-family: arial;
-  cursor: pointer;
-  width: fit-content;
-  display: block;
+	background-color: #519dd9;
+	float: center;
+	color: white;
+	padding: 15pt 30pt;
+	text-align: center;
+	text-decoration: none;
+	font-size: 15px;
+	font-family: arial;
+	cursor: pointer;
+	width: fit-content;
+	display: block;
 }
 
 .uploadButton:hover{
-  background-color: #f7c200;
-  color: black;
+	background-color: #f7c200;
+	color: black;
 }
 
 .item-1 {
@@ -67,7 +67,7 @@ p.pageTitle {
 	grid-template-areas: 
 	 "pageTitle . "
 	 "email emailChange"
-     "password passwordChange"
+    	 "password passwordChange"
 	 "profilePic profilePicChange"
 	 "save save" ;
 }
@@ -77,75 +77,75 @@ p.pageTitle {
 }
 
 form {
-    margin-left: 20%;
-    margin-right: 20%;
+	margin-left: 20%;
+	margin-right: 20%;
 }
 
 #alternative{
-    color: #53bac1;
-    font-size: 20px;
-    text-decoration: none;
+	color: #53bac1;
+	font-size: 20px;
+	text-decoration: none;
 }
 
 #alternative:hover{
-    color: #db0038;
+	color: #db0038;
 }
 
 #alternative i{
-    color: black;
-    font-style: normal;
+	color: black;
+	font-style: normal;
 }
 
 .input{
-    width: 100%;
-    padding: 12px 10px;
-    outline:none;
-    border: none;
-    border-bottom: 2px solid #f7c200;
-    background: transparent;
-    margin: 5px;
-    color:black;
+	width: 100%;
+	padding: 12px 10px;
+	outline:none;
+	border: none;
+	border-bottom: 2px solid #f7c200;
+	background: transparent;
+	margin: 5px;
+	color:black;
 }
 
 .input:focus{
-    border:none;
-    border-bottom: 2px solid #db0038;
+	border:none;
+	border-bottom: 2px solid #db0038;
 }
 
 .textarea{
 	width: 100%;
 	height: 150px;
-    padding: 10px 10px;
-    outline:none;
-    border: none;
-    border-bottom: 2px solid #f7c200;
+	padding: 10px 10px;
+	outline:none;
+	border: none;
+	border-bottom: 2px solid #f7c200;
 	border-right: 2px solid #f7c200;
-    background: transparent;
-    margin: 10px;
-    color: black;
+	background: transparent;
+	margin: 10px;
+	color: black;
 	word-wrap: break-word;
 	resize: none;
 }
 
 .textarea:focus{
-    border:none;
-    border-bottom: 2px solid #db0038;
+	border:none;
+	border-bottom: 2px solid #db0038;
 	border-right: 2px solid #db0038;
 }
 
 ::placeholder {
-    color: black;
+	color: black;
 }
 
 .submit{
-    background-color: #519dd9;
-    color: white;
-    padding: 14px 20px;
-    border: none;
-    cursor: pointer;
-    width: fit-content;
-    margin: 1%;
-    font-size: 15px;
+	background-color: #519dd9;
+	color: white;
+	padding: 14px 20px;
+	border: none;
+	cursor: pointer;
+	width: fit-content;
+	margin: 1%;
+	font-size: 15px;
 	font-weight: bold;
 }
 
