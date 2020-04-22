@@ -100,9 +100,9 @@
 
         <div class="item">
           <div class="leftColumn">
-            <h1>{{ item_name }}</h1>
+            <h1>{{ item.name }}</h1>
             <img
-              src="/static/img/p/{{ photo_name }}"
+              src="/static/img/p/{{ item.photo }}"
               alt="Item"
               width="300"
               height="300"
@@ -128,7 +128,7 @@
              <form action="/wishlist_add" method="post">
               <button class="button" type="submit" formmethod="post">Add to Gift Bank</button>
             </form> 
-            <button onclick="window.location.href = '{{ item_link }}';">Buy</button>
+            <button onclick="window.location.href = '{{ item.link }}';">Buy</button>
           </div>
         </div>
 

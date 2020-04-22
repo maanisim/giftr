@@ -251,11 +251,14 @@ def product(pid):
     photo_name = item['photo']
     item_link = item['link']
 
-    return render_template('item_backend.html',
-    item_name=item_name,
-    photo_name=photo_name,
-    item_link=item_link
-    )
+    data = [
+        {
+            'name': item_name,
+            'photo': photo_name,
+            'link': item_link,
+        }]
+
+    return render_template('item_backend.html', item=data)
 
     # -------------------------------------------------- STATIC ROUTES --------------------------------------------------
 
