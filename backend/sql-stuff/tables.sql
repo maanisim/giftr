@@ -90,7 +90,7 @@ CREATE TABLE `gift_profiles` (
   */
 );
 
-CREATE TABLE 'productRecValues' (
+CREATE TABLE `productRecValues` (
 	'product_id' INT(10) NOT NULL,
          'age_low' INT(3) NOT NULL,
          'age_high' INT(3) NOT NULL, 
@@ -108,7 +108,7 @@ CREATE TABLE 'productRecValues' (
          FOREIGN KEY(product_id) REFERENCES products(product_id)
  );
  
- CREATE TABLE 'profileRecValues' (
+ CREATE TABLE `profileRecValues` (
  	'user_id' INT(10) NOT NULL,
 	'age_low' INT(3) NOT NULL,
         'age_high' INT(3) NOT NULL,
