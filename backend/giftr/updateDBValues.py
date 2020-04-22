@@ -8,7 +8,6 @@ import ssl, hashlib, re, datetime, smtplib
 
 def update():
     crsr = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    crsr = connection.cursor()
     crsr.execute("SELECT * FROM products")
     existingProducts = crsr.fetchall()
     crsr.execute("SELECT product_id FROM productRecValues")
