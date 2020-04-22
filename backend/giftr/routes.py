@@ -231,13 +231,9 @@ def new_settings():
 
 @app.route('/p/<int:pid>')
 def product(pid):
-    if 'loggedin' in session:
-        if(re.match("^[A-Za-z0-9_-]*$", pid)):
-            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute('SELECT * FROM products WHERE product_id = %s', [pid])
-            return cursor.fetchone()
-        return render_template('404.html')
-    return render_template('404.html')
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute('SELECT * FROM products WHERE product_id = %s', [pid])
+    return cursor.fetchone()
 # -------------------------------------------------- STATIC ROUTES --------------------------------------------------
 
 
