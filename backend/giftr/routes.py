@@ -166,7 +166,7 @@ def search():
             while row is not None:
                 print(str(row))
                 row = cursor.fetchone()
-    return render_template('search_for_gift.html')
+    return render_template('search.html')
 
 
 @app.route('/emailSent', methods=['POST', 'GET'])
@@ -341,7 +341,7 @@ def suggestion():
         initialise()
         update()
         return render_template('itemSuggestion.html')
-    return render_template('404.html')
+    return render_template('index.html')
 
 
 ###################################################################
