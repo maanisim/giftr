@@ -181,11 +181,11 @@ def emailsent():
         smtp_server = "smtp.gmail.com"
         sender_email = "group16uol@gmail.com"  # Enter your address
         receiver_email = "group16uol@gmail.com"  # Enter receiver address
-        password = "Tataract52"
+        emailPassword = "Tataract52"
 
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
-            server.login(sender_email, password)
+            server.login(sender_email, emailPassword)
             server.sendmail(sender_email, receiver_email, message)
     return render_template('emailSent.html')
 
@@ -207,16 +207,19 @@ def new_settings():
             if(len(email) > 4):
                 if(re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email)):
                     print("email changed! to"+email)
-
+                    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+                    cursor.execute("UPDATE users set email="+email+" WHERE user_id"+id)
+                    #print that something happened? to user
+                    
         if(request.form['passw'] == request.form['cofirmPassw']):
             passw = request.form['passw']
             if(len(passw) > 7):
                 if(re.match("^[A-Za-z0-9_-]*$", passw)):
                     print("pass changed! to"+passw)
-                #cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                #cursor.execute('SELECT name FROM products WHERE name LIKE \'%%%s%%\' LIMIT 5', ([search]))
-                #data = cursor.fetchall()
-               # print(data)
+                    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+                    cursor.execute("UPDATE users set password="+passw+" WHERE user_id"+id)
+                    #print that something happened? to user
+
     return render_template('settings.html')
 
 
@@ -253,7 +256,7 @@ def friend():
 @app.route('/friends')
 def friends():
     if 'loggedin' in session:
-        return render_template('index.html')
+        return render_template('my_friends.html')
     return render_template('404.html')
 
 @app.route('/item')
@@ -264,7 +267,7 @@ def item():
 @app.route('/wishlist')
 def wishlist():
     if 'loggedin' in session:
-        return render_template('index.html')
+        return render_template('wishlist.html')
     return render_template('404.html')
 
 
@@ -275,7 +278,7 @@ def about():
 
 @app.route('/privacy')
 def privacy():
-    return render_template('privacy.html')
+    return render_template('privacy_policy.html')
 
 
 @app.route('/contact')
@@ -286,5 +289,5 @@ def contact():
 @app.route('/suggestion')
 def suggestion():
     if 'loggedin' in session:
-        return render_template('index.html')
+        return render_template('itemSuggestion.html')
     return render_template('404.html')
