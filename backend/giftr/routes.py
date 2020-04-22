@@ -7,9 +7,7 @@ from math import floor as floor
 global COOKIE_TIME_OUT
 COOKIE_TIME_OUT = 60*60*24*7  # 7 days
 
-app.errorhandler(404)
-
-
+@app.errorhandler(404)
 def page_not_found(e):
     # note that we set the 404 status explicitly
     return render_template('404.html'), 404
@@ -22,6 +20,7 @@ def index():
         # You can tell you are logged in by register/login disappering on the right and being replaced with "my profile"
         return render_template('index.html', username=session['username'])
     return render_template('index.html')
+
 
 # -------------------------------------------------- AUTH ROUTES --------------------------------------------------
 
@@ -57,7 +56,7 @@ def login():
             return redirect('/')
         else:
             msg = 'Incorrect login details!'
-            return render_template('login.html')
+            return render_template('login.html', msg=msg)
     elif not 'loggedin' in session:
         return render_template('login.html')
     elif 'loggedin' in session:
@@ -219,6 +218,7 @@ def new_settings():
                 #data = cursor.fetchall()
                # print(data)
     return render_template('settings.html')
+
 
 # -------------------------------------------------- STATIC ROUTES --------------------------------------------------
 
