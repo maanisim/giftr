@@ -2,31 +2,19 @@
 #IMPORTS: IMPORTANT
 ########################################################################
 
+import sqlite3
 from sklearn.neighbors import NearestNeighbors
 import numpy as np
-import mysql.connector
 
-mydb = mysql.connector.connect(
-  host="localhost",
-  user="myusername",
-  passwd="mypassword"
-  database = "database"
-)
 #####################################################################################
-#ALL INFO WITHIN CONNECTION SHOULD BE REPLACED WITH RELEVANT HOST, USERNAME, PASSWORD AND
-#DATABASE NAME DETAILS
+#ALL INSTANCES OF "database.db" should be replaces with file name of actual .db file
 #####################################################################################
 
 #######################################################################################
 #GENERATES DATABASE FOR TESTING PURPOSES, SHOULD NOT BE RUN ONCE CONNECTED TO DATABASE
 #######################################################################################
 def createDB():
-    connection = mysql.connector.connect(
-          host="localhost",
-          user="myusername",
-          passwd="mypassword"
-          database = "database"
-    )
+    connection = sqlite3.connect("database.db")
     crsr = connection.cursor()
     fd = open('products.sql','r')
     createProducts = fd.read()
@@ -51,12 +39,7 @@ def createDB():
 #SHOULD BE RUN ONCE TO GENERATE INFRASTRUCTURE FOR RECOMMENDATIONS
 ########################################################################################
 def initialise():
-    connection = mysql.connector.connect(
-          host="localhost",
-          user="myusername",
-          passwd="mypassword"
-          database = "database"
-    )
+    connection = sqlite3.connect("database.db")
     crsr = connection.cursor()
     createValues = """CREATE TABLE productRecValues (
                 'product_id' INT(10) NOT NULL,
@@ -103,12 +86,7 @@ def initialise():
 #SHOULD BE RUN WHENEVER ITEMS ADDED TO DATABASE POPULATES DATABASE 
 ##########################################################################################
 def update():
-    connection = mysql.connector.connect(
-          host="localhost",
-          user="myusername",
-          passwd="mypassword"
-          database = "database"
-    )
+    connection = sqlite3.connect("database.db")
     crsr = connection.cursor()
     crsr.execute("SELECT * FROM products")
     existingProducts = crsr.fetchall()
@@ -207,9 +185,9 @@ def update():
             age = round(counter[6]*1.5)
             if (counter[7] == "male"):
                 gender1 = 500
-                gender2 = 100
+                gender2 = 0
             elif (counter[7] == "female"):
-                gender1 = 100
+                gender1 = 0
                 gender2 = 500
             else:
                 gender1 = 250
@@ -232,12 +210,7 @@ def onLoad():
 #NOTE: CurrentUser is user_id of the logged in user, must be accessed before running
 
 def Recommendation(currentUserID, alreadyRecc):
-    connection = mysql.connector.connect(
-          host="localhost",
-          user="myusername",
-          passwd="mypassword"
-          database = "database"
-    )
+    connection = sqlite3.connect("database.db")
     crsr = connection.cursor()
     crsr.execute("""SELECT age_low, age_high, price, gender1, gender2, toiletries,
                 clothes, homeware, entertainment, consumable, sport, other FROM productRecValues""")
@@ -293,12 +266,7 @@ def IO(recommendedProduct):
 ###################################################################################
 #NOTE: result is whether the user has liked the product, in the form "yes" or "no"
 def updateValues(result, recommendedProduct, currentUser):
-    connection = mysql.connector.connect(
-          host="localhost",
-          user="myusername",
-          passwd="mypassword"
-          database = "database"
-    )
+    connection = sqlite3.connect("database.db")
     crsr = connection.cursor()
     crsr.execute("""SELECT age_low, age_high, price, gender1, gender2, toiletries,
                 clothes, homeware, entertainment, consumable, sport, other FROM
