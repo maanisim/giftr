@@ -223,6 +223,15 @@ def new_settings():
 
     return render_template('settings.html')
 
+        # ADD TO WISHLIST
+        # if 'loggedin' in session:
+        #     uid = session['id']
+        #     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        #     cursor.execute('INSERT INTO wishlist_list WHERE user_id = %s VALUES %s', (uid, pid))
+        #     data = cursor.fetchone()
+        # else:
+        #     return render_template(url_for(pid), msg="Please log in before adding to a wishlist!")
+
 #+------------+-----------------------------+-------+---------+----------+-------+------------------------------------------------------------------------------------------+--------+--------------+
 #| product_id | name                        | photo | age_low | age_high | price | link                                                                                     | gender | category     |
 #+------------+-----------------------------+-------+---------+----------+-------+------------------------------------------------------------------------------------------+--------+--------------+
