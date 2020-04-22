@@ -475,7 +475,6 @@ def initialise():
                 'sport' int(3),
                 'other' int(3),
                 PRIMARY KEY(product_id),
-                FOREIGN KEY(product_id) REFERENCES products(product_id)
                 );"""
     
     createProfiles = """CREATE TABLE 'profileRecValues' (
