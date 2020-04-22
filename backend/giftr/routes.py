@@ -458,6 +458,7 @@ def update():
             crsr.execute("""INSERT INTO profileRecValues VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)""",
                          (userID, age, age, 200, gender1, gender2, 250, 250, 250, 250, 250, 250, 250))
     mysql.connection.commit()
+    mysql.connection.close()
     
 def initialise():
     crsr = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -502,3 +503,4 @@ def initialise():
     crsr.execute(createValues)
     crsr.execute(createProfiles)
     mysql.connection.commit()
+    mysql.connection.close()
