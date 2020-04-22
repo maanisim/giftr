@@ -1,0 +1,116 @@
+div.pageSection {
+}
+
+div.pageContent {
+	padding-left: 100px;
+	padding-right: 100px;
+}
+
+
+div.friendCard {
+	text-align: center;
+	padding: 10px 10px;
+	border-style: solid;
+	border-color: #ededed;
+	border-radius: 3px 3px 3px 3px;
+	width: fit-content;
+}
+
+.column {
+	float: left;
+	width: 20%;
+	padding: 10px 10px;
+}
+
+.row::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+
+p.sectionTitle {
+	font: bold 20pt Arial, sans-serif;
+	color: #db0038;
+}
+
+p.pageTitle {
+	font: bold 25pt Arial, sans-serif;
+	color: #db0038;
+}
+
+p.text {
+	font: 15pt Arial, sans-serif;
+	color: #525457;
+}
+
+.searchField {
+	width: 300px;
+    padding: 5pt 5pt;
+    outline:none;
+    background: transparent;
+    margin: 5px;
+    color: black;
+	border-style: solid;
+	border-color: #ededed;
+	border-radius: 3px 3px 3px 3px;
+}
+
+.searchField:focus {
+	border-color: grey;
+}
+
+.button {
+	background-color: #519dd9;
+	float: center;
+	color: white;
+	padding: 10pt 10pt;
+	text-align: center;
+	text-decoration: none;
+	font-size: 14pt;
+	font-family: arial;
+	cursor: pointer;
+	width: fit-content;
+	border-style: none;
+	text-decoration: none;
+	border-radius: 3px;
+}
+
+.button1 {
+	background-color: #519dd9;
+	float: center;
+	color: white;
+	padding: 10pt 10pt;
+	text-align: center;
+	text-decoration: none;
+	font-size: 14pt;
+	font-family: arial;
+	cursor: pointer;
+	width: fit-content;
+	border-style: none;
+	text-decoration: none;
+} 
+
+.searchButton {
+	background-color: transparent;
+	color: grey;
+	padding: 4pt 5pt;
+}
+
+.accept {
+	background-color: #53bac1;
+	font-size: 10pt;
+	border-radius: 3px;
+	padding: 5pt 5pt;
+}
+
+.deny {
+	background-color: #db0038;
+	font-size: 10pt;
+	border-radius: 3px;
+	padding: 5pt 5pt;
+}
+
+.button:hover{
+	background-color: #f7c200;
+	color: black;
+}
