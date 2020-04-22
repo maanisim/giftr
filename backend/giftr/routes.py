@@ -240,8 +240,9 @@ def new_settings():
 
 @app.route('/p/<int:pid>', methods=['POST', 'GET'])
 def product(pid):
+    print("test %s", pid)
     if request.method == 'POST':
-        print('posted from pid: %s', pid)
+        print("posted from pid: %s", pid)
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute('SELECT * FROM products WHERE product_id = %s', [pid])
     item = cursor.fetchone()
