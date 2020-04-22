@@ -20,27 +20,28 @@
 
 [class*="col-"] {
     float: left;
-    margin-right: 20px;
+    
+    margin-right: 25px;
 }
 
 .col-1 {
-    width: 18%;
+    width: 17%;
 }
 
 .col-2 {
-    width: 18%;
+    width: 17%;
 }
 
 .col-3 {
-    width: 18%;
+    width: 17%;
 }
 
 .col-4 {
-    width: 18%;
+    width: 17%;
 }
 
 .col-5 {
-    width: 18%;
+    width: 17%;
 }
 
 
@@ -57,5 +58,6 @@ h2 {
     margin-left: 60px;
     color: #53bac1;
 }
+
 
 
