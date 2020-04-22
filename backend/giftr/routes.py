@@ -239,18 +239,19 @@ def new_settings():
 #+------------+-----------------------------+-------+---------+----------+-------+------------------------------------------------------------------------------------------+--------+--------------+
 
 @app.route('/p/<int:pid>')
-def product(pid):
+def product(pid, methods=['POST']):
+    if request.method == 'POST':
+        print('posted from pid: %s', pid)
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute('SELECT * FROM products WHERE product_id = %s', [pid])
     item = cursor.fetchone()
     item_name = item['name']
     photo_name = item['photo']
 
-    return render_template('item_backend.html', 
-        item_name=item_name,
-        photo_name=photo_name,
-        )
-
+    return render_template('item_backend.html',
+    item_name=item_name,
+    photo_name=photo_name
+    )
 
     # -------------------------------------------------- STATIC ROUTES --------------------------------------------------
 
