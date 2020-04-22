@@ -239,7 +239,7 @@ def new_settings():
 #+------------+-----------------------------+-------+---------+----------+-------+------------------------------------------------------------------------------------------+--------+--------------+
 
 @app.route('/p/<int:pid>')
-def product(pid, methods=['POST']):
+def product(pid, methods=['POST', 'GET']):
     if request.method == 'POST':
         print('posted from pid: %s', pid)
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
