@@ -11,7 +11,6 @@ p.pageTitle {
   text-align: center;
   text-decoration: none;
   font-size: 15px;
-  border-radius: 8px;
   font-family: arial;
   cursor: pointer;
   width: fit-content;
@@ -145,7 +144,6 @@ form {
     border: none;
     cursor: pointer;
     width: fit-content;
-    border-radius: 8px;
     margin: 1%;
     font-size: 15px;
 	font-weight: bold;
