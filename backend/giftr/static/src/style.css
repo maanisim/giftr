@@ -68,9 +68,9 @@ body{
 
 @media screen and (min-width: 320px){
   
-  img {
-  width: 130px;
-  height: 50px;
-}
+  .logo{
+    width: 130px;
+    height: 50px;
+  }
   
 }
