@@ -238,8 +238,9 @@ def product(pid):
 @app.route('/z/<int:pid>')
 def z(pid):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    
-    return render_template('z.html', product = cursor.execute('SELECT * FROM products WHERE product_id = %s', [pid]))
+    product = cursor.execute('SELECT * FROM products WHERE product_id = %s', [pid]
+    product_name = product['name']
+    return render_template('z.html', product_name))
 # -------------------------------------------------- STATIC ROUTES --------------------------------------------------
 
 
