@@ -461,8 +461,8 @@ def update():
     
 def initialise():
     crsr = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    crsr.execute(DROP TABLE productRecValues)
-    crsr.execute(DROP TABLE profileRecValues)
+    #crsr.execute(DROP TABLE productRecValues)
+    #crsr.execute(DROP TABLE profileRecValues)
     createValues = """CREATE TABLE productRecValues (
                 product_id INT(10) NOT NULL,
                 age_low INT(3) NOT NULL,
