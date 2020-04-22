@@ -204,7 +204,7 @@ def welcome():
 def new_settings():
     if('loggedin' in session and request.method == 'POST'):
         if(request.form['email'] == request.form['confirmEmail']):
-            email = request.form['email']
+            email = str(request.form['email'])
             if(len(email) > 4):
                 if(re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email)):
                     print("email changed! to"+email)
