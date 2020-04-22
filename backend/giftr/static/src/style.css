@@ -51,6 +51,7 @@ body{
 
 .giftbank:hover {
   background-color: #f7c200;
+  text-decoration: none;
 }
 
 .giftbank .a:hover {
