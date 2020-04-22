@@ -21,9 +21,21 @@
     grid-row-end: 6;
     grid-column-start: 1;
     grid-column-end: 6;  
-    padding-top: 20px;
+    padding-top: 30px;
     padding-left: 100px;
     padding-right: 50px;
+}
+
+.link {
+    font-family: 'Arial', sans-serif;
+    width: 190px;
+    border-radius: 5px;
+	cursor:pointer;
+	background-color: #db0038;
+	color:white;
+    font-size:20px;
+    text-align: center;
+    padding: 10px;
 }
 
 .item{
@@ -53,13 +65,13 @@
     color: #53bac1;
 }
 
-.button {
+.gift {
     font-family: 'Arial', sans-serif;
     width: 190px;
     border-radius: 5px;
-    cursor:pointer;
-    background-color: #db0038;
-    color:white;
+	cursor:pointer;
+	background-color: #db0038;
+	color:white;
     font-size:20px;
     text-align: center;
     padding: 10px;
@@ -71,4 +83,5 @@
 .button:hover{
     background-color: #f7c200;
     color: black;
+    text-decoration: none;
 }
