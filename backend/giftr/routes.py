@@ -12,6 +12,8 @@ def page_not_found(e):
     # note that we set the 404 status explicitly
     return render_template('404.html'), 404
 
+from sklearn.neighbors import NearestNeighbors
+import numpy as np
 
 @app.route('/')
 def index():
