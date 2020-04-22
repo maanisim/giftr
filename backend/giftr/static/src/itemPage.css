@@ -45,6 +45,7 @@
     grid-template-columns: 0px 40% 0px 0px;
     grid-gap: 5px;
     padding: 5px;
+    padding-bottom: 10px;
 }
 
 .fa{
