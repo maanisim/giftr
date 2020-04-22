@@ -211,7 +211,8 @@ def new_settings():
                 #if(re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email)):
         print("email changed! to"+email)
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute("UPDATE users set email="+email+" WHERE user_id"+id)
+        cursor.execute("UPDATE users set email=\"%s\" WHERE user_id",(id))
+
                     #print that something happened? to user
                     
         if(request.form['passw'] == request.form['cofirmPassw']):
@@ -220,7 +221,7 @@ def new_settings():
                 if(re.match("^[A-Za-z0-9_-]*$", passw)):
                     print("pass changed! to"+passw)
                     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                    cursor.execute("UPDATE users set password="+passw+" WHERE user_id"+id)
+                    cursor.execute("UPDATE users set password=\"%s\" WHERE user_id",(passw))
                     #print that something happened? to user
         mysql.connection.commit()
     return render_template('settings.html')
