@@ -460,8 +460,24 @@ def update():
     
 def initialise():
     crsr = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    createValues = """CREATE TABLE 'productRecValues' ('product_id' INT(10) NOT NULL, 'age_low' INT(3) NOT NULL,'age_high' INT(3) NOT NULL,  'price' INT(3) NOT NULL, 'gender1' INT(3) NOT NULL,'gender2' INT(3) NOT NULL,'toiletries' INT(3) NOT NULL,'clothes' INT(3) NOT NULL,'homeware' INT(3) NOT NULL,'entertainment' INT(3) NOT NULL,'consumable' INT(3) NOT NULL,'sport' INT(3) NOT NULL, 'other' INT(3) NOT NULL,PRIMARY KEY(product_id),FOREIGN KEY(product_id) REFERENCES products(product_id))"""
-
+    createValues = """CREATE TABLE productRecValues (
+                'product_id' int(10) NOT NULL,
+                'age_low' int(3) NOT NULL,
+                'age_high' int(3) NOT NULL, 
+                'price' int(3) NOT NULL,
+                'gender1' int(3) NOT NULL,
+                'gender2' int(3) NOT NULL,
+                'toiletries' int(3) NOT NULL,
+                'clothes' int(3) NOT NULL,
+                'homeware' int(3) NOT NULL,
+                'entertainment' int(3) NOT NULL,
+                'consumable' int(3) NOT NULL,
+                'sport' int(3) NOT NULL,
+                'other' int(3) NOT NULL,
+                PRIMARY KEY(product_id),
+                FOREIGN KEY(product_id) REFERENCES products(product_id)
+                );"""
+    
     createProfiles = """CREATE TABLE 'profileRecValues' (
                 'user_id' INT(10) NOT NULL,
                 'age_low' INT(3) NOT NULL,
