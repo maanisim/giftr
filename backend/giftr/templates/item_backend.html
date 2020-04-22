@@ -130,7 +130,9 @@
               than this but I just need to test it with this size for now.}
             </div>
             <br />
-            <i onclick="myFunction(this)" action="/wishlist_add" method="post" class="fa fa-thumbs-up"></i>
+            <form action="/wishlist_add" method="post">
+              <i onclick="myFunction(this)"  class="fa fa-thumbs-up"></i>
+            </form> 
             <script>
               function myFunction(x) {
                 x.classList.toggle("fa-thumbs-down");
