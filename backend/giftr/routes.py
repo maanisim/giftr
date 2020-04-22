@@ -432,7 +432,7 @@ def update():
                 
             else:
                 other = 500
-            crsr.execute("""INSERT INTO productRecValues VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)""",(productID, age_low, age_high, price, gender1, gender2, toiletries, clothes, homeware, entertainment, consumable, sport, other))
+            crsr.execute("""INSERT INTO productRecValues VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",(productID, age_low, age_high, price, gender1, gender2, toiletries, clothes, homeware, entertainment, consumable, sport, other))
 
     crsr.execute("SELECT * FROM users")
     existingUsers = crsr.fetchall()
