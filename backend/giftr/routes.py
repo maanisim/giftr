@@ -203,13 +203,13 @@ def welcome():
 @app.route('/new_settings',methods=['POST'])
 def new_settings():
     if('loggedin' in session and request.method == 'POST'):
-        if(request.form['email'] == request.form['confirmEmail']):
-            email = request.form['email']
+        #if(request.form['email'] == request.form['confirmEmail']):
+        email = request.form['email']
             #if(len(email) > 4):
                 #if(re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email)):
-            print("email changed! to"+email)
-            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute("UPDATE users set email="+email+" WHERE user_id"+id)
+        print("email changed! to"+email)
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("UPDATE users set email="+email+" WHERE user_id"+id)
                     #print that something happened? to user
                     
         if(request.form['passw'] == request.form['cofirmPassw']):
