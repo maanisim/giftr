@@ -252,7 +252,7 @@ def product(pid):
     return render_template('item_backend.html',
     item_name=item_name,
     photo_name=photo_name,
-    item_link = item_link,
+    item_link=item_link
     )
 
     # -------------------------------------------------- STATIC ROUTES --------------------------------------------------
