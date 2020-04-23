@@ -82,11 +82,11 @@
             </center>
 
             <div class="itemSuggestion">
-                  <button class="button dislike" type="submit"><a href="{{ url_for('suggestion2')}}")><img id="broken" src="{{ url_for('static', filename='img/broken-heart.png') }}" width = 100 length = 100></a></button>
+                 <button class="button dislike" type="submit"><a href="{{ url_for('suggestion2')}}"><img id="broken" src="{{ url_for('static', filename='img/broken-heart.png') }}"></a></button>
 
-                <img id="giftImage" src={{url_for('static', filename = image)}} class="giftImg" alt="gift" draggable="false">
+                <img id="giftImage" src="{{url_for('static', filename = image)}}" alt="gift" draggable="false">
 
-                <button class="button like"  type="submit"><a href="{{ url_for('suggestion1')}}")><i class="fas fa-heart" ></i></a></button>
+                <button class="button like"  type="submit"><a href="{{ url_for('suggestion1')}}"><i class="fas fa-heart" style="color: #db0038;"></i></a></button>
                                                                                  
                 <a class="button giftInfo" href="{{ url_for('item') }}" style="text-decoration: none;">More information</a>
 
