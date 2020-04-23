@@ -15,7 +15,6 @@
     <link rel="stylesheet"
           href="{{ url_for('static', filename='src/style.css') }}" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="{{ url_for('static', filename='src/script.js') }}"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -81,10 +80,24 @@
                     <br>
                 </center>
             </div>
-            <div class="giftbank" onmouseover="onH(this)" onmouseout="onE(this)">
-                <img src="{{ url_for('static', filename='img/gift.png') }}" alt="Gift icon" width="30" height="30" draggable="false">
+           <div class="giftbank" onmouseover="onH(this)" onmouseout="onE(this)">
+                <img src="{{ url_for('static', filename='img/gift.png') }}" alt="Gift icon" width="30" height="30"
+                    draggable="false">
                 <a href="{{ url_for('wishlist') }}">Gift Bank</a>
             </div>
+            <script type="text/javascript">
+                function onH(x) {
+                    x.getElementsByTagName('img')[0].src = "{{ url_for('static', filename='img/gift-black.png') }}";
+                    x.getElementsByTagName('a')[0].style.color = "black";
+                }
+
+                function onE(x) {
+                    x.getElementsByTagName('img')[0].src = "{{ url_for('static', filename='img/gift.png') }}";
+                    x.getElementsByTagName('a')[0].style.color = "white";
+                }
+            </script>
+
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
             <div class="grid-container">
                 <div class="item-1">
                     <p class="pageTitle">My Profile</p>
