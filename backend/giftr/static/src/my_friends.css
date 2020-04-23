@@ -114,3 +114,17 @@ p.text {
 	background-color: #f7c200;
 	color: black;
 }
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+	.searchField {
+		width: 150px;
+		padding: 5pt 5pt;
+		outline:none;
+		background: transparent;
+		margin: 5px;
+		color: black;
+		border-style: solid;
+		border-color: #ededed;
+		border-radius: 3px 3px 3px 3px;
+	}
+}
