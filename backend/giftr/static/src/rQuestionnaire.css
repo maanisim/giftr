@@ -1,3 +1,10 @@
+form{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top:2%;
+    margin-bottom: 2%;
+}
+
 .recommendationQ{
     font-family: 'Arial', sans-serif;
     margin-left: 15%;
@@ -11,15 +18,15 @@
 
 .submit{
     background-color: #db0038;
+    color: white;
+    border: none;
+    outline: none;
     width: 100px;
     height: 40px;
     font-family: 'Arial', sans-serif;
     font-size: 20px;
-    color: white;
-    float: right;
-    margin-right: 300px;
     margin-top: 10px;
-    padding-bottom: 40px;
+    margin-bottom: 2%;
 }
 
 .submit:hover{
@@ -33,12 +40,19 @@
 
 @media screen and (min-width: 320px) and (max-width: 700px){
     .recommendationQ{
-        margin: 10px;
+        margin: 2%;
         text-align: center;
     }
     
     .submit{
-        margin-right: 100px;
-        padding-bottom: 20px;
+        margin-left: 20%;
     }
+}
+
+@media screen and (min-width: 701px) and (max-width: 1200px){
+    .recommendationQ{
+        margin: 2%;
+        text-align: center;
+    }
+
 }
