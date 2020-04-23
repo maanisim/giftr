@@ -74,8 +74,8 @@
     color: #ededed;
 }
 
-h1 {
-    font-size: 25px;
+#giftTitle {
+    font-size: 30px;
     margin-top: 10px;
     margin-left: 20%;
     margin-right: 20%;
@@ -95,3 +95,54 @@ h1 {
     90% { transform: translate(1px, 2px) rotate(0deg); }
     100% { transform: translate(1px, -2px) rotate(-1deg); }
   }
+
+@media screen and (min-width: 320px) and (max-width: 700px){
+    .itemSuggestion {
+        grid-template-columns: 5% 15% 50% 15% 5%;
+        grid-template-rows: 100px 40px 100px 50px;
+        column-gap: 10px;
+        row-gap: 10px;
+        font-size: 7pt;
+    }
+
+    #broken{
+        width: 35px;
+        height: 35px;
+    }
+
+    .like{
+        font-size: 35px;
+    }
+
+    .giftInfo{
+        margin-top: 10px;
+        margin-left: 32%;
+        float: center;
+        height: 43px;
+        width: 90px;
+        font-size: 15px;
+    }
+
+    #giftTitle{
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 701px) and (max-width: 1199px){
+    .itemSuggestion {
+        grid-template-columns: 9% 15% 50% 15% 5%;
+        grid-template-rows: 170px 90px 180px 90px;
+        column-gap: 10px;
+        row-gap: 20px;
+        font-size: 7pt;
+    }
+    
+    .giftInfo{
+        margin-top: 10px;
+        margin-left: 35%;
+        float: center;
+        height: 60px;
+        width: 130px;
+        font-size: 20px;
+    }
+}
