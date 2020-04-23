@@ -344,12 +344,12 @@ def wishlist():
     if 'loggedin' in session:
         user_id = session['id']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM wishlist_list WHERE user_id = %s', [user_id])
+        cursor.execute('SELECT products.name, products.photo FROM wishlist_list INNER JOIN products ON wishlist_list.product_id=products.product_id WHERE user_id=%s', [user_id])
         # Fetch wishlist
-        wishlist_data = cursor.fetchone()
+        wishlist_data = cursor.fetchall()
 
         return render_template('wishlist.html')
-    return redirect(url_for('index'))
+    return redirect(url_for('index',za=wishlist_data))
 
 
 @app.route('/about')

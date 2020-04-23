@@ -91,6 +91,13 @@
             <br>
             <div class="wishlist">
                 <div class="row">
+                    {% for z in za %}
+                    <tr>
+                        <td>{{ z.name }}</a></td>
+                        <!--<td>{{ row.product_code }}</td>
+                        <td bgcolor="{{ row.stat_colour }}">{{ row.unit_status }}</td>-->
+                    </tr>
+                    {% endfor %}
                     <div class=" col-1">
                         <a href="itemPage.html" class="image" style="text-decoration: none;">
                             <img src="{{ url_for('static', filename='img/1.jpg') }}" alt="gift" class="giftImg" draggable="false">
