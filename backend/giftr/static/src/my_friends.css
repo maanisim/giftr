@@ -116,6 +116,10 @@ p.text {
 }
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
+	div.pageContent {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
 	.searchField {
 		width: 150px;
 		padding: 5pt 5pt;
@@ -126,5 +130,17 @@ p.text {
 		border-style: solid;
 		border-color: #ededed;
 		border-radius: 3px 3px 3px 3px;
+	}
+	
+	.column {
+		float: left;
+		width: 33.33%%;
+		padding: 10px 10px;
+	}
+
+	.row::after {
+		content: "";
+		clear: both;
+		display: table;
 	}
 }
