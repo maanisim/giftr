@@ -268,6 +268,20 @@ def product(pid):
     item_name=item_name,
     photo_name=photo_name,
     item_link=item_link )
+
+
+@app.route('/u/<int:uid>', methods=['POST', 'GET'])
+def user(uid):
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute('SELECT * FROM users WHERE user_id = %s', [uid])
+    user = cursor.fetchone()
+    username = user['username']
+
+    return render_template('anotherProfile.html',
+    username=username,
+    )
+
+
     # --------------------------- STATIC ROUTES --------------------------------------------------
 
 @app.route('/settings')
@@ -319,7 +333,7 @@ def wishlist():
     if 'loggedin' in session:
         user_id = session['id']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM wishlist WHERE user_id = %s', [user_id])
+        cursor.execute('SELECT * FROM wishlist_list WHERE user_id = %s', [user_id])
         # Fetch wishlist
         wishlist_data = cursor.fetchone()
 
