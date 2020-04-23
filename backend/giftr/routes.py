@@ -200,7 +200,7 @@ def emailsent():
 def new_settings():
     if('loggedin' in session and request.method == 'POST'):
         uid = session['id']
-        if(request.form['email'] == request.form['confirmEmail']):
+        if(str(request.form['email']) == str(request.form['confirmEmail'])):
             email = request.form['email']
             if(len(email) > 4):
                 if(re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email)):
@@ -210,7 +210,7 @@ def new_settings():
                     request.form['email'] = email
                     #print that something happened? to user
                     
-            if(request.form['passw'] == request.form['cofirmPassw']):
+            if(str(request.form['passw']) == str(request.form['cofirmPassw'])):
                 passw = request.form['passw']
                 if(len(passw) > 7):
                     if(re.match("^[A-Za-z0-9_-]*$", passw)):
