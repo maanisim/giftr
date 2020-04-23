@@ -121,33 +121,3 @@
         margin-bottom: 10px;
     }
 }
-
-@media screen and (min-width: 769px) and (max-width: 1199px){
-    .leftColumn{
-        grid-row-start: 1;
-        grid-row-end: 3;
-        grid-column-start: 1;
-        grid-column-end: 6; 
-        text-align: center;
-    }
-    
-    .rightColumn{
-        text-align: center;
-        justify-self: center;
-        grid-row-start: 3;
-        grid-row-end: 5;
-        grid-column-start: 1;
-        grid-column-end: 6;
-        padding-top: 10px;
-    }
-
-    .links{
-        grid-row-start: 5;
-        grid-row-end: 6;
-        grid-column-start: 3;
-        grid-column-end: 4;  
-        padding-top: 30px;
-        justify-self: center;
-    }
-
-}
