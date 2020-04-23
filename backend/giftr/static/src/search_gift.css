@@ -112,3 +112,39 @@ label.text {
 .grid-container > div {
 	padding: 0 0;
 }
+
+@media screen and (min-width: 320px) and (max-width: 768px) {
+	div.pageContent {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	
+	.grid-container {
+		display: grid;
+		grid-template-columns: 50% 50%;
+		padding: 0 100pt;
+		grid-gap: 10pt 25pt;
+		text-align: bottom;
+		grid-template-areas: 
+		 "pageTitle pageTitle"
+		 "sidebar ."
+		 "results results";
+	}
+
+	.grid-container > div {
+		padding: 0 0;
+	}
+	
+	.column {
+		float: left;
+		width: 33.33%;
+		padding: 10px 10px;
+		text-align: center;
+	}
+
+	.row::after {
+		content: "";
+		clear: both;
+		display: table;
+	}
+}
