@@ -29,7 +29,7 @@ class GitCommands(commands.Cog, name="Git commands"):
 
     @commands.cooldown(1.0, 5.0, commands.BucketType.guild)
     @commands.command(help="Updates bot to the current git version")
-  async def update(self, ctx,error):
+  async def update(self, ctx):
     if (os.system("git fetch; git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)") != 0):
       await ctx.send("Git pull failed")
     else:
