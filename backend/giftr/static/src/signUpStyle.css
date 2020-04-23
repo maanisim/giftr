@@ -75,7 +75,6 @@ form {
     border: none;
     cursor: pointer;
     width: 20%;
-    border-radius: 8px;
     margin: 1%;
     text-transform: uppercase;
     font-size: 14px;
@@ -109,7 +108,7 @@ form {
 @media screen and (min-width: 768px) and (max-width: 1199px){
     form {
         margin-left: 10%;
-        margin-right: 15%;
+        margin-right: 20%;
         margin-top:2%;
     }
 
