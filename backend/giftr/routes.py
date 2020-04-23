@@ -574,16 +574,16 @@ def updateValues(result, recommendedProduct, currentUser):
             if (newProductValues[counter] < 0):
                 newProductValues[counter] = 0
     crsr.execute("""UPDATE profileRecValues
-                SET age_low = ?, age_high = ?, price = ?, gender1 = ?, gender2 = ?, toiletries = ?,
-                clothes = ?, homeware = ?, entertainment = ?, consumable = ?, sport = ?, other = ?
-                WHERE user_id = ?""", (newUserValues[0], newUserValues[1], newUserValues[2],
+                SET age_low = %d, age_high = %d, price = %d, gender1 = %d, gender2 = %d, toiletries = %d,
+                clothes = %d, homeware = %d, entertainment = %d, consumable = %d, sport = %d, other = %d
+                WHERE user_id = %d""", (newUserValues[0], newUserValues[1], newUserValues[2],
                 newUserValues[3], newUserValues[4], newUserValues[5], newUserValues[6],
                 newUserValues[7], newUserValues[8], newUserValues[9], newUserValues[10],
                 newUserValues[11], currentUser))
     crsr.execute("""UPDATE productRecValues
-                SET age_low = ?, age_high = ?, price = ?, gender1 = ?, gender2 = ?, toiletries = ?,
-                clothes = ?, homeware = ?, entertainment = ?, consumable = ?, sport = ?, other = ?
-                WHERE product_id = ?""", (newProductValues[0], newProductValues[1], newProductValues[2],
+                SET age_low = %d, age_high = %d, price = %d, gender1 = %d, gender2 = %d, toiletries = %d,
+                clothes = %d, homeware = %d, entertainment = %d, consumable = %d, sport = %d, other = %d
+                WHERE product_id = %d""", (newProductValues[0], newProductValues[1], newProductValues[2],
                 newProductValues[3], newProductValues[4], newProductValues[5], newProductValues[6],
                 newProductValues[7], newProductValues[8], newProductValues[9], newProductValues[10],
                 newProductValues[11], recommendedProduct["product_id"]))
