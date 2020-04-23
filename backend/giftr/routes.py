@@ -494,7 +494,7 @@ def Recommendation(currentUser, alreadyRecc):
     neigh = NearestNeighbors(n_neighbors=1)
     neigh.fit(dataValues)
     reccID = neigh.kneighbors(userData, return_distance = False)
-    reccID = reccID["product_id"] + 1
+    reccID = reccID[0] + 1
     recommendationsReq = 2
     while (reccID in alreadyRecc):
         neigh = NearestNeighbors(n_neighbors=recommendationsReq)
