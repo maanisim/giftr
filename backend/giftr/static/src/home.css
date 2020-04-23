@@ -74,8 +74,13 @@ h4{
   .quickButtons{
     grid-template-columns: repeat(3, 30%);
     column-gap: 20px;
-    row-gap: 20px;
+    row-gap: 30px;
     font-size: 12pt;
+    margin-bottom: 10px;
+  }
+  
+  .button{
+    height: 40px;
   }
 }
 
