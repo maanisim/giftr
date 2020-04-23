@@ -356,12 +356,14 @@ def suggestion():
 def update():
 
     crsr = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    crsr.execute("SELECT * FROM products")
+    crsr.execute("SELECT product_id FROM products")
     existingProducts = crsr.fetchall()
     crsr.execute("SELECT product_id FROM productRecValues")
     presentIDs = crsr.fetchall()
-    for counter in existingProducts:
-        if (counter["product_id"] not in presentIDs):
+    for product in existingProducts:
+        if (product not in presentIDs):
+            crsr.execute("SELECT * FROM products WHERE product_id = %d", product)
+            counter = crsr.fetchall()             
             productID = counter["product_id"]
             age_low = round(counter["age_low"]*1.5)
             age_high = round(counter["age_high"]*1.5)
@@ -439,10 +441,7 @@ def update():
             else:
                 other = 500
                 
-            try:
-                crsr.execute("""INSERT INTO productRecValues VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",(productID, age_low, age_high, price, gender1, gender2, toiletries, clothes, homeware, entertainment, consumable, sport, other))
-            except:
-                pass
+            crsr.execute("""INSERT INTO productRecValues VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",(productID, age_low, age_high, price, gender1, gender2, toiletries, clothes, homeware, entertainment, consumable, sport, other))
             
     crsr.execute("SELECT * FROM users")
     existingUsers = crsr.fetchall()
