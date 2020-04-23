@@ -70,8 +70,8 @@
 
 @media screen and (min-width: 320px){
   .titles{
-    width: 100px;
-    height: 30px;
+    width: 120px;
+    height: 50px;
     margin: 50px auto;
     padding: 5px;
     text-align: center;
@@ -80,34 +80,34 @@
   
   .text1 {
     width: 150px;
-    height: 50px;
+    height: 70px;
     margin: 50px auto;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     font-size: 10px;
   }
   
   .text2 {
     width: 180px;
-    height: 50px;
+    height: 100px;
     margin: 50px auto;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     font-size: 10px;
   }
   
   .text3 {
     width: 150px;
-    height: 50px;
+    height: 70px;
     margin: 50px auto;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     font-size: 10px;
   }
   
   .text4 {
     width: 100px;
-    height: 50px;
+    height: 80px;
     margin: 50px auto;
     padding: 5px;
     text-align: center;
@@ -118,7 +118,7 @@
     width: 100px;
     height: 60px;
     margin: 50px auto;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     font-size: 10px;
   }
