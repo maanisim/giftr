@@ -347,7 +347,7 @@ def suggestion():
     if 'loggedin' in session:
         update()
         alreadyRecc = onLoad()
-        recommendation = Recommendation(session["user_id"], alreadyRecc)
+        recommendation = Recommendation(session["id"], alreadyRecc)
         return render_template('itemSuggestion.html')
     return render_template('index.html')
 
