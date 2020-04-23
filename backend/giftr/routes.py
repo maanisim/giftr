@@ -127,7 +127,7 @@ def register():
                            'VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (username, password, token, email, name, age, gender, photo))
             mysql.connection.commit()
             msg = 'You have successfully registered!'
-            return redirect(url_for('welcome'))
+            return redirect(url_for('index.html'))
 
         if count > 1:
             msg='Please correctly fill out the form'
@@ -196,20 +196,11 @@ def emailsent():
     return render_template('emailSent.html')
 
 
-@app.route('/welcome', methods=['POST', 'GET'])
-def welcome():
-    print("welcome")
-    if 'loggedin' in session:
-        return render_template('welcome.html', username=session['username'])
-    else:
-        return "<h1>test</h1>"
-
-
 @app.route('/new_settings',methods=['POST'])
 def new_settings():
     if('loggedin' in session and request.method == 'POST'):
+        uid = session['id']
         if(request.form['email'] == request.form['confirmEmail']):
-            uid = session['id']
             email = request.form['email']
             if(len(email) > 4):
                 if(re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email)):
@@ -280,7 +271,7 @@ def product(pid):
 def settings():
     if 'loggedin' in session:
         return render_template('settings.html')
-    return render_template('404.html')
+    return render_template('index.html')
 
 
 @app.route('/questionnaire')
