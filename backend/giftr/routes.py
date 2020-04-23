@@ -443,12 +443,14 @@ def update():
                 
             crsr.execute("""INSERT INTO productRecValues VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",(productID, age_low, age_high, price, gender1, gender2, toiletries, clothes, homeware, entertainment, consumable, sport, other))
             
-    crsr.execute("SELECT * FROM users")
+    crsr.execute("SELECT user_id FROM users")
     existingUsers = crsr.fetchall()
     crsr.execute("SELECT user_id FROM profileRecValues")
     presentIDs = crsr.fetchall()
-    for counter in existingUsers:
-        if (counter["user_id"] not in presentIDs):
+    for user in existingUsers:
+        if (user not in presentIDs):
+            crsr.execute("SELECT * FROM users WHERE user_id = %d", user)
+            counter = crsr.fetchall()
             userID = counter["user_id"]
             age = round(counter["age"]*1.5)
             if (counter["gender"] == "male"):
