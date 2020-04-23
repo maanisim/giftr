@@ -574,9 +574,9 @@ def updateValues(result, recommendedProduct, currentUser):
             if (newProductValues[counter] < 0):
                 newProductValues[counter] = 0
     crsr.execute("""UPDATE profileRecValues
-                SET age_low = '%d', age_high = '%d', price = '%d', gender1 = '%d', gender2 = '%d', toiletries = '%d',
-                clothes = '%d', homeware = '%d', entertainment = '%d', consumable = '%d', sport = '%d', other = '%d'
-                WHERE user_id = '%d'""", (newUserValues[0], newUserValues[1], newUserValues[2],
+                SET age_low = '%s', age_high = '%s', price = '%s', gender1 = '%s', gender2 = '%s', toiletries = '%s',
+                clothes = '%s', homeware = '%s', entertainment = '%s', consumable = '%s', sport = '%s', other = '%s'
+                WHERE user_id = '%s'""", (newUserValues[0], newUserValues[1], newUserValues[2],
                 newUserValues[3], newUserValues[4], newUserValues[5], newUserValues[6],
                 newUserValues[7], newUserValues[8], newUserValues[9], newUserValues[10],
                 newUserValues[11], currentUser))
