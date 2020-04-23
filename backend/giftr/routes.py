@@ -478,7 +478,7 @@ def update():
     presentIDs = crsr.fetchall()
     for user in existingUsers:
         if (user not in presentIDs):
-            crsr.execute("SELECT * FROM users WHERE user_id = %d", user["user_id"])
+            crsr.execute("SELECT * FROM users WHERE user_id = '%d'", user["user_id"])
             counter = crsr.fetchall()
             userID = counter["user_id"]
             age = round(counter["age"]*1.5)
