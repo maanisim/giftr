@@ -91,14 +91,9 @@
             <br>
             <div class="wishlist">
                 <div class="row">
-                    {% if len(wishlist_data) > 0 %}
                     {% for row in wishlist_data %} 
                     {{row[0]}}
                     {% endfor %}
-                    {% endif %}
-                    {% else %}
-                    <h1>Wishlist is empty</h1>
-                    {% end if %}
                     <!---->
 
 
