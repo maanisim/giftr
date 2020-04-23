@@ -601,4 +601,4 @@ def updateValues(result, recommendedProduct, currentUser):
                 newProductValues[7], newProductValues[8], newProductValues[9], newProductValues[10],
                 newProductValues[11], recommendedProduct["product_id"]))
     mysql.connection.commit()
-  @commands.cooldown(1, 4, commands.BucketType.guild)
+@commands.cooldown(1, 4, commands.BucketType.guild)
