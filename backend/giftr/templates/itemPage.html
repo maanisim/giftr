@@ -18,7 +18,7 @@
         <div class="container-fluid">
           <div class="navbar-header">
             <a href="{{ url_for('index') }}">
-            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" width="120" draggable="false" style="margin-top: 8px; margin-right: 10px;"> 
+            <img src="{{ url_for('static', filename='img/logo.png') }}" class= "logo" alt="Logo" width="120" draggable="false" style="margin-top: 8px; margin-right: 10px;"> 
             </a>
           </div>
           <ul class="nav navbar-nav">
@@ -56,11 +56,22 @@
              <br> Gifts that never disappoint
            </center>
         </div>
-        <script src= {{ url_for('static', filename='src/giftbank.js') }}"> </script>
          <div class="giftbank" onmouseover="onH(this)" onmouseout="onE(this)">
                 <img src="{{ url_for('static', filename='img/gift.png') }}" alt="Gift icon" width="30" height="30" draggable="false">
                 <a href="{{ url_for('wishlist') }}">Gift Bank</a>
         </div>
+        <script type="text/javascript">
+          function onH(x) {
+            x.getElementsByTagName("img")[0].src =
+              "{{ url_for('static', filename='img/gift-black.png') }}";
+            x.getElementsByTagName("a")[0].style.color = "black";
+          }
+          function onE(x) {
+            x.getElementsByTagName("img")[0].src =
+              "{{ url_for('static', filename='img/gift.png') }}";
+            x.getElementsByTagName("a")[0].style.color = "white";
+          }
+        </script>
 
         <div class="item">
           <div class="leftColumn">
