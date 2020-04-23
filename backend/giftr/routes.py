@@ -474,7 +474,7 @@ def onLoad():
     alreadyRecc = []
     return alreadyRecc
 
-def Recommendation(currentUserID, alreadyRecc):
+def Recommendation(currentUser, alreadyRecc):
     crsr = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     crsr.execute("""SELECT age_low, age_high, price, gender1, gender2, toiletries,
                 clothes, homeware, entertainment, consumable, sport, other FROM productRecValues""")
