@@ -23,15 +23,16 @@
     grid-column-end: 6;  
     padding-top: 30px;
     padding-left: 100px;
+    padding-right: 50px;
 }
 
 .link {
     font-family: 'Arial', sans-serif;
     width: 190px;
     border-radius: 5px;
-	cursor:pointer;
-	background-color: #db0038;
-	color:white;
+    cursor:pointer;
+    background-color: #db0038;
+    color:white;
     font-size:20px;
     text-align: center;
     padding: 10px;
@@ -45,7 +46,7 @@
     grid-template-columns: 0px 40% 0px 0px;
     grid-gap: 5px;
     padding: 5px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 
 .fa{
@@ -68,9 +69,9 @@
     font-family: 'Arial', sans-serif;
     width: 190px;
     border-radius: 5px;
-	cursor:pointer;
-	background-color: #db0038;
-	color:white;
+    cursor:pointer;
+    background-color: #db0038;
+    color:white;
     font-size:20px;
     text-align: center;
     padding: 10px;
@@ -85,24 +86,68 @@
     text-decoration: none;
 }
 
-@media screen and (min-width: 320px){
-    .item{
-	display: grid;
-    	grid-template-columns: 0px 100% 0px 0px;
-    	grid-gap: 5px;
-    	padding: 5px;
-    	padding-bottom: 10px;
+@media screen and (min-width: 320px) and (max-width: 768px){
+    .leftColumn{
+        grid-row-start: 1;
+        grid-row-end: 3;
+        grid-column-start: 1;
+        grid-column-end: 6; 
+        text-align: center;
     }
-	
-.rightColumn{
-    text-align: center;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    grid-column-start: 1;
-    grid-column-end: 6;
-    padding-top: 10%;
-    padding-right: 10px;
-}
     
-	
+    .rightColumn{
+        text-align: center;
+        grid-row-start: 3;
+        grid-row-end: 5;
+        grid-column-start: 1;
+        grid-column-end: 6;
+        padding-top: 10px;
+    }
+
+    .links{
+        grid-row-start: 5;
+        grid-row-end: 6;
+        grid-column-start: 2;
+        grid-column-end: 3;  
+        padding-top: 30px;
+        justify-self: center;
+    }
+
+    .button{
+        margin-left: 50%;
+    }
+
+    .link{
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1199px){
+    .leftColumn{
+        grid-row-start: 1;
+        grid-row-end: 3;
+        grid-column-start: 1;
+        grid-column-end: 6; 
+        text-align: center;
+    }
+    
+    .rightColumn{
+        text-align: center;
+        justify-self: center;
+        grid-row-start: 3;
+        grid-row-end: 5;
+        grid-column-start: 1;
+        grid-column-end: 6;
+        padding-top: 10px;
+    }
+
+    .links{
+        grid-row-start: 5;
+        grid-row-end: 6;
+        grid-column-start: 3;
+        grid-column-end: 4;  
+        padding-top: 30px;
+        justify-self: center;
+    }
+
 }
