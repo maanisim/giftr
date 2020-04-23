@@ -22,6 +22,15 @@ strong {
 }
 
 div.privacyContent {
-	width: 80%;
+	padding-left: 100px;
+	padding-right: 100px;
 	text-align: justify;
+}
+
+@media screen and (min-width: 320px) {
+	div.privacyContent {
+		padding-left: 10px;
+		padding-right: 10px;
+		text-align: justify;
+	}
 }
