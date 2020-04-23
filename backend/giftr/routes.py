@@ -521,10 +521,9 @@ def Recommendation(currentUser, alreadyRecc):
     neigh.fit(dataValues)
     reccID = neigh.kneighbors(userData, return_distance = False)
     reccID = reccID[0]
-    LOG_FILENAME = 'example.log'
-    logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG)
-
-    logging.debug('This message should go to the log file')
+    f = open("test.txt", "w")
+    f.write("Woops! I have deleted the content!")
+    f.close()
     recommendationsReq = 2
     while (reccID in alreadyRecc):
         neigh = NearestNeighbors(n_neighbors=recommendationsReq)
