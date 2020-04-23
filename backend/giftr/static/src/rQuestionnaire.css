@@ -30,3 +30,15 @@
 #question{
     color: #519dd9;
 }
+
+@media screen and (min-width: 320px) and (max-width: 700px){
+    .recommendationQ{
+        margin: 10px;
+        text-align: center;
+    }
+    
+    .submit{
+        margin-right: 100px;
+        margin-bottom: 10px;
+    }
+}
