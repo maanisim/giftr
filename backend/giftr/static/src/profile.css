@@ -149,7 +149,6 @@ a.link {
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
 	.grid-container {
-		.grid-container {
 		display: grid;
 		grid-template-columns: 5% 45% 45% 5%;
 		grid-gap: 10pt 25pt;
