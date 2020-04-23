@@ -521,9 +521,6 @@ def Recommendation(currentUser, alreadyRecc):
     neigh.fit(dataValues)
     reccID = neigh.kneighbors(userData, return_distance = False)
     reccID = reccID[0]
-    f = open("test.txt", "w")
-    f.write("Woops! I have deleted the content!")
-    f.close()
     recommendationsReq = 2
     while (reccID in alreadyRecc):
         neigh = NearestNeighbors(n_neighbors=recommendationsReq)
