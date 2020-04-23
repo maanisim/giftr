@@ -85,32 +85,37 @@
               class="image"
             />
           </div>
-          
-          <div class="links"> 
-            <button class="button link">Buy now</button>
-          </div>
 
           <div class="rightColumn">
-            <div class="description">
-              {This is a long-ish 'Item description'. There may be longer ones
-              than this but I just need to test it with this size for now.}
-            </div>
-            <br>
-            <form method="post">
-              <input type="hidden" name="like" value="1" />
-              <button onclick="myFunction(this)"  class="fa fa-thumbs-up" style="padding: 0; border: none; background: none;">
-            </form> 
-            <script>
-              function myFunction(x) {
-                x.classList.toggle("fa-thumbs-down");
-              }
-            </script>
-            <form method="post">
-              <input type="hidden" name="wish" value="1" />
-              <button class="button" type="submit" formmethod="post">Add to Gift Bank</button>
-            </form> 
-            <button onclick="window.location.href = '{{ item_link }}';">Buy</button>
+            <span class="label gender">Gender: </span>
+            <span class="label category">Category: </span>
+            <span class="label age">Age: </span>    
+            <span class="label price">Price: </span>    
+          </div> 
+          
+          <div class="leftColumn2">
+            <button class="button link" onclick="window.location.href = '{{ item_link }}';">Buy now</button>
           </div>
+          
+          <div class= "middle">
+             <form method="post">
+              <input type="hidden" name="wish" value="1" />
+              <button class="button gift" type="submit" formmethod="post">Add to Gift Bank</button>
+            </form> 
+          </div>
+          
+          <div class= "rightColumn2">
+             <form method="post">
+               <input type="hidden" name="like" value="1" />
+               <button onclick="myFunction(this)"  class="fa fa-thumbs-up" style="padding: 0; border: none; background: none;">
+             </form>
+             <script>
+                function myFunction(x) {
+                  x.classList.toggle("fa-thumbs-down");
+                }
+             </script>
+          </div>
+          
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
