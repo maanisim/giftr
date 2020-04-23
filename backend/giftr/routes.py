@@ -372,12 +372,12 @@ def suggestion1():
 @app.route('/suggestion2')
 def suggestion2():
     alreadyRecc = session["AlreadyRecc"]
-    recommendation = session["recommendation"]
+    #recommendation = session["recommendation"]
     alreadyRecc = updateAlreadyRecc(recommendation, alreadyRecc)
     session["AlreadyRecc"] = alreadyRecc
     updateValues("no", recommendation, session["id"])
     recommendation = Recommendation(session["id"], alreadyRecc)
-    session["recommendation"] = recommendation
+    #session["recommendation"] = recommendation
     image = "img/p/" + recommendation["photo"]
     return render_template('itemSuggestion.html', recommendation=recommendation, image = image)
 ###################################################################
