@@ -480,7 +480,7 @@ def update():
         if (user not in presentIDs):
             a = user["user_id"]
             crsr.execute("SELECT * FROM users WHERE user_id = '%s'" % a)
-            counter = crsr.fetchall()
+            counter = crsr.fetchone()
             userID = counter["user_id"]
             age = round(counter["age"]*1.5)
             if (counter["gender"] == "male"):
