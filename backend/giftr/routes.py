@@ -355,23 +355,28 @@ def suggestion():
         image = "img/p/" + recommendation["photo"]
         alreadyRecc = updateAlreadyRecc(recommendation, alreadyRecc)
         session["AlreadyRecc"] = alreadyRecc
+        session["recommendation"] = recommendation
         return render_template('itemSuggestion.html', recommendation=recommendation, image = image)
     return render_template('index.html')
 
 @app.route('/suggestion1')
 def suggestion1():
     alreadyRecc = session["AlreadyRecc"]
+    recommendation = session["recommendation"]
     updateValues("yes", recommendation, session["id"])
     recommendation = Recommendation(session["id"], alreadyRecc)
     image = "img/p/" + recommendation["photo"]
+    session["recommendation"] = recommendation
     return render_template('itemSuggestion.html', recommendation=recommendation, image = image)
 
 @app.route('/suggestion2')
 def suggestion2():
     alreadyRecc = session["AlreadyRecc"]
+    recommendation = session["recommendation"]
     updateValues("no", recommendation, session["id"])
     recommendation = Recommendation(session["id"], alreadyRecc)
     image = "img/p/" + recommendation["photo"]
+    session["recommendation"] = recommendation
     return render_template('itemSuggestion.html', recommendation=recommendation, image = image)
 ###################################################################
 #Functions for Suggestion
