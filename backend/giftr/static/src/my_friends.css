@@ -72,7 +72,6 @@ p.text {
 	width: fit-content;
 	border-style: none;
 	text-decoration: none;
-	border-radius: 3px;
 }
 
 .button1 {
@@ -88,6 +87,7 @@ p.text {
 	width: fit-content;
 	border-style: none;
 	text-decoration: none;
+	display: inline-block;
 } 
 
 .searchButton {
