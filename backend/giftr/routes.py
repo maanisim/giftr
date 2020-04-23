@@ -127,7 +127,7 @@ def register():
                            'VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (username, password, token, email, name, age, gender, photo))
             mysql.connection.commit()
             msg = 'You have successfully registered!'
-            return redirect(url_for('index.html'))
+            return redirect(url_for('index'))
 
         if count > 1:
             msg='Please correctly fill out the form'
