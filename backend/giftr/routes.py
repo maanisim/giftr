@@ -347,6 +347,7 @@ def suggestion():
     if 'loggedin' in session:
         update()
         alreadyRecc = onLoad()
+        recommendation = Recommendation(session["user_id"], alreadyRecc)
         return render_template('itemSuggestion.html')
     return render_template('index.html')
 
@@ -472,3 +473,35 @@ def update():
 def onLoad():
     alreadyRecc = []
     return alreadyRecc
+
+def Recommendation(currentUserID, alreadyRecc):
+    crsr = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    crsr.execute("""SELECT age_low, age_high, price, gender1, gender2, toiletries,
+                clothes, homeware, entertainment, consumable, sport, other FROM productRecValues""")
+    dataValues = crsr.fetchall()
+    userID = currentUser
+    crsr.execute("""SELECT age_low, age_high, price, gender1, gender2, toiletries,
+                clothes, homeware, entertainment, consumable, sport, other FROM
+                profileRecValues WHERE user_id = '%d'""" % userID)
+    userData = crsr.fetchall()
+    neigh = NearestNeighbors(n_neighbors=1)
+    neigh.fit(dataValues)
+    reccID = neigh.kneighbors(userData, return_distance = False)
+    reccID = reccID["product_id"] + 1
+    recommendationsReq = 2
+    while (reccID in alreadyRecc):
+        neigh = NearestNeighbors(n_neighbors=recommendationsReq)
+        neigh.fit(dataValues)
+        reccID = neigh.kneighbors(userData, return_distance = False)
+        foundRecc = False
+        for counter in reccID:
+            n = counter + 1
+            if (n not in alreadyRecc):
+                reccID = n
+                foundRecc = True
+        if (foundRecc == False):
+            reccID = reccID["product_id"]
+        recommendationsReq += 1
+    crsr.execute("""SELECT * FROM products WHERE product_id = '%d'""" % reccID)
+    recommendedProduct = crsr.fetchall()
+    return recommendedProduct
