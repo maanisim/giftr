@@ -350,6 +350,7 @@ def contact():
 def suggestion():
     if 'loggedin' in session:
         update()
+        alreadyRecc = session["AlreadyRecc"]
         recommendation = Recommendation(session["id"], alreadyRecc)
         image = "img/p/" + recommendation["photo"]
         alreadyRecc = updateAlreadyRecc(recommendation, alreadyRecc)
