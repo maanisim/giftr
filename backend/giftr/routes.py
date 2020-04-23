@@ -346,6 +346,7 @@ def contact():
 def suggestion():
     if 'loggedin' in session:
         update()
+        alreadyRecc = onLoad()
         return render_template('itemSuggestion.html')
     return render_template('index.html')
 
@@ -468,3 +469,6 @@ def update():
 
     mysql.connection.commit()
     
+def onLoad():
+    alreadyRecc = []
+    return alreadyRecc
