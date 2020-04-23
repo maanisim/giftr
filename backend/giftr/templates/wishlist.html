@@ -93,7 +93,7 @@
                 <div class="row">
                     
                     {% for row in wishlist_data %} 
-                    <div class="col-1">
+                    <div class="col">
                     <a href="/p/{{row['product_id']}}" class="image" style="text-decoration: none;">
                         <img src="/static/img/p/{{row['photo']}}" alt="gift" class="giftImg" draggable="false">
                         <p class="giftName">{{row['name']}}</p>
