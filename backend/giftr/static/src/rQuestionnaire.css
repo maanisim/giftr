@@ -18,7 +18,7 @@
     color: white;
     margin-right: 300px;
     margin-top: 10px;
-    margin-bottom: 20px;
+    padding-bottom: 20px;
 }
 
 .submit:hover{
@@ -38,6 +38,6 @@
     
     .submit{
         margin-right: 100px;
-        margin-bottom: 10px;
+        padding-bottom: 20px;
     }
 }
