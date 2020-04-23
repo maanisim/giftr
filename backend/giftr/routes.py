@@ -521,7 +521,7 @@ def Recommendation(currentUser, alreadyRecc):
     neigh = NearestNeighbors(n_neighbors=1)
     neigh.fit(dataValues)
     reccID = neigh.kneighbors(userData, return_distance = False)
-    reccID = reccID["product_id"]
+    reccID = reccID[0]
     recommendationsReq = 2
     while (reccID in alreadyRecc):
         neigh = NearestNeighbors(n_neighbors=recommendationsReq)
@@ -534,7 +534,7 @@ def Recommendation(currentUser, alreadyRecc):
                 reccID = n
                 foundRecc = True
         if (foundRecc == False):
-            reccID = reccID["product_id"]
+            reccID = reccID["error"]
         recommendationsReq += 1
     crsr.execute("""SELECT * FROM products WHERE product_id = '%d'""" % reccID)
     recommendedProduct = crsr.fetchone()
