@@ -511,5 +511,5 @@ def Recommendation(currentUser, alreadyRecc):
             reccID = reccID["product_id"]
         recommendationsReq += 1
     crsr.execute("""SELECT * FROM products WHERE product_id = '%d'""" % reccID)
-    recommendedProduct = crsr.fetchall()
+    recommendedProduct = crsr.fetchone()
     return recommendedProduct
