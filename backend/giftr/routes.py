@@ -522,7 +522,8 @@ def Recommendation(currentUser, alreadyRecc):
     neigh.fit(dataValues)
     reccID = neigh.kneighbors(userData, return_distance = False)
     reccID = reccID[0]
-    reccID = neigh.kneighbors(reccID, return_distance = False)
+    file1 = open("test.txt","w")
+    file1.write(reccID)
     recommendationsReq = 2
     while (reccID in alreadyRecc):
         neigh = NearestNeighbors(n_neighbors=recommendationsReq)
