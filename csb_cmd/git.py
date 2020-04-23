@@ -27,13 +27,14 @@ class GitCommands(commands.Cog, name="Git commands"):
   async def git(self, ctx):
     await ctx.send("Version: `{}`Checkpoint: `{}`".format(await get_version(), await get_checkpoint()))
 
-    @commands.cooldown(1.0, 5.0, commands.BucketType.guild)
-    @commands.command(help="Updates bot to the current git version")
+  @commands.command(help="Updates bot to the current git version")
   async def update(self, ctx):
     if (os.system("git fetch; git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)") != 0):
       await ctx.send("Git pull failed")
     else:
       await admin_impl.restart(ctx)
+      await asyncio.sleep(10)
+
   @commands.command(help="start backend")
   async def start(self, ctx):
     await ctx.send("python3 /home/web/giftr/backend/backend.py")
