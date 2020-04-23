@@ -483,12 +483,13 @@ def Recommendation(currentUser, alreadyRecc):
     crsr.execute("""SELECT age_low, age_high, price, gender1, gender2, toiletries,
                 clothes, homeware, entertainment, consumable, sport, other FROM
                 profileRecValues WHERE user_id = '%d'""" % userID)
-    userData = crsr.fetchall()
+    userDataDic = crsr.fetchone()
     dataValues = []
     for counter in dataValuesDic:
         a = list(counter.values())
         a = np.array(a)
         dataValues.append(a)
+    userData = np.array(list(userDataDic.values()))
     neigh = NearestNeighbors(n_neighbors=1)
     neigh.fit(dataValues)
     reccID = neigh.kneighbors(userData, return_distance = False)
