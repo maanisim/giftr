@@ -3,6 +3,7 @@ from flask import Flask, redirect, url_for, render_template, request, session, m
 from flask_mysqldb import MySQLdb
 import ssl, hashlib, re, datetime, smtplib, sys
 from math import floor as floor
+import logging
 
 global COOKIE_TIME_OUT
 COOKIE_TIME_OUT = 60*60*24*7  # 7 days
@@ -522,8 +523,10 @@ def Recommendation(currentUser, alreadyRecc):
     neigh.fit(dataValues)
     reccID = neigh.kneighbors(userData, return_distance = False)
     reccID = reccID[0]
-    file1 = open("test.txt","w")
-    file1.write(str(reccID))
+    LOG_FILENAME = 'example.log'
+    logging.basicConfig(filename=LOG_FILENAME,level=logging.DEBUG)
+
+    logging.debug('This message should go to the log file')
     recommendationsReq = 2
     while (reccID in alreadyRecc):
         neigh = NearestNeighbors(n_neighbors=recommendationsReq)
