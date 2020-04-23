@@ -349,6 +349,8 @@ def wishlist():
         
         wishlist_data = cursor.fetchall()
         print(wishlist_data)
+        print(wishlist_data['name'])
+
         mysql.connection.commit()
         return render_template('wishlist.html',wishlist_data=wishlist_data)
     return redirect(url_for('index'))
