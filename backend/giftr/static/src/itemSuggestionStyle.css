@@ -1,10 +1,10 @@
 .itemSuggestion {
     display: grid;
-    margin-top: 30px;
+    margin-top: 20px;
     grid-template-columns: 13% 15% 35% 15% 20%;
-    grid-template-rows: 150px 80px 150px 70px;
+    grid-template-rows: 170px 80px 170px 70px;
     column-gap: 30px;
-    row-gap: 50px;
+    row-gap: 30px;
     font-size: 12pt;
 }
 
@@ -21,14 +21,15 @@
     grid-column-end: 3;
 }
 
-.button{
-    border: none;
-    background-color: transparent;
-    border-radius: 10px;
-    height: 35px;
+#broken{
+    width: 60px;
+    height: 60px;
 }
 
 .dislike{
+    border: none;
+    outline: none;
+    background-color: transparent;
     float: right;
     grid-row-start: 2;
     grid-row-end: 3;
@@ -42,6 +43,9 @@
 }
 
 .like{
+    border: none;
+    outline: none;
+    background-color: transparent;
     color: #db0038;
     font-size: 60px;
     float: left;
@@ -63,12 +67,12 @@
     font-size: 20px;
     text-align: center;
     margin-left: 25%;
-    border-radius: 8px;
     grid-row-start: 4;
     grid-row-end: 4;
     grid-column-start: 3;
     grid-column-end: 3;
 }
+
 .giftInfo:hover{
     background-color: #db0038;
     color: #ededed;
@@ -96,7 +100,9 @@
     100% { transform: translate(1px, -2px) rotate(-1deg); }
   }
 
-@media screen and (min-width: 320px) and (max-width: 700px){
+
+
+  @media screen and (min-width: 320px) and (max-width: 700px){
     .itemSuggestion {
         grid-template-columns: 5% 15% 50% 15% 5%;
         grid-template-rows: 100px 40px 100px 50px;
