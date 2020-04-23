@@ -347,6 +347,7 @@ def suggestion():
     if 'loggedin' in session:
         update()
         alreadyRecc = onLoad()
+        session["AlreadyRecc"] = alreadyRecc
         recommendation = Recommendation(session["id"], alreadyRecc)
         image = "img/p/" + recommendation["photo"]
         return render_template('itemSuggestion.html', recommendation=recommendation, image = image)
@@ -515,3 +516,4 @@ def Recommendation(currentUser, alreadyRecc):
     crsr.execute("""SELECT * FROM products WHERE product_id = '%d'""" % reccID)
     recommendedProduct = crsr.fetchone()
     return recommendedProduct
+
