@@ -77,7 +77,7 @@
           <div class="leftColumn">
             <h1>{{ item_name }}</h1>
             <img
-              src="{{ url_for('static', filename='img/1407.jpg') }}"
+              src="/static/img/p/{{ photo_name }}"
               alt="Item"
               width="300"
               height="300"
@@ -96,13 +96,20 @@
               than this but I just need to test it with this size for now.}
             </div>
             <br>
-            <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
+            <form method="post">
+              <input type="hidden" name="like" value="1" />
+              <button onclick="myFunction(this)"  class="fa fa-thumbs-up" style="padding: 0; border: none; background: none;">
+            </form> 
             <script>
               function myFunction(x) {
                 x.classList.toggle("fa-thumbs-down");
               }
             </script>
-            <button class="button gift">Add to Gift Bank</button>
+            <form method="post">
+              <input type="hidden" name="wish" value="1" />
+              <button class="button" type="submit" formmethod="post">Add to Gift Bank</button>
+            </form> 
+            <button onclick="window.location.href = '{{ item_link }}';">Buy</button>
           </div>
         </div>
 
