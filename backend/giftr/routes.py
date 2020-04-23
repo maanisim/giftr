@@ -258,12 +258,18 @@ def product(pid):
         msg = ""
         if 'loggedin' in session:
             uid = session['id']
-            cursor.execute('SELECT * FROM product_liked WHERE product_id = %s AND user_id = %s', (pid, uid))
-            check = cursor.fetchone()
-            if request.form.get('like') and not check:
-                cursor.execute('INSERT INTO product_liked (product_id, user_id) VALUES (%s, %s)', (pid, uid))
+            if request.form.get('like'):
+                # CHECKING DUPLICATE
+                cursor.execute('SELECT * FROM product_liked WHERE product_id = %s AND user_id = %s', (pid, uid))
+                check = cursor.fetchone()
+                if not check:
+                    cursor.execute('INSERT INTO product_liked (product_id, user_id) VALUES (%s, %s)', (pid, uid))
             elif request.form.get('wish'):
-                cursor.execute('INSERT INTO wishlist_list (product_id, user_id) VALUES (%s, %s)', (pid, uid))
+                # CHECKING DUPLICATE
+                cursor.execute('SELECT * FROM wishlist_list WHERE product_id = %s AND user_id = %s', (pid, uid))
+                check = cursor.fetchone()
+                if not check:
+                    cursor.execute('INSERT INTO wishlist_list (product_id, user_id) VALUES (%s, %s)', (pid, uid))
         else:
             msg="Please log in before adding to a wishlist!"
         mysql.connection.commit()
