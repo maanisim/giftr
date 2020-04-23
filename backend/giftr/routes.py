@@ -200,17 +200,18 @@ def emailsent():
 def new_settings():
     if('loggedin' in session and request.method == 'POST'):
         uid = session['id']
-        if(str(request.form['email']) == str(request.form['confirmEmail'])):
+        if(request.form['email'] == request.form['confirmEmail']):
             email = request.form['email']
             if(len(email) > 4):
                 if(re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email)):
                     print("email changed! to"+email+" user_id= "+str(uid))
                     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                     cursor.execute("UPDATE users set email=\"%s\" WHERE user_id=%s",(email,uid))
-                    request.form['email'] = email
+                    session.pop('email', email)
+                    #request.form['email'] = email
                     #print that something happened? to user
                     
-            if(str(request.form['passw']) == str(request.form['cofirmPassw'])):
+            if(request.form['passw'] == request.form['cofirmPassw']):
                 passw = request.form['passw']
                 if(len(passw) > 7):
                     if(re.match("^[A-Za-z0-9_-]*$", passw)):
