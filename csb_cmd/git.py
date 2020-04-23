@@ -33,8 +33,7 @@ class GitCommands(commands.Cog, name="Git commands"):
       await ctx.send("Git pull failed")
     else:
       await admin_impl.restart(ctx)
-      await asyncio.sleep(10)
-
+      time.sleep(3)
   @commands.command(help="start backend")
   async def start(self, ctx):
     await ctx.send("python3 /home/web/giftr/backend/backend.py")
