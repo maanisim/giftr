@@ -267,7 +267,7 @@ def product(pid):
             msg="Please log in before adding to a wishlist!"
         mysql.connection.commit()
 
-    return render_template('item.html',
+    return render_template('itemPage.html',
     item_name=item_name,
     photo_name=photo_name,
     item_link=item_link )
