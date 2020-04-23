@@ -255,7 +255,7 @@ def product(pid):
 
     if request.method == 'POST':
         msg = ""
-        cursor.execute('SELECT * FROM product_liked WHERE product_id = %s AND user_id = %s')
+        cursor.execute('SELECT * FROM product_liked WHERE product_id = %s AND user_id = %s', (pid, uid))
         check = cursor.fetchone()
         if 'loggedin' in session:
             uid = session['id']
