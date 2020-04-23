@@ -169,7 +169,7 @@ def search():
             while row is not None:
                 print(str(row))
                 row = cursor.fetchone()
-    return render_template('search.html')
+    return render_template('search_for_gift.html')
 
 
 @app.route('/emailSent', methods=['POST', 'GET'])
