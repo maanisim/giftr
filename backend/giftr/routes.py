@@ -346,8 +346,9 @@ def wishlist():
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT products.name, products.photo FROM wishlist_list INNER JOIN products ON wishlist_list.product_id=products.product_id WHERE user_id=%s', [user_id])
         # Fetch wishlist
+        
         wishlist_data = cursor.fetchall()
-
+        mysql.connection.commit()
         return render_template('wishlist.html',wishlist_data=wishlist_data)
     return redirect(url_for('index'))
 
