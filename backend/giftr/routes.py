@@ -486,7 +486,8 @@ def Recommendation(currentUser, alreadyRecc):
     userData = crsr.fetchall()
     dataValues = []
     for (counter in dataValuesDic):
-        a = counter.values()
+        a=0
+        #a = counter.values()
         #a = np.array(a)
         #dataValues.append(a)
     neigh = NearestNeighbors(n_neighbors=1)
