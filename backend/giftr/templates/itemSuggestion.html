@@ -85,7 +85,7 @@
                 <button class="button dislike" type="submit"><img src="{{ url_for('static', filename='img/broken-heart.png') }}" width="60"
                         height="60"></button>
 
-                <img id="giftImage" src="{{ url_for('static', filename='img/{{recommendation["photo"]}}') }}" alt="gift" " draggable=" false" width="100%" height="100%">
+                <img id="giftImage" src="""{{ url_for('static', filename='img/{{recommendation["photo"]}}') }}""" alt="gift" " draggable=" false" width="100%" height="100%">
 
                 <button class="button like" type="submit"><i class="fas fa-heart"></i></button>
                                                                                  
