@@ -48,6 +48,8 @@ def login():
             #if(session['gender'] == "male" or session['gender'] == "female" or session['gender'] == "unisex"):
             session['gender'] = account['gender']
             session['age'] = account['age']
+            alreadyRecc = onLoad()
+            session["AlreadyRecc"] = alreadyRecc
             remember = request.form.getlist('remember')
 
             if remember:
@@ -144,6 +146,7 @@ def logout():
         session.pop('loggedin', None)
         session.pop('id', None)
         session.pop('email', None)
+        session.pop("AlreadyRecc", None)
         return redirect('/')
     return redirect('/')
 
@@ -346,15 +349,20 @@ def contact():
 def suggestion():
     if 'loggedin' in session:
         update()
-        alreadyRecc = onLoad()
-        session["AlreadyRecc"] = alreadyRecc
+        alreadyRecc = session["AlreadyRecc"]
         recommendation = Recommendation(session["id"], alreadyRecc)
+        session["recommmendation"] = recommendation
         image = "img/p/" + recommendation["photo"]
         return render_template('itemSuggestion.html', recommendation=recommendation, image = image)
     return render_template('index.html')
 
 @app.route('/suggestion1')
 def suggestion1():
+    alreadyRecc = session["AlreadyRecc"]
+    recommendation = session["recommendation"]
+    alreadyRecc = updateAlreadyRecc(recommendation, alreadyRecc)
+    session["AlreadyRecc"] = alreadyRecc
+    updateValues("yes", recommendation, session["id"])
     return render_template('index.html')
 ###################################################################
 #Functions for Suggestion
@@ -517,3 +525,64 @@ def Recommendation(currentUser, alreadyRecc):
     recommendedProduct = crsr.fetchone()
     return recommendedProduct
 
+def updateAlreadyRecc(recommendedProduct, alreadyRecc):
+    if (len(alreadyRecc) > 50):
+        del alreadyRecc[0]
+    alreadyRecc.append(recommendedProduct)
+    return alreadyRecc
+
+def updateValues(result, recommendedProduct, currentUser):
+    crsr = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    crsr.execute("""SELECT age_low, age_high, price, gender1, gender2, toiletries,
+                clothes, homeware, entertainment, consumable, sport, other FROM
+                profileRecValues WHERE user_id = '%d'""" % currentUser)
+    userData = crsr.fetchone()
+    crsr.execute("""SELECT age_low, age_high, price, gender1, gender2, toiletries,
+                clothes, homeware, entertainment, consumable, sport, other FROM
+                productRecValues WHERE product_id = '%d'""" % recommendedProduct["product_id"])
+    productData = crsr.fetchone()
+    if (result == "yes"):
+        newUserValues = []
+        newProductValues = []
+        for counter in range(len(userData)):
+            newValue = (userData[counter] - productData[counter])//2
+            newUserValues.append(userData[counter] - newValue)
+            newProductValues.append(productData[counter] + newValue)
+            if (newUserValues[counter] > 900):
+                newUserValue = 900
+            if (newProductValues[counter] > 900):
+                newProductValue = 900
+            if (newUserValues[counter] < 0):
+                newUserValue = 0
+            if (newProductValues[counter] < 0):
+                newProductValue = 0
+    else:
+        newUserValues = []
+        newProductValues = []
+        for counter in range(len(userData)):
+            newValue = (userData[counter] - productData[counter])//2
+            newUserValues.append(userData[counter] + newValue)
+            newProductValues.append(productData[counter] - newValue)
+            if (newUserValues[counter] > 900):
+                newUserValues[counter] = 900
+            if (newProductValues[counter] > 900):
+                newProductValues[counter] = 900
+            if (newUserValues[counter] < 0):
+                newUserValues[counter] = 0
+            if (newProductValues[counter] < 0):
+                newProductValues[counter] = 0
+    crsr.execute("""UPDATE profileRecValues
+                SET age_low = ?, age_high = ?, price = ?, gender1 = ?, gender2 = ?, toiletries = ?,
+                clothes = ?, homeware = ?, entertainment = ?, consumable = ?, sport = ?, other = ?
+                WHERE user_id = ?""", (newUserValues[0], newUserValues[1], newUserValues[2],
+                newUserValues[3], newUserValues[4], newUserValues[5], newUserValues[6],
+                newUserValues[7], newUserValues[8], newUserValues[9], newUserValues[10],
+                newUserValues[11], currentUser))
+    crsr.execute("""UPDATE productRecValues
+                SET age_low = ?, age_high = ?, price = ?, gender1 = ?, gender2 = ?, toiletries = ?,
+                clothes = ?, homeware = ?, entertainment = ?, consumable = ?, sport = ?, other = ?
+                WHERE product_id = ?""", (newProductValues[0], newProductValues[1], newProductValues[2],
+                newProductValues[3], newProductValues[4], newProductValues[5], newProductValues[6],
+                newProductValues[7], newProductValues[8], newProductValues[9], newProductValues[10],
+                newProductValues[11], recommendedProduct["product_id"]))
+    mysql.connection.commit()
