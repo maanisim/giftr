@@ -100,12 +100,15 @@
           <div class= "middle">
             <div class="leftColumn2">
 
-            <form method="post">
-              <input type="hidden" name="like" value="1" />
-              <button class="button gift">Add to Gift Bank</button>
-              <button type="submit" formmethod="post">Submit using POST</button>
-
-            </form>
+              <form method="post">
+                <input type="hidden" name="like" value="1" />
+                <button onclick="myFunction(this)"  class="fa fa-thumbs-up" style="padding: 0; border: none; background: none;">
+              </form>
+              <script>
+                 function myFunction(x) {
+                   x.classList.toggle("fa-thumbs-down");
+                 }
+              </script>
 
             </div>
          </div>
@@ -113,15 +116,7 @@
 
           <!--
           <div class= "rightColumn2">
-             <form method="post">
-               <input type="hidden" name="like" value="1" />
-               <button onclick="myFunction(this)"  class="fa fa-thumbs-up" style="padding: 0; border: none; background: none;">
-             </form>
-             <script>
-                function myFunction(x) {
-                  x.classList.toggle("fa-thumbs-down");
-                }
-             </script>
+
           </div>-->
           
         </div>
