@@ -367,7 +367,6 @@ def suggestion1():
     recommendation = Recommendation(session["id"], alreadyRecc)
     image = "img/p/" + recommendation["photo"]
     session["recommendation"] = recommendation
-    pid = "p/"
     pid += recommendation["product_id"]
     alreadyRecc = updateAlreadyRecc(recommendation, alreadyRecc)
     return render_template('itemSuggestion.html', recommendation=recommendation, image = image, pid=pid)
