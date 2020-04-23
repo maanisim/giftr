@@ -352,7 +352,9 @@ def suggestion():
         return render_template('itemSuggestion.html', recommendation=recommendation, image = image)
     return render_template('index.html')
 
-
+@app.route('/suggestion1')
+def suggestion1():
+    return render_template('itemSuggestion.html')
 ###################################################################
 #Functions for Suggestion
 ###################################################################
