@@ -348,8 +348,8 @@ def wishlist():
         # Fetch wishlist
         wishlist_data = cursor.fetchall()
 
-        return render_template('wishlist.html')
-    return redirect(url_for('index',za=wishlist_data))
+        return render_template('wishlist.html',za=wishlist_data)
+    return redirect(url_for('index'))
 
 
 @app.route('/about')
