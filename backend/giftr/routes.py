@@ -485,8 +485,8 @@ def Recommendation(currentUser, alreadyRecc):
                 profileRecValues WHERE user_id = '%d'""" % userID)
     userData = crsr.fetchall()
     dataValues = []
-    for (counter in dataValuesDic):
-        a=0
+    #for (counter in dataValuesDic):
+        #a=0
         #a = counter.values()
         #a = np.array(a)
         #dataValues.append(a)
