@@ -350,34 +350,26 @@ def contact():
 def suggestion():
     if 'loggedin' in session:
         update()
-        alreadyRecc = session["AlreadyRecc"]
         recommendation = Recommendation(session["id"], alreadyRecc)
-        #session["recommendation"] = recommendation
         image = "img/p/" + recommendation["photo"]
+        alreadyRecc = updateAlreadyRecc(recommendation, alreadyRecc)
+        session["AlreadyRecc"] = alreadyRecc
         return render_template('itemSuggestion.html', recommendation=recommendation, image = image)
     return render_template('index.html')
 
 @app.route('/suggestion1')
 def suggestion1():
     alreadyRecc = session["AlreadyRecc"]
-    #recommendation = session["recommendation"]
-    alreadyRecc = updateAlreadyRecc(recommendation, alreadyRecc)
-    session["AlreadyRecc"] = alreadyRecc
     updateValues("yes", recommendation, session["id"])
     recommendation = Recommendation(session["id"], alreadyRecc)
-    #session["recommendation"] = recommendation
     image = "img/p/" + recommendation["photo"]
     return render_template('itemSuggestion.html', recommendation=recommendation, image = image)
 
 @app.route('/suggestion2')
 def suggestion2():
     alreadyRecc = session["AlreadyRecc"]
-    #recommendation = session["recommendation"]
-    alreadyRecc = updateAlreadyRecc(recommendation, alreadyRecc)
-    session["AlreadyRecc"] = alreadyRecc
     updateValues("no", recommendation, session["id"])
     recommendation = Recommendation(session["id"], alreadyRecc)
-    #session["recommendation"] = recommendation
     image = "img/p/" + recommendation["photo"]
     return render_template('itemSuggestion.html', recommendation=recommendation, image = image)
 ###################################################################
