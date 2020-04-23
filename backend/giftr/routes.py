@@ -3,7 +3,6 @@ from flask import Flask, redirect, url_for, render_template, request, session, m
 from flask_mysqldb import MySQLdb
 import ssl, hashlib, re, datetime, smtplib, sys
 from math import floor as floor
-import logging
 
 global COOKIE_TIME_OUT
 COOKIE_TIME_OUT = 60*60*24*7  # 7 days
