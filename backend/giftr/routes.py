@@ -255,9 +255,11 @@ def product(pid):
 
     if request.method == 'POST':
         msg = ""
+        cursor.execute('SELECT * FROM product_liked WHERE product_id = %s AND user_id = %s')
+        check = cursor.fetchone()
         if 'loggedin' in session:
             uid = session['id']
-            if request.form['like']:
+            if request.form['like'] and not check:
                 print(str(uid)+":u LIKE - p:"+str(pid), file=sys.stderr)
                 cursor.execute('INSERT INTO product_liked (product_id, user_id) VALUES (%s, %s)', (pid, uid))
             elif request.form['wish']:
@@ -384,8 +386,8 @@ def suggestion2():
 ###################################################################
 #Functions for Suggestion
 ###################################################################
-def update():
 
+def update():
     crsr = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     crsr.execute("SELECT product_id FROM products")
     existingProducts = crsr.fetchall()
