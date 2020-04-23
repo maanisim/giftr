@@ -207,9 +207,12 @@ def new_settings():
                     print("email changed! to"+email+" user_id= "+str(uid))
                     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                     #cursor.execute("UPDATE users set email=%s WHERE user_id=%s",(email,uid))
-                    cursor.execute(f"UPDATE users set email= '{email}' WHERE user_id={uid}")
-                    session.pop('email', None)
-                    session['email'] = email
+                    cursor.execute('SELECT * FROM users WHERE email = %s', [email])
+                    check = cursor.fetchone()
+                    if not check:
+                        cursor.execute(f"UPDATE users set email= '{email}' WHERE user_id={uid}")
+                        session.pop('email', None)
+                        session['email'] = email
                     #request.form['email'] = email
                     #print that something happened? to user
                     
@@ -394,7 +397,7 @@ def suggestion1():
     alreadyRecc = session["AlreadyRecc"]
     recommendation = session["recommendation"]
     updateValues("yes", recommendation, session["id"])
-    #liked(recommendation)
+    liked(recommendation)
     recommendation = Recommendation(session["id"], alreadyRecc)
     image = "img/p/" + recommendation["photo"]
     session["recommendation"] = recommendation
@@ -639,6 +642,15 @@ def updateValues(result, recommendedProduct, currentUser):
     
 def liked(recommendation):
     uid = session['id']
+    pid = recommendation["product_id"]
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute('INSERT INTO wishlist_list WHERE user_id = %s VALUES %s', (uid, recommendation["product_id"]))
+    cursor.execute('SELECT * FROM product_liked WHERE product_id = %s AND user_id = %s', (pid, uid))
+    check = cursor.fetchone()
+    if not check:
+        cursor.execute('INSERT INTO product_liked (product_id, user_id) VALUES (%s, %s)', (pid, uid))
+                # CHECKING DUPLICATE
+    cursor.execute('SELECT * FROM wishlist_list WHERE product_id = %s AND user_id = %s', (pid, uid))
+    check = cursor.fetchone()
+    if not check:
+        cursor.execute('INSERT INTO wishlist_list (product_id, user_id) VALUES (%s, %s)', (pid, uid))
     mysql.connection.commit()
