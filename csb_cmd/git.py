@@ -29,8 +29,8 @@ class GitCommands(commands.Cog, name="Git commands"):
 
   @commands.cooldown(1, 5, commands.BucketType.default)
   @commands.command(help="Updates bot to the current git version")
-  async def update(self, ctx):
-    if isinstance(commands.CommandOnCooldown):
+  async def update(self, ctx,error):
+    if isinstance(error, commands.CommandOnCooldown):
         await ctx.send(f'This command is on cooldown. Please wait {error.retry_after:.2f}s')
     else:
       if (os.system("git fetch; git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)") != 0):
