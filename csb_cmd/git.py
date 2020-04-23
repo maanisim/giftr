@@ -30,10 +30,13 @@ class GitCommands(commands.Cog, name="Git commands"):
   @commands.cooldown(1, 5, commands.BucketType.default)
   @commands.command(help="Updates bot to the current git version")
   async def update(self, ctx):
-    if (os.system("git fetch; git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)") != 0):
-      await ctx.send("Git pull failed")
+    if isinstance(commands.CommandOnCooldown):
+        await ctx.send(f'This command is on cooldown. Please wait {error.retry_after:.2f}s')
     else:
-      await admin_impl.restart(ctx)
+      if (os.system("git fetch; git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)") != 0):
+        await ctx.send("Git pull failed")
+      else:
+        await admin_impl.restart(ctx)
   @commands.command(help="start backend")
   async def start(self, ctx):
     await ctx.send("python3 /home/web/giftr/backend/backend.py")
