@@ -110,10 +110,12 @@
 
 .age{
     background-color: #f7c200;
+    color: black;
 }
 
 .gender{
     background-color: #f7c200;
+    color: black;
 }
 
 .category{
@@ -140,15 +142,6 @@
         grid-column-start: 1;
         grid-column-end: 6;
         padding-top: 10px;
-    }
-
-    .links{
-        grid-row-start: 5;
-        grid-row-end: 6;
-        grid-column-start: 2;
-        grid-column-end: 3;  
-        padding-top: 30px;
-        justify-self: center;
     }
 
     .button{
