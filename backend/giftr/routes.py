@@ -604,3 +604,8 @@ def updateValues(result, recommendedProduct, currentUser):
                 newProductValues[7], newProductValues[8], newProductValues[9], newProductValues[10],
                 newProductValues[11], recommendedProduct["product_id"]))
     mysql.connection.commit()
+    
+def liked():
+    uid = session['id']
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute('INSERT INTO wishlist_list WHERE user_id = %s VALUES %s', (uid, pid))
