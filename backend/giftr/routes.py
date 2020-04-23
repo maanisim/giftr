@@ -520,15 +520,15 @@ def Recommendation(currentUser, alreadyRecc):
     neigh = NearestNeighbors(n_neighbors=1)
     neigh.fit(dataValues)
     reccID = neigh.kneighbors(userData, return_distance = False)
-    reccID = reccID[0]
+    reccID = reccID[0][0]
     recommendationsReq = 2
     while (reccID in alreadyRecc):
         neigh = NearestNeighbors(n_neighbors=recommendationsReq)
         neigh.fit(dataValues)
         reccID = neigh.kneighbors(userData, return_distance = False)
         foundRecc = False
-        for counter in reccID:
-            n = counter + 1
+        for counter in reccID[0]:
+            n = counter
             if (n not in alreadyRecc):
                 reccID = n
                 foundRecc = True
