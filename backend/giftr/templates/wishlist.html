@@ -92,14 +92,12 @@
             <div class="wishlist">
                 <div class="row">
                     {% for row in wishlist_data %} 
-                    {{row['name']}}
-                    {{row['photo']}}
-                    
-                    {% endfor %}
                     <a href="/p/{{row['product_id']}}.html" class="image" style="text-decoration: none;">
                         <img src="{{ url_for('static', filename='img/{{row['photo']}}') }}" alt="gift" class="giftImg" draggable="false">
-                        <p class="giftName">Gift name is the number one </p>
-                    </a>
+                        <p class="giftName">{{row['name']}}</p>
+                    </a>                    
+                    {% endfor %}
+
                     <!---->
 
 
