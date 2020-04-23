@@ -354,7 +354,7 @@ def suggestion():
 
 @app.route('/suggestion1')
 def suggestion1():
-    return render_template('itemSuggestion.html')
+    return render_template('index.html')
 ###################################################################
 #Functions for Suggestion
 ###################################################################
