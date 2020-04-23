@@ -212,14 +212,14 @@ def new_settings():
                     #request.form['email'] = email
                     #print that something happened? to user
                     
-            if(request.form['passw'] == request.form['cofirmPassw']):
-                passw = request.form['passw']
-                if(len(passw) > 7):
-                    if(re.match("^[A-Za-z0-9_-]*$", passw)):
-                        print("pass changed! to"+passw)
-                        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                        cursor.execute("UPDATE users set password=\"%s\" WHERE user_id=%s",(passw,uid))
-                        #print that something happened? to user
+            #if(request.form['passw'] == request.form['cofirmPassw']):
+             #   passw = request.form['passw']
+             #   if(len(passw) > 7):
+             #       if(re.match("^[A-Za-z0-9_-]*$", passw)):
+             #           print("pass changed! to"+passw)
+             #           cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+             #           cursor.execute("UPDATE users set password=\"%s\" WHERE user_id=%s",(passw,uid))
+             #           #print that something happened? to user
         mysql.connection.commit()
         return render_template('settings.html')
     else:
