@@ -149,30 +149,44 @@ a.link {
 
 @media screen and (min-width: 320px) and (max-width: 768px) {
 	.grid-container {
+		.grid-container {
 		display: grid;
-		grid-template-columns: auto auto ;
+		grid-template-columns: 5% 45% 45% 5%;
 		grid-gap: 10pt 25pt;
 		align-items: center;
 		justify-content: center;
 		grid-template-areas: 
-		 "pageTitle ."
-		 "image image"
-		 "image image"
-		 "description description"
-		 "settings ."
-		 "questionnaire ."
-		 "wLText ."
-		 "gift1 gift2"
-		 "gift3 gift4"
-		 "fullWList ." 
-		 ". ."
-		 "fLText ."
-		 "friend1 friend2"
-		 "friend3 friend4"
-		 "fullFList .";
+		 ". pageTitle . ."
+		 ". image image ."
+		 ". image image ."
+		 ". description description ."
+		 ".  settings settings ."
+		 ". questionnaire questionnaire ."
+		 ". . . ."
+		 ". wLText wLText ."
+		 ". gift1 gift2 ."
+		 ". gift3 gift4 ."
+		 ". fullWList fullWList ." 
+		 ". . . ."
+		 ". fLText fLText ."
+		 ". friend1 friend2 ."
+		 ". friend3 friend4 ."
+		 ". fullFList fullFList .";
 	}
 
 	.grid-container > div {
 		padding: 0 0;
+	}
+		
+	.item-7 {
+		grid-area: gift1;
+		text-align: center;
+		justify-self: center;
+	}
+	
+	.item-13 {
+		grid-area: friend1;
+		text-align: center;
+		justify-self: center;
 	}
 }
