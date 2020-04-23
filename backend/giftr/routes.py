@@ -363,6 +363,7 @@ def suggestion1():
     alreadyRecc = session["AlreadyRecc"]
     recommendation = session["recommendation"]
     updateValues("yes", recommendation, session["id"])
+    liked(recommendation)
     recommendation = Recommendation(session["id"], alreadyRecc)
     image = "img/p/" + recommendation["photo"]
     session["recommendation"] = recommendation
@@ -605,7 +606,8 @@ def updateValues(result, recommendedProduct, currentUser):
                 newProductValues[11], recommendedProduct["product_id"]))
     mysql.connection.commit()
     
-def liked():
+def liked(recommendation):
     uid = session['id']
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute('INSERT INTO wishlist_list WHERE user_id = %s VALUES %s', (uid, pid))
+    cursor.execute('INSERT INTO wishlist_list WHERE user_id = %s VALUES %s', (uid, recommendation["product_id"]))
+    mysql.connection.commit()
