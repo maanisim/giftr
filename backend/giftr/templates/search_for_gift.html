@@ -104,9 +104,24 @@
 					<br><br>
 
 					<p class="sectionTitle">Price range: </p>
-					<i class="fas fa-pound-sign"></i><input type="text" class="priceRange" style="display: inline-block">
-					<p style="display: inline-block"> - </p>
-					<i class="fas fa-pound-sign"></i><input type="text" class="priceRange" style="display: inline-block">
+					<input type="range" min="1" max="4" id="myRange" step="1" onmousemove="priceRange(value)"><output id="price"></output>
+						<script>
+							function priceRange(value) {
+								var priceRange = document.getElementById('myRange').value;
+								var priceOutput;
+								if (priceRange==1) {
+									priceOutput = "$";
+								} else if (priceRange==2) {
+									priceOutput = "$$";
+								} else if (priceRange==3) {
+									priceOutput = "$$$";
+								} else if (priceRange==4) {
+									priceOutput = "$$$$";
+								}
+								
+								document.getElementById('price').innerHTML = priceOutput;
+							}
+						</script>
 					<br><br>
 
 					<p class="sectionTitle">Gender: </p>
