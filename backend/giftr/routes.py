@@ -484,7 +484,7 @@ def Recommendation(currentUser, alreadyRecc):
                 clothes, homeware, entertainment, consumable, sport, other FROM
                 profileRecValues WHERE user_id = '%d'""" % userID)
     userData = crsr.fetchall()
-    dataValues = dataValuesDic.values()
+    dataValues = dataValuesDic
     #for (counter in dataValuesDic):
         #a=0
         #a = counter.values()
