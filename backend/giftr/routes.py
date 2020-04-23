@@ -537,10 +537,12 @@ def updateValues(result, recommendedProduct, currentUser):
                 clothes, homeware, entertainment, consumable, sport, other FROM
                 profileRecValues WHERE user_id = '%d'""" % currentUser)
     userData = crsr.fetchone()
+    userData = list(userData.values())
     crsr.execute("""SELECT age_low, age_high, price, gender1, gender2, toiletries,
                 clothes, homeware, entertainment, consumable, sport, other FROM
                 productRecValues WHERE product_id = '%d'""" % recommendedProduct["product_id"])
     productData = crsr.fetchone()
+    productData = list(productData.values())
     if (result == "yes"):
         newUserValues = []
         newProductValues = []
