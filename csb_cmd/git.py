@@ -26,7 +26,8 @@ class GitCommands(commands.Cog, name="Git commands"):
   @commands.command(help="Provides git info on version/checkpoint")
   async def git(self, ctx):
     await ctx.send("Version: `{}`Checkpoint: `{}`".format(await get_version(), await get_checkpoint()))
-    
+
+  @commands.cooldown(1, 5, commands.BucketType.default)
   @commands.command(help="Updates bot to the current git version")
   async def update(self, ctx):
     if (os.system("git fetch; git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)") != 0):
