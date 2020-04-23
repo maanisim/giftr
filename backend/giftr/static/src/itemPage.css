@@ -12,30 +12,45 @@
     grid-row-end: 3;
     grid-column-start: 3;
     grid-column-end: 6;
-    padding-top: 20%;
-    padding-right: 50px;
+    margin: 10%;
 }
 
-.links{
+.leftColumn2{
     grid-row-start: 3;
     grid-row-end: 6;
     grid-column-start: 1;
-    grid-column-end: 6;  
-    padding-top: 30px;
-    padding-left: 100px;
-    padding-right: 50px;
+    grid-column-end: 3; 
+    text-align: center;
+}
+
+.middle{
+    text-align: center;
+    grid-row-start: 3;
+    grid-row-end: 6;
+    grid-column-start: 3;
+    grid-column-end: 5;
+}
+
+.rightColumn2{
+    text-align: center;
+    grid-row-start: 3;
+    grid-row-end: 6;
+    grid-column-start: 5;
+    grid-column-end: 6;
 }
 
 .link {
     font-family: 'Arial', sans-serif;
     width: 190px;
     border-radius: 5px;
-    cursor:pointer;
-    background-color: #db0038;
-    color:white;
+	cursor:pointer;
+	background-color: #db0038;
+	color:white;
     font-size:20px;
     text-align: center;
     padding: 10px;
+    margin-right: 20px;
+    float: right;
 }
 
 .item{
@@ -52,7 +67,7 @@
 .fa{
     cursor: pointer;
     user-select: none;
-    font-size: 70px;
+    font-size: 60px;
     color: #519dd9;
 }
 
@@ -69,21 +84,44 @@
     font-family: 'Arial', sans-serif;
     width: 190px;
     border-radius: 5px;
-    cursor:pointer;
-    background-color: #db0038;
-    color:white;
+	cursor:pointer;
+	background-color: #db0038;
+	color:white;
     font-size:20px;
     text-align: center;
     padding: 10px;
-    margin-top: 15px;
-    float: right;
-    margin-right: 30%;
+    margin-left: 80px;
 }
 
 .button:hover{
     background-color: #f7c200;
     color: black;
     text-decoration: none;
+}
+
+.label {
+    color: white;
+    padding: 8px;
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    display: block;
+    width: 400px;
+}
+
+.age{
+    background-color: #f7c200;
+}
+
+.gender{
+    background-color: #f7c200;
+}
+
+.category{
+    background-color: #53bac1;
+}
+
+.price{
+    background-color: #53bac1;
 }
 
 @media screen and (min-width: 320px) and (max-width: 768px){
