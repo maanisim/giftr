@@ -248,6 +248,11 @@ def product(pid):
     item_name = item['name']
     photo_name = item['photo']
     item_link = item['link']
+    item_gender = item['gender']
+    item_category = item['category']
+    age_high = item['age_high']
+    age_low = item['age_low']
+    item_price = item['price']
 
     if request.method == 'POST':
         msg = ""
@@ -267,7 +272,13 @@ def product(pid):
     return render_template('itemPage.html',
     item_name=item_name,
     photo_name=photo_name,
-    item_link=item_link )
+    item_link=item_link,
+    item_gender=item_gender,
+    item_category=item_category,
+    age_high=age_high,
+    age_low=age_low,
+    item_price=item_price
+    )
 
 
 @app.route('/u/<int:uid>', methods=['POST', 'GET'])
