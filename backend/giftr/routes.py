@@ -345,7 +345,7 @@ def contact():
 @app.route('/suggestion')
 def suggestion():
     if 'loggedin' in session:
-        update()
+        #update()
         return render_template('itemSuggestion.html')
     return render_template('index.html')
 
