@@ -581,9 +581,9 @@ def updateValues(result, recommendedProduct, currentUser):
                 newUserValues[7], newUserValues[8], newUserValues[9], newUserValues[10],
                 newUserValues[11], currentUser))
     crsr.execute("""UPDATE productRecValues
-                SET age_low = '%d', age_high = '%d', price = '%d', gender1 = '%d', gender2 = '%d', toiletries = '%d',
-                clothes = '%d', homeware = '%d', entertainment = '%d', consumable = '%d', sport = '%d', other = '%d'
-                WHERE product_id = '%d'""", (newProductValues[0], newProductValues[1], newProductValues[2],
+                SET age_low = '%s', age_high = '%s', price = '%s', gender1 = '%s', gender2 = '%s', toiletries = '%s',
+                clothes = '%s', homeware = '%s', entertainment = '%s', consumable = '%s', sport = '%s', other = '%s'
+                WHERE product_id = '%s'""", (newProductValues[0], newProductValues[1], newProductValues[2],
                 newProductValues[3], newProductValues[4], newProductValues[5], newProductValues[6],
                 newProductValues[7], newProductValues[8], newProductValues[9], newProductValues[10],
                 newProductValues[11], recommendedProduct["product_id"]))
