@@ -363,7 +363,7 @@ def suggestion1():
     alreadyRecc = session["AlreadyRecc"]
     recommendation = session["recommendation"]
     updateValues("yes", recommendation, session["id"])
-    liked(recommendation)
+    #liked(recommendation)
     recommendation = Recommendation(session["id"], alreadyRecc)
     image = "img/p/" + recommendation["photo"]
     session["recommendation"] = recommendation
