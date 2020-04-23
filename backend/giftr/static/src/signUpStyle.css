@@ -104,16 +104,12 @@ form {
     .submit{
         width: 40%;
     }
-    
-    .gender{
-        color: #db0038;
-    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1199px){
     form {
         margin-left: 10%;
-        margin-right: 10%;
+        margin-right: 15%;
         margin-top:2%;
     }
 
@@ -123,9 +119,5 @@ form {
 
     .submit{
         width: 30%;
-    }
-    
-    .gender{
-        color: black;
     }
 }
