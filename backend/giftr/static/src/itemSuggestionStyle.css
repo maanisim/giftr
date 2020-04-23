@@ -59,13 +59,13 @@
 }
 
 .giftInfo{
-    width: 30%;
-    height: 40%;
+    width: 120px;
+    height: 55px;
     background-color: #f7c200;
     color: black;
     font-size: 20px;
     text-align: center;
-    margin-left: 30%;
+    margin-left: 40%;
     grid-row-start: 4;
     grid-row-end: 4;
     grid-column-start: 3;
