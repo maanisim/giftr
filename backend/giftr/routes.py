@@ -490,7 +490,7 @@ def Recommendation(currentUser, alreadyRecc):
         a = np.array(a)
         dataValues.append(a)
     userData = np.array(list(userDataDic.values()))
-    userData = userData.reshape(-1, 1)
+    userData = [userData]
     neigh = NearestNeighbors(n_neighbors=1)
     neigh.fit(dataValues)
     reccID = neigh.kneighbors(userData, return_distance = False)
