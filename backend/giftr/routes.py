@@ -6,7 +6,6 @@ from math import floor as floor
 
 global COOKIE_TIME_OUT
 COOKIE_TIME_OUT = 60*60*24*7  # 7 days
-set_cookie("name", value = "value", httponly = True)
 
 @app.errorhandler(404)
 def page_not_found(e):
