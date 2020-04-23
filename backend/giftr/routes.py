@@ -351,7 +351,7 @@ def suggestion():
         update()
         alreadyRecc = session["AlreadyRecc"]
         recommendation = Recommendation(session["id"], alreadyRecc)
-        session["recommmendation"] = recommendation
+        session["recommendation"] = recommendation
         image = "img/p/" + recommendation["photo"]
         return render_template('itemSuggestion.html', recommendation=recommendation, image = image)
     return render_template('index.html')
