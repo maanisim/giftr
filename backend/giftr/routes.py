@@ -259,11 +259,9 @@ def product(pid):
             uid = session['id']
             cursor.execute('SELECT * FROM product_liked WHERE product_id = %s AND user_id = %s', (pid, uid))
             check = cursor.fetchone()
-            if request.form['like'] and not check:
-                print(str(uid)+":u LIKE - p:"+str(pid), file=sys.stderr)
+            if request.form.get('like') and not check:
                 cursor.execute('INSERT INTO product_liked (product_id, user_id) VALUES (%s, %s)', (pid, uid))
-            elif request.form['wish']:
-                print(str(uid)+":u WISH - p:"+str(pid), file=sys.stderr)
+            elif request.form.get('wish'):
                 cursor.execute('INSERT INTO wishlist_list (product_id, user_id) VALUES (%s, %s)', (pid, uid))
         else:
             msg="Please log in before adding to a wishlist!"
