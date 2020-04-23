@@ -22,7 +22,6 @@ strong {
 }
 
 div.privacyContent {
-	padding-left: 10%;
-	padding-right: 10%;
+	width: 80%;
 	text-align: justify;
 }
