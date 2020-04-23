@@ -1,9 +1,14 @@
 .wishlist {
     margin-top: 30px;
-    margin-left: 7%;
+    margin-left: 10%;
     margin-right: 5%;
     margin-bottom: 40px;
     font-size: 12pt;
+}
+
+.giftImg{
+    width: 100%;
+    height: 200px;
 }
 
 .image {
@@ -17,7 +22,6 @@
 
 [class*="col-"] {
     float: left;
-    
     margin-right: 25px;
 }
 
@@ -41,8 +45,6 @@
     width: 17%;
 }
 
-
-
 .giftName {
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -50,11 +52,90 @@
     width: 95%;
 }
 
-h2 {
+#title {
     margin-top: 10px;
     margin-left: 60px;
-    color: #53bac1;
+    font-size: 50px;
 }
 
 
 
+@media screen and (min-width: 320px) and (max-width: 699px){
+    .wishlist {
+        margin-top: 20px;
+        margin-left: 20%;
+        margin-right: 15%;
+        margin-bottom: 40px;
+        font-size: 12pt;
+    }
+
+    .giftImg{
+        width: 100%;
+        height: 200px;
+    }
+
+    .giftName{
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+   
+    [class*="col-"] {
+        float: left;
+        margin-right: 70px;
+        margin-left: 70px;
+    }
+    
+    .col-1 {
+        width: 70%;
+    }
+    
+    .col-2 {
+        width: 70%;
+    }
+    
+    .col-3 {
+        width: 70%;
+    }
+    
+    .col-4 {
+        width: 70%;
+    }
+    
+    .col-5 {
+        width: 70%;
+    }
+
+    #title{
+        font-size: 30px;
+    }
+}
+
+@media screen and (min-width: 700px) and (max-width: 1199px){
+    .wishlist {
+        margin-top: 20px;
+        margin-left: 4%;
+        margin-right: 1%;
+        margin-bottom: 40px;
+        font-size: 12pt;
+    }
+
+    .giftImg{
+        width: 100%;
+        height: 150px;
+    }
+
+    .giftName{
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+   
+    [class*="col-"] {
+        float: left;
+        margin-right: 15px;
+        margin-left: 5px;
+    }
+    
+    #title{
+        font-size: 40px;
+    }
+}
