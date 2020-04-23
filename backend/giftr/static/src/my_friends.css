@@ -144,3 +144,33 @@ p.text {
 		display: table;
 	}
 }
+
+@media screen and (max-width: 319px) {
+	div.pageContent {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.searchField {
+		width: 150px;
+		padding: 5pt 5pt;
+		outline:none;
+		background: transparent;
+		margin: 5px;
+		color: black;
+		border-style: solid;
+		border-color: #ededed;
+		border-radius: 3px 3px 3px 3px;
+	}
+	
+	.column {
+		float: left;
+		width: 100%;
+		padding: 10px 10px;
+	}
+
+	.row::after {
+		content: "";
+		clear: both;
+		display: table;
+	}
+}
