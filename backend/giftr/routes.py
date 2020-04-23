@@ -338,7 +338,7 @@ def wishlist():
         wishlist_data = cursor.fetchone()
 
         return render_template('wishlist.html')
-    return redirect('index.html')
+    return redirect(url_for('index'))
 
 
 @app.route('/about')
@@ -368,7 +368,7 @@ def suggestion():
         session["recommendation"] = recommendation
         pid = recommendation["product_id"]
         return render_template('itemSuggestion.html', recommendation=recommendation, image = image, pid=pid)
-    return redirect('index.html')
+    return redirect(url_for('index'))
 
 @app.route('/suggestion1')
 def suggestion1():
