@@ -345,7 +345,7 @@ def contact():
 @app.route('/suggestion')
 def suggestion():
     if 'loggedin' in session:
-        #update()
+        update()
         return render_template('itemSuggestion.html')
     return render_template('index.html')
 
@@ -467,5 +467,4 @@ def update():
                             (userID, age, age, 200, gender1, gender2, 250, 250, 250, 250, 250, 250, 250))
 
     mysql.connection.commit()
-    mysql.connection.close()
     
