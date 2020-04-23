@@ -17,7 +17,11 @@
   white-space: nowrap;
   overflow: hidden;
   width: 95%;
-  text-decoration: none;
+}
+
+.giftImg{
+  width: 100%;
+  height: 147px;
 }
 
 .images{
@@ -29,17 +33,13 @@
   opacity: 0.4;
 }
 
-
-h2{
-  margin-left: 60px;
-  color: #53bac1;
-}
-
 h3{
   margin-left: 60px;
-  margin-top: 70px;
-  font-size: 15pt;
-  color: #53bac1;
+}
+
+h4{
+  margin-left: 60px;
+  margin-top: 80px;
 }
 
 .quickButtons{
@@ -57,7 +57,6 @@ h3{
   border: none;
   background-color: #f7c200;
   color: black;
-  border-radius: 10px;
   height: 35px;
   box-shadow: 10px 5px 10px rgb(192, 189, 189);
 }
@@ -65,3 +64,32 @@ h3{
 .button:hover{
   opacity: 0.5;
 }
+
+@media screen and (min-width: 320px) and (max-width: 700px){
+  .nowPopular {
+    grid-template-columns: repeat(2, 40%);
+    grid-template-rows: repeat(5, 150px);
+  }
+  
+  .quickButtons{
+    grid-template-columns: repeat(3, 30%);
+    column-gap: 20px;
+    row-gap: 20px;
+    font-size: 12pt;
+  }
+}
+
+@media screen and (min-width: 701px) and (max-width: 1199px){
+  .nowPopular {
+    margin-left: 2%;
+    margin-right: 1%;
+    grid-template-columns: repeat(4, 20%);
+    grid-template-rows: repeat(3, 150px);
+  }
+  
+  .quickButtons{
+    grid-template-columns: repeat(3, 30%);
+    column-gap: 20px;
+    row-gap: 20px;
+    font-size: 12pt;
+  }
