@@ -376,7 +376,7 @@ def suggestion2():
     recommendation = Recommendation(session["id"], alreadyRecc)
     image = "img/p/" + recommendation["photo"]
     session["recommendation"] = recommendation
-    return alreadyRecc
+    return tuple(alreadyRecc)
     #return render_template('itemSuggestion.html', recommendation=recommendation, image = image)
 ###################################################################
 #Functions for Suggestion
