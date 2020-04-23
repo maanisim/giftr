@@ -355,7 +355,8 @@ def suggestion():
         alreadyRecc = updateAlreadyRecc(recommendation, alreadyRecc)
         session["AlreadyRecc"] = alreadyRecc
         session["recommendation"] = recommendation
-        return render_template('itemSuggestion.html', recommendation=recommendation, image = image)
+        pid = recommendation["product_id"]
+        return render_template('itemSuggestion.html', recommendation=recommendation, image = image, pid=pid)
     return render_template('index.html')
 
 @app.route('/suggestion1')
@@ -367,10 +368,8 @@ def suggestion1():
     recommendation = Recommendation(session["id"], alreadyRecc)
     image = "img/p/" + recommendation["photo"]
     session["recommendation"] = recommendation
-    pid = recommendation["product_id"]
-    print("test"+pid, file=sys.stderr)
     alreadyRecc = updateAlreadyRecc(recommendation, alreadyRecc)
-    return render_template('itemSuggestion.html', recommendation=recommendation, image = image, pid=pid)
+    return render_template('itemSuggestion.html', recommendation=recommendation, image = image)
 
 @app.route('/suggestion2')
 def suggestion2():
