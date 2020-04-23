@@ -83,7 +83,7 @@
                  <img src="{{ url_for('static', filename='img/party-profile.png') }}" alt="Profile" width="200" height="200" draggable="false"> 
                 </div>
                 <div class="item-4">
-                  <p class="sectionTitle"> (Username) </p> 
+                  <p class="sectionTitle"> {{ username }} </p> 
                   <p class="userDescription"> This is a short description of the user.</p>
                 </div>
  
@@ -104,7 +104,7 @@
                 </script>
 
                 <div class="item-6">
-                  <p class="sectionTitle">{username}'s Wish List</p>
+                  <p class="sectionTitle">{{ username }}'s Wish List</p>
                 </div>
                 <div class="item-7">
                   <p class="itemName"><a class="link" href="#"><img src="{{ url_for('static', filename='img/default-gift.png') }}" alt="Profile" width="150" height="150" draggable="false"><br> Gift 1 </a></p>
@@ -123,7 +123,7 @@
                   <a href="#" class="button button1">View Full Wish List</a>
                 </div>
                 <div class="item-12">
-                  <p class="sectionTitle">{username}'s Friend List</p>
+                  <p class="sectionTitle">{{ username }}'s Friend List</p>
                 </div>
                 <div class="item-13">
                   <p class="itemName"><a class="link" href="#"><img src="{{ url_for('static', filename='img/party-profile.png') }}" alt="Gift 1" width="150" height="150" draggable="false"><br> Friend 1 </a></p>

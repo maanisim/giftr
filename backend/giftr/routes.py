@@ -268,6 +268,20 @@ def product(pid):
     item_name=item_name,
     photo_name=photo_name,
     item_link=item_link )
+
+
+@app.route('/u/<int:uid>', methods=['POST', 'GET'])
+def user(uid):
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute('SELECT * FROM users WHERE user_id = %s', [uid])
+    user = cursor.fetchone()
+    username = user['username']
+
+    return render_template('anotherProfile.html',
+    username=username,
+    )
+
+
     # --------------------------- STATIC ROUTES --------------------------------------------------
 
 @app.route('/settings')
@@ -319,12 +333,12 @@ def wishlist():
     if 'loggedin' in session:
         user_id = session['id']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM wishlist WHERE user_id = %s', [user_id])
+        cursor.execute('SELECT * FROM wishlist_list WHERE user_id = %s', [user_id])
         # Fetch wishlist
         wishlist_data = cursor.fetchone()
 
         return render_template('wishlist.html')
-    return render_template('index.html')
+    return redirect(url_for('index'))
 
 
 @app.route('/about')
@@ -354,7 +368,7 @@ def suggestion():
         session["recommendation"] = recommendation
         pid = recommendation["product_id"]
         return render_template('itemSuggestion.html', recommendation=recommendation, image = image, pid=pid)
-    return render_template('index.html')
+    return redirect(url_for('index'))
 
 @app.route('/suggestion1')
 def suggestion1():
