@@ -97,3 +97,15 @@
     background-color: #db0038;
     color: white;
 }
+
+@media screen and (min-width: 320px){
+    .writing{
+        text-align: center;
+        width: 100%;
+        margin: 15px;
+    }
+    
+    .form{
+        display: inline-block;
+    }
+}
