@@ -348,8 +348,7 @@ def suggestion():
         update()
         alreadyRecc = onLoad()
         recommendation = Recommendation(session["id"], alreadyRecc)
-        a = recommendation["name"]
-        return render_template('itemSuggestion.html', recommendation=recommendation["name"])
+        return render_template('itemSuggestion.html', recommendation=recommendation)
     return render_template('index.html')
 
 
