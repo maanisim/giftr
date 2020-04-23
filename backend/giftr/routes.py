@@ -376,8 +376,7 @@ def suggestion2():
     recommendation = Recommendation(session["id"], alreadyRecc)
     image = "img/p/" + recommendation["photo"]
     session["recommendation"] = recommendation
-    return alreadyRecc[0]
-    #return render_template('itemSuggestion.html', recommendation=recommendation, image = image)
+    return render_template('itemSuggestion.html', recommendation=recommendation, image = image)
 ###################################################################
 #Functions for Suggestion
 ###################################################################
@@ -533,7 +532,7 @@ def Recommendation(currentUser, alreadyRecc):
                 reccID = n
                 foundRecc = True
         if (foundRecc == False):
-            reccID = reccID["error"]
+            reccID = reccID[0]
         recommendationsReq += 1
     crsr.execute("""SELECT * FROM products WHERE product_id = '%d'""" % reccID)
     recommendedProduct = crsr.fetchone()
