@@ -212,7 +212,7 @@ def new_settings():
         email = request.form['email']
             #if(len(email) > 4):
                 #if(re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email)):
-        print("email changed! to"+email+" user_id= "+id)
+        print("email changed! to"+email+" user_id= "+str(id))
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute("UPDATE users set email=\"%s\" WHERE user_id=%s",(email,id))
 
