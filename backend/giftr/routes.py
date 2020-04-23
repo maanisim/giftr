@@ -226,7 +226,7 @@ def new_settings():
                     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                     cursor.execute("UPDATE users set password=\"%s\" WHERE user_id=%s",(passw,id))
                     #print that something happened? to user
-        mysql.connection.commit()
+    mysql.connection.commit()
     return render_template('settings.html')
 
         # ADD TO WISHLIST
