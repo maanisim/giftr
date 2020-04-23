@@ -207,7 +207,8 @@ def new_settings():
                     print("email changed! to"+email+" user_id= "+str(uid))
                     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                     cursor.execute("UPDATE users set email=\"%s\" WHERE user_id=%s",(email,uid))
-                    session.pop('email', email)
+                    session.pop('email', None)
+                    session['email'] = email
                     #request.form['email'] = email
                     #print that something happened? to user
                     
