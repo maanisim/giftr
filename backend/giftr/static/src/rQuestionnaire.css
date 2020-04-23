@@ -16,9 +16,10 @@
     font-family: 'Arial', sans-serif;
     font-size: 20px;
     color: white;
+    float: right;
     margin-right: 300px;
     margin-top: 10px;
-    margin-bottom: 20px;
+    padding-bottom: 40px;
 }
 
 .submit:hover{
@@ -38,6 +39,6 @@
     
     .submit{
         margin-right: 100px;
-        margin-bottom: 10px;
+        padding-bottom: 20px;
     }
 }
