@@ -212,7 +212,7 @@ def new_settings():
         email = request.form['email']
             #if(len(email) > 4):
                 #if(re.match(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)", email)):
-        print("email changed! to"+email)
+        print("email changed! to"+email+" user_id= "+id)
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute("UPDATE users set email=\"%s\" WHERE user_id=%s",(email,id))
 
@@ -226,9 +226,10 @@ def new_settings():
                     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                     cursor.execute("UPDATE users set password=\"%s\" WHERE user_id=%s",(passw,id))
                     #print that something happened? to user
-    mysql.connection.commit()
-    return render_template('settings.html')
-
+        mysql.connection.commit()
+        return render_template('settings.html')
+    else:
+        return render_template('index.html')
         # ADD TO WISHLIST
         # if 'loggedin' in session:
         #     uid = session['id']
