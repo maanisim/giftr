@@ -542,7 +542,7 @@ def Recommendation(currentUser, alreadyRecc):
 def updateAlreadyRecc(recommendedProduct, alreadyRecc):
     if (len(alreadyRecc) > 50):
         del alreadyRecc[0]
-    alreadyRecc.append(recommendedProduct)
+    alreadyRecc.append(recommendedProduct["product_id"])
     return alreadyRecc
 
 def updateValues(result, recommendedProduct, currentUser):
