@@ -208,8 +208,7 @@ def new_settings():
                     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                     #cursor.execute("UPDATE users set email=%s WHERE user_id=%s",(email,uid))
                     cursor.execute('SELECT * FROM users WHERE email = %s', [email])
-                    exists = cursor.fetchone()
-                    if not exists:
+                    if not cursor.fetchone()[0]:
                         cursor.execute(f"UPDATE users set email= '{email}' WHERE user_id={uid}")
                         session.pop('email', None)
                         session['email'] = email
@@ -264,14 +263,12 @@ def product(pid):
             if request.form.get('like'):
                 # CHECKING DUPLICATE
                 cursor.execute('SELECT * FROM product_liked WHERE product_id = %s AND user_id = %s', (pid, uid))
-                check = cursor.fetchone()
-                if not check:
+                if not cursor.fetchone()[0]:
                     cursor.execute('INSERT INTO product_liked (product_id, user_id) VALUES (%s, %s)', (pid, uid))
             elif request.form.get('wish'):
                 # CHECKING DUPLICATE
                 cursor.execute('SELECT * FROM wishlist_list WHERE product_id = %s AND user_id = %s', (pid, uid))
-                check = cursor.fetchone()
-                if not check:
+                if not cursor.fetchone()[0]:
                     cursor.execute('INSERT INTO wishlist_list (product_id, user_id) VALUES (%s, %s)', (pid, uid))
         else:
             msg="Please log in before adding to a wishlist!"
