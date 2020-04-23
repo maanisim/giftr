@@ -478,12 +478,17 @@ def Recommendation(currentUser, alreadyRecc):
     crsr = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     crsr.execute("""SELECT age_low, age_high, price, gender1, gender2, toiletries,
                 clothes, homeware, entertainment, consumable, sport, other FROM productRecValues""")
-    dataValues = crsr.fetchall()
+    dataValuesDic = crsr.fetchall()
     userID = currentUser
     crsr.execute("""SELECT age_low, age_high, price, gender1, gender2, toiletries,
                 clothes, homeware, entertainment, consumable, sport, other FROM
                 profileRecValues WHERE user_id = '%d'""" % userID)
     userData = crsr.fetchall()
+    dataValues = []
+    for (counter in dataValuesDic):
+        a = list(counter.values)
+        a = np.array(a)
+        dataValues.append(a)
     neigh = NearestNeighbors(n_neighbors=1)
     neigh.fit(dataValues)
     reccID = neigh.kneighbors(userData, return_distance = False)
