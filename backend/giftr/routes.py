@@ -438,8 +438,12 @@ def update():
                 
             else:
                 other = 500
-            crsr.execute("""INSERT INTO productRecValues VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",(productID, age_low, age_high, price, gender1, gender2, toiletries, clothes, homeware, entertainment, consumable, sport, other))
-
+                
+            try:
+                crsr.execute("""INSERT INTO productRecValues VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",(productID, age_low, age_high, price, gender1, gender2, toiletries, clothes, homeware, entertainment, consumable, sport, other))
+            except:
+                pass
+            
     crsr.execute("SELECT * FROM users")
     existingUsers = crsr.fetchall()
     crsr.execute("SELECT user_id FROM profileRecValues")
@@ -457,8 +461,12 @@ def update():
             else:
                 gender1 = 250
                 gender2 = 250
-            crsr.execute("""INSERT INTO profileRecValues VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
-                         (userID, age, age, 200, gender1, gender2, 250, 250, 250, 250, 250, 250, 250))
+            try:
+                crsr.execute("""INSERT INTO profileRecValues VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
+                            (userID, age, age, 200, gender1, gender2, 250, 250, 250, 250, 250, 250, 250))
+            except:
+                pass
+            
     mysql.connection.commit()
     mysql.connection.close()
     
