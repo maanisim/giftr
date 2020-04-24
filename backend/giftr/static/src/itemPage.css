@@ -1,3 +1,7 @@
+.body{
+    font-size: 20px;
+}
+
 .leftColumn{
     grid-row-start: 1;
     grid-row-end: 3;
@@ -12,7 +16,6 @@
     grid-column-start: 3;
     grid-column-end: 6;
     margin: 10%;
-    font-size: 20px;
 }
 
 .leftColumn2{
