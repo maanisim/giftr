@@ -261,13 +261,13 @@ def product(pid):
         msg = ""
         if 'loggedin' in session:
             uid = session['id']
-            if request.form.get('like'):
+            if request.form['like']:
                 # CHECKING DUPLICATE
                 cursor.execute('SELECT * FROM product_liked WHERE product_id = %s AND user_id = %s', (pid, uid))
                 check = cursor.fetchone()
                 if not check:
                     cursor.execute('INSERT INTO product_liked (product_id, user_id) VALUES (%s, %s)', (pid, uid))
-            elif request.form.get('wish'):
+            elif request.form.['wish']:
                 # CHECKING DUPLICATE
                 cursor.execute('SELECT * FROM wishlist_list WHERE product_id = %s AND user_id = %s', (pid, uid))
                 check = cursor.fetchone()
