@@ -93,8 +93,8 @@
 					<br><br>
 					
 					<p class="sectionTitle">Main categories:</p>
-                       			<label class="text"><input type="checkbox">Children 0-2</label>
-                        		<label class="text"><input type="checkbox">Children 3-12</label>
+                       			<label class="text"><input type="checkbox" name="c0_2">Children 0-2</label>
+                        		<label class="text"><input type="checkbox" name="c3_12">Children 3-12</label>
 					<br>
 					<label class="text"><input type="checkbox" name="t_boys">Teenage Boys</label>
 					<label class="text"><input type="checkbox" name="t_girls">Teenage Girls</label>
@@ -104,7 +104,7 @@
 					<br><br>
 
 					<p class="sectionTitle">Price range: </p>
-						<input type="range" min="1" max="4" id="myRange" step="1" onmousemove="priceRange(value)" style="width: 150px;"><output id="price"></output>
+						<input type="range" min="1" max="4" id="myRange" name="price" step="1" onmousemove="priceRange(value)" style="width: 150px;"><output id="price"></output>
 						<script>
 							function priceRange(value) {
 								var priceRange = document.getElementById('myRange').value;
@@ -125,9 +125,9 @@
 					<br><br>
 
 					<p class="sectionTitle">Gender: </p>
-					<label class="text"><input type="checkbox">Female</label>
-					<label class="text"><input type="checkbox">Male</label>
-					<label class="text"><input type="checkbox">Unisex</label>
+					<label class="text"><input type="checkbox" name="female">Female</label>
+					<label class="text"><input type="checkbox" name="male">Male</label>
+					<label class="text"><input type="checkbox" name="unisex">Unisex</label>
 					<br><br>
 					
 					<button class="button button1" type="submit">Apply filters</button>
