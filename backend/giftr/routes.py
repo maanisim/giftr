@@ -190,7 +190,6 @@ def search():
             if len(genders) == 3 or not genders:
                 cursor.execute(f"SELECT * FROM products WHERE products.name LIKE '%{search}%' ORDER BY products.name {sort} LIMIT 25")
                 items = cursor.fetchall()
-                print(items, file=sys.stderr)
                 mysql.connection.commit()
                 return render_template('search_for_gift.html', items=items)
 
