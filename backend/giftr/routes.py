@@ -172,6 +172,7 @@ def search():
     if request.method == 'POST' and 'searchField' in request.form:
         # OPTIONS
 
+        search = request.form['searchField']
         sort = request.form.get('sort')
 
         male = 'male' if request.form.get('male') else None
