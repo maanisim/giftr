@@ -12,6 +12,7 @@
     grid-column-start: 3;
     grid-column-end: 6;
     margin: 10%;
+    font-size: 40px;
 }
 
 .leftColumn2{
@@ -102,7 +103,6 @@
     margin: 20px;
     display: block;
     width: 400px;
-    font-size: 40px;
 }
 
 .age{
