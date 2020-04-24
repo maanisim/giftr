@@ -169,7 +169,7 @@ def search():
                     return render_template('search_for_gift.html', items=items)
 
     # USING FILTERS
-    if request.method == 'POST' and 'searchbox' in request.form:
+    if request.method == 'POST' and 'searchField' in request.form:
         # OPTIONS
 
         sort = request.form.get('sort')
