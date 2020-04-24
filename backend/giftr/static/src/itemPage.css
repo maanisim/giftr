@@ -101,8 +101,7 @@
     font-family: 'Arial', sans-serif;
     margin: 20px;
     display: block;
-    width: 400px;
-    font-size: 40px;
+    width: max-content;
 }
 
 .age{
@@ -117,6 +116,7 @@
 
 .category{
     background-color: #53bac1;
+    font-size: 40px;
 }
 
 .price{
