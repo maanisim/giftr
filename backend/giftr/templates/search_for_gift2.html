@@ -27,7 +27,7 @@
                 <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
                 <li><a href="{{ url_for('suggestion') }}">Item suggestion</a></li>
             </ul>
-            <form class="navbar-form navbar-left" action="/search" method="POST">
+            <form class="navbar-form navbar-left" action="/search2" method="POST">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search for gift" name="search">
                     <div class="input-group-btn">
@@ -83,7 +83,7 @@
                     <p class="pageTitle">Search for gift</p>
                 </div>
 				<div class="item-2">
-				<form action="{{ url_for('search') }}" method="post">
+				<form action="{{ url_for('search2') }}" method="post">
 					<p class="sectionTitle">Search: </p>
 					<input type="text" class="searchField" name="searchbox" placeholder="Enter keyword...">
 					<br><br>
