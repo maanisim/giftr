@@ -9,6 +9,7 @@
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'>
     <link rel="stylesheet" href="{{ url_for('static', filename='src/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='src/wishlistStyle.css') }}">
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='src/home.css') }}">-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -90,18 +91,11 @@
             </center>
             <br>
             <div class="wishlist">
-                <div class="row">
-                    
-                    {% for row in wishlist_data %} 
-                    <div class="col">
-                    <a href="/p/{{row['product_id']}}" class="image" style="text-decoration: none;">
-                        <img src="/static/img/p/{{row['photo']}}" alt="gift" class="giftImg" draggable="false">
-                        <p class="giftName">{{row['name']}}</p>
-                     </a>
-                    </div>
-                    
-                </div>       
-            </div>        
+            {% for row in wishlist_data %} 
+            <a href="/p/{{row['product_id']}}" class="images" style="text-decoration: none;">
+                <img src="/static/img/p/{{row['photo']}}" alt="gift" width="147px" height="147px" draggable="false">
+                <p class="giftName">{{row['name']}} </p>
+            </a>        
                     {% endfor %}
 
                     <!---->
