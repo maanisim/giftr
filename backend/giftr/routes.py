@@ -208,7 +208,7 @@ def search():
 
 
 @app.route('/search2', methods=['POST', 'GET'])
-def search():
+def search2():
     # SEARCH WITH NO PARAMS
     if(request.method == 'POST' and 'search' in request.form):
         search = request.form['search']
