@@ -167,7 +167,7 @@ def search():
             cursor.execute('SELECT products.name FROM products WHERE products.name LIKE \'%'+search+'%\' LIMIT 5')
             row = cursor.fetchone()
             while row is not None:
-                print(str(row))
+                print(str(row), file=sys.stderr)
                 row = cursor.fetchone()
     return render_template('search_for_gift.html')
 
