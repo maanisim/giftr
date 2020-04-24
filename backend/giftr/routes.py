@@ -167,32 +167,32 @@ def search():
             cursor.execute('SELECT products.name FROM products WHERE products.name LIKE \'%'+search+'%\' LIMIT 5')
             row = cursor.fetchone()
             while row is not None:
-                print(str(row))
+                print(str(row), file=sys.stderr)
                 row = cursor.fetchone()
     return render_template('search_for_gift.html')
 
 
 @app.route('/emailSent', methods=['POST', 'GET'])
 def emailsent():
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        message = request.form['message']
-        message = """\
-            {}
-        Subject: From {}
-        {}""".format(email, name, message)
+    #if request.method == 'POST':
+        #name = request.form['name']
+        #email = request.form['email']
+        #message = request.form['message']
+        #message = """\
+            #{}
+        #Subject: From {}
+        #{}""".format(email, name, message)
 
-        port = 465  # For SSL
-        smtp_server = "smtp.gmail.com"
-        sender_email = "group16uol@gmail.com"  # Enter your address
-        receiver_email = "group16uol@gmail.com"  # Enter receiver address
-        emailPassword = "Tataract52"
+        #port = 465  # For SSL
+        #smtp_server = "smtp.gmail.com"
+        #sender_email = "group16uol@gmail.com"  # Enter your address
+        #receiver_email = "group16uol@gmail.com"  # Enter receiver address
+        #emailPassword = "passwordhere"
 
-        context = ssl.create_default_context()
-        with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
-            server.login(sender_email, emailPassword)
-            server.sendmail(sender_email, receiver_email, message)
+        #context = ssl.create_default_context()
+        #with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
+            #server.login(sender_email, emailPassword)
+            #server.sendmail(sender_email, receiver_email, message)
     return render_template('emailSent.html')
 
 
@@ -261,18 +261,18 @@ def product(pid):
         msg = ""
         if 'loggedin' in session:
             uid = session['id']
-            if request.form['like']:
+            if request.form.get('like'):
                 # CHECKING DUPLICATE
-                # cursor.execute('SELECT * FROM product_liked WHERE product_id = %s AND user_id = %s', (pid, uid))
-                # check = cursor.fetchone()
-                # if not check:
-                cursor.execute('INSERT INTO product_liked (product_id, user_id) VALUES (%s, %s)', (pid, uid))
-            elif request.form['wish']:
+                cursor.execute('SELECT * FROM product_liked WHERE product_id = %s AND user_id = %s', (pid, uid))
+                check = cursor.fetchone()
+                if not check:
+                    cursor.execute('INSERT INTO product_liked (product_id, user_id) VALUES (%s, %s)', (pid, uid))
+            elif request.form.get('wish'):
                 # CHECKING DUPLICATE
-                # cursor.execute('SELECT * FROM wishlist_list WHERE product_id = %s AND user_id = %s', (pid, uid))
-                # check = cursor.fetchone()
-                # if not check:
-                cursor.execute('INSERT INTO wishlist_list (product_id, user_id) VALUES (%s, %s)', (pid, uid))
+                cursor.execute('SELECT * FROM wishlist_list WHERE product_id = %s AND user_id = %s', (pid, uid))
+                check = cursor.fetchone()
+                if not check:
+                    cursor.execute('INSERT INTO wishlist_list (product_id, user_id) VALUES (%s, %s)', (pid, uid))
         else:
             msg="Please log in before adding to a wishlist!"
         mysql.connection.commit()
