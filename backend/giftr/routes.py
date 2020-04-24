@@ -30,7 +30,7 @@ def index():
 
 # -------------------------------------------------- AUTH ROUTES --------------------------------------------------
 
-
+#let user login via email@email.email and passw
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     # LOGGING IN
@@ -71,6 +71,7 @@ def login():
     elif 'loggedin' in session:
         return render_template('index.html')
 
+#register user witha username,name,email,bday
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     # CREATING ACCOUNT
@@ -143,7 +144,7 @@ def register():
         return render_template('index.html')
         
 
-
+#logs out user
 @app.route('/logout', methods=['POST', 'GET'])
 def logout():
     if 'loggedin' in session:
@@ -154,13 +155,14 @@ def logout():
         return redirect('/')
     return redirect('/')
 
-
+#user_profile with settings and wishlist and other
 @app.route('/profile')
 def profile():
     if 'loggedin' in session:
         return render_template('my_profile.html', username=session['username'])
     return redirect('/')
 
+#searches for item in sql database and renders it
 @app.route('/search', methods=['POST', 'GET'])
 def search():
     # SEARCH WITH NO PARAMS
@@ -226,7 +228,7 @@ def search():
 
     return render_template('search_for_gift.html')
 
-
+#tmp search to be deleted
 @app.route('/search2', methods=['POST', 'GET'])
 def search2():
     # SEARCH WITH NO PARAMS
@@ -273,7 +275,7 @@ def search2():
 
     return render_template('search_for_gift2.html')
 
-
+#contact the admin when an issue is found
 @app.route('/emailSent', methods=['POST', 'GET'])
 def emailsent():
     #if request.method == 'POST':
@@ -297,7 +299,7 @@ def emailsent():
             #server.sendmail(sender_email, receiver_email, message)
     return render_template('emailSent.html')
 
-
+#changes settings ie, email or password
 @app.route('/new_settings',methods=['POST'])
 def new_settings():
     if('loggedin' in session and request.method == 'POST'):
@@ -345,6 +347,7 @@ def new_settings():
 #|          1 | FITFORT Alarm Clock Wake Up | 1.jpg |      20 |       99 | $     | https://www.amazon.co.uk/FITFORT-Alarm-Clock-Wake-Light-Sunrise/dp/B07CQVM7WY/ref=sr_1_6 | unisex | Alarm Clocks |
 #+------------+-----------------------------+-------+---------+----------+-------+------------------------------------------------------------------------------------------+--------+--------------+
 
+#/p/1 allows to access any product from the database gives a global catalog
 @app.route('/p/<int:pid>', methods=['POST', 'GET'])
 def product(pid):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -391,7 +394,7 @@ def product(pid):
     item_price=item_price
     )
 
-
+#/u/1 allows to see other user profiles on the website
 @app.route('/u/<int:uid>', methods=['POST', 'GET'])
 def user(uid):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -405,51 +408,52 @@ def user(uid):
 
 
     # --------------------------- STATIC ROUTES --------------------------------------------------
-
+#allows user to render settings
 @app.route('/settings')
 def settings():
     if 'loggedin' in session:
         return render_template('settings.html')
     return render_template('index.html')
 
-
+#a setup questinnaire which AI smarter
 @app.route('/questionnaire')
 def questionnaire():
     if 'loggedin' in session:
         return render_template('rQuestionnaire.html')
     return render_template('404.html')
 
-
+#user forgot password page
 @app.route('/forgot')
 def forgot():
     if 'loggedin' in session:
         return render_template('index.html')
     return render_template('forgotPsw.html')
 
-
+#not fully implemented
 @app.route('/friend')
 def friend():
     if 'loggedin' in session:
         return render_template('anotherProfile.html')
     return render_template('404.html')
-
+#not fully implemented
 @app.route('/friends')
 def friends():
     if 'loggedin' in session:
         return render_template('my_friends.html')
     return render_template('404.html')
 
+#again?
 @app.route('/questionaire')
 def questionaire():
     if 'loggedin' in session:
         return render_template('rQuestionnaire.html')
     return render_template('404.html')
-
+#tmp
 @app.route('/item')
 def item():
     return render_template('itemPage.html')
 
-
+#users wishlist
 @app.route('/wishlist')
 def wishlist():
     if 'loggedin' in session:
@@ -464,22 +468,22 @@ def wishlist():
         return render_template('wishlist.html',wishlist_data=wishlist_data)
     return redirect(url_for('index'))
 
-
+#info about the website
 @app.route('/about')
 def about():
     return render_template('about.html')
 
-
+#privacy policy
 @app.route('/privacy')
 def privacy():
     return render_template('privacy_policy.html')
 
-
+#contact us page
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
 
-
+#AI page where user is suggested stuff
 @app.route('/suggestion')
 def suggestion():
     if 'loggedin' in session:
