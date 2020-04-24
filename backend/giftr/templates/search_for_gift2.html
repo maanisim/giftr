@@ -6,7 +6,7 @@
     <title>Search for Gift | Giftr</title>
     <link rel='icon' href="{{ url_for('static', filename='img/favicon.ico') }}" type='image/x-icon'>
     <link rel="stylesheet" href="{{ url_for('static', filename='src/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='src/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/search_gift.css') }}">
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -27,7 +27,7 @@
                 <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
                 <li><a href="{{ url_for('suggestion') }}">Item suggestion</a></li>
             </ul>
-            <form class="navbar-form navbar-left" action="/search2" method="POST">
+            <form class="navbar-form navbar-left" action="/search" method="POST">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search for gift" name="search">
                     <div class="input-group-btn">
@@ -83,7 +83,7 @@
                     <p class="pageTitle">Search for gift</p>
                 </div>
 				<div class="item-2">
-				<form action="{{ url_for('search2') }}" method="post">
+				<form action="{{ url_for('search') }}" method="post">
 					<p class="sectionTitle">Search: </p>
 					<input type="text" class="searchField" name="searchbox" placeholder="Enter keyword...">
 					<br><br>
@@ -108,12 +108,14 @@
 					<br><br>
 
 					<p class="sectionTitle">Price range: </p>
-						<input type="range" min="1" max="4" id="myRange" name="price" step="1" onmousemove="priceRange(value)" style="width: 150px;"><output id="price"></output>
+						<input type="range" min="0" max="4" id="myRange" name="price" step="1" onmousemove="priceRange(value)" style="width: 150px;"><output id="price"></output>
 						<script>
 							function priceRange(value) {
 								var priceRange = document.getElementById('myRange').value;
 								var priceOutput;
-								if (priceRange==1) {
+								if (priceRange==0) {
+									priceOutput = null;
+								} else if (priceRange==1) {
 									priceOutput = "$";
 								} else if (priceRange==2) {
 									priceOutput = "$$";
@@ -140,17 +142,14 @@
 					</form>
 					
                 </div>
-                <div class="wishlist">
 
-                    {% for row in items %} 
-                    <a href="/p/{{row['product_id']}}" class="images" style="text-decoration: none;">
-                        <img src="/static/img/p/{{row['photo']}}" alt="gift" width="147px" height="147px" draggable="false">
-                        <p class="giftName">{{row['name']}} </p>
-                    </a>
+            </div>
+            {% for row in items %} 
+            <a href="/p/{{row['product_id']}}" class="images" style="text-decoration: none;">
+                <img src="/static/img/p/{{row['photo']}}" alt="gift" width="147px" height="147px" draggable="false">
+                <p class="giftName">{{row['name']}} </p>
+            </a>        
                     {% endfor %}
-                
-				</div>
-
 
         </div>
         <div class="footer">
