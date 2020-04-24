@@ -135,7 +135,26 @@
 					<label class="text"><input type="checkbox" name="male">Male</label>
 					<label class="text"><input type="checkbox" name="unisex">Unisex</label>
 					<br><br>
-					
+                    
+                    <p class="sectionTitle">Age:</p>
+                    <input name="age" pattern="^\d*(\.\d{0,2})?$"  oninput="checkAge()"  />
+                    <script>
+
+                        function checkAge()
+                        $(document).on('keydown', 'input[pattern]', function(e){
+                    var input = $(this);
+                    var oldVal = input.val();
+                    var regex = new RegExp(input.attr('pattern'), 'g');
+                    
+                    setTimeout(function(){
+                        var newVal = input.val();
+                        if(!regex.test(newVal)){
+                        input.val(oldVal); 
+                        }
+                    }, 0);
+                    });
+                </script>
+
 					<button class="button button1" type="submit">Apply filters</button>
 					<br>
 					
