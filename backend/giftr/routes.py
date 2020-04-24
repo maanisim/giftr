@@ -92,6 +92,7 @@ def register():
         photo = "default.png"
 
         count = 0
+        # checking cases
         if not re.match(r'[A-Za-z]+', name):
             msg = 'Name must contain only [A-Za-z] characters!'
             count += 1
@@ -148,6 +149,7 @@ def register():
 @app.route('/logout', methods=['POST', 'GET'])
 def logout():
     if 'loggedin' in session:
+        # log out user
         session.pop('loggedin', None)
         session.pop('id', None)
         session.pop('email', None)
@@ -209,6 +211,7 @@ def search():
 
         if(re.match("^[A-Za-z0-9_-]*$", search) is not None):
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            # different statements for different amounts of variables
             if len(genders) == 3 or not genders:
                 cursor.execute(f"SELECT * FROM products WHERE products.name LIKE '%{search}%'{andPrice}{andAge} ORDER BY products.name {sort} LIMIT 25")
                 items = cursor.fetchall()
@@ -352,6 +355,8 @@ def new_settings():
 def product(pid):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute('SELECT * FROM products WHERE product_id = %s', [pid])
+
+    # setting variables
     item = cursor.fetchone()
     item_name = item['name']
     photo_name = item['photo']
@@ -362,6 +367,7 @@ def product(pid):
     age_low = item['age_low']
     item_price = item['price']
 
+    # if post then check form value, if its like add to the liked products db, if its wishlist, add to wishlist
     if request.method == 'POST':
         msg = ""
         if 'loggedin' in session:
@@ -383,6 +389,7 @@ def product(pid):
         mysql.connection.commit()
         update()
 
+    # render all variables on item page
     return render_template('itemPage.html',
     item_name=item_name,
     photo_name=photo_name,

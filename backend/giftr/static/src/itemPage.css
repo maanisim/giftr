@@ -12,6 +12,7 @@
     grid-column-start: 3;
     grid-column-end: 6;
     margin: 10%;
+    font-size: 20px;
 }
 
 .leftColumn2{
@@ -116,7 +117,6 @@
 
 .category{
     background-color: #53bac1;
-    font-size: 40px;
 }
 
 .price{

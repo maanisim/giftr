@@ -177,6 +177,11 @@ label.text {
 		clear: both;
 		display: table;
 	}
+	
+	.nowPopular {
+	    grid-template-columns: repeat(2, 40%);
+	    grid-template-rows: repeat(5, 150px);
+	  }
 }
 
 @media screen and (max-width: 399px) {
@@ -213,4 +218,18 @@ label.text {
 		clear: both;
 		display: table;
 	}
+	
+	.nowPopular {
+	    grid-template-columns: repeat(2, 40%);
+	    grid-template-rows: repeat(5, 150px);
+	  }
+}
+
+@media screen and (min-width: 701px) and (max-width: 1199px){
+  .nowPopular {
+    margin-left: 2%;
+    margin-right: 1%;
+    grid-template-columns: repeat(4, 20%);
+    grid-template-rows: repeat(3, 150px);
+  }
 }
