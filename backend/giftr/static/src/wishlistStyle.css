@@ -20,34 +20,15 @@
     opacity: 0.4;
 }
 
-[class*="col-"] {
+[class*="col"] {
     float: left;
     margin-right: 23px;
 }
 
-.col-1 {
+.col {
     width: 15%;
 }
 
-.col-2 {
-    width: 15%;
-}
-
-.col-3 {
-    width: 15%;
-}
-
-.col-4 {
-    width: 15%;
-}
-
-.col-5 {
-    width: 15%;
-}
-
-.col-6{
-    width: 15%;
-}
 
 .giftName {
     text-overflow: ellipsis;
@@ -84,35 +65,15 @@
         margin-bottom: 25px;
     }
    
-    [class*="col-"] {
+    [class*="col"] {
         float: left;
         margin-right: 25px;
     }
     
-    .col-1 {
+    .col {
         width: 40%;
     }
     
-    .col-2 {
-        width: 40%;
-    }
-    
-    .col-3 {
-        width: 40%;
-    }
-    
-    .col-4 {
-        width: 40%;
-    }
-    
-    .col-5 {
-        width: 40%;
-    }
-
-    .col-6{
-        width: 40%;
-    }
-
     #title{
         font-size: 30px;
         margin-left: 10px;
@@ -138,35 +99,15 @@
         margin-bottom: 30px;
     }
    
-    [class*="col-"] {
+    [class*="col"] {
         float: left;
         margin-right: 20px;
     }
     
-    .col-1 {
+    .col {
         width: 30%;
     }
     
-    .col-2 {
-        width: 30%;
-    }
-    
-    .col-3 {
-        width: 30%;
-    }
-    
-    .col-4 {
-        width: 30%;
-    }
-    
-    .col-5 {
-        width: 30%;
-    }
-
-    .col-6{
-        width: 30%;
-    }
-
     #title{
         font-size: 40px;
         margin-left: 40px;
