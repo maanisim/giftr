@@ -3,114 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giftr | Gifts that never disappoint</title>
+    <title>Search for Gift | Giftr</title>
     <link rel='icon' href="{{ url_for('static', filename='img/favicon.ico') }}" type='image/x-icon'>
-    <link rel="stylesheet" href="{{ url_for('static', filename='src/global.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/search_gift.css') }}">
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.0.13/css/all.css'>
-    <link rel="stylesheet" href="{{ url_for('static', filename='src/home.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='src/style.css') }}">
 
 </head>
 <body>
     <!-- nav bar-->
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
-          <div class="navbar-header">
-            <a href="{{ url_for('index') }}">
-            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" width="120" draggable="false" style="margin-top: 8px; margin-right: 10px;"> 
-            </a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
-            <li><a href="{{ url_for('suggestion') }}">Item suggestion</a></li>
-          </ul>
-          <form class="navbar-form navbar-left" action="/search" method="POST">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for gift" name="search">
-              <div class="input-group-btn">
-                <button class="btn btn-default" type="submit">
-                  <i class="glyphicon glyphicon-search"></i>
-                </button>
-              </div>
+            <div class="navbar-header">
+                <a href="{{ url_for('index') }}">
+                    <img src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" width="120" draggable="false" style="margin-top: 8px; margin-right: 10px;">
+                </a>
             </div>
-          </form>
-              <ul class="nav navbar-nav navbar-right">
-                {% if 'loggedin' in session %}                
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('suggestion') }}">Item suggestion</a></li>
+            </ul>
+            <form class="navbar-form navbar-left" action="/search" method="POST">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for gift" name="search">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                {% if 'loggedin' in session %}
                 <li><a href="{{ url_for('logout') }}" style="color: red;"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                 <li><a href="{{ url_for('profile') }}"><span class="glyphicon glyphicon-user"></span> My profile</a></li>
                 {% else %}
                 <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 <li><a href="{{ url_for('register') }}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 {% endif %}
-          </ul>
+            </ul>
         </div>
-      </nav>
-      <!-- rest -->
-     <div id="page-container">
-         <div id="content-wrap">
-             <div class="header">
-                 <center>
-                      <a href= "{{ url_for('index') }}">
-                        <img src="{{ url_for('static', filename='img/logo.png') }}" class="logo" alt="Logo" width="410" height="120" draggable="false"> 
-                      </a>
-                     <br>
-                 </center>
-             </div>
-             <div class="giftbank" onmouseover="onH(this)" onmouseout="onE(this)">
-                <img src="{{ url_for('static', filename='img/gift.png') }}" alt="Gift icon" width="30" height="30" draggable="false">
+    </nav>      <!-- rest -->
+    <div id="page-container">
+        <div id="content-wrap">
+            <div class="header">
+                <center>
+                    <a href="{{ url_for('index') }}">
+                        <img class="logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="Logo" width="410" height="120" draggable="false">
+                    </a>
+                    <br>
+                </center>
+            </div>
+
+            <div class="giftbank" onmouseover="onH(this)" onmouseout="onE(this)">
+                <img src="{{ url_for('static', filename='img/gift.png') }}" alt="Gift icon" width="30" height="30"
+                    draggable="false">
                 <a href="{{ url_for('wishlist') }}">Gift Bank</a>
             </div>
             <script type="text/javascript">
-                function onH(x){
+                function onH(x) {
                     x.getElementsByTagName('img')[0].src = "{{ url_for('static', filename='img/gift-black.png') }}";
                     x.getElementsByTagName('a')[0].style.color = "black";
                 }
-                function onE(x){
+
+                function onE(x) {
                     x.getElementsByTagName('img')[0].src = "{{ url_for('static', filename='img/gift.png') }}";
                     x.getElementsByTagName('a')[0].style.color = "white";
                 }
             </script>
-             
+
             <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-             
-             <br>
-        
-        <h3>Now popular:</h3>
+			
+            <div class="grid-container">
+                <div class="item-1">
+                    <p class="pageTitle">Search for gift</p>
+                </div>
+				<div class="item-2">
+				<form action="{{ url_for('search') }}" method="post">
+					<p class="sectionTitle">Search: </p>
+					<input type="text" class="searchField" name="searchbox" placeholder="Enter keyword...">
+					<br><br>
+					
+					<p class="text">Sort results: </p>
+					<select class="form-control" name="sort" style="width: 150px;">
+					<option value="">Alphabetically</option>
+					<option value="ASC">Price low to high</option>
+					<option value="DESC">Price high to low</option>
+					</select>
+					<br><br>
+					
+					<p class="sectionTitle">Main categories:</p>
+                       			<label class="text"><input type="checkbox" name="c0_2">Children 0-2</label>
+                        		<label class="text"><input type="checkbox" name="c3_12">Children 3-12</label>
+					<br>
+					<label class="text"><input type="checkbox" name="t_boys">Teenage Boys</label>
+					<label class="text"><input type="checkbox" name="t_girls">Teenage Girls</label>
+					<br>
+					<label class="text"><input type="checkbox">Him</label>
+					<label class="text"><input type="checkbox">Her</label>
+					<br><br>
 
-        <div class="nowPopular">
-            {% for row in top12items %} 
+					<p class="sectionTitle">Price range: </p>
+						<input type="range" min="0" max="4" id="myRange" name="price" step="1" onmousemove="priceRange(value)" style="width: 150px;"><output id="price"></output>
+						<script>
+							function priceRange(value) {
+								var priceRange = document.getElementById('myRange').value;
+								var priceOutput;
+								if (priceRange==0) {
+									priceOutput = null;
+								} else if (priceRange==1) {
+									priceOutput = "$";
+								} else if (priceRange==2) {
+									priceOutput = "$$";
+								} else if (priceRange==3) {
+									priceOutput = "$$$";
+								} else if (priceRange==4) {
+									priceOutput = "$$$$";
+								}
+								
+								document.getElementById('price').innerHTML = priceOutput;
+							}
+						</script>
+					<br><br>
+
+					<p class="sectionTitle">Gender: </p>
+					<label class="text"><input type="checkbox" name="female">Female</label>
+					<label class="text"><input type="checkbox" name="male">Male</label>
+					<label class="text"><input type="checkbox" name="unisex">Unisex</label>
+					<br><br>
+					
+					<button class="button button1" type="submit">Apply filters</button>
+					<br>
+					
+					</form>
+					
+                </div>
+
+            </div>
+            {% for row in items %} 
             <a href="/p/{{row['product_id']}}" class="images" style="text-decoration: none;">
-                <img src="/static/img/p/{{row['photo']}}" alt="gift" width="100%" height="147px" draggable="false">
+                <img src="/static/img/p/{{row['photo']}}" alt="gift" width="147px" height="147px" draggable="false">
                 <p class="giftName">{{row['name']}} </p>
-            </a>
-            {% endfor %}
-        </div>
+            </a>        
+                    {% endfor %}
 
-        <h4>Find gift for:</h4>
-        <div class="quickButtons">
-            <button class="button type1" type="submit">Children 0-2</button>
-            <button class="button type2" type="submit">Children 3-12</button>
-            <button class="button type3" type="submit">Teenage boys</button>
-            <button class="button type4" type="submit">Teenage girls</button>
-            <button class="button type5" type="submit">Him</button>
-            <button class="button type6" type="submit">Her</button>
         </div>
-        
-         </div>
- 
-    
-        <!-- footer -->
         <div class="footer">
-        <a href="{{ url_for('about') }}">About Us</a>
-        |
-        <a href="{{ url_for('contact') }}">Contact Us</a>
-        |
-        <a href="{{ url_for('privacy') }}">Privacy Policy</a>
+            <a href="{{ url_for('about') }}">About Us</a>
+            |
+            <a href="{{ url_for('contact') }}">Contact Us</a>
+            |
+            <a href="{{ url_for('privacy') }}">Privacy Policy</a>
         </div>
     </div>
+
 </body>
 </html>
