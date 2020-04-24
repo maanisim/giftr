@@ -162,13 +162,29 @@ def profile():
 def search():
     if(request.method == 'POST' and 'search' in request.form):
         search = request.form['search']
+
+        # OPTIONS
+        child0_2 = request.form.get('c0_2')
+        child3_12 = request.form.get('c3_12')
+        t_boys = request.form.get('t_boys')
+        t_girls = request.form.get('t_girls')
+
+        male = request.form.get('male')
+        female = request.form.get('female')
+        unisex = request.form.get('unisex')
+
+        genders = [male, female, unisex]
+
         if(re.match("^[A-Za-z0-9_-]*$", search) is not None):
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute('SELECT * FROM products WHERE products.name LIKE \'%'+search+'%\' LIMIT 25')
-            row = cursor.fetchone()
-            while row is not None:
-                print(str(row), file=sys.stderr)
-                row = cursor.fetchone()
+            if len(genders) == 3 or not genders:
+                cursor.execute('SELECT * FROM products WHERE products.name LIKE %s LIMIT 25', [search])
+                items = cursor.fetchone()
+                while items is not None:
+                    print(str(items), file=sys.stderr)
+                    row = cursor.fetchone()
+            elif len(genders) == 2:
+                
     return render_template('search_for_gift.html')
 
 
