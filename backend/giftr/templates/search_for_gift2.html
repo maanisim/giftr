@@ -146,74 +146,14 @@
 
             </div>
             <div class="nowPopular">
-             
-                <a href="/p/23" class="images" style="text-decoration: none;">
-                    <img src="/static/img/p/23.jpg" alt="gift" draggable="false" width="100%" height="147px">
-                    <p class="giftName">Mpow Function 1 Minute Adjustable Included </p>
-                </a>
-                 
-                <a href="/p/337" class="images" style="text-decoration: none;">
-                    <img src="/static/img/p/337.jpg" alt="gift" draggable="false" width="100%" height="147px">
-                    <p class="giftName">SolarMatrix Playing Cards Waterproof Poker </p>
-                </a>
-                 
-                <a href="/p/325" class="images" style="text-decoration: none;">
-                    <img src="/static/img/p/325.jpg" alt="gift" draggable="false" width="100%" height="147px">
-                    <p class="giftName">Days Wonder DOW7202 Ticket Europe </p>
-                </a>
-                 
-                <a href="/p/338" class="images" style="text-decoration: none;">
-                    <img src="/static/img/p/338.jpg" alt="gift" draggable="false" width="100%" height="147px">
-                    <p class="giftName">Herlitz A6 Ruled Record Card </p>
-                </a>
-                 
-                <a href="/p/1" class="images" style="text-decoration: none;">
-                    <img src="/static/img/p/1.jpg" alt="gift" draggable="false" width="100%" height="147px">
-                    <p class="giftName">FITFORT Alarm Clock Wake Up </p>
-                </a>
-                 
-                <a href="/p/335" class="images" style="text-decoration: none;">
-                    <img src="/static/img/p/335.jpg" alt="gift" draggable="false" width="100%" height="147px">
-                    <p class="giftName">Bicycle Standard Index Playing Cards </p>
-                </a>
-                 
-                <a href="/p/1012" class="images" style="text-decoration: none;">
-                    <img src="/static/img/p/1012.jpg" alt="gift" draggable="false" width="100%" height="147px">
-                    <p class="giftName">John Hornby Skewes 200H MO1 Recorder </p>
-                </a>
-                 
-                <a href="/p/336" class="images" style="text-decoration: none;">
-                    <img src="/static/img/p/336.jpg" alt="gift" draggable="false" width="100%" height="147px">
-                    <p class="giftName">Decks Professional Plastic Coated Playing </p>
-                </a>
-                 
-                <a href="/p/1617" class="images" style="text-decoration: none;">
-                    <img src="/static/img/p/1617.jpg" alt="gift" draggable="false" width="100%" height="147px">
-                    <p class="giftName">Vinyl Season 1 Trailer </p>
-                </a>
-                 
-                <a href="/p/1618" class="images" style="text-decoration: none;">
-                    <img src="/static/img/p/1618.jpg" alt="gift" draggable="false" width="100%" height="147px">
-                    <p class="giftName">Essential Albums 3LP VINYL </p>
-                </a>
-                 
-                <a href="/p/1619" class="images" style="text-decoration: none;">
-                    <img src="/static/img/p/1619.jpg" alt="gift" draggable="false" width="100%" height="147px">
-                    <p class="giftName">Victory Comic Muse Reissue VINYL </p>
-                </a>
-                 
-                <a href="/p/341" class="images" style="text-decoration: none;">
-                    <img src="/static/img/p/341.jpg" alt="gift" draggable="false" width="100%" height="147px">
-                    <p class="giftName">Bullets Playing Cards Waterproof Plastic </p>
-                </a>
-                
+                {% for row in items %} 
+                <a href="/p/{{row['product_id']}}" class="images" style="text-decoration: none;">
+                    <img src="/static/img/p/{{row['photo']}}" alt="gift" width="147px" height="147px" draggable="false">
+                    <p class="giftName">{{row['name']}} </p>
+                </a>        
+                        {% endfor %}
             </div>
-            {% for row in items %} 
-            <a href="/p/{{row['product_id']}}" class="images" style="text-decoration: none;">
-                <img src="/static/img/p/{{row['photo']}}" alt="gift" width="147px" height="147px" draggable="false">
-                <p class="giftName">{{row['name']}} </p>
-            </a>        
-                    {% endfor %}
+
 
         </div>
         <div class="footer">
