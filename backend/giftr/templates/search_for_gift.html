@@ -108,12 +108,14 @@
 					<br><br>
 
 					<p class="sectionTitle">Price range: </p>
-						<input type="range" min="1" max="4" id="myRange" name="price" step="1" onmousemove="priceRange(value)" style="width: 150px;"><output id="price"></output>
+						<input type="range" min="0" max="4" id="myRange" name="price" step="1" onmousemove="priceRange(value)" style="width: 150px;"><output id="price"></output>
 						<script>
 							function priceRange(value) {
 								var priceRange = document.getElementById('myRange').value;
 								var priceOutput;
-								if (priceRange==1) {
+								if (priceRange==0) {
+									priceOutput = null;
+								} else if (priceRange==1) {
 									priceOutput = "$";
 								} else if (priceRange==2) {
 									priceOutput = "$$";
