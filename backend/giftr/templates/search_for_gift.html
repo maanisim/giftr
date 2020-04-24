@@ -137,23 +137,8 @@
 					<br><br>
                     
                     <p class="sectionTitle">Age:</p>
-                    <input name="age" pattern="^\d*(\.\d{0,2})?$"  oninput="checkAge()"  />
-                    <script>
+                    <input name="age" min="1" max="100"  />
 
-                        function checkAge()
-                        $(document).on('keydown', 'input[pattern]', function(e){
-                    var input = $(this);
-                    var oldVal = input.val();
-                    var regex = new RegExp(input.attr('pattern'), 'g');
-                    
-                    setTimeout(function(){
-                        var newVal = input.val();
-                        if(!regex.test(newVal)){
-                        input.val(oldVal); 
-                        }
-                    }, 0);
-                    });
-                </script>
 
 					<button class="button button1" type="submit">Apply filters</button>
 					<br>
