@@ -30,7 +30,7 @@ def index():
 
 # -------------------------------------------------- AUTH ROUTES --------------------------------------------------
 
-#let user login via email@email.email and passw
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     # LOGGING IN
@@ -71,7 +71,6 @@ def login():
     elif 'loggedin' in session:
         return render_template('index.html')
 
-#register user witha username,name,email,bday
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     # CREATING ACCOUNT
@@ -145,7 +144,7 @@ def register():
         return render_template('index.html')
         
 
-#logs out user
+
 @app.route('/logout', methods=['POST', 'GET'])
 def logout():
     if 'loggedin' in session:
@@ -157,14 +156,13 @@ def logout():
         return redirect('/')
     return redirect('/')
 
-#user_profile with settings and wishlist and other
+
 @app.route('/profile')
 def profile():
     if 'loggedin' in session:
         return render_template('my_profile.html', username=session['username'])
     return redirect('/')
 
-#searches for item in sql database and renders it
 @app.route('/search', methods=['POST', 'GET'])
 def search():
     # SEARCH WITH NO PARAMS
@@ -231,7 +229,7 @@ def search():
 
     return render_template('search_for_gift.html')
 
-#tmp search to be deleted
+
 @app.route('/search2', methods=['POST', 'GET'])
 def search2():
     # SEARCH WITH NO PARAMS
@@ -278,7 +276,7 @@ def search2():
 
     return render_template('search_for_gift2.html')
 
-#contact the admin when an issue is found
+
 @app.route('/emailSent', methods=['POST', 'GET'])
 def emailsent():
     #if request.method == 'POST':
@@ -302,7 +300,7 @@ def emailsent():
             #server.sendmail(sender_email, receiver_email, message)
     return render_template('emailSent.html')
 
-#changes settings ie, email or password
+
 @app.route('/new_settings',methods=['POST'])
 def new_settings():
     if('loggedin' in session and request.method == 'POST'):
@@ -350,7 +348,6 @@ def new_settings():
 #|          1 | FITFORT Alarm Clock Wake Up | 1.jpg |      20 |       99 | $     | https://www.amazon.co.uk/FITFORT-Alarm-Clock-Wake-Light-Sunrise/dp/B07CQVM7WY/ref=sr_1_6 | unisex | Alarm Clocks |
 #+------------+-----------------------------+-------+---------+----------+-------+------------------------------------------------------------------------------------------+--------+--------------+
 
-#/p/1 allows to access any product from the database gives a global catalog
 @app.route('/p/<int:pid>', methods=['POST', 'GET'])
 def product(pid):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -401,7 +398,7 @@ def product(pid):
     item_price=item_price
     )
 
-#/u/1 allows to see other user profiles on the website
+# route to show a user's page
 @app.route('/u/<int:uid>', methods=['POST', 'GET'])
 def user(uid):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -415,52 +412,52 @@ def user(uid):
 
 
     # --------------------------- STATIC ROUTES --------------------------------------------------
-#allows user to render settings
+
 @app.route('/settings')
 def settings():
     if 'loggedin' in session:
         return render_template('settings.html')
     return render_template('index.html')
 
-#a setup questinnaire which AI smarter
+
 @app.route('/questionnaire')
 def questionnaire():
     if 'loggedin' in session:
         return render_template('rQuestionnaire.html')
     return render_template('404.html')
 
-#user forgot password page
+
 @app.route('/forgot')
 def forgot():
     if 'loggedin' in session:
         return render_template('index.html')
     return render_template('forgotPsw.html')
 
-#not fully implemented
+
 @app.route('/friend')
 def friend():
     if 'loggedin' in session:
         return render_template('anotherProfile.html')
     return render_template('404.html')
-#not fully implemented
+
 @app.route('/friends')
 def friends():
     if 'loggedin' in session:
         return render_template('my_friends.html')
     return render_template('404.html')
 
-#again?
 @app.route('/questionaire')
 def questionaire():
     if 'loggedin' in session:
         return render_template('rQuestionnaire.html')
     return render_template('404.html')
-#tmp
+
 @app.route('/item')
 def item():
     return render_template('itemPage.html')
 
-#users wishlist
+
+# display wishlist/gift bank items
 @app.route('/wishlist')
 def wishlist():
     if 'loggedin' in session:
@@ -475,22 +472,25 @@ def wishlist():
         return render_template('wishlist.html',wishlist_data=wishlist_data)
     return redirect(url_for('index'))
 
-#info about the website
+
 @app.route('/about')
 def about():
     return render_template('about.html')
 
-#privacy policy
+
 @app.route('/privacy')
 def privacy():
     return render_template('privacy_policy.html')
 
-#contact us page
+
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+#############################################################
+#Suggestions
+#############################################################
 
-#AI page where user is suggested stuff
+#initial suggestion
 @app.route('/suggestion')
 def suggestion():
     if 'loggedin' in session:
@@ -505,6 +505,7 @@ def suggestion():
         return render_template('itemSuggestion.html', recommendation=recommendation, image = image, pid=pid)
     return redirect(url_for('index'))
 
+#handle suggestion if liked
 @app.route('/suggestion1')
 def suggestion1():
     alreadyRecc = session["AlreadyRecc"]
@@ -518,6 +519,7 @@ def suggestion1():
     pid = recommendation["product_id"]
     return render_template('itemSuggestion.html', recommendation=recommendation, image = image, pid=pid)
 
+#Handle suggestion if disliked
 @app.route('/suggestion2')
 def suggestion2():
     alreadyRecc = session["AlreadyRecc"]
@@ -533,12 +535,15 @@ def suggestion2():
 #Functions for Suggestion
 ###################################################################
 
+#Handles any update to product database or user database
 def update():
+    #Import values
     crsr = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     crsr.execute("SELECT product_id FROM products")
     existingProducts = crsr.fetchall()
     crsr.execute("SELECT product_id FROM productRecValues")
     presentIDs = crsr.fetchall()
+    #Assigns numerical values for all new products
     for product in existingProducts:
         if (product not in presentIDs):
             crsr.execute("SELECT * FROM products WHERE product_id = %d", product)
@@ -621,7 +626,8 @@ def update():
                 other = 500
                 
             crsr.execute("""INSERT INTO productRecValues VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",(productID, age_low, age_high, price, gender1, gender2, toiletries, clothes, homeware, entertainment, consumable, sport, other))
-            
+    
+    #Assigns numerical values for new users
     crsr.execute("SELECT user_id FROM users")
     existingUsers = crsr.fetchall()
     crsr.execute("SELECT user_id FROM profileRecValues")
@@ -647,12 +653,15 @@ def update():
                             (userID, age, age, 200, gender1, gender2, 250, 250, 250, 250, 250, 250, 250))
 
     mysql.connection.commit()
-    
+
+#generates initial list that stores items that have already been recommened
 def onLoad():
     alreadyRecc = []
     return alreadyRecc
 
+#Returns recommended product
 def Recommendation(currentUser, alreadyRecc):
+    #Pull values from database
     crsr = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     crsr.execute("""SELECT age_low, age_high, price, gender1, gender2, toiletries,
                 clothes, homeware, entertainment, consumable, sport, other FROM productRecValues""")
@@ -662,6 +671,7 @@ def Recommendation(currentUser, alreadyRecc):
                 clothes, homeware, entertainment, consumable, sport, other FROM
                 profileRecValues WHERE user_id = '%d'""" % userID)
     userDataDic = crsr.fetchone()
+    #Put values in correct data format
     dataValues = []
     for counter in dataValuesDic:
         a = list(counter.values())
@@ -669,11 +679,14 @@ def Recommendation(currentUser, alreadyRecc):
         dataValues.append(a)
     userData = np.array(list(userDataDic.values()))
     userData = [userData]
+    #Set model
     neigh = NearestNeighbors(n_neighbors=1)
     neigh.fit(dataValues)
+    #Generate recommendation
     reccID = neigh.kneighbors(userData, return_distance = False)
     reccID = reccID[0][0]
     recommendationsReq = 2
+    #Ensures recommendation has not already been given
     while (reccID in alreadyRecc):
         neigh = NearestNeighbors(n_neighbors=recommendationsReq)
         neigh.fit(dataValues)
@@ -687,17 +700,21 @@ def Recommendation(currentUser, alreadyRecc):
         if (foundRecc == False):
             reccID = reccID[0][0]
         recommendationsReq += 1
+    #produces recommendation
     crsr.execute("""SELECT * FROM products WHERE product_id = '%d'""" % reccID)
     recommendedProduct = crsr.fetchone()
     return recommendedProduct
 
+#Update array of gifts already shown to user
 def updateAlreadyRecc(recommendedProduct, alreadyRecc):
     if (len(alreadyRecc) > 50):
         del alreadyRecc[0]
     alreadyRecc.append(recommendedProduct["product_id"])
     return alreadyRecc
 
+#Refine product and user values, ensures "learning"
 def updateValues(result, recommendedProduct, currentUser):
+    #Pull values from database
     crsr = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     crsr.execute("""SELECT age_low, age_high, price, gender1, gender2, toiletries,
                 clothes, homeware, entertainment, consumable, sport, other FROM
@@ -709,6 +726,7 @@ def updateValues(result, recommendedProduct, currentUser):
                 productRecValues WHERE product_id = '%d'""" % recommendedProduct["product_id"])
     productData = crsr.fetchone()
     productData = list(productData.values())
+    #Modifies values if product is liked
     if (result == "yes"):
         newUserValues = []
         newProductValues = []
@@ -724,6 +742,7 @@ def updateValues(result, recommendedProduct, currentUser):
                 newUserValue = 0
             if (newProductValues[counter] < 0):
                 newProductValue = 0
+    #Modifies values if product is disliked
     else:
         newUserValues = []
         newProductValues = []
@@ -739,6 +758,7 @@ def updateValues(result, recommendedProduct, currentUser):
                 newUserValues[counter] = 0
             if (newProductValues[counter] < 0):
                 newProductValues[counter] = 0
+    #Update database with new values
     crsr.execute("""UPDATE profileRecValues
                 SET age_low = '%s', age_high = '%s', price = '%s', gender1 = '%s', gender2 = '%s', toiletries = '%s',
                 clothes = '%s', homeware = '%s', entertainment = '%s', consumable = '%s', sport = '%s', other = '%s'
@@ -754,7 +774,8 @@ def updateValues(result, recommendedProduct, currentUser):
                 newProductValues[7], newProductValues[8], newProductValues[9], newProductValues[10],
                 newProductValues[11], recommendedProduct["product_id"]))
     mysql.connection.commit()
-    
+
+#Adds liked product to likes and wishlist
 def liked(recommendation):
     uid = session['id']
     pid = recommendation["product_id"]
