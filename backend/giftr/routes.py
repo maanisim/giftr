@@ -184,7 +184,7 @@ def search():
                     print(str(items), file=sys.stderr)
                     row = cursor.fetchone()
             elif len(genders) == 2:
-                
+                print("test")
     return render_template('search_for_gift.html')
 
 
