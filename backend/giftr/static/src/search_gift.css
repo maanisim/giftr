@@ -136,7 +136,7 @@ label.text {
   margin-right: 30px;
   margin-bottom: 40px;
   grid-template-columns: repeat(5, 15%);
-  grid-template-rows: repeat(2, 200px);
+  grid-template-rows: repeat(2, 250px);
   column-gap: 30px;
   row-gap: 50px;
   font-size: 12pt;
@@ -180,7 +180,7 @@ label.text {
 	
 	.nowPopular {
 	    grid-template-columns: repeat(2, 40%);
-	    grid-template-rows: repeat(5, 200px);
+	    grid-template-rows: repeat(5, 250px);
 	  }
 }
 
@@ -221,7 +221,7 @@ label.text {
 	
 	.nowPopular {
 	    grid-template-columns: repeat(2, 40%);
-	    grid-template-rows: repeat(5, 200px);
+	    grid-template-rows: repeat(5, 250px);
 	  }
 }
 
@@ -230,6 +230,6 @@ label.text {
     margin-left: 2%;
     margin-right: 1%;
     grid-template-columns: repeat(4, 20%);
-    grid-template-rows: repeat(3, 200px);
+    grid-template-rows: repeat(3, 250px);
   }
 }
