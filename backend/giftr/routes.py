@@ -178,6 +178,7 @@ def search():
 
         search = request.form['searchbox']
         sort = request.form.get('sort')
+        price = request.form.get('price')
 
         male = 'male' if request.form.get('male') else None
         female = 'female' if request.form.get('female') else None
