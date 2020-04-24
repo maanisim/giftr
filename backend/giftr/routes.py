@@ -252,7 +252,7 @@ def search():
                 
                 return render_template('search_for_gift.html', items=items)
 
-    return render_template('search_for_gift.html')
+    return render_template('search_for_gift2.html')
 
 
 @app.route('/emailSent', methods=['POST', 'GET'])
