@@ -47,19 +47,6 @@ label.text {
 	font: 12pt Arial, sans-serif;
 }
 
-.column {
-	float: left;
-	width: 20%;
-	padding: 10px 10px;
-	text-align: center;
-}
-
-.row::after {
-	content: "";
-	clear: both;
-	display: table;
-}
-
 .button {
 	background-color: #519dd9;
 	float: center;
@@ -165,23 +152,10 @@ label.text {
 		padding: 0 0;
 	}
 	
-	.column {
-		float: left;
-		width: 33.33%;
-		padding: 10px 10px;
-		text-align: center;
-	}
-
-	.row::after {
-		content: "";
-		clear: both;
-		display: table;
-	}
-	
 	.nowPopular {
-	    grid-template-columns: repeat(2, 40%);
-	    grid-template-rows: repeat(5, 250px);
-	  }
+		grid-template-columns: repeat(2, 40%);
+		grid-template-rows: repeat(5, 250px);
+	}
 }
 
 @media screen and (max-width: 399px) {
@@ -205,31 +179,18 @@ label.text {
 	.grid-container > div {
 		padding: 0 0;
 	}
-	
-	.column {
-		float: left;
-		width: 50%;
-		padding: 5px 5px;
-		text-align: center;
-	}
 
-	.row::after {
-		content: "";
-		clear: both;
-		display: table;
-	}
-	
 	.nowPopular {
-	    grid-template-columns: repeat(2, 40%);
-	    grid-template-rows: repeat(5, 250px);
+		grid-template-columns: repeat(2, 40%);
+		grid-template-rows: repeat(5, 250px);
 	  }
 }
 
 @media screen and (min-width: 701px) and (max-width: 1199px){
-  .nowPopular {
-    margin-left: 2%;
-    margin-right: 1%;
-    grid-template-columns: repeat(4, 20%);
-    grid-template-rows: repeat(3, 250px);
-  }
+	.nowPopular {
+		margin-left: 2%;
+		margin-right: 1%;
+		grid-template-columns: repeat(4, 20%);
+		grid-template-rows: repeat(3, 250px);
+		}
 }
