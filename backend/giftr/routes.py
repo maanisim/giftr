@@ -180,15 +180,15 @@ def search():
         sort = request.form.get('sort')
         price = request.form.get('price')
         tmp = " AND products.price = "
-        if price == 0:
+        if int(price) == 0:
             tmp = ""
-        elif price == 1:
+        elif int(price) == 1:
             tmp += "'$'"
-        elif price == 2:
+        elif int(price) == 2:
             tmp += "'$$'"
-        elif price == 3:
+        elif int(price) == 3:
             tmp += "'$$$'"
-        elif price == 4:
+        elif int(price) == 4:
             tmp += "'$$$$'"
         
         male = 'male' if request.form.get('male') else None
