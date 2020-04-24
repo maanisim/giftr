@@ -135,7 +135,7 @@ label.text {
   margin-left: 60px;
   margin-right: 30px;
   margin-bottom: 40px;
-  grid-template-columns: repeat(6, 15%);
+  grid-template-columns: repeat(5, 15%);
   grid-template-rows: repeat(2, 150px);
   column-gap: 30px;
   row-gap: 50px;
