@@ -267,7 +267,8 @@ def product(pid):
                 check = cursor.fetchone()
                 if not check:
                     cursor.execute('INSERT INTO product_liked (product_id, user_id) VALUES (%s, %s)', (pid, uid))
-            elif request.form.get('wish'):
+                    
+            if request.form.get('wish'):
                 # CHECKING DUPLICATE
                 cursor.execute('SELECT * FROM wishlist_list WHERE product_id = %s AND user_id = %s', (pid, uid))
                 check = cursor.fetchone()
