@@ -165,18 +165,12 @@ def search():
         if(re.match("^[A-Za-z0-9_-]*$", search) is not None):
                     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
                     cursor.execute('SELECT * FROM products WHERE products.name LIKE %s LIMIT 25', [search])
-                    items = cursor.fetchone()
-                    while items is not None:
-                        print(str(items), file=sys.stderr)
-                        row = cursor.fetchone()
+                    items = cursor.fetchall()
+                    return render_template('search_for_gift.html', items=items)
 
     # USING FILTERS
     if request.method == 'POST' and 'searchbox' in request.form:
         # OPTIONS
-        child0_2 = request.form.get('c0_2')
-        child3_12 = request.form.get('c3_12')
-        t_boys = request.form.get('t_boys')
-        t_girls = request.form.get('t_girls')
 
         sort = request.form.get('sort')
 
@@ -190,22 +184,19 @@ def search():
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
             if len(genders) == 3 or not genders:
                 cursor.execute('SELECT * FROM products WHERE products.name LIKE %s LIMIT 25 ORDER BY products.name %s', (search, sort))
-                items = cursor.fetchone()
-                while items is not None:
-                    print(str(items), file=sys.stderr)
-                    row = cursor.fetchone()
+                items = cursor.fetchall()
+                return render_template('search_for_gift.html', items=items)
+
             elif len(genders) == 2:
                 cursor.execute('SELECT * FROM products WHERE gender = %s AND gender = %s AND products.name LIKE %s LIMIT 25 ORDER BY products.name %s', (genders[0], genders[1], search, sort))
-                items = cursor.fetchone()
-                while items is not None:
-                    print(str(items), file=sys.stderr)
-                    row = cursor.fetchone()
+                items = cursor.fetchall()
+                return render_template('search_for_gift.html', items=items)
+                
             elif len(genders) == 1:
                 cursor.execute('SELECT * FROM products WHERE gender = %s AND products.name LIKE %s LIMIT 25 ORDER BY products.name %s', (genders[0], search, sort))
-                items = cursor.fetchone()
-                while items is not None:
-                    print(str(items), file=sys.stderr)
-                    row = cursor.fetchone()       
+                items = cursor.fetchall()
+                return render_template('search_for_gift.html', items=items)
+
     return render_template('search_for_gift.html')
 
 
