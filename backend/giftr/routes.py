@@ -164,7 +164,7 @@ def search():
         search = request.form['search']
         if(re.match("^[A-Za-z0-9_-]*$", search) is not None):
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute('SELECT products.name FROM products WHERE products.name LIKE \'%'+search+'%\' LIMIT 5')
+            cursor.execute('SELECT * FROM products WHERE products.name LIKE \'%'+search+'%\' LIMIT 25')
             row = cursor.fetchone()
             while row is not None:
                 print(str(row), file=sys.stderr)

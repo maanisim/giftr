@@ -83,7 +83,7 @@
                     <p class="pageTitle">Search for gift</p>
                 </div>
 				<div class="item-2">
-				<form action="" method="post">
+				<form action="{{ url_for('search') }}" method="post">
 					<p class="text">Sort results: </p>
 					<select>
 					<option>Alphabetically</option>
@@ -96,8 +96,8 @@
                        			<label class="text"><input type="checkbox">Children 0-2</label>
                         		<label class="text"><input type="checkbox">Children 3-12</label>
 					<br>
-					<label class="text"><input type="checkbox">Teenage Boys</label>
-					<label class="text"><input type="checkbox">Teenage Girls</label>
+					<label class="text"><input type="checkbox" name="t_boys">Teenage Boys</label>
+					<label class="text"><input type="checkbox" name="t_girls">Teenage Girls</label>
 					<br>
 					<label class="text"><input type="checkbox">Him</label>
 					<label class="text"><input type="checkbox">Her</label>
