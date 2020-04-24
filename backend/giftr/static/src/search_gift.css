@@ -24,12 +24,12 @@ p.itemName {
 }
 
 .searchField {
-	width: 300px;
-    padding: 5pt 5pt;
-    outline:none;
-    background: transparent;
-    margin: 5px;
-    color: black;
+	width: 150px;
+    	padding: 5pt 5pt;
+    	outline:none;
+   	background: transparent;
+   	margin: 5px;
+  	color: black;
 	border-style: solid;
 	border-color: #ededed;
 	border-radius: 3px 3px 3px 3px;
