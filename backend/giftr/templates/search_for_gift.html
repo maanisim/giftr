@@ -85,10 +85,10 @@
 				<div class="item-2">
 				<form action="{{ url_for('search') }}" method="post">
 					<p class="text">Sort results: </p>
-					<select>
+					<select class="form-control" name="sort">
 					<option>Alphabetically</option>
-					<option>Price low to high</option>
-					<option>Price high to low</option>
+					<option value="ascending">Price low to high</option>
+					<option value="descending">Price high to low</option>
 					</select>
 					<br><br>
 					
