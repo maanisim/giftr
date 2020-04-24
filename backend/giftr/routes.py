@@ -175,22 +175,30 @@ def search():
     # USING FILTERS
     if request.method == 'POST' and 'searchbox' in request.form:
         # OPTIONS
-
         search = request.form['searchbox']
         sort = request.form.get('sort')
         price = request.form.get('price')
-        tmp = " AND products.price = "
+        age = request.form.get('age')
+
+
+        # Adding price
+        andPrice = " AND products.price = "
         if int(price) == 0:
-            tmp = ""
+            andPrice = ""
         elif int(price) == 1:
-            tmp += "'$'"
+            andPrice += "'$'"
         elif int(price) == 2:
-            tmp += "'$$'"
+            andPrice += "'$$'"
         elif int(price) == 3:
-            tmp += "'$$$'"
+            andPrice += "'$$$'"
         elif int(price) == 4:
-            tmp += "'$$$$'"
-        
+            andPrice += "'$$$$'"
+
+        # adding age statement
+        andAge = ""
+        if age:
+            andAge = f" AND {age} BETWEEN products.age_low AND products.age_high"
+
         male = 'male' if request.form.get('male') else None
         female = 'female' if request.form.get('female') else None
         unisex = 'unisex' if request.form.get('unisex') else None
@@ -200,20 +208,18 @@ def search():
         if(re.match("^[A-Za-z0-9_-]*$", search) is not None):
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
             if len(genders) == 3 or not genders:
-                print(tmp, file=sys.stderr)
-                print("PRICEE  "+price,file=sys.stderr)
-                cursor.execute(f"SELECT * FROM products WHERE products.name LIKE '%{search}%'{tmp} ORDER BY products.name {sort} LIMIT 25")
+                cursor.execute(f"SELECT * FROM products WHERE products.name LIKE '%{search}%'{andPrice}{andAge} ORDER BY products.name {sort} LIMIT 25")
                 items = cursor.fetchall()
                 mysql.connection.commit()
                 return render_template('search_for_gift.html', items=items)
 
             elif len(genders) == 2:
-                cursor.execute(f"SELECT * FROM products WHERE gender = {genders[0]} AND gender = {genders[1]} AND products.name LIKE '%{search}%'{tmp} ORDER BY products.name {sort} LIMIT 25")
+                cursor.execute(f"SELECT * FROM products WHERE gender = {genders[0]} AND gender = {genders[1]} AND products.name LIKE '%{search}%'{andPrice}{andAge} ORDER BY products.name {sort} LIMIT 25")
                 items = cursor.fetchall()
                 return render_template('search_for_gift.html', items=items)
                 
             elif len(genders) == 1:
-                cursor.execute(f"SELECT * FROM products WHERE gender = {genders[0]} AND products.name LIKE '%{search}%'{tmp} ORDER BY products.name {sort} LIMIT 25")
+                cursor.execute(f"SELECT * FROM products WHERE gender = {genders[0]} AND products.name LIKE '%{search}%'{andPrice}{andAge} ORDER BY products.name {sort} LIMIT 25")
                 items = cursor.fetchall()
                 
                 return render_template('search_for_gift.html', items=items)
