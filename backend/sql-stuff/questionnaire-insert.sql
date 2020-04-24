@@ -1,0 +1,22 @@
+CREATE TABLE `users_favourite` (
+    `user_id` INT,
+    `fav_drink` VARCHAR(20),
+    `cur_occasion` VARCHAR(20),
+    `Art` INT(1),
+    ` Cars` INT(1),
+    `Disney` INT(1),
+    `Fashion` INT(1),
+    `Games` INT(1),
+    `Homestuff` INT(1),
+    `Jewelry` INT(2),
+    ` Music` INT(1),
+    `Skincare` INT(1),
+    `Sports` INT(1),
+    `Stationary` INT(1),
+    `Toys & Bears` INT(1),
+    `Travel` INT(1),
+    `person_type` VARCHAR(30),
+    `gift_type` VARCHAR(30),
+    `choc_or_shoe` VARCHAR(30),
+    `sentimental_type` INT
+);
