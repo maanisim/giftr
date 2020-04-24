@@ -17,16 +17,15 @@ import numpy as np
 
 @app.route('/')
 def index():
+    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+    cursor.execute(f"SELECT products.name,products.photo FROM products,(SELECT `product_id`,COUNT(`product_id`) AS `value_occurrence` FROM `product_liked` GROUP BY `product_id` ORDER BY `value_occurrence` DESC LIMIT 12) AS top12 WHERE top12.product_id = products.product_id")
+    top12items = cursor.fetchall()
+    mysql.connection.commit()
     if 'loggedin' in session:
         # Already logged in
         # You can tell you are logged in by register/login disappering on the right and being replaced with "my profile"
-        #SELECT products.name,products.photo FROM products,(SELECT `product_id`,COUNT(`product_id`) AS `value_occurrence` FROM `product_liked` GROUP BY `product_id` ORDER BY `value_occurrence` DESC LIMIT 12) AS top12 WHERE top12.product_id = products.product_id;
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute(f"SELECT products.name,products.photo FROM products,(SELECT `product_id`,COUNT(`product_id`) AS `value_occurrence` FROM `product_liked` GROUP BY `product_id` ORDER BY `value_occurrence` DESC LIMIT 12) AS top12 WHERE top12.product_id = products.product_id")
-        top12items = cursor.fetchall()
-        mysql.connection.commit()
         return render_template('index.html', username=session['username'],top12items=top12items)
-    return render_template('index.html')
+    return render_template('index.html',top12items=top12items)
 
 
 # -------------------------------------------------- AUTH ROUTES --------------------------------------------------
