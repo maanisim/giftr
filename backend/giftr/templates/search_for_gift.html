@@ -142,14 +142,15 @@
 					</form>
 					
                 </div>
-		    <div class="item-3">
-                <div class="wishlist">
-                    {% for row in items %} 
-                    <a href="/p/{{row['product_id']}}" class="images" style="text-decoration: none;">
-                        <img src="/static/img/p/{{row['photo']}}" alt="gift" width="147px" height="147px" draggable="false">
-                        <p class="giftName">{{row['name']}} </p>
-                    </a>        
-                            {% endfor %}
+		<div class="item-3">
+			<div class="nowPopular">
+			{% for row in items %} 
+			<a href="/p/{{row['product_id']}}" class="images" style="text-decoration: none;">
+			    <img src="/static/img/p/{{row['photo']}}" alt="gift" width="147px" height="147px" draggable="false">
+			    <p class="giftName">{{row['name']}} </p>
+			</a>        
+			{% endfor %}
+			 </div>
         
                             <!---->
         
@@ -289,7 +290,7 @@
 										 Gift 12
                                 </a>
                         </div> -->
-				</div>
+				
             </div>
 
 
