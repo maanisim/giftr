@@ -184,17 +184,17 @@ def search():
         if(re.match("^[A-Za-z0-9_-]*$", search) is not None):
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
             if len(genders) == 3 or not genders:
-                cursor.execute('SELECT * FROM products WHERE products.name LIKE %s LIMIT 25 ORDER BY products.name'+sort, [search])
+                cursor.execute(f"SELECT * FROM products WHERE products.name LIKE %s LIMIT 25 ORDER BY products.name {sort}", [search])
                 items = cursor.fetchall()
                 return render_template('search_for_gift.html', items=items)
 
             elif len(genders) == 2:
-                cursor.execute('SELECT * FROM products WHERE gender = %s AND gender = %s AND products.name LIKE %s LIMIT 25 ORDER BY products.name'+sort, (genders[0], genders[1], search))
+                cursor.execute(f"SELECT * FROM products WHERE gender = %s AND gender = %s AND products.name LIKE %s LIMIT 25 ORDER BY products.name {sort}", (genders[0], genders[1], search))
                 items = cursor.fetchall()
                 return render_template('search_for_gift.html', items=items)
                 
             elif len(genders) == 1:
-                cursor.execute('SELECT * FROM products WHERE gender = %s AND products.name LIKE %s LIMIT 25 ORDER BY products.name'+sort, (genders[0], search))
+                cursor.execute(f"SELECT * FROM products WHERE gender = %s AND products.name LIKE %s LIMIT 25 ORDER BY products.name {sort}", (genders[0], search))
                 items = cursor.fetchall()
                 return render_template('search_for_gift.html', items=items)
 
