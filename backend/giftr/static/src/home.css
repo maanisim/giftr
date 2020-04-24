@@ -47,7 +47,7 @@ h4{
   margin-top: 10px;
   margin-left: 60px;
   margin-right: 30px;
-  grid-template-columns: repeat(6, 10%);
+  grid-template-columns: repeat(5, 15%);
   column-gap: 20px;
   row-gap: 40px;
   font-size: 12pt;
