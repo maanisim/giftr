@@ -201,7 +201,7 @@ def search():
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
             if len(genders) == 3 or not genders:
                 print(tmp, file=sys.stderr)
-                print(price)
+                print("PRICEE  "+price,file=sys.stderr)
                 cursor.execute(f"SELECT * FROM products WHERE products.name LIKE '%{search}%'{tmp} ORDER BY products.name {sort} LIMIT 25")
                 items = cursor.fetchall()
                 mysql.connection.commit()
