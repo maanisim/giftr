@@ -78,16 +78,76 @@
             <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
              
              <br>
-        
+             <form action="{{ url_for('search') }}" method="post">
+                <p class="sectionTitle">Search: </p>
+                <input type="text" class="searchField" name="searchbox" placeholder="Enter keyword...">
+                <br><br>
+                
+                <p class="text">Sort results: </p>
+                <select class="form-control" name="sort" style="width: 150px;">
+                <option value="">Alphabetically</option>
+                <option value="ASC">Price low to high</option>
+                <option value="DESC">Price high to low</option>
+                </select>
+                <br><br>
+                
+                <p class="sectionTitle">Main categories:</p>
+                               <label class="text"><input type="checkbox" name="c0_2">Children 0-2</label>
+                            <label class="text"><input type="checkbox" name="c3_12">Children 3-12</label>
+                <br>
+                <label class="text"><input type="checkbox" name="t_boys">Teenage Boys</label>
+                <label class="text"><input type="checkbox" name="t_girls">Teenage Girls</label>
+                <br>
+                <label class="text"><input type="checkbox">Him</label>
+                <label class="text"><input type="checkbox">Her</label>
+                <br><br>
+
+                <p class="sectionTitle">Price range: </p>
+                    <input type="range" min="0" max="4" id="myRange" name="price" step="1" onmousemove="priceRange(value)" style="width: 150px;"><output id="price"></output>
+                    <script>
+                        function priceRange(value) {
+                            var priceRange = document.getElementById('myRange').value;
+                            var priceOutput;
+                            if (priceRange==0) {
+                                priceOutput = null;
+                            } else if (priceRange==1) {
+                                priceOutput = "$";
+                            } else if (priceRange==2) {
+                                priceOutput = "$$";
+                            } else if (priceRange==3) {
+                                priceOutput = "$$$";
+                            } else if (priceRange==4) {
+                                priceOutput = "$$$$";
+                            }
+                            
+                            document.getElementById('price').innerHTML = priceOutput;
+                        }
+                    </script>
+                <br><br>
+
+                <p class="sectionTitle">Gender: </p>
+                <label class="text"><input type="checkbox" name="female">Female</label>
+                <label class="text"><input type="checkbox" name="male">Male</label>
+                <label class="text"><input type="checkbox" name="unisex">Unisex</label>
+                <br><br>
+                
+                <button class="button button1" type="submit">Apply filters</button>
+                <br>
+                
+                </form>
+                
+            </div>
+
         <h3>Now popular:</h3>
 
         <div class="nowPopular">
-            {% for row in top12items %} 
-            <a href="/p/{{row['product_id']}}" class="images" style="text-decoration: none;">
-                <img src="/static/img/p/{{row['photo']}}" alt="gift" width="100%" height="147px" draggable="false">
-                <p class="giftName">{{row['name']}} </p>
-            </a>
-            {% endfor %}
+            <div class="wishlist">
+                {% for row in items %} 
+                <a href="/p/{{row['product_id']}}" class="images" style="text-decoration: none;">
+                    <img src="/static/img/p/{{row['photo']}}" alt="gift" width="147px" height="147px" draggable="false">
+                    <p class="giftName">{{row['name']}} </p>
+                </a>
+                </div>
         </div>
 
         <h4>Find gift for:</h4>
