@@ -208,6 +208,53 @@ def search():
     return render_template('search_for_gift.html')
 
 
+@app.route('/search2', methods=['POST', 'GET'])
+def search():
+    # SEARCH WITH NO PARAMS
+    if(request.method == 'POST' and 'search' in request.form):
+        search = request.form['search']
+        if(re.match("^[A-Za-z0-9_-]*$", search) is not None):
+                    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+                    cursor.execute(f"SELECT * FROM products WHERE products.name LIKE '%{search}%' LIMIT 25")
+                    items = cursor.fetchall()
+                    return render_template('search_for_gift.html', items=items)
+
+    # USING FILTERS
+    if request.method == 'POST' and 'searchbox' in request.form:
+        # OPTIONS
+
+        search = request.form['searchbox']
+        sort = request.form.get('sort')
+
+        male = 'male' if request.form.get('male') else None
+        female = 'female' if request.form.get('female') else None
+        unisex = 'unisex' if request.form.get('unisex') else None
+
+        genders = [male, female, unisex]
+
+        if(re.match("^[A-Za-z0-9_-]*$", search) is not None):
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            if len(genders) == 3 or not genders:
+                cursor.execute(f"SELECT * FROM products WHERE products.name LIKE '%{search}%' ORDER BY products.name {sort} LIMIT 25")
+                items = cursor.fetchall()
+                print(items, file=sys.stderr)
+                mysql.connection.commit()
+                return render_template('search_for_gift.html', items=items)
+
+            elif len(genders) == 2:
+                cursor.execute(f"SELECT * FROM products WHERE gender = {genders[0]} AND gender = {genders[1]} AND products.name LIKE '%{search}%' ORDER BY products.name {sort} LIMIT 25", (genders[0], genders[1], search))
+                items = cursor.fetchall()
+                return render_template('search_for_gift.html', items=items)
+                
+            elif len(genders) == 1:
+                cursor.execute(f"SELECT * FROM products WHERE gender = {genders[0]} AND products.name LIKE '%{search}%' ORDER BY products.name {sort} LIMIT 25", (genders[0], search))
+                items = cursor.fetchall()
+                
+                return render_template('search_for_gift.html', items=items)
+
+    return render_template('search_for_gift.html')
+
+
 @app.route('/emailSent', methods=['POST', 'GET'])
 def emailsent():
     #if request.method == 'POST':
