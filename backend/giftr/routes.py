@@ -261,18 +261,18 @@ def product(pid):
         msg = ""
         if 'loggedin' in session:
             uid = session['id']
-            if request.form.get('like'):
+            if request.form['like']:
                 # CHECKING DUPLICATE
-                cursor.execute('SELECT * FROM product_liked WHERE product_id = %s AND user_id = %s', (pid, uid))
-                check = cursor.fetchone()
-                if not check:
-                    cursor.execute('INSERT INTO product_liked (product_id, user_id) VALUES (%s, %s)', (pid, uid))
-            elif request.form.get('wish'):
+                # cursor.execute('SELECT * FROM product_liked WHERE product_id = %s AND user_id = %s', (pid, uid))
+                # check = cursor.fetchone()
+                # if not check:
+                cursor.execute('INSERT INTO product_liked (product_id, user_id) VALUES (%s, %s)', (pid, uid))
+            elif request.form['wish']:
                 # CHECKING DUPLICATE
-                cursor.execute('SELECT * FROM wishlist_list WHERE product_id = %s AND user_id = %s', (pid, uid))
-                check = cursor.fetchone()
-                if not check:
-                    cursor.execute('INSERT INTO wishlist_list (product_id, user_id) VALUES (%s, %s)', (pid, uid))
+                # cursor.execute('SELECT * FROM wishlist_list WHERE product_id = %s AND user_id = %s', (pid, uid))
+                # check = cursor.fetchone()
+                # if not check:
+                cursor.execute('INSERT INTO wishlist_list (product_id, user_id) VALUES (%s, %s)', (pid, uid))
         else:
             msg="Please log in before adding to a wishlist!"
         mysql.connection.commit()
@@ -402,7 +402,8 @@ def suggestion1():
     image = "img/p/" + recommendation["photo"]
     session["recommendation"] = recommendation
     alreadyRecc = updateAlreadyRecc(recommendation, alreadyRecc)
-    return render_template('itemSuggestion.html', recommendation=recommendation, image = image)
+    pid = recommendation["product_id"]
+    return render_template('itemSuggestion.html', recommendation=recommendation, image = image, pid=pid)
 
 @app.route('/suggestion2')
 def suggestion2():
@@ -413,7 +414,8 @@ def suggestion2():
     image = "img/p/" + recommendation["photo"]
     session["recommendation"] = recommendation
     alreadyRecc = updateAlreadyRecc(recommendation, alreadyRecc)
-    return render_template('itemSuggestion.html', recommendation=recommendation, image = image)
+    pid = recommendation["product_id"]
+    return render_template('itemSuggestion.html', recommendation=recommendation, image = image, pid=pid)
 ###################################################################
 #Functions for Suggestion
 ###################################################################
