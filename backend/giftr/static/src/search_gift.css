@@ -130,16 +130,16 @@ label.text {
 }
 
 .nowPopular {
-  display: grid;
-  margin-top: 20px;
-  margin-left: 60px;
-  margin-right: 30px;
-  margin-bottom: 40px;
-  grid-template-columns: repeat(5, 15%);
-  grid-template-rows: repeat(2, 250px);
-  column-gap: 30px;
-  row-gap: 50px;
-  font-size: 12pt;
+	display: grid;
+	margin-top: 20px;
+	margin-left: 30px;
+	margin-right: 30px;
+	margin-bottom: 40px;
+	grid-template-columns: repeat(5, 15%);
+	grid-template-rows: repeat(2, 250px);
+	column-gap: 30px;
+	row-gap: 50px;
+	font-size: 12pt;
   
 }
 
