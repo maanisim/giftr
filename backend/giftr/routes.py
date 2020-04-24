@@ -164,7 +164,7 @@ def search():
         search = request.form['search']
         if(re.match("^[A-Za-z0-9_-]*$", search) is not None):
                     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                    cursor.execute('SELECT * FROM products WHERE products.name LIKE %s LIMIT 25', [search])
+                    cursor.execute(f"SELECT * FROM products WHERE products.name LIKE '%{search}%' LIMIT 25")
                     items = cursor.fetchall()
                     return render_template('search_for_gift.html', items=items)
 
