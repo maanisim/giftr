@@ -327,9 +327,7 @@ def new_settings():
                         cursor.execute(f"UPDATE users set email= '{email}' WHERE user_id={uid}")
                         session.pop('email', None)
                         session['email'] = email
-                    #request.form['email'] = email
-                    #print that something happened? to user
-                    
+            # changing users password not yet implemented.   
             #if(request.form['passw'] == request.form['cofirmPassw']):
              #   passw = request.form['passw']
              #   if(len(passw) > 7):
@@ -342,14 +340,16 @@ def new_settings():
         return render_template('settings.html')
     else:
         return render_template('index.html')
-        # ADD TO WISHLIST
-        # if 'loggedin' in session:
-        #     uid = session['id']
-        #     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        #     cursor.execute('INSERT INTO wishlist_list WHERE user_id = %s VALUES %s', (uid, pid))
-        #     data = cursor.fetchone()
-        # else:
-        #     return render_template(url_for(pid), msg="Please log in before adding to a wishlist!")
+        #commented out as we decided to not messages due to time constraints.
+        ''' ADD TO WISHLIST
+         if 'loggedin' in session:
+             uid = session['id']
+             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+             cursor.execute('INSERT INTO wishlist_list WHERE user_id = %s VALUES %s', (uid, pid))
+             data = cursor.fetchone()
+         else:
+             return render_template(url_for(pid), msg="Please log in before adding to a wishlist!")
+        '''
 
 # Exmaple page giftr.cf/p/1800 or https://giftr.cf/p/23
 # We generate the product pages based on pid from the database.
@@ -556,6 +556,7 @@ def update():
             productID = counter["product_id"]
             age_low = round(counter["age_low"]*1.5)
             age_high = round(counter["age_high"]*1.5)
+            # give different weight to products based on user type of user spend a little or more? female or male? what do they like?.
             if (counter["price"] == "$"):
                 price = 100
             elif (counter["price"] == "$$"):
@@ -629,7 +630,7 @@ def update():
                 
             else:
                 other = 500
-                
+                #insert product weights into the sql database
             crsr.execute("""INSERT INTO productRecValues VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",(productID, age_low, age_high, price, gender1, gender2, toiletries, clothes, homeware, entertainment, consumable, sport, other))
     
     #Assigns numerical values for new users
@@ -789,7 +790,7 @@ def liked(recommendation):
     check = cursor.fetchone()
     if not check:
         cursor.execute('INSERT INTO product_liked (product_id, user_id) VALUES (%s, %s)', (pid, uid))
-                # CHECKING DUPLICATE
+                # Check if duplication has occured
     cursor.execute('SELECT * FROM wishlist_list WHERE product_id = %s AND user_id = %s', (pid, uid))
     check = cursor.fetchone()
     if not check:
