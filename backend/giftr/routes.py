@@ -18,19 +18,21 @@ import numpy as np
 @app.route('/')
 def index():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-    cursor.execute(f"SELECT products.product_id,products.name,products.photo FROM products,(SELECT `product_id`,COUNT(`product_id`) AS `value_occurrence` FROM `product_liked` GROUP BY `product_id` ORDER BY `value_occurrence` DESC LIMIT 12) AS top12 WHERE top12.product_id = products.product_id")
+    #take out all products with the highest amount of likes
+    cursor.execute(f"SELECT products.product_id,products.name,products.photo
+     FROM products,(SELECT `product_id`,COUNT(`product_id`) AS `value_occurrence` 
+    FROM `product_liked` GROUP BY `product_id` ORDER BY `value_occurrence` DESC LIMIT 12)
+     AS top12 WHERE top12.product_id = products.product_id")
     top12items = cursor.fetchall()
     mysql.connection.commit()
+    #if logged in keep the username variable in nav bar
     if 'loggedin' in session:
-        # Already logged in
-        # You can tell you are logged in by register/login disappering on the right and being replaced with "my profile"
         return render_template('index.html', username=session['username'],top12items=top12items)
     return render_template('index.html',top12items=top12items)
 
 
-# -------------------------------------------------- AUTH ROUTES --------------------------------------------------
 
-
+#Authenticate the user with email and password
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     # LOGGING IN
@@ -71,13 +73,15 @@ def login():
     elif 'loggedin' in session:
         return render_template('index.html')
 
+#Register the user with common registration info
 @app.route('/register', methods=['POST', 'GET'])
 def register():
-    # CREATING ACCOUNT
+    # if not yet logged in
     if not 'loggedin' in session and request.method == 'POST' and 'name' in request.form and 'passw' in request.form and 'email' in request.form:
         msg = ''
         # Check if "username", "password" and "email" POST requests exist
-        # Create variables for easy access
+
+        #  All the details user registers
         username = request.form['username']
         name = request.form['name']
         password = hashlib.sha256(request.form['passw'].encode('utf-8')).hexdigest()
@@ -85,13 +89,17 @@ def register():
         email = request.form['email']
         bdaymonth = request.form['bdaymonth']
         bdaymonth = bdaymonth.split('-')
+        # as suggested by our reviewer for privacy reasons we take away the day from the dob in order to 
         age = floor(int((((datetime.datetime.now().year - int(bdaymonth[0])) * 12) + int(bdaymonth[1]))/12))
         gender = str(request.form.get('gender'))
+        #In case we need to input users cookie into the database (we didn't had to yet) we create a token variable which can hold it
         token = "TEST"
+        #users_picture
         photo = "default.png"
 
+        #count errors
         count = 0
-        # checking cases
+        # checking cases by counting errors
         if not re.match(r'[A-Za-z]+', name):
             msg = 'Name must contain only [A-Za-z] characters!'
             count += 1
@@ -144,7 +152,7 @@ def register():
         return render_template('index.html')
         
 
-
+# logs user out by clearing cookies and redirecting to index page
 @app.route('/logout', methods=['POST', 'GET'])
 def logout():
     if 'loggedin' in session:
@@ -156,34 +164,36 @@ def logout():
         return redirect('/')
     return redirect('/')
 
-
+# redirects user to their profile page (cookies needed)
 @app.route('/profile')
 def profile():
     if 'loggedin' in session:
         return render_template('my_profile.html', username=session['username'])
     return redirect('/')
 
+#searches for the products on the website by dynamically generating content
 @app.route('/search', methods=['POST', 'GET'])
 def search():
-    # SEARCH WITH NO PARAMS
+    # If request sent
     if(request.method == 'POST' and 'search' in request.form):
         search = request.form['search']
+        # If request not sql injection
         if(re.match("^[A-Za-z0-9_-]*$", search) is not None):
-                    cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-                    cursor.execute(f"SELECT * FROM products WHERE products.name LIKE '%{search}%' LIMIT 25")
-                    items = cursor.fetchall()
-                    return render_template('search_for_gift.html', items=items)
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute(f"SELECT * FROM products WHERE products.name LIKE '%{search}%' LIMIT 25")
+            items = cursor.fetchall()
+            return render_template('search_for_gift.html', items=items)
 
     # USING FILTERS
     if request.method == 'POST' and 'searchbox' in request.form:
-        # OPTIONS
+        # variables for category search types
         search = request.form['searchbox']
         sort = request.form.get('sort')
         price = request.form.get('price')
         age = request.form.get('age')
 
 
-        # Adding price
+        # Let user choose price in their search category
         andPrice = " AND products.price = "
         if int(price) == 0:
             andPrice = ""
@@ -196,7 +206,7 @@ def search():
         elif int(price) == 4:
             andPrice += "'$$$$'"
 
-        # adding age statement
+        # sql statment for age IE age = a than if (x>=a && y<=a) show product
         andAge = ""
         if age:
             andAge = f" AND {age} BETWEEN products.age_low AND products.age_high"
@@ -206,7 +216,7 @@ def search():
         unisex = 'unisex' if request.form.get('unisex') else None
 
         genders = [male, female, unisex]
-
+        #let user choose gender male female or unisex in their search category
         if(re.match("^[A-Za-z0-9_-]*$", search) is not None):
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
             # different statements for different amounts of variables
@@ -215,7 +225,6 @@ def search():
                 items = cursor.fetchall()
                 mysql.connection.commit()
                 return render_template('search_for_gift.html', items=items)
-
             elif len(genders) == 2:
                 cursor.execute(f"SELECT * FROM products WHERE gender = {genders[0]} AND gender = {genders[1]} AND products.name LIKE '%{search}%'{andPrice}{andAge} ORDER BY products.name {sort} LIMIT 25")
                 items = cursor.fetchall()
@@ -229,7 +238,7 @@ def search():
 
     return render_template('search_for_gift.html')
 
-
+#old school search bar, had to be disable due to sql injection found by our penetration testing team
 @app.route('/search2', methods=['POST', 'GET'])
 def search2():
     # SEARCH WITH NO PARAMS
@@ -261,46 +270,49 @@ def search2():
                 items = cursor.fetchall()
                 print(items, file=sys.stderr)
                 mysql.connection.commit()
-                return render_template('search_for_gift2.html', items=items)
+                return render_template('index.html', items=items)
 
             elif len(genders) == 2:
                 cursor.execute(f"SELECT * FROM products WHERE gender = {genders[0]} AND gender = {genders[1]} AND products.name LIKE '%{search}%' ORDER BY products.name {sort} LIMIT 25", (genders[0], genders[1], search))
                 items = cursor.fetchall()
-                return render_template('search_for_gift2.html', items=items)
+                return render_template('index.html', items=items)
                 
             elif len(genders) == 1:
                 cursor.execute(f"SELECT * FROM products WHERE gender = {genders[0]} AND products.name LIKE '%{search}%' ORDER BY products.name {sort} LIMIT 25", (genders[0], search))
                 items = cursor.fetchall()
                 
-                return render_template('search_for_gift2.html', items=items)
+                return render_template('index.html', items=items)
 
-    return render_template('search_for_gift2.html')
+    return render_template('index.html')
 
 
 @app.route('/emailSent', methods=['POST', 'GET'])
 def emailsent():
-    #if request.method == 'POST':
-        #name = request.form['name']
-        #email = request.form['email']
-        #message = request.form['message']
-        #message = """\
-            #{}
-        #Subject: From {}
-        #{}""".format(email, name, message)
+    '''
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        message = request.form['message']
+        message = """\
+            {}
+        Subject: From {}
+        {}""".format(email, name, message)
 
-        #port = 465  # For SSL
-        #smtp_server = "smtp.gmail.com"
-        #sender_email = "group16uol@gmail.com"  # Enter your address
-        #receiver_email = "group16uol@gmail.com"  # Enter receiver address
-        #emailPassword = "passwordhere"
+        port = 465  # For SSL
+        smtp_server = "smtp.gmail.com"
+        sender_email = "group16uol@gmail.com"  # Enter your address
+        receiver_email = "group16uol@gmail.com"  # Enter receiver address
+        emailPassword = "passwordhere"
 
-        #context = ssl.create_default_context()
-        #with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
-            #server.login(sender_email, emailPassword)
-            #server.sendmail(sender_email, receiver_email, message)
-    return render_template('emailSent.html')
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
+            server.login(sender_email, emailPassword)
+            server.sendmail(sender_email, receiver_email, message)
+            '''
+            #return render_template('emailSent.html')
+    return render_template('index.html')
 
-
+#updates the old settings to new, for now we do not allow to change password however it's ready to be implement at any time
 @app.route('/new_settings',methods=['POST'])
 def new_settings():
     if('loggedin' in session and request.method == 'POST'):
@@ -342,12 +354,8 @@ def new_settings():
         # else:
         #     return render_template(url_for(pid), msg="Please log in before adding to a wishlist!")
 
-#+------------+-----------------------------+-------+---------+----------+-------+------------------------------------------------------------------------------------------+--------+--------------+
-#| product_id | name                        | photo | age_low | age_high | price | link                                                                                     | gender | category     |
-#+------------+-----------------------------+-------+---------+----------+-------+------------------------------------------------------------------------------------------+--------+--------------+
-#|          1 | FITFORT Alarm Clock Wake Up | 1.jpg |      20 |       99 | $     | https://www.amazon.co.uk/FITFORT-Alarm-Clock-Wake-Light-Sunrise/dp/B07CQVM7WY/ref=sr_1_6 | unisex | Alarm Clocks |
-#+------------+-----------------------------+-------+---------+----------+-------+------------------------------------------------------------------------------------------+--------+--------------+
-
+# Exmaple page giftr.cf/p/1800 or https://giftr.cf/p/23
+# We generate the product pages based on pid from the database.
 @app.route('/p/<int:pid>', methods=['POST', 'GET'])
 def product(pid):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -398,7 +406,7 @@ def product(pid):
     item_price=item_price
     )
 
-# route to show a user's page
+# render a user's page based on their user_id in the database. We were debating whether to user user_id or username and decided for now to use user_id.
 @app.route('/u/<int:uid>', methods=['POST', 'GET'])
 def user(uid):
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
@@ -410,54 +418,7 @@ def user(uid):
     username=username,
     )
 
-
-    # --------------------------- STATIC ROUTES --------------------------------------------------
-
-@app.route('/settings')
-def settings():
-    if 'loggedin' in session:
-        return render_template('settings.html')
-    return render_template('index.html')
-
-
-@app.route('/questionnaire')
-def questionnaire():
-    if 'loggedin' in session:
-        return render_template('rQuestionnaire.html')
-    return render_template('404.html')
-
-
-@app.route('/forgot')
-def forgot():
-    if 'loggedin' in session:
-        return render_template('index.html')
-    return render_template('forgotPsw.html')
-
-
-@app.route('/friend')
-def friend():
-    if 'loggedin' in session:
-        return render_template('anotherProfile.html')
-    return render_template('404.html')
-
-@app.route('/friends')
-def friends():
-    if 'loggedin' in session:
-        return render_template('my_friends.html')
-    return render_template('404.html')
-
-@app.route('/questionaire')
-def questionaire():
-    if 'loggedin' in session:
-        return render_template('rQuestionnaire.html')
-    return render_template('404.html')
-
-@app.route('/item')
-def item():
-    return render_template('itemPage.html')
-
-
-# display wishlist/gift bank items
+# display wishlist/gift bank items based on what user had choosen
 @app.route('/wishlist')
 def wishlist():
     if 'loggedin' in session:
@@ -472,20 +433,67 @@ def wishlist():
         return render_template('wishlist.html',wishlist_data=wishlist_data)
     return redirect(url_for('index'))
 
+# --------------------------- STATIC ROUTES --------------------------------------------------
 
+#/settings page showcases users settings which are changeable
+@app.route('/settings')
+def settings():
+    if 'loggedin' in session:
+        return render_template('settings.html')
+    return render_template('index.html')
+
+#/questionnaire page showcases questionnaire which is used in order to make AI more targeted to the user
+@app.route('/questionnaire')
+def questionnaire():
+    if 'loggedin' in session:
+        return render_template('rQuestionnaire.html')
+    return render_template('404.html')
+
+#/forgot page showcases forgot password page which has not been yet implement due to not being able to find a free email service.
+@app.route('/forgot')
+def forgot():
+    if 'loggedin' in session:
+        return render_template('index.html')
+    return render_template('forgotPsw.html')
+
+#test page used to test whether /friend page worked (to be delted)
+@app.route('/friend')
+def friend():
+    if 'loggedin' in session:
+        return render_template('anotherProfile.html')
+    return render_template('404.html')
+
+#/friends showcases friends of the currently logged in user (not yet implemented)
+@app.route('/friends')
+def friends():
+    if 'loggedin' in session:
+        return render_template('my_friends.html')
+    return render_template('404.html')
+
+#test page used to test whether /item page worked (to be delted)
+@app.route('/item')
+def item():
+    return render_template('itemPage.html')
+
+
+#/about page used to showcase the about info about the website
 @app.route('/about')
 def about():
     return render_template('about.html')
 
-
+#/privacy page used to showcase the privacy info about the website
 @app.route('/privacy')
 def privacy():
     return render_template('privacy_policy.html')
 
-
+#/contact page used to showcase the contact info about the website
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+
+
+# --------------------------- Aritficial Inteligence --------------------------------------------------
+
 #############################################################
 #Suggestions
 #############################################################
