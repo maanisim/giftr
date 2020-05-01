@@ -19,10 +19,10 @@ import numpy as np
 def index():
     cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
     #take out all products with the highest amount of likes
-    cursor.execute(f"SELECT products.product_id,products.name,products.photo
-     FROM products,(SELECT `product_id`,COUNT(`product_id`) AS `value_occurrence` 
-    FROM `product_liked` GROUP BY `product_id` ORDER BY `value_occurrence` DESC LIMIT 12)
-     AS top12 WHERE top12.product_id = products.product_id")
+    cursor.execute(f"SELECT products.product_id,products.name,products.photo 
+    FROM products,(SELECT `product_id`,COUNT(`product_id`) AS `value_occurrence` 
+    FROM `product_liked` GROUP BY `product_id` ORDER BY `value_occurrence` DESC LIMIT 12) 
+    AS top12 WHERE top12.product_id = products.product_id")
     top12items = cursor.fetchall()
     mysql.connection.commit()
     #if logged in keep the username variable in nav bar
