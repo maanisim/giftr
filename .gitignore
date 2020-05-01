@@ -10,6 +10,7 @@
 !crypt.py
 !www/
 token.txt
+.vscode
 www/venv
 !backend/
 !old-backend/

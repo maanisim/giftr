@@ -1,5 +1,0 @@
-# This is how you stop a robot uprising.
-User-agent: *
-Disallow: /
-Allow: /index.html
-Allow: /$
