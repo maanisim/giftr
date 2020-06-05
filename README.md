@@ -5,11 +5,11 @@ SQL - MariaDB\
 FrontEnd - Javascript/CSS/HTML:5\
 BackEnd - Python with Flask\
 AI - Python.\
-Support - Discord\
+Support - Discord
 
 # How to run
 Make a user web\
 create a dir giftr\
 create a db using insert_tables\
 chmod +x whileTrue.sh\
-start the program by runing nohup whileTrue.sh\
+start the program by runing nohup whileTrue.sh
