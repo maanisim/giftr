@@ -6,6 +6,8 @@ FrontEnd - Javascript/CSS/HTML:5\
 BackEnd - Python with Flask\
 AI - Python.\
 Support - Discord
+# Wayback Machine
+https://web.archive.org/web/20200730183152/https://giftr.cf/
 
 # How to run
 Make a user web\
